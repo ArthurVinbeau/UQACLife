@@ -1,2 +1,2 @@
 # UQACLife
-epilife for UQAC
+Epilife for UQAC
