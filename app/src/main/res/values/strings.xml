@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">UQACLife</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="bienvenue">Welcome !</string>
+    <string name="session">Open a session</string>
+    <string name="Identifiant">Login</string>
+    <string name="Mdp">Password</string>
+    <string name="Captcha">Captcha</string>
+    <string name="Valider">Done</string>
+    <string name="Login_suite">Write your login </string>
+    <string name="Mdp_suite">Write your password </string>
+    <string name="Captcha_suite">Write the captcha</string>
+    <string name="J_attends_la_finalisation_du_captcha">J attends</string>
 </resources>
