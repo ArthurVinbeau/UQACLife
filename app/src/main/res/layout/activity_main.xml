@@ -97,15 +97,16 @@
             android:padding="15dip" />
 
         <TextView
+            android:id="@+id/validation"
             android:layout_width="99dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:gravity="center"
+            android:layout_margin="15dip"
             android:background="@drawable/rounded_edittext"
+            android:gravity="center"
             android:padding="15dip"
             android:text="@string/Valider"
-            android:textSize="20sp"
-            android:layout_margin="15dip"/>
+            android:textSize="20sp" />
 
     </LinearLayout>
 </ScrollView>
