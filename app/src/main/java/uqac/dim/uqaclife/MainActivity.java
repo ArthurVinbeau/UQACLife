@@ -17,6 +17,18 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final login login = new login();
+
+        login.getCaptcha(this);
+
+        final android.content.Context c = this;
+
+        findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login.getCaptcha(c);
+            }
+        });
 
         // Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
