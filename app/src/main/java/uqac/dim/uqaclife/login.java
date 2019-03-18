@@ -1,6 +1,7 @@
 package uqac.dim.uqaclife;
 
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,31 +14,33 @@ public class login {
 
     private RequestQueue queue;
 
-    public String getCaptcha(android.content.Context context) {
+    public void setQueue(RequestQueue q) {
+        queue = q;
+    }
 
-        // Instantiate the RequestQueue.
-        queue = Volley.newRequestQueue(context);
-        String url ="http://www.google.com";
+    public void getCaptcha(View view) {
+
+        String url ="https://wprodl.uqac.ca/dossier_etudiant/";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.i("request", "Response is: " + response.substring(0, 500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("request","That didn't work!");
-            }
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    // Display the first 500 characters of the response string.
+                    //Log.i("request", "Response is: " + response.substring(500));
+                    Log.i("request", response.substring(response.indexOf("/commun/"), response.indexOf("\' alt=\"CAPTCHA\"")));
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.i("request","That didn't work!");
+                    Log.e("request", error.toString());
+                }
         });
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-
-        return "";
     }
 
     public String login(String id, String password, String captcha) {
