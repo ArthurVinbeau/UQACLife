@@ -15,9 +15,9 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/Ecran_daccueil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Ecran_daccueil"
         android:orientation="vertical">
 
         <ImageView
@@ -31,10 +31,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/bienvenue"
-            android:textSize="26sp"
             android:layout_margin="10dip"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="@string/bienvenue"
+            android:textSize="26sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -47,9 +47,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dip"
             android:text="@string/Identifiant"
-            android:textSize="26sp"
-            android:layout_margin="15dip"/>
+            android:textSize="26sp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -62,9 +62,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dip"
             android:text="@string/Mdp"
-            android:textSize="26sp"
-            android:layout_margin="15dip"/>
+            android:textSize="26sp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -77,16 +77,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dip"
             android:text="@string/Captcha"
-            android:textSize="26sp"
-            android:layout_margin="15dip"/>
+            android:textSize="26sp" />
 
         <ImageView
+            android:id="@+id/container_captcha"
             android:layout_width="match_parent"
             android:layout_height="61dp"
-            android:src="@drawable/blanc"
             android:layout_marginBottom="10dip"
-            android:contentDescription="@string/J_attends_la_finalisation_du_captcha"/>
+            android:contentDescription="@string/J_attends_la_finalisation_du_captcha"
+            android:src="@drawable/blanc" />
 
         <EditText
             android:layout_width="match_parent"
@@ -107,6 +108,12 @@
             android:padding="15dip"
             android:text="@string/Valider"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
     </LinearLayout>
 </ScrollView>
