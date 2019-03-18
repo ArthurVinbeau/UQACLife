@@ -50,10 +50,10 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_edittext"
         android:hint="@string/Login_suite"
-        android:inputType="text|textUri|textEmailAddress|textLongMessage|textVisiblePassword|number"
-        android:padding="15dip"
-        android:background="@drawable/rectangle_edittext"/>
+        android:inputType="textPersonName"
+        android:padding="15dip" />
 
     <TextView
         android:layout_width="match_parent"
@@ -65,10 +65,10 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_edittext"
         android:hint="@string/Mdp_suite"
-        android:inputType="text|textUri|textEmailAddress|textLongMessage|textVisiblePassword|number"
-        android:padding="15dip"
-        android:background="@drawable/rectangle_edittext"/>
+        android:inputType="textPassword"
+        android:padding="15dip" />
 
     <TextView
         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_edittext"
         android:hint="@string/Captcha_suite"
-        android:inputType="text|textUri|textEmailAddress|textLongMessage|textVisiblePassword|number"
+        android:inputType="textVisiblePassword"
         android:padding="15dip" />
 
     <TextView
