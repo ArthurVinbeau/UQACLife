@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_edittext"
         android:hint="@string/Login_suite"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:padding="15dip" />
 
     <TextView
