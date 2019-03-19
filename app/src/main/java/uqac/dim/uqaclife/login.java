@@ -29,7 +29,9 @@ public class login {
                 public void onResponse(String response) {
                     // Display the first 500 characters of the response string.
                     //Log.i("request", "Response is: " + response.substring(500));
-                    Log.i("request", response.substring(response.indexOf("/commun/"), response.indexOf("\' alt=\"CAPTCHA\"")));
+                    String captcha = "https://wprodl.uqac.ca" + response.substring(response.indexOf("/commun/"), response.indexOf("\' alt=\"CAPTCHA\""));
+                    Log.i("request", captcha);
+                    Log.i("request", "Cookie: ");
                 }
             }, new Response.ErrorListener() {
                 @Override
