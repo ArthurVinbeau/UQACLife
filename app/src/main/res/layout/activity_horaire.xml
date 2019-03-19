@@ -17,7 +17,7 @@
         android:id="@+id/head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorGreen"
+        android:background="@color/colorWhite"
         android:orientation="horizontal">
 
         <ImageButton
@@ -29,8 +29,7 @@
             android:background="@color/colorGreen"
             android:contentDescription="@string/refresh"
             android:scaleType="fitStart"
-            android:src="@drawable/refresh"
-            android:onClick="Refresh"/>
+            android:src="@drawable/refresh"/>
 
         <TextView
             android:id="@+id/login"
@@ -39,7 +38,7 @@
             android:layout_weight="95"
             android:gravity="center"
             android:text="@string/login"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="23sp" />
 
 
@@ -49,7 +48,8 @@
         android:id="@+id/scroll_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dip">
+        android:paddingTop="20dip"
+        android:background="@color/colorWhitefoncé">
 
         <LinearLayout
             android:id="@+id/container_page"
@@ -57,15 +57,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/jour_1"
+            <!--android:layout_marginStart="163dip"-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/monday"
-                android:textAlignment="center"
-                android:textColor="@color/colorOrange"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:background="@drawable/rectangle_days">
+
+                <TextView
+                    android:id="@+id/jour_1"
+                    android:layout_marginStart="163dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/monday"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorOrange"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    style="@style/couleur_monday"/>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/Matiere_1"
@@ -84,6 +96,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="23dip"
                         android:layout_marginTop="12dip"
                         android:text="@string/horaire_1debut"
                         android:textAlignment="center"
@@ -95,6 +108,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dip"
+                        android:layout_marginStart="23dip"
                         android:text="@string/horaire_1fin"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
@@ -108,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -117,7 +131,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/structures_discretes"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -127,7 +141,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_8map122_01"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -167,12 +180,14 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dip"
+                        android:layout_marginStart="23dip"
                         android:text="@string/horaire_2fin"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
@@ -186,7 +201,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -195,7 +210,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/structures_discretes"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -205,7 +220,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_8map122_01"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -227,6 +241,7 @@
                 android:id="@+id/jour_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="159dip"
                 android:paddingTop="20dip"
                 android:text="@string/tuesday"
                 android:textAlignment="center"
@@ -251,6 +266,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="31dip"
                         android:layout_marginTop="12dip"
                         android:text="@string/horaire1debut_j2"
                         android:textAlignment="center"
@@ -263,6 +279,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dip"
                         android:text="@string/finhoraire1_j2"
+                        android:layout_marginStart="23dip"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
@@ -275,7 +292,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -284,7 +301,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/calcul_avance_i"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -294,7 +311,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_8map107_01"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -334,6 +350,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                     <TextView
@@ -344,6 +361,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -353,7 +371,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -362,7 +380,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/algorithmique"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -372,7 +390,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_8inf433_01"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -393,6 +410,7 @@
                 android:id="@+id/jour_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="154dip"
                 android:paddingTop="20dip"
                 android:text="@string/wednesday"
                 android:textAlignment="center"
@@ -420,6 +438,7 @@
                         android:layout_marginTop="12dip"
                         android:text="@string/horairedebut_m1_j3"
                         android:textAlignment="center"
+                        android:layout_marginStart="23dip"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -430,6 +449,7 @@
                         android:layout_marginBottom="10dip"
                         android:text="@string/horairefin_m1_j3"
                         android:textAlignment="center"
+                        android:layout_marginStart="23dip"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -441,7 +461,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -450,7 +470,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/structures_discretes"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -460,7 +480,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_8map122_01"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -498,6 +517,7 @@
                         android:layout_marginTop="12dip"
                         android:text="@string/horairedebut_m2_j3"
                         android:textAlignment="center"
+                        android:layout_marginStart="23dip"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -508,6 +528,7 @@
                         android:layout_marginBottom="10dip"
                         android:text="@string/horairefin_m2_j3"
                         android:textAlignment="center"
+                        android:layout_marginStart="23dip"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -519,7 +540,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -528,7 +549,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/inf_mobile"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -538,7 +559,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_8inf257_12"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -559,6 +579,7 @@
                 android:id="@+id/jour_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="158dip"
                 android:paddingTop="20dip"
                 android:text="@string/thursday"
                 android:textAlignment="center"
@@ -588,6 +609,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="31dip"
                         android:textStyle="bold" />
 
                     <TextView
@@ -598,6 +620,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -607,7 +630,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -616,7 +639,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/calcul_avance_i_td"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -626,7 +649,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_8map107_01"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -666,6 +688,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                     <TextView
@@ -676,6 +699,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -685,7 +709,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -694,7 +718,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/algorithmique_td"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -704,7 +728,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_8inf433_01"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -726,6 +749,7 @@
                 android:id="@+id/jour_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="166dip"
                 android:paddingTop="20dip"
                 android:text="@string/friday"
                 android:textAlignment="center"
@@ -752,6 +776,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dip"
                         android:text="@string/horairedebut_m1_j5"
+                        android:layout_marginStart="31dip"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
@@ -765,6 +790,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -774,7 +800,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -783,7 +809,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/marketing"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -793,7 +819,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_2mar_120"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -833,6 +858,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                     <TextView
@@ -841,6 +867,7 @@
                         android:layout_marginBottom="10dip"
                         android:text="@string/horairefin_m2_j5"
                         android:textAlignment="center"
+                        android:layout_marginStart="23dip"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -852,7 +879,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -861,7 +888,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/marketing"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -871,7 +898,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_2mar_120"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -892,6 +918,7 @@
                 android:id="@+id/jour_6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="158dip"
                 android:paddingTop="20dip"
                 android:text="@string/saturday"
                 android:textAlignment="center"
@@ -918,6 +945,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dip"
                         android:text="@string/horairedebut_m1_j6"
+                        android:layout_marginStart="23dip"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
@@ -931,6 +959,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -940,7 +969,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -949,7 +978,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/inf_mobile"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -959,7 +988,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_8inf257_12"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
@@ -980,6 +1008,7 @@
                 android:id="@+id/jour_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="166dip"
                 android:paddingTop="20dip"
                 android:text="@string/sunday"
                 android:textAlignment="center"
@@ -1010,6 +1039,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                     <TextView
@@ -1020,6 +1050,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
+                        android:layout_marginStart="23dip"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -1029,7 +1060,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/description_corners"
-                    android:backgroundTint="@color/colorGreen"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical">
 
                     <TextView
@@ -1038,7 +1069,7 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/marketing"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlack"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -1048,7 +1079,6 @@
                         android:layout_marginStart="10dip"
                         android:layout_marginTop="5dip"
                         android:text="@string/_2mar_120"
-                        android:textColor="@color/colorBluechelou"
                         android:textSize="16sp" />
 
                     <TextView
