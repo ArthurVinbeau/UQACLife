@@ -15,8 +15,8 @@
     </style>
 
     <style name="couleur_monday" parent="Theme.AppCompat.Light.NoActionBar">
-        <color name="colorOrange1">#FFC107</color>
-        <color name="colorOrange2">#FF9B00</color>
+        <!--<color name="colorOrange1">#FFC107</color>
+        <color name="colorOrange2">#FF9B00</color>-->
     </style>
 
 </resources>
