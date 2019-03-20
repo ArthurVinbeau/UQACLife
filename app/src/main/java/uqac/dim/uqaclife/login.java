@@ -1,7 +1,11 @@
 package uqac.dim.uqaclife;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -9,6 +13,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.io.InputStream;
 
 public class login {
 
@@ -18,7 +24,7 @@ public class login {
         queue = q;
     }
 
-    public void getCaptcha(View view) {
+    public void getCaptcha(final View view) {
 
         String url ="https://wprodl.uqac.ca/dossier_etudiant/";
 
@@ -32,6 +38,7 @@ public class login {
                     String captcha = "https://wprodl.uqac.ca" + response.substring(response.indexOf("/commun/"), response.indexOf("\' alt=\"CAPTCHA\""));
                     Log.i("request", captcha);
                     Log.i("request", "Cookie: ");
+                    new DownloadImageTask((ImageView) view).execute(captcha);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -55,6 +62,31 @@ public class login {
 
 
         return "";
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 
 }
