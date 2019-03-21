@@ -3,14 +3,14 @@ package uqac.dim.uqaclife;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
 
-    login login;
+    Login login;
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        login = new login();
+        login = new Login();
         login.setQueue(Volley.newRequestQueue(this));
 
         // Example of a call to a native method
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fleur(View v) {
-        login.getCaptcha(findViewById(R.id.container_captcha));
+        login.getCaptcha((ImageView) findViewById(R.id.container_captcha), (TextView) findViewById(R.id.debug));
     }
 
 }
