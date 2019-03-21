@@ -28,8 +28,9 @@
             android:adjustViewBounds="true"
             android:background="@color/colorGreen"
             android:contentDescription="@string/refresh"
+            android:onClick="etPasLAuDela"
             android:scaleType="fitStart"
-            android:src="@drawable/refresh"/>
+            android:src="@drawable/refresh" />
 
         <TextView
             android:id="@+id/login"
@@ -58,6 +59,7 @@
             android:orientation="vertical">
 
             <!--android:layout_marginStart="163dip"-->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,15 +68,14 @@
 
                 <TextView
                     android:id="@+id/jour_1"
+                    style="@style/couleur_monday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/monday"
                     android:textAlignment="center"
                     android:textColor="@color/colorOrange"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    style="@style/couleur_monday"/>
-
+                    android:textStyle="bold" />
             </LinearLayout>
 
 
