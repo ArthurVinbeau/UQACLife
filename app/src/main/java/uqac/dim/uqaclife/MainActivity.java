@@ -10,6 +10,8 @@ import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
 
+    login login;
+
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -20,20 +22,24 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final login login = new login();
+        login = new login();
         login.setQueue(Volley.newRequestQueue(this));
-        login.getCaptcha(findViewById(R.id.container_captcha));
-
-        findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login.getCaptcha(findViewById(R.id.container_captcha));
-            }
-        });
 
         // Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
         //tv.setText(stringFromJNI());
+    }
+
+    public void versLInfini(View v) {
+        setContentView(R.layout.activity_horaire);
+    }
+
+    public void etPasLAuDela(View v) {
+        setContentView(R.layout.activity_main);
+    }
+
+    public void fleur(View v) {
+        login.getCaptcha(findViewById(R.id.container_captcha));
     }
 
 }

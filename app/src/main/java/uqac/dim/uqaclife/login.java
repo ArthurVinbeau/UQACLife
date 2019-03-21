@@ -15,6 +15,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class login {
 
@@ -38,7 +40,8 @@ public class login {
                     String captcha = "https://wprodl.uqac.ca" + response.substring(response.indexOf("/commun/"), response.indexOf("\' alt=\"CAPTCHA\""));
                     Log.i("request", captcha);
                     Log.i("request", "Cookie: ");
-                    new DownloadImageTask((ImageView) view).execute(captcha);
+                    String fleur = "https://cdn.pixabay.com/photo/2018/02/09/21/46/rose-3142529_960_720.jpg";
+                    new DownloadImageTask((ImageView) view).execute(fleur);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -75,16 +78,21 @@ public class login {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
             try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
+                //InputStream in = new java.net.URL(urldisplay).openStream();
+                URLConnection con = new URL(urldisplay).openConnection();
+                con.setRequestProperty("Cookie", "PHPSESSID=hpn201jdp2qmsi3cl89u3l00i1");
+                con.connect();
+                InputStream in = con.getInputStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
-                Log.e("Error", e.getMessage());
+                Log.e("request", e.getMessage());
                 e.printStackTrace();
             }
             return mIcon11;
         }
 
         protected void onPostExecute(Bitmap result) {
+            Log.i("request", "Setting image...");
             bmImage.setImageBitmap(result);
         }
     }
