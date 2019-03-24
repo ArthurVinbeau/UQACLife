@@ -23,6 +23,8 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
+    Boolean hideEmptyDay = true;
+
     int[][] colors = new int[][]{
             new int[]{0xFFFFC107,0xFFFF9B00},       //mondayColors
             new int[]{ 0xFFFFEB3B,0xFFEBD827},      //tuesdayColors
@@ -97,20 +99,23 @@ public class MainActivity extends AppCompatActivity {
             GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
 
 
-            TextView t = new TextView(this);
-            LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            l.setMargins(0, px, 0, 0);
-            t.setLayoutParams(l);
-            t.setText(days[i]);
-            t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            t.setTextColor(0xffffffff);
-            t.setBackground(gd);
-            t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            t.setTypeface(Typeface.DEFAULT_BOLD);
-            dynamicContent.addView(t);
+
 
             try {
                 JSONArray day = json.getJSONArray(days[i]);
+                if(hideEmptyDay && day.length()>0) {
+                    TextView t = new TextView(this);
+                    LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    l.setMargins(0, px, 0, 0);
+                    t.setLayoutParams(l);
+                    t.setText(days[i]);
+                    t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    t.setTextColor(0xffffffff);
+                    t.setBackground(gd);
+                    t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                    t.setTypeface(Typeface.DEFAULT_BOLD);
+                    dynamicContent.addView(t);
+                }
                 for(int j = 0 ; j < day.length();j++) {
                     try {
                         View cours = getLayoutInflater().inflate(R.layout.cours, dynamicContent, false);
