@@ -28,13 +28,6 @@
             android:contentDescription="@string/app_name"
             android:src="@drawable/uqaclife" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dip"
-            android:gravity="center"
-            android:text="@string/bienvenue"
-            android:textSize="26sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -126,12 +119,6 @@
                 android:text="@string/Valider"
                 android:textSize="20sp" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/debug"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
 
     </LinearLayout>
 </ScrollView>
