@@ -4,7 +4,7 @@ import android.util.Pair;
 
 import java.util.ArrayList;
 
-public class parser  {
+public class Parser  {
     public String toJson(String html) {
         String lessonPart = html.split("<FONT SIZE=\"-1\"><B>Toute la journée</B></FONT>")[1].split("<!-- fin contenu centrale -->")[0];
         String[] lessons = lessonPart.split("<hr><b>");
@@ -57,25 +57,25 @@ public class parser  {
                 default:
                     break;
                 case 0:
-                    json += "monday";
+                    json += "Monday";
                     break;
                 case 1:
-                    json += "tuesday";
+                    json += "Tuesday";
                     break;
                 case 2:
-                    json += "wednesday";
+                    json += "Wednesday";
                     break;
                 case 3:
-                    json += "thursday";
+                    json += "Thursday";
                     break;
                 case 4:
-                    json += "friday";
+                    json += "Friday";
                     break;
                 case 5:
-                    json += "saturday";
+                    json += "Saturday";
                     break;
                 case 6:
-                    json += "sunday";
+                    json += "Sunday";
                     break;
             }
 
