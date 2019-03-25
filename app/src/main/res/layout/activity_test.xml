@@ -7,10 +7,10 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="show_week"
-        android:id="@+id/button"
+        android:onClick="etPasLAuDela"
         android:text="button"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="323dp" />
