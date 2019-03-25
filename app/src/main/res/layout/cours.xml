@@ -1,126 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="7dp">
 
 
-        <LinearLayout
-            android:id="@+id/matiere"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@drawable/cours"
-            android:backgroundTint="#DDDDDD"
-            android:clipChildren="true"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-
-                android:id="@+id/courstimes"
-                android:layout_width="100dip"
-                android:layout_height="match_parent"
-                android:clipToPadding="true"
-                android:orientation="vertical"
-                android:padding="3dp">
-
-                <TextView
-                    android:id="@+id/timestart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dip"
-                    android:text="H debut"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/timeend"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dip"
-                    android:text="H fin"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/coursdescription"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/colorlightBlue1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/lessonname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dip"
-                    android:layout_marginTop="5dip"
-                    android:text="Nom du cours"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/lessonid"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dip"
-                    android:layout_marginTop="5dip"
-                    android:text="ID du cours"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/lessonroom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dip"
-                    android:layout_marginTop="5dip"
-                    android:text="Salle du cours"
-                    android:textColor="@color/colorlightBlue"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/matiere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/cours"
+        android:backgroundTint="#DDDDDD"
+        android:clipChildren="true"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/more_infos"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+
+            android:id="@+id/courstimes"
+            android:layout_width="100dip"
+            android:layout_height="match_parent"
+            android:clipToPadding="true"
             android:orientation="vertical"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/matiere"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/matiere">
+            android:padding="3dp">
 
             <TextView
-                android:id="@+id/group"
+                android:id="@+id/timestart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dip"
+                android:text="H debut"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/blacklistButton"
+            <TextView
+                android:id="@+id/timeend"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:text="Blacklist" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:text="H fin"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/coursdescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorlightBlue1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lessonname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dip"
+                android:layout_marginTop="5dip"
+                android:text="Nom du cours"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lessonid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dip"
+                android:layout_marginTop="5dip"
+                android:text="ID du cours"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/lessonroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dip"
+                android:layout_marginTop="5dip"
+                android:text="Salle du cours"
+                android:textColor="@color/colorlightBlue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/more_infos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/matiere"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matiere">
+
+        <TextView
+            android:id="@+id/group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/blacklistButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="Blacklist" />
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>
