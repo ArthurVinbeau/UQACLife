@@ -180,7 +180,14 @@ public class MainActivity extends AppCompatActivity {
                             ((TextView) cours.findViewById(R.id.lessonroom)).setText(lesson.getString("room"));
                             ((TextView) cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
                             ((TextView) cours.findViewById(R.id.timeend)).setText(lesson.getString("end"));
-                            ((TextView) cours.findViewById(R.id.group)).setText(lesson.getString("grp"));        //groupe
+                            ((TextView) cours.findViewById(R.id.group)).setText("Groupe : " + lesson.getString("grp"));        //groupe
+                             final View more_infos = cours.findViewById(R.id.more_infos);
+                             (cours.findViewById(R.id.matiere)).setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     more_infos.setVisibility(more_infos.getVisibility()==View.VISIBLE?View.GONE:View.VISIBLE);
+                                 }
+                             });
                             dynamicContent.addView(cours);
                         }
 
