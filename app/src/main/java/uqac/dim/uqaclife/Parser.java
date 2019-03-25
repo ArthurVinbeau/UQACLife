@@ -2,6 +2,7 @@ package uqac.dim.uqaclife;
 
 import android.util.Log;
 import android.util.Pair;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -62,7 +63,7 @@ public class Parser  {
             }
         }
         //Normalement, ici on week avec chaque jour rempli par les cours dans l'ordre de la journee
-        //Ils sont inscrits sous la forme id-grp - Nom du cours#hh:mm à hh:mm#local#period
+        //Ils sont inscrits sous la forme id-grp - Nom du cours#hh:mm à hh:mm#local#period#TD
         String json = "{\n";
         for (int i = 0; i < 7; i++) {
             json += "\"";
@@ -92,6 +93,7 @@ public class Parser  {
                     break;
             }
 
+
             json += "\": [\n";
             for (int j = 1; j < week.get(i).size(); j++) {
                 String a = week.get(i).get(j).second;
@@ -105,6 +107,8 @@ public class Parser  {
                         + "\",\n\"dates\": \"" + actualLesson[3]
                         + "\",\n\"room\": \"" + actualLesson[2].replaceAll("&nbsp", "")
                         + "\"\n}" + ((j + 1 < week.get(i).size()) ? "," : "") + "\n";
+
+
 
 
                 //{

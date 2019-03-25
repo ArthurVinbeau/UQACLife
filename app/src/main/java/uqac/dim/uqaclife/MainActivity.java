@@ -1,6 +1,7 @@
 package uqac.dim.uqaclife;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.Volley;
@@ -20,7 +22,6 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.YearMonth;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         login = new Login();
         login.setQueue(Volley.newRequestQueue(this));
-
         // Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
         //tv.setText(stringFromJNI());
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void versLInfini(View v) {
         setContentView(R.layout.activity_test);
+        show_week(v);
     }
 
     public void etPasLAuDela(View v) {
@@ -82,7 +83,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void refreshweek(View v) {
+    public void refresh_week(View v){
+        //html = htmlRequest();
+        show_week(v);
+    }
+
+    public void show_week(View v) {
 
         DateFormat dateFormat= new SimpleDateFormat("dd-MM-yyyy-u");
         String currentDate  = dateFormat.format(new Date());
@@ -175,9 +181,16 @@ public class MainActivity extends AppCompatActivity {
                          if(dateCompare(currentweek,lesson.getString("dates"))) {
                             View cours = getLayoutInflater().inflate(R.layout.cours, dynamicContent, false);
                             cours.findViewById(R.id.courstimes).setBackground(gd2);
-                            ((TextView) cours.findViewById(R.id.lessonid)).setText(lesson.getString("id"));
+                            String room = lesson.getString("room");
+                            if(room.contains("T.D"))
+                            {
+                                cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
+                                room = room.replace(" (T.D)","");
+                            }
+                            String id = lesson.getString("id");
+                            ((TextView) cours.findViewById(R.id.lessonid)).setText(id);
                             ((TextView) cours.findViewById(R.id.lessonname)).setText(lesson.getString("name"));
-                            ((TextView) cours.findViewById(R.id.lessonroom)).setText(lesson.getString("room"));
+                            ((TextView) cours.findViewById(R.id.lessonroom)).setText(room);
                             ((TextView) cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
                             ((TextView) cours.findViewById(R.id.timeend)).setText(lesson.getString("end"));
                             ((TextView) cours.findViewById(R.id.group)).setText("Groupe : " + lesson.getString("grp"));        //groupe
@@ -188,9 +201,20 @@ public class MainActivity extends AppCompatActivity {
                                      more_infos.setVisibility(more_infos.getVisibility()==View.VISIBLE?View.GONE:View.VISIBLE);
                                  }
                              });
+                             (cours.findViewById(R.id.blacklistButton)).setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     /*SharedPreferences sharedPref = MainActivity.this().getPreferences(getApplicationContext().MODE_PRIVATE);
+                                     sharedPref.getString("blacklisted")
+                                     SharedPreferences.Editor editor = sharedPref.edit();
+
+                                     editor.putString("blacklisted", " " +  id);
+                                     editor.commit();*/
+                                     Log.i("Blacklisted","clicked");
+                                 }
+                             });
                             dynamicContent.addView(cours);
                         }
-
 
                     }catch (JSONException e){
                         Log.i("JSON error",e.toString(),e);

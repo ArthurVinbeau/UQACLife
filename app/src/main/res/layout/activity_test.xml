@@ -9,7 +9,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="refreshweek"
+        android:onClick="show_week"
         android:id="@+id/button"
         android:text="button"
         app:layout_constraintTop_toTopOf="parent"
