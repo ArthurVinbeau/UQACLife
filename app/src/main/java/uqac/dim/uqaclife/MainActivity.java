@@ -9,6 +9,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 
@@ -61,12 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 "\t<!-- fin contenu centrale -->\t\n" +
                 "\n" ;}
 
-    login login;
+    LoginActivity login;
+    RequestQueue queue;
 
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         show_week(null);
-        login = new Login();
-        login.setQueue(Volley.newRequestQueue(this), this);
+        queue = Volley.newRequestQueue(this);
 
 
         // Example of a call to a native method
@@ -90,10 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void etPasLAuDela(View v) {
         sharedPref.edit().putString("json", null).commit();
-        setContentView(R.layout.activity_main);
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
-
+        startActivityForResult(intent, 42);
+        show_week(v);
     }
 
 
@@ -253,13 +256,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fleur(View v) {
-        login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString(), (TextView) findViewById(R.id.debug));
+        login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
     }
 
     public void truc(String html) {
         this.html = html;
-        setContentView(R.layout.activity_test);
-        show_week(null);
+        login.finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 42) show_week(null);
     }
 
 
