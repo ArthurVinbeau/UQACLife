@@ -11,4 +11,5 @@
     <string name="J_attends_la_finalisation_du_captcha">J attends</string>
     <string name="login">Login</string>
     <string name="refresh">Refresh</string>
+    <string name="preferences_file">com.uqacLifeTeam.uqacLife.PREFERENCE_FILE_KEY</string>
 </resources>
