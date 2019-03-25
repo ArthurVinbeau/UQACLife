@@ -45,6 +45,7 @@
             android:textSize="26sp" />
 
         <EditText
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_edittext"
@@ -60,6 +61,7 @@
             android:textSize="26sp" />
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_edittext"
@@ -74,7 +76,7 @@
             android:text="@string/Captcha"
             android:textSize="26sp" />
 
-        <ImageView
+        <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/container_captcha"
             android:layout_width="match_parent"
             android:layout_height="61dp"
@@ -83,6 +85,7 @@
             android:src="@drawable/blanc" />
 
         <EditText
+            android:id="@+id/captcha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_edittext"
