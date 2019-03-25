@@ -64,10 +64,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_test);
         login = new Login();
-        login.setQueue(Volley.newRequestQueue(this));
-        login.getCaptcha((NetworkImageView) findViewById(R.id.container_captcha));
+        login.setQueue(Volley.newRequestQueue(this), this);
 
         // Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
@@ -81,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void etPasLAuDela(View v) {
         setContentView(R.layout.activity_main);
+        login.getCaptcha((NetworkImageView) findViewById(R.id.container_captcha));
     }
 
 
@@ -229,6 +229,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void fleur(View v) {
         login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString(), (TextView) findViewById(R.id.debug));
+    }
+
+    public void truc(String html) {
+        this.html = html;
+        setContentView(R.layout.activity_test);
+        show_week(null);
     }
 
 
