@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity {
     Boolean hideEmptyDay = true;
 
     int[][] colors = new int[][]{
-            new int[]{0xFFFFC107,0xFFFF9B00},       //mondayColors
-            new int[]{ 0xFFFFEB3B,0xFFEBD827},      //tuesdayColors
-            new int[]{ 0xFFF75A4E,0xFFF81D0D},      //wednesdayColors
-            new int[]{ 0xFFD77EF5,0xFFBF0EDD},      //thurdsdayColors
-            new int[]{ 0xFF5970E7,0xFF2040EC},      //fridayColors
-            new int[]{ 0xFF4CE751,0xFF11A214},      //saturdayColors
-            new int[]{ 0xFF47E1F5,0xFF0A8EA3}};    //sundayColors
+            new int[]{0xFFFFC107,0xFFFF9B00},           //mondayColors
+            new int[]{ 0xFFF75A4E,0xFFF81D0D},          // tuesdayColors
+            new int[]{ 0xFFD77EF5,0xFFBF0EDD},          //wednesdayColors
+            new int[]{ 0xFF5970E7,0xFF2040EC},          //thurdsdayColors
+            new int[]{ 0xFF4CE751,0xFF11A214},          //fridayColors
+            new int[]{ 0xFF47E1F5,0xFF0A8EA3},          //saturdayColors
+            new int[]{ 0xFFFFEB3B,0xFFEBD827}};        //sundayColors
     String[] days = new String[]{"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
 
 
