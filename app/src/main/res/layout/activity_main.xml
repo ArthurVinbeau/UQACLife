@@ -69,6 +69,14 @@
             android:inputType="textPassword"
             android:padding="15dip" />
 
+        <CheckBox
+            android:id="@+id/save_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dip"
+            android:text="@string/save_password"
+            android:textSize="26sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

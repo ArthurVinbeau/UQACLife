@@ -1,6 +1,7 @@
 package uqac.dim.uqaclife;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             new int[]{ 0xFFFFEB3B,0xFFEBD827}};        //sundayColors
     String[] days = new String[]{"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
 
+    SharedPreferences sharedPref;
 
     String html;
     {
@@ -65,8 +67,10 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        show_week(null);
         login = new Login();
         login.setQueue(Volley.newRequestQueue(this), this);
+
 
         // Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void etPasLAuDela(View v) {
+        sharedPref.edit().putString("json", null).commit();
         setContentView(R.layout.activity_main);
         login.getCaptcha((NetworkImageView) findViewById(R.id.container_captcha));
     }
@@ -90,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void show_week(View v) {
+        sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
 
         DateFormat dateFormat= new SimpleDateFormat("dd-MM-yyyy-u");
         String currentDate  = dateFormat.format(new Date());
@@ -142,7 +148,18 @@ public class MainActivity extends AppCompatActivity {
        Parser parser = new Parser();
         JSONObject json = null;
         try {
-            json = new JSONObject(parser.toJson(html));
+            String savedJson = sharedPref.getString("json", null);
+            if(savedJson==null)
+            {
+                Log.i("TEST","ToParser");
+                json = new JSONObject(parser.toJson(html));
+            }
+            else
+            {
+                Log.i("TEST","NOT");
+                json = new JSONObject(savedJson);
+            }
+            sharedPref.edit().putString("json", json.toString()).commit();
         } catch (JSONException e){
             Log.i("JSON error",e.toString(),e);
         }
