@@ -144,12 +144,12 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout dynamicContent = (LinearLayout) findViewById(R.id.weekList);
         dynamicContent.removeAllViews();
         int px = (int)(2* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
+        int px2 = (int)(15* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
 
         for( i = 0; i < 7 ; i++) {
 
             GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
-
-
+            GradientDrawable gd2 = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
 
 
             try {
@@ -167,13 +167,14 @@ public class MainActivity extends AppCompatActivity {
                     t.setTypeface(Typeface.DEFAULT_BOLD);
                     dynamicContent.addView(t);
                 }
+                gd2.setCornerRadii(new float[]{px2,px2,0,0,0,0,px2,px2});
                 for(int j = 0 ; j < day.length();j++) {
                     try {
 
                         JSONObject lesson = day.getJSONObject(j);
                          if(dateCompare(currentweek,lesson.getString("dates"))) {
                             View cours = getLayoutInflater().inflate(R.layout.cours, dynamicContent, false);
-                            cours.findViewById(R.id.courstimes).setBackground(gd);
+                            cours.findViewById(R.id.courstimes).setBackground(gd2);
                             ((TextView) cours.findViewById(R.id.lessonid)).setText(lesson.getString("id"));
                             ((TextView) cours.findViewById(R.id.lessonname)).setText(lesson.getString("name"));
                             ((TextView) cours.findViewById(R.id.lessonroom)).setText(lesson.getString("room"));
