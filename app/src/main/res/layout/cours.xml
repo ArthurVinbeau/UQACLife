@@ -5,17 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="7dp">
+    android:layout_height="wrap_content"
+    android:background="@drawable/cours"
+    android:backgroundTint="#DDDDDD"
+    android:layout_marginBottom="7dp"
+    android:layout_marginTop="7dp">
 
 
     <LinearLayout
         android:id="@+id/matiere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:background="@drawable/cours"
-        android:backgroundTint="#DDDDDD"
         android:clipChildren="true"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,6 +26,7 @@
             android:layout_width="100dip"
             android:layout_height="match_parent"
             android:clipToPadding="true"
+            android:gravity="center_vertical"
             android:orientation="vertical"
             android:padding="3dp">
 
@@ -109,35 +110,35 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:id="@+id/more_infos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/matiere"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/matiere">
+
+                <TextView
+                    android:id="@+id/group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/blacklistButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Blacklist" />
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/more_infos"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/matiere"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/matiere">
-
-        <TextView
-            android:id="@+id/group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/blacklistButton"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:text="Blacklist" />
     </LinearLayout>
 
 
