@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
     public void etPasLAuDela(View v) {
         sharedPref.edit().putString("json", null).commit();
         setContentView(R.layout.activity_main);
-        //Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        //startActivity(intent);
-        login.getCaptcha((NetworkImageView) findViewById(R.id.container_captcha));
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+
     }
 
 
