@@ -18,6 +18,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.YearMonth;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     Boolean hideEmptyDay = true;
@@ -79,6 +84,54 @@ public class MainActivity extends AppCompatActivity {
 
     public void refreshweek(View v) {
 
+        DateFormat dateFormat= new SimpleDateFormat("dd-MM-yyyy-u");
+        String currentDate  = dateFormat.format(new Date());
+        int[] movingDate = new int[4];
+        int i = 0;
+        for (String inte: currentDate.split("-")) {
+            movingDate[i++] = Integer.parseInt(inte);
+        }
+
+        while(movingDate[3]-- > 1){
+            movingDate[0]--;
+            if(movingDate[0] == 0){
+                movingDate[1]--;
+                if(movingDate[1]== 0)
+                {
+                    movingDate[2]--;
+                    movingDate[1] = 12;
+                }
+                if(movingDate[1] == 2)
+                    movingDate[0] = (movingDate[0]%4 == 0 && movingDate[0]%100 != 0?29:28);
+                else if(movingDate[1]>7 ? movingDate[1]%2 == 0 : movingDate[1]==1)
+                    movingDate[0] = 30;
+                else
+                    movingDate[0] = 31;
+            }
+        }
+        String currentweek =  String.format("%02d",movingDate[0]) + "-" + String.format("%02d", movingDate[1]) +"-" + String.format("%02d",movingDate[2]);
+        for ( i = 1 ; i < 7; i++) {
+            movingDate[0]++;
+            if(movingDate[0]==32) {
+                movingDate[0] = 1;
+                movingDate[1]++;
+            } else if(movingDate[0] == 31 && (movingDate[1]>7 ? movingDate[1]%2 == 0 : movingDate[1]==1)) {
+                movingDate[0] = 1;
+                movingDate[1]++;
+            }
+            else  if(movingDate[1] ==2 && movingDate[0] > 28) {
+                if (movingDate[0] == 30) {
+                    movingDate[0] = 1;
+                    movingDate[1]++;
+                } else if (!(movingDate[2]%4 == 0 && movingDate[2]%100 != 0)){
+                    movingDate[0] = 1;
+                    movingDate[1]++;
+                }
+            }
+
+            currentweek += " " + movingDate[0] + "-" + String.format("%02d", movingDate[1]) +"-" + String.format("%02d",movingDate[2]);
+        }
+
        Parser parser = new Parser();
         JSONObject json = null;
         try {
@@ -87,10 +140,12 @@ public class MainActivity extends AppCompatActivity {
             Log.i("JSON error",e.toString(),e);
         }
 
+
         LinearLayout dynamicContent = (LinearLayout) findViewById(R.id.weekList);
+        dynamicContent.removeAllViews();
         int px = (int)(20* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
 
-        for(int i = 0; i < 7 ; i++) {
+        for( i = 0; i < 7 ; i++) {
 
             GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
 
@@ -114,17 +169,21 @@ public class MainActivity extends AppCompatActivity {
                 }
                 for(int j = 0 ; j < day.length();j++) {
                     try {
-                        View cours = getLayoutInflater().inflate(R.layout.cours, dynamicContent, false);
-                        cours.findViewById(R.id.courstimes).setBackground(gd);
-                        JSONObject lesson = day.getJSONObject(j);
-                        ((TextView)cours.findViewById(R.id.lessonid)).setText(lesson.getString("id"));
-                        ((TextView)cours.findViewById(R.id.lessonname)).setText(lesson.getString("name"));
-                        ((TextView)cours.findViewById(R.id.lessonroom)).setText(lesson.getString("room"));
-                        ((TextView)cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
-                        ((TextView)cours.findViewById(R.id.timeend)).setText(lesson.getString("end"));
-                        ((TextView)cours.findViewById(R.id.group)).setText(lesson.getString("grp"));        //groupe
 
-                        dynamicContent.addView(cours);
+                        JSONObject lesson = day.getJSONObject(j);
+                         if(dateCompare(currentweek,lesson.getString("dates"))) {
+                            View cours = getLayoutInflater().inflate(R.layout.cours, dynamicContent, false);
+                            cours.findViewById(R.id.courstimes).setBackground(gd);
+                            ((TextView) cours.findViewById(R.id.lessonid)).setText(lesson.getString("id"));
+                            ((TextView) cours.findViewById(R.id.lessonname)).setText(lesson.getString("name"));
+                            ((TextView) cours.findViewById(R.id.lessonroom)).setText(lesson.getString("room"));
+                            ((TextView) cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
+                            ((TextView) cours.findViewById(R.id.timeend)).setText(lesson.getString("end"));
+                            ((TextView) cours.findViewById(R.id.group)).setText(lesson.getString("grp"));        //groupe
+                            dynamicContent.addView(cours);
+                        }
+
+
                     }catch (JSONException e){
                         Log.i("JSON error",e.toString(),e);
                     }
@@ -138,5 +197,27 @@ public class MainActivity extends AppCompatActivity {
     public void fleur(View v) {
         login.getCaptcha((ImageView) findViewById(R.id.container_captcha), (TextView) findViewById(R.id.debug));
     }
+
+
+    private Boolean dateCompare(String actualWeek, String startenddates){
+        String[] startandend = startenddates.split(" ");
+        String start = startandend[0] , end = startandend[1];
+
+        if(start.contains(end))
+            return actualWeek.contains(start);
+        if(actualWeek.contains(start )|| actualWeek.contains(end))
+            return true;
+
+        String startToCompare[][] = new String[][]{start.split("-"),actualWeek.split(" ")[0].split("-")};
+        if(Integer.parseInt(startToCompare[0][2]+startToCompare[0][1]+startToCompare[0][0])
+                > Integer.parseInt(startToCompare[1][2]+startToCompare[1][1]+startToCompare[1][0]))
+            return false;
+        String endToCompare[][] = new String[][]{end.split("-"),actualWeek.split(" ")[6].split("-")};
+        if(Integer.parseInt(endToCompare[0][2]+endToCompare[0][1]+endToCompare[0][0])
+                < Integer.parseInt(endToCompare[1][2]+endToCompare[1][1]+endToCompare[1][0]))
+            return false;
+        return true;
+    }
+
 
 }
