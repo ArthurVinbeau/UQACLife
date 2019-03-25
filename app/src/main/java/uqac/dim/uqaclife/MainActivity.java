@@ -10,6 +10,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
@@ -82,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
 
+        ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                etPasLAuDela(null);
+            }
+        });
+
         // Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
         //tv.setText(stringFromJNI());
@@ -96,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         sharedPref.edit().putString("json", null).commit();
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivityForResult(intent, 42);
-        show_week(v);
     }
 
 
@@ -253,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("JSON error",e.toString(),e);
             }
         }
+        ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
     }
 
     public void fleur(View v) {
