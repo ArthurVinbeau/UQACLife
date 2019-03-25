@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout dynamicContent = (LinearLayout) findViewById(R.id.weekList);
         dynamicContent.removeAllViews();
-        int px = (int)(20* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
+        int px = (int)(2* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
 
         for( i = 0; i < 7 ; i++) {
 
@@ -154,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 JSONArray day = json.getJSONArray(days[i]);
-                if(hideEmptyDay && day.length()>0) {
+                if(!hideEmptyDay ||day.length()>0) {
                     TextView t = new TextView(this);
                     LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    l.setMargins(0, px, 0, 0);
+                    t.setPadding(0, px, 0, px);
                     t.setLayoutParams(l);
                     t.setText(days[i]);
                     t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
