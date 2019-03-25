@@ -25,9 +25,11 @@ public class Login {
     private RequestQueue queue;
     private ImageLoader iLoader;
     private CookieManager cookieManager;
+    private MainActivity mainActivity;
 
-    public void setQueue(RequestQueue q) {
+    public void setQueue(RequestQueue q, MainActivity m) {
         queue = q;
+        mainActivity = m;
         cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
         Log.i("request", cookieManager.getCookieStore().getCookies().toString());
@@ -87,6 +89,7 @@ public class Login {
                     public void onResponse(String response) {
                         Log.i("request", response);
                         txt.setText(response);
+                        mainActivity.truc(response);
                     }
                 },
                 new Response.ErrorListener() {
