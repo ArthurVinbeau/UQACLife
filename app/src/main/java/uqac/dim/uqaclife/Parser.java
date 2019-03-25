@@ -1,10 +1,12 @@
 package uqac.dim.uqaclife;
 
+import android.util.Log;
 import android.util.Pair;
+import android.view.View;
 
 import java.util.ArrayList;
 
-public class parser  {
+public class Parser  {
     public String toJson(String html) {
         String lessonPart = html.split("<FONT SIZE=\"-1\"><B>Toute la journée</B></FONT>")[1].split("<!-- fin contenu centrale -->")[0];
         String[] lessons = lessonPart.split("<hr><b>");
@@ -20,6 +22,18 @@ public class parser  {
 
 
             for (int j = 1; j < times.length; j++) {
+                String dates = times[j].split("<li><b>")[0].split("</b> ")[1];
+                String parsedDates = "#";
+                if(dates.contains("Le")) {
+                    parsedDates +=  dates.split(" ")[2] + " " + dates.split(" ")[2];
+                }
+                else
+                {
+                    String[] splited = dates.split(" ");
+                    parsedDates += splited[2] + " " + splited[5];
+                }
+
+
                 String hour = times[j].split(" de ")[1].split("</li>")[0];
                 String[] from = hour.split(" à ")[0].split(":");
                 int timevalue = Integer.parseInt(from[0]) * 100 + Integer.parseInt(from[1]);
@@ -43,13 +57,13 @@ public class parser  {
                     index = 6;
 
 
-                String toAdd = name + "#" + hour + "#" + local;
+                String toAdd = name + "#" + hour + "#" + local+parsedDates;
 
                 insertSorted(week.get(index), new Pair<>(timevalue, toAdd));
             }
         }
         //Normalement, ici on week avec chaque jour rempli par les cours dans l'ordre de la journee
-        //Ils sont inscrits sous la forme id-grp - Nom du cours#hh:mm à hh:mm#local
+        //Ils sont inscrits sous la forme id-grp - Nom du cours#hh:mm à hh:mm#local#period#TD
         String json = "{\n";
         for (int i = 0; i < 7; i++) {
             json += "\"";
@@ -57,39 +71,44 @@ public class parser  {
                 default:
                     break;
                 case 0:
-                    json += "monday";
+                    json += "Monday";
                     break;
                 case 1:
-                    json += "tuesday";
+                    json += "Tuesday";
                     break;
                 case 2:
-                    json += "wednesday";
+                    json += "Wednesday";
                     break;
                 case 3:
-                    json += "thursday";
+                    json += "Thursday";
                     break;
                 case 4:
-                    json += "friday";
+                    json += "Friday";
                     break;
                 case 5:
-                    json += "saturday";
+                    json += "Saturday";
                     break;
                 case 6:
-                    json += "sunday";
+                    json += "Sunday";
                     break;
             }
+
 
             json += "\": [\n";
             for (int j = 1; j < week.get(i).size(); j++) {
                 String a = week.get(i).get(j).second;
+
                 String[] actualLesson = week.get(i).get(j).second.split("#");
                 json += "{\n\"id\": \"" + actualLesson[0].split("-")[0]
                         + "\",\n\"name\": \"" + actualLesson[0].split(" - ")[1]
                         + "\",\n\"grp\": \"" + actualLesson[0].split(" - ")[0].split("-")[1]
                         + "\",\n\"start\": \"" + actualLesson[1].split(" à ")[0]
                         + "\",\n\"end\": \"" + actualLesson[1].split(" à ")[1]
+                        + "\",\n\"dates\": \"" + actualLesson[3]
                         + "\",\n\"room\": \"" + actualLesson[2].replaceAll("&nbsp", "")
                         + "\"\n}" + ((j + 1 < week.get(i).size()) ? "," : "") + "\n";
+
+
 
 
                 //{
@@ -98,6 +117,7 @@ public class parser  {
                 //      "grp": "01",
                 //      "start": "08:00",
                 //      "end": "10:45",
+                //      "date" : "07-01-2019 22-04-2019",       //"19-02-2019 19-02-2019"
                 //      "room": "P4-4020"
                 //}
             }
