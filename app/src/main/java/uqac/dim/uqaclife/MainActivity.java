@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.CheckBox;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.EditText;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         show_week(null);
         queue = Volley.newRequestQueue(this);
 
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void show_week(View v) {
-        sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
+
 
         DateFormat dateFormat= new SimpleDateFormat("dd-MM-yyyy-u");
         String currentDate  = dateFormat.format(new Date());
@@ -260,6 +262,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fleur(View v) {
+        sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
+        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()?  ((TextView)findViewById(R.id.login)).getText().toString().toString():"").commit();
         login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
     }
 

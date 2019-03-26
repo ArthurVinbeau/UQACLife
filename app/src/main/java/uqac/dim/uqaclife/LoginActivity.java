@@ -1,5 +1,6 @@
 package uqac.dim.uqaclife;
 
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class LoginActivity extends  MainActivity{
     private RequestQueue queue;
     private ImageLoader iLoader;
     private CookieManager cookieManager;
+    SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,10 @@ public class LoginActivity extends  MainActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
 
+        ((TextView)findViewById(R.id.login)).setText(sharedPref.getString("login", ""));
+        ((TextView)findViewById(R.id.password)).setText(sharedPref.getString("password", ""));
 
         queue = super.queue;
         super.login = this;
