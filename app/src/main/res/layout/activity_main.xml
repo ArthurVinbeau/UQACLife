@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dip"
             android:checked="true"
-            android:text="@+string/save_password"
+            android:text="@string/save_password"
             android:textSize="26sp" />
 
         <TextView
