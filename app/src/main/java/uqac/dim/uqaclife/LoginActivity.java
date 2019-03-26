@@ -46,7 +46,7 @@ public class LoginActivity extends  MainActivity{
         cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
         Log.i("request", cookieManager.getCookieStore().getCookies().toString());
-        iLoader = new ImageLoader(queue, new ImageLoader.ImageCache() {
+        /*iLoader = new ImageLoader(queue, new ImageLoader.ImageCache() {
             private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
 
             public void putBitmap(String url, Bitmap bitmap) {
@@ -56,10 +56,10 @@ public class LoginActivity extends  MainActivity{
             public Bitmap getBitmap(String url) {
                 return mCache.get(url);
             }
-        });
+        });*/
 
 
-        getCaptcha((NetworkImageView) findViewById(R.id.container_captcha));
+        //getCaptcha((NetworkImageView) findViewById(R.id.container_captcha));
     }
 
 
