@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         html ="\t      <FONT SIZE=\"-1\"><B>Toute la journée</B></FONT>\n" +
                 "\t    </TD>\n" +
                 "<TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD>\t</TABLE><br><br>\n" +
-                "<hr><b>Bonjour-toi - swipe down stp</b>\n" +
-                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 08:00 à 10:45</li><li><b> Local:</b> H2-1090&nbsp;</li></UL>\n" +
+                "<hr><b>Bonjour-404 - swipe down stp</b>\n" +
+                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 06:66 à 13:37</li><li><b> Local:</b> VJ-VB19&nbsp;</li></UL>\n" +
                 "\t</div>\n" +
                 "\t<!-- fin contenu centrale -->\t\n" +
                 "\n" ;}
