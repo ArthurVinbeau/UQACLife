@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,10 +29,12 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     Boolean hideEmptyDay = true;
+    Notification notification;
 
     int[][] colors = new int[][]{
             new int[]{0xFFFFC107,0xFFFF9B00},           //mondayColors
@@ -50,8 +53,12 @@ public class MainActivity extends AppCompatActivity {
         html ="\t      <FONT SIZE=\"-1\"><B>Toute la journée</B></FONT>\n" +
                 "\t    </TD>\n" +
                 "<TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD>\t</TABLE><br><br>\n" +
-                "<hr><b>Bonjour-404 - swipe down stp</b>\n" +
-                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 06:66 à 13:37</li><li><b> Local:</b> VJ-VB19&nbsp;</li></UL>\n" +
+                "<hr><b>4ETH236-01 - Éthique et informatique</b>\n" +
+                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 08:00 à 10:45</li><li><b> Local:</b> H2-1090&nbsp;</li></UL><hr><b>6GEN720-02 - Réseaux d'ordinateurs</b>\n" +
+                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mardi 08-01-2019 au Mardi 12-02-2019<li><b>Heure:</b> de 08:00 à 10:45</li><li><b> Local:</b> P2-1020&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mardi 26-02-2019 au Mardi 23-04-2019<li><b>Heure:</b> de 08:00 à 10:45</li><li><b> Local:</b> P2-1020&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 16:00 à 18:45</li><li><b> Local:</b> P2-1030 (LAB)</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Le Mardi 19-02-2019<li><b>Heure:</b> de 08:00 à 10:45</li><li><b> Local:</b> P1-6140&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Vendredi 11-01-2019 au Vendredi 26-04-2019<li><b>Heure:</b> de 13:00 à 15:45</li><li><b> Local:</b> P2-4020 (LAB)</li></UL><hr><b>8INF257-12 - Informatique mobile</b>\n" +
+                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mercredi 09-01-2019 au Mercredi 24-04-2019<li><b>Heure:</b> de 19:00 à 21:45</li><li><b> Local:</b> P1-4280&nbsp;</li></UL><hr><b>8INF433-01 - Algorithmique</b>\n" +
+                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Jeudi 10-01-2019 au Jeudi 25-04-2019<li><b>Heure:</b> de 13:00 à 14:15</li><li><b> Local:</b> P1-4270&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mardi 08-01-2019 au Mardi 23-04-2019<li><b>Heure:</b> de 11:00 à 12:15</li><li><b> Local:</b> P1-4270&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Jeudi 10-01-2019 au Jeudi 25-04-2019<li><b>Heure:</b> de 14:30 à 15:45</li><li><b> Local:</b> P1-4270 (T.D)</li></UL><hr><b>8MAT122-01 - Structures discrètes</b>\n" +
+                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 13:00 à 14:15</li><li><b> Local:</b> P1-4250&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mercredi 09-01-2019 au Mercredi 24-04-2019<li><b>Heure:</b> de 13:00 à 14:15</li><li><b> Local:</b> P1-4250&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 14:30 à 15:45</li><li><b> Local:</b> P1-4250 (T.D)</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mercredi 09-01-2019 au Mercredi 24-04-2019<li><b>Heure:</b> de 14:30 à 15:45</li><li><b> Local:</b> P1-4250 (T.D)</li></UL>\n" +
                 "\t</div>\n" +
                 "\t<!-- fin contenu centrale -->\t\n" +
                 "\n" ;}
@@ -69,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+        notification = new Notification(this);
         setContentView(R.layout.activity_test);
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         show_week(null);
@@ -215,9 +223,11 @@ public class MainActivity extends AppCompatActivity {
                                 cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
                                 room = room.replace(" (T.D)","");
                             }
+                            final String room2 = room;
                             String id = lesson.getString("id");
                             ((TextView) cours.findViewById(R.id.lessonid)).setText(id);
-                            ((TextView) cours.findViewById(R.id.lessonname)).setText(lesson.getString("name"));
+                            final String name = lesson.getString("name");
+                            ((TextView) cours.findViewById(R.id.lessonname)).setText(name);
                             ((TextView) cours.findViewById(R.id.lessonroom)).setText(room);
                             ((TextView) cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
                             ((TextView) cours.findViewById(R.id.timeend)).setText(lesson.getString("end"));
@@ -238,7 +248,17 @@ public class MainActivity extends AppCompatActivity {
 
                                      editor.putString("blacklisted", " " +  id);
                                      editor.commit();*/
+                                     if(name.contains("Informatique mobile"))
+                                     {
+                                         NotificationCompat.Builder b = notification.getnotif(name,"Impossible de blacklister ce cours");
+                                         notification.getManager().notify(new Random().nextInt(), b.build());
+                                     }else {
+
+
+                                     NotificationCompat.Builder b = notification.getnotif(name,room2);
+                                     notification.getManager().notify(new Random().nextInt(), b.build());
                                      Log.i("Blacklisted","clicked");
+                                     }
                                  }
                              });
                             dynamicContent.addView(cours);
