@@ -234,6 +234,13 @@ public class MainActivity extends AppCompatActivity {
                     t.setBackground(gd);
                     t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     t.setTypeface(Typeface.DEFAULT_BOLD);
+                    t.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            sharedPref.edit().putString("blacklisted",null).apply();
+                            show_week(null);
+                        }
+                    });
                     dynamicContent.addView(t);
                 }
                 gd2.setCornerRadii(new float[]{px2,px2,0,0,0,0,px2,px2});
@@ -241,7 +248,8 @@ public class MainActivity extends AppCompatActivity {
                     try {
 
                         JSONObject lesson = day.getJSONObject(j);
-                         if(dateCompare(currentweek,lesson.getString("dates"))) {
+                        final String name = lesson.getString("name");
+                         if(!(sharedPref.getString("blacklisted", "").contains("'"+ name + "'")) && dateCompare(currentweek,lesson.getString("dates"))) {
                             View cours = getLayoutInflater().inflate(R.layout.cours, dynamicContent, false);
                             cours.findViewById(R.id.courstimes).setBackground(gd2);
                             String room = lesson.getString("room");
@@ -344,6 +352,15 @@ public class MainActivity extends AppCompatActivity {
 
                                  }
 
+                             });
+
+                             (cours.findViewById(R.id.blacklistButton)).setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " '" + name +"'").commit();
+                                     show_week(null);
+                                     Log.i("Blacklisted","clicked");
+                                 }
                              });
                             dynamicContent.addView(cours);
                         }
