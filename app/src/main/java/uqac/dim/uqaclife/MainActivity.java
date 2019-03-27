@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -261,13 +262,24 @@ public class MainActivity extends AppCompatActivity {
                                  public void onClick(View v) {
                                      if(name.contains("Informatique mobile"))
                                      {
-                                         Toast toast = Toast.makeText(getApplicationContext(), "You can't blacklist this course", Toast.LENGTH_SHORT);
-                                         toast.show();
+                                         Snackbar snackbar =  Snackbar.make(findViewById(R.id.weekList), "This course can't be blacklisted", Snackbar.LENGTH_SHORT);
+                                         snackbar.show();
+
+
                                      } else {
+
                                          blacklist(name);
                                          show_week(null);
-                                         Toast toast = Toast.makeText(getApplicationContext(), "Course blacklisted", Toast.LENGTH_SHORT);
-                                         toast.show();
+                                         Snackbar snackbar =  Snackbar.make(findViewById(R.id.weekList), "Course blacklisted", Snackbar.LENGTH_SHORT);
+                                         snackbar.setActionTextColor(0xffffffff);
+                                         snackbar.setAction("Undo", new View.OnClickListener() {
+                                             @Override
+                                             public void onClick(View v) {
+                                                 unblacklist(name);
+                                                 show_week(null);
+                                             }
+                                         });
+                                         snackbar.show();
                                      }
 
 
@@ -327,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void unblacklist(String lesson){
-        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") .replace(" '"+lesson+"'"+lesson,"")).commit();
+        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") .replace(" '"+lesson+"'","")).commit();
     }
 
     private void resetBlacklist(){
