@@ -1,8 +1,6 @@
 package uqac.dim.uqaclife;
 
-import android.util.Log;
 import android.util.Pair;
-import android.view.View;
 
 import java.util.ArrayList;
 

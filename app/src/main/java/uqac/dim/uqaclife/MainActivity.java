@@ -12,7 +12,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -28,9 +27,9 @@ import android.widget.Switch;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_test);
         login.finish();
         sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
-        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()?  ((TextView)findViewById(R.id.login)).getText().toString().toString():"").commit();
+        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();
         //show_week(v);
     }
 
@@ -210,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        LinearLayout dynamicContent = (LinearLayout) findViewById(R.id.weekList);
+        LinearLayout dynamicContent = findViewById(R.id.weekList);
         dynamicContent.removeAllViews();
         int px = (int)(2* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
         int px2 = (int)(15* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
@@ -237,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                     t.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sharedPref.edit().putString("blacklisted",null).apply();
+                            resetBlacklist();
                             show_week(null);
                         }
                     });
@@ -249,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
 
                         JSONObject lesson = day.getJSONObject(j);
                         final String name = lesson.getString("name");
-                         if(!(sharedPref.getString("blacklisted", "").contains("'"+ name + "'")) && dateCompare(currentweek,lesson.getString("dates"))) {
+                         if(!isBlacklisted(name) && dateCompare(currentweek,lesson.getString("dates"))) {
                             View cours = getLayoutInflater().inflate(R.layout.cours, dynamicContent, false);
                             cours.findViewById(R.id.courstimes).setBackground(gd2);
                             String room = lesson.getString("room");
@@ -357,8 +356,18 @@ public class MainActivity extends AppCompatActivity {
                              (cours.findViewById(R.id.blacklistButton)).setOnClickListener(new View.OnClickListener() {
                                  @Override
                                  public void onClick(View v) {
-                                     sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " '" + name +"'").commit();
-                                     show_week(null);
+                                     if(name.contains("Informatique mobile"))
+                                     {
+                                         Toast toast = Toast.makeText(getApplicationContext(), "You can't blacklist this course", Toast.LENGTH_SHORT);
+                                         toast.show();
+                                     } else {
+                                         blacklist(name);
+                                         show_week(null);
+                                         Toast toast = Toast.makeText(getApplicationContext(), "Course blacklisted", Toast.LENGTH_SHORT);
+                                         toast.show();
+                                     }
+
+
                                      Log.i("Blacklisted","clicked");
                                  }
                              });
@@ -378,7 +387,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void fleur(View v) {
         sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
-        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()?  ((TextView)findViewById(R.id.login)).getText().toString().toString():"").commit();
+        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();
         login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
     }
 
@@ -407,11 +416,23 @@ public class MainActivity extends AppCompatActivity {
                 > Integer.parseInt(startToCompare[1][2]+startToCompare[1][1]+startToCompare[1][0]))
             return false;
         String endToCompare[][] = new String[][]{end.split("-"),actualWeek.split(" ")[6].split("-")};
-        if(Integer.parseInt(endToCompare[0][2]+endToCompare[0][1]+endToCompare[0][0])
-                < Integer.parseInt(endToCompare[1][2]+endToCompare[1][1]+endToCompare[1][0]))
-            return false;
-        return true;
+        return Integer.parseInt(endToCompare[0][2] + endToCompare[0][1] + endToCompare[0][0]) >= Integer.parseInt(endToCompare[1][2] + endToCompare[1][1] + endToCompare[1][0]);
     }
 
+    private void blacklist(String lesson){
+        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " '" + lesson +"'").commit();
+    }
+
+    private void unblacklist(String lesson){
+        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") .replace(" '"+lesson+"'"+lesson,"")).commit();
+    }
+
+    private void resetBlacklist(){
+        sharedPref.edit().putString("blacklisted", "").commit();
+    }
+
+    private boolean isBlacklisted(String lesson){
+        return sharedPref.getString("blacklisted", "").contains("'"+ lesson+ "'");
+    }
 
 }
