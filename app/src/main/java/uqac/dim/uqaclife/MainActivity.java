@@ -1,18 +1,25 @@
 package uqac.dim.uqaclife;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -22,10 +29,12 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     Boolean hideEmptyDay = true;
+    Notification notification;
 
     int[][] colors = new int[][]{
             new int[]{0xFFFFC107,0xFFFF9B00},           //mondayColors
@@ -37,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             new int[]{ 0xFFFFEB3B,0xFFEBD827}};        //sundayColors
     String[] days = new String[]{"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
 
+    SharedPreferences sharedPref;
 
     String html;
     {
@@ -53,20 +63,32 @@ public class MainActivity extends AppCompatActivity {
                 "\t<!-- fin contenu centrale -->\t\n" +
                 "\n" ;}
 
-    Login login;
+    LoginActivity login;
+    RequestQueue queue;
 
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+        notification = new Notification(this);
         setContentView(R.layout.activity_test);
-        login = new Login();
-        login.setQueue(Volley.newRequestQueue(this), this);
+        sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
+        show_week(null);
+        queue = Volley.newRequestQueue(this);
+
+
+        ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                etPasLAuDela(null);
+            }
+        });
 
         // Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
@@ -74,13 +96,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void versLInfini(View v) {
-        setContentView(R.layout.activity_test);
-        show_week(v);
+        //setContentView(R.layout.activity_test);
+        login.finish();
+        sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
+        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();
+        //show_week(v);
     }
 
     public void etPasLAuDela(View v) {
-        setContentView(R.layout.activity_main);
-        login.getCaptcha((NetworkImageView) findViewById(R.id.container_captcha));
+        sharedPref.edit().putString("json", null).commit();
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivityForResult(intent, 42);
     }
 
 
@@ -90,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void show_week(View v) {
+
 
         DateFormat dateFormat= new SimpleDateFormat("dd-MM-yyyy-u");
         String currentDate  = dateFormat.format(new Date());
@@ -142,13 +169,24 @@ public class MainActivity extends AppCompatActivity {
        Parser parser = new Parser();
         JSONObject json = null;
         try {
-            json = new JSONObject(parser.toJson(html));
+            String savedJson = sharedPref.getString("json", null);
+            if(savedJson==null)
+            {
+                Log.i("TEST","ToParser");
+                json = new JSONObject(parser.toJson(html));
+            }
+            else
+            {
+                Log.i("TEST","NOT");
+                json = new JSONObject(savedJson);
+            }
+            sharedPref.edit().putString("json", json.toString()).commit();
         } catch (JSONException e){
             Log.i("JSON error",e.toString(),e);
         }
 
 
-        LinearLayout dynamicContent = (LinearLayout) findViewById(R.id.weekList);
+        LinearLayout dynamicContent = findViewById(R.id.weekList);
         dynamicContent.removeAllViews();
         int px = (int)(2* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
         int px2 = (int)(15* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
@@ -172,6 +210,13 @@ public class MainActivity extends AppCompatActivity {
                     t.setBackground(gd);
                     t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     t.setTypeface(Typeface.DEFAULT_BOLD);
+                    t.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            resetBlacklist();
+                            show_week(null);
+                        }
+                    });
                     dynamicContent.addView(t);
                 }
                 gd2.setCornerRadii(new float[]{px2,px2,0,0,0,0,px2,px2});
@@ -179,7 +224,8 @@ public class MainActivity extends AppCompatActivity {
                     try {
 
                         JSONObject lesson = day.getJSONObject(j);
-                         if(dateCompare(currentweek,lesson.getString("dates"))) {
+                        final String name = lesson.getString("name");
+                         if(!isBlacklisted(name) && dateCompare(currentweek,lesson.getString("dates"))) {
                             View cours = getLayoutInflater().inflate(R.layout.cours, dynamicContent, false);
                             cours.findViewById(R.id.courstimes).setBackground(gd2);
                             String room = lesson.getString("room");
@@ -188,9 +234,10 @@ public class MainActivity extends AppCompatActivity {
                                 cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
                                 room = room.replace(" (T.D)","");
                             }
+                            final String room2 = room;
                             String id = lesson.getString("id");
                             ((TextView) cours.findViewById(R.id.lessonid)).setText(id);
-                            ((TextView) cours.findViewById(R.id.lessonname)).setText(lesson.getString("name"));
+                            ((TextView) cours.findViewById(R.id.lessonname)).setText(name);
                             ((TextView) cours.findViewById(R.id.lessonroom)).setText(room);
                             ((TextView) cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
                             ((TextView) cours.findViewById(R.id.timeend)).setText(lesson.getString("end"));
@@ -202,15 +249,40 @@ public class MainActivity extends AppCompatActivity {
                                      more_infos.setVisibility(more_infos.getVisibility()==View.VISIBLE?View.GONE:View.VISIBLE);
                                  }
                              });
+                             (cours.findViewById(R.id.notif)).setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     NotificationCompat.Builder b = notification.getnotif(name,room2);
+                                     notification.getManager().notify(new Random().nextInt(), b.build());
+                                 }
+                             });
+
                              (cours.findViewById(R.id.blacklistButton)).setOnClickListener(new View.OnClickListener() {
                                  @Override
                                  public void onClick(View v) {
-                                     /*SharedPreferences sharedPref = MainActivity.this().getPreferences(getApplicationContext().MODE_PRIVATE);
-                                     sharedPref.getString("blacklisted")
-                                     SharedPreferences.Editor editor = sharedPref.edit();
+                                     if(name.contains("Informatique mobile"))
+                                     {
+                                         Snackbar snackbar =  Snackbar.make(findViewById(R.id.weekList), "This course can't be blacklisted", Snackbar.LENGTH_SHORT);
+                                         snackbar.show();
 
-                                     editor.putString("blacklisted", " " +  id);
-                                     editor.commit();*/
+
+                                     } else {
+
+                                         blacklist(name);
+                                         show_week(null);
+                                         Snackbar snackbar =  Snackbar.make(findViewById(R.id.weekList), "Course blacklisted", Snackbar.LENGTH_SHORT);
+                                         snackbar.setActionTextColor(0xffffffff);
+                                         snackbar.setAction("Undo", new View.OnClickListener() {
+                                             @Override
+                                             public void onClick(View v) {
+                                                 unblacklist(name);
+                                                 show_week(null);
+                                             }
+                                         });
+                                         snackbar.show();
+                                     }
+
+
                                      Log.i("Blacklisted","clicked");
                                  }
                              });
@@ -225,16 +297,23 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("JSON error",e.toString(),e);
             }
         }
+        ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
     }
 
     public void fleur(View v) {
-        login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString(), (TextView) findViewById(R.id.debug));
+        sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
+        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();
+        login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
     }
 
     public void truc(String html) {
         this.html = html;
-        setContentView(R.layout.activity_test);
-        show_week(null);
+        login.finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 42) show_week(null);
     }
 
 
@@ -252,11 +331,23 @@ public class MainActivity extends AppCompatActivity {
                 > Integer.parseInt(startToCompare[1][2]+startToCompare[1][1]+startToCompare[1][0]))
             return false;
         String endToCompare[][] = new String[][]{end.split("-"),actualWeek.split(" ")[6].split("-")};
-        if(Integer.parseInt(endToCompare[0][2]+endToCompare[0][1]+endToCompare[0][0])
-                < Integer.parseInt(endToCompare[1][2]+endToCompare[1][1]+endToCompare[1][0]))
-            return false;
-        return true;
+        return Integer.parseInt(endToCompare[0][2] + endToCompare[0][1] + endToCompare[0][0]) >= Integer.parseInt(endToCompare[1][2] + endToCompare[1][1] + endToCompare[1][0]);
     }
 
+    private void blacklist(String lesson){
+        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " '" + lesson +"'").commit();
+    }
+
+    private void unblacklist(String lesson){
+        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") .replace(" '"+lesson+"'","")).commit();
+    }
+
+    private void resetBlacklist(){
+        sharedPref.edit().putString("blacklisted", "").commit();
+    }
+
+    private boolean isBlacklisted(String lesson){
+        return sharedPref.getString("blacklisted", "").contains("'"+ lesson+ "'");
+    }
 
 }

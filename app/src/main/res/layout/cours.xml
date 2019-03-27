@@ -128,13 +128,24 @@
                     android:textAlignment="center"
                     android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/blacklistButton"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:text="Blacklist" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/blacklistButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="Blacklist" />
+
+                    <Button
+                        android:id="@+id/notif"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="Notif me sempai" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>

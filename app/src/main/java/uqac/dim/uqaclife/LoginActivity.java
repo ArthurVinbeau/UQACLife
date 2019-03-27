@@ -1,7 +1,9 @@
 package uqac.dim.uqaclife;
 
-import android.app.DownloadManager;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.util.Log;
 import android.util.LruCache;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -20,20 +23,30 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Login {
+public class LoginActivity extends  MainActivity{
 
     private RequestQueue queue;
     private ImageLoader iLoader;
     private CookieManager cookieManager;
-    private MainActivity mainActivity;
+    SharedPreferences sharedPref;
 
-    public void setQueue(RequestQueue q, MainActivity m) {
-        queue = q;
-        mainActivity = m;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
+
+        ((TextView)findViewById(R.id.login)).setText(sharedPref.getString("login", ""));
+        ((TextView)findViewById(R.id.password)).setText(sharedPref.getString("password", ""));
+
+        queue = super.queue;
+        super.login = this;
         cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
         Log.i("request", cookieManager.getCookieStore().getCookies().toString());
-        iLoader = new ImageLoader(queue, new ImageLoader.ImageCache() {
+        /*iLoader = new ImageLoader(queue, new ImageLoader.ImageCache() {
             private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
 
             public void putBitmap(String url, Bitmap bitmap) {
@@ -43,8 +56,12 @@ public class Login {
             public Bitmap getBitmap(String url) {
                 return mCache.get(url);
             }
-        });
+        });*/
+
+
+        //getCaptcha((NetworkImageView) findViewById(R.id.container_captcha));
     }
+
 
     public void getCaptcha(final NetworkImageView captchaContainer) {
 
@@ -78,7 +95,7 @@ public class Login {
 
     }
 
-    public void Login(final String login, final String password, final String captcha, final TextView txt) {
+    public void Login(final String login, final String password, final String captcha) {
         String url = "https://wprodl.uqac.ca/dossier_etudiant/validation.html";
         String url2 = "https://wprodl.uqac.ca/dossier_etudiant/grille_horaire.html?type=gl&session=TRIMESTRE";
 
@@ -88,8 +105,7 @@ public class Login {
                     @Override
                     public void onResponse(String response) {
                         Log.i("request", response);
-                        txt.setText(response);
-                        mainActivity.truc(response);
+                        LoginActivity.super.truc(response);
                     }
                 },
                 new Response.ErrorListener() {
