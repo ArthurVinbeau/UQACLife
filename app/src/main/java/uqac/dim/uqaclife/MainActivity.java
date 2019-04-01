@@ -50,6 +50,386 @@ public class MainActivity extends AppCompatActivity {
 
     String html;
     {
+        html = "\n" +
+                "\n" +
+                "<h4>Hiver 2019</h4>\n" +
+                "\n" +
+                "<div class=\"card-columns\">\n" +
+                "        <div class=\"card\">\n" +
+                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-1 text-white\">\n" +
+                "                <span>4ETH236-01 </span>\n" +
+                "                <span> - </span>\n" +
+                "                <span> Éthique et informatique </span>\n" +
+                "            </div>\n" +
+                "            <div class=\"card-body p-1 text-small\">\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>lundi 07/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>lundi 22/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>08:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>10:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>H2-1090</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "        <div class=\"card\">\n" +
+                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-2 text-white\">\n" +
+                "                <span>6GEN720-02 </span>\n" +
+                "                <span> - </span>\n" +
+                "                <span> Réseaux d'ordinateurs</span>\n" +
+                "            </div>\n" +
+                "            <div class=\"card-body p-1 text-small\">\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>lundi 07/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>lundi 22/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>16:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>18:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P2-1030</span>\n" +
+                "                                        <span class=\"badge badge-info\" title=\"\">LAB</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>vendredi 11/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>vendredi 26/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>13:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>15:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P2-4020</span>\n" +
+                "                                        <span class=\"badge badge-info\" title=\"\">LAB</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>mardi 08/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>mardi 12/02/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>08:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>10:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P2-1020</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>mardi 19/02/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>mardi 19/02/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>08:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>10:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P1-6140</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>mardi 26/02/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>mardi 23/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>08:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>10:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P2-1020</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "        <div class=\"card\">\n" +
+                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-3 text-white\">\n" +
+                "                <span>8INF257-12 </span>\n" +
+                "                <span> - </span>\n" +
+                "                <span> Informatique mobile</span>\n" +
+                "            </div>\n" +
+                "            <div class=\"card-body p-1 text-small\">\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>mercredi 09/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>mercredi 24/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>19:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>21:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P1-4280</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "        <div class=\"card\">\n" +
+                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-4 text-white\">\n" +
+                "                <span>8INF433-01 </span>\n" +
+                "                <span> - </span>\n" +
+                "                <span> Algorithmique</span>\n" +
+                "            </div>\n" +
+                "            <div class=\"card-body p-1 text-small\">\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>mardi 08/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>mardi 23/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>11:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>12:15</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P1-4270</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>jeudi 10/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>jeudi 25/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>13:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>14:15</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P1-4270</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>jeudi 10/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>jeudi 25/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>14:30</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>15:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P1-4270</span>\n" +
+                "                                        <span class=\"badge badge-info\" title=\"\">T.D</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "        <div class=\"card\">\n" +
+                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-5 text-white\">\n" +
+                "                <span>8MAT122-01 </span>\n" +
+                "                <span> - </span>\n" +
+                "                <span> Structures discrètes</span>\n" +
+                "            </div>\n" +
+                "            <div class=\"card-body p-1 text-small\">\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>lundi 07/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>lundi 22/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>13:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>14:15</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P1-4250</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>lundi 07/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>lundi 22/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>14:30</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>15:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P1-4250</span>\n" +
+                "                                        <span class=\"badge badge-info\" title=\"\">T.D</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>mercredi 09/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>mercredi 24/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>13:00</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>14:15</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P1-4250</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "                        <ul class=\"list-unstyled\">\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
+                "                                    <span> Du </span>\n" +
+                "                                    <span>mercredi 09/01/2019</span>\n" +
+                "                                    <span> au </span>\n" +
+                "                                    <span>mercredi 24/04/2019</span>\n" +
+                "\n" +
+                "                                \n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
+                "                                    <span> de </span>\n" +
+                "                                    <span>14:30</span>\n" +
+                "                                    <span> à </span>\n" +
+                "                                    <span>15:45</span>\n" +
+                "                            <li>\n" +
+                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
+                "                                    <span>P1-4250</span>\n" +
+                "                                        <span class=\"badge badge-info\" title=\"\">T.D</span>\n" +
+                "                            </li>\n" +
+                "                            <li>\n" +
+                "                            </li>\n" +
+                "                        </ul>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "</div>";
+    }
+    {
         html ="\t      <FONT SIZE=\"-1\"><B>Toute la journée</B></FONT>\n" +
                 "\t    </TD>\n" +
                 "<TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD>\t</TABLE><br><br>\n" +
