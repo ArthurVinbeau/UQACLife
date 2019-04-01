@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPref;
 
     String html;
+    //region sethtml
     {
         html = "\n" +
                 "\n" +
@@ -442,6 +443,7 @@ public class MainActivity extends AppCompatActivity {
                 "\t</div>\n" +
                 "\t<!-- fin contenu centrale -->\t\n" +
                 "\n" ;}
+    //endregion
 
     LoginActivity login;
     RequestQueue queue;
@@ -612,7 +614,12 @@ public class MainActivity extends AppCompatActivity {
                             if(room.contains("T.D"))
                             {
                                 cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
-                                room = room.replace(" (T.D)","");
+                                room = room.replace("TD","");
+                            }
+                            else if (room.contains("LAB")){
+                                cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
+                                ((TextView)cours.findViewById(R.id.TD)).setText("LAB   ");
+                                room = room.replace("LAB","");
                             }
                             final String room2 = room;
                             String id = lesson.getString("id");
@@ -714,6 +721,7 @@ public class MainActivity extends AppCompatActivity {
         return Integer.parseInt(endToCompare[0][2] + endToCompare[0][1] + endToCompare[0][0]) >= Integer.parseInt(endToCompare[1][2] + endToCompare[1][1] + endToCompare[1][0]);
     }
 
+    //region blacklist
     private void blacklist(String lesson){
         sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " '" + lesson +"'").commit();
     }
@@ -729,5 +737,5 @@ public class MainActivity extends AppCompatActivity {
     private boolean isBlacklisted(String lesson){
         return sharedPref.getString("blacklisted", "").contains("'"+ lesson+ "'");
     }
-
+    //endregion
 }
