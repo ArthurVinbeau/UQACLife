@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPref;
 
     String html;
+    //region sethtml
     {
         html = "\n" +
                 "\n" +
@@ -453,6 +454,7 @@ public class MainActivity extends AppCompatActivity {
                 "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 13:00 à 14:15</li><li><b> Local:</b> P1-4250&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mercredi 09-01-2019 au Mercredi 24-04-2019<li><b>Heure:</b> de 13:00 à 14:15</li><li><b> Local:</b> P1-4250&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 14:30 à 15:45</li><li><b> Local:</b> P1-4250 (T.D)</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mercredi 09-01-2019 au Mercredi 24-04-2019<li><b>Heure:</b> de 14:30 à 15:45</li><li><b> Local:</b> P1-4250 (T.D)</li></UL>\n" +"\t</div>\n" +
                 "\t<!-- fin contenu centrale -->\t\n" +
                 "\n" ;}
+    //endregion
 
     LoginActivity login;
     RequestQueue queue;
@@ -636,7 +638,12 @@ public class MainActivity extends AppCompatActivity {
                             if(room.contains("T.D"))
                             {
                                 cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
-                                room = room.replace(" (T.D)","");
+                                room = room.replace("TD","");
+                            }
+                            else if (room.contains("LAB")){
+                                cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
+                                ((TextView)cours.findViewById(R.id.TD)).setText("LAB   ");
+                                room = room.replace("LAB","");
                             }
                             final String room2 = room;
                             String id = lesson.getString("id");
@@ -811,6 +818,7 @@ public class MainActivity extends AppCompatActivity {
         return Integer.parseInt(endToCompare[0][2] + endToCompare[0][1] + endToCompare[0][0]) >= Integer.parseInt(endToCompare[1][2] + endToCompare[1][1] + endToCompare[1][0]);
     }
 
+    //region blacklist
     private void blacklist(String lesson){
         sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " '" + lesson +"'").commit();
     }
@@ -826,5 +834,5 @@ public class MainActivity extends AppCompatActivity {
     private boolean isBlacklisted(String lesson){
         return sharedPref.getString("blacklisted", "").contains("'"+ lesson+ "'");
     }
-
+    //endregion
 }
