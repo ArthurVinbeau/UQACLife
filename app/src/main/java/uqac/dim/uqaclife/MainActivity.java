@@ -442,18 +442,6 @@ public class MainActivity extends AppCompatActivity {
                 "        </div>\n" +
                 "</div>";
     }
-    {
-        html ="\t      <FONT SIZE=\"-1\"><B>Toute la journée</B></FONT>\n" +
-                "\t    </TD>\n" +
-                "<TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD><TD ALIGN=\"CENTER\"  HEIGHT=\"17\">&nbsp;</TD>\t</TABLE><br><br>\n" +
-                "<hr><b>4ETH236-01 - Éthique et informatique</b>\n" +
-                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 08:00 à 10:45</li><li><b> Local:</b> H2-1090&nbsp;</li></UL><hr><b>6GEN720-02 - Réseaux d'ordinateurs</b>\n" +
-                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mardi 08-01-2019 au Mardi 12-02-2019<li><b>Heure:</b> de 08:00 à 10:45</li><li><b> Local:</b> P2-1020&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mardi 26-02-2019 au Mardi 23-04-2019<li><b>Heure:</b> de 08:00 à 10:45</li><li><b> Local:</b> P2-1020&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 16:00 à 18:45</li><li><b> Local:</b> P2-1030 (LAB)</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Le Mardi 19-02-2019<li><b>Heure:</b> de 08:00 à 10:45</li><li><b> Local:</b> P1-6140&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Vendredi 11-01-2019 au Vendredi 26-04-2019<li><b>Heure:</b> de 13:00 à 15:45</li><li><b> Local:</b> P2-4020 (LAB)</li></UL><hr><b>8INF257-12 - Informatique mobile</b>\n" +
-                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mercredi 09-01-2019 au Mercredi 24-04-2019<li><b>Heure:</b> de 19:00 à 21:45</li><li><b> Local:</b> P1-4280&nbsp;</li></UL><hr><b>8INF433-01 - Algorithmique</b>\n" +
-                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Jeudi 10-01-2019 au Jeudi 25-04-2019<li><b>Heure:</b> de 13:00 à 14:15</li><li><b> Local:</b> P1-4270&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mardi 08-01-2019 au Mardi 23-04-2019<li><b>Heure:</b> de 11:00 à 12:15</li><li><b> Local:</b> P1-4270&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Jeudi 10-01-2019 au Jeudi 25-04-2019<li><b>Heure:</b> de 14:30 à 15:45</li><li><b> Local:</b> P1-4270 (T.D)</li></UL><hr><b>8MAT122-01 - Structures discrètes</b>\n" +
-                "<UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 13:00 à 14:15</li><li><b> Local:</b> P1-4250&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mercredi 09-01-2019 au Mercredi 24-04-2019<li><b>Heure:</b> de 13:00 à 14:15</li><li><b> Local:</b> P1-4250&nbsp;</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Lundi 07-01-2019 au Lundi 22-04-2019<li><b>Heure:</b> de 14:30 à 15:45</li><li><b> Local:</b> P1-4250 (T.D)</li></UL><UL style=\"list-style-type: none;\"><LI><b>Durée:</b> Du Mercredi 09-01-2019 au Mercredi 24-04-2019<li><b>Heure:</b> de 14:30 à 15:45</li><li><b> Local:</b> P1-4250 (T.D)</li></UL>\n" +"\t</div>\n" +
-                "\t<!-- fin contenu centrale -->\t\n" +
-                "\n" ;}
     //endregion
 
     LoginActivity login;
@@ -549,7 +537,7 @@ public class MainActivity extends AppCompatActivity {
                     movingDate[0] = 31;
             }
         }
-        String currentweek =  String.format("%02d",movingDate[0]) + "-" + String.format("%02d", movingDate[1]) +"-" + String.format("%02d",movingDate[2]);
+        String currentweek =  String.format("%02d",movingDate[0]) + "/" + String.format("%02d", movingDate[1]) +"/" + String.format("%02d",movingDate[2]);
         for ( i = 1 ; i < 7; i++) {
             movingDate[0]++;
             if(movingDate[0]==32) {
@@ -569,10 +557,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            currentweek += " " + movingDate[0] + "-" + String.format("%02d", movingDate[1]) +"-" + String.format("%02d",movingDate[2]);
+            currentweek += " " + String.format("%02d",movingDate[0]) + "/" + String.format("%02d", movingDate[1]) +"/" + String.format("%02d",movingDate[2]);
         }
 
-       Parser parser = new Parser();
+
+
+        Parser2 parser = new Parser2();
+
         JSONObject json = null;
         try {
             String savedJson = sharedPref.getString("json", null);
@@ -638,7 +629,7 @@ public class MainActivity extends AppCompatActivity {
                             if(room.contains("T.D"))
                             {
                                 cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
-                                room = room.replace("TD","");
+                                room = room.replace("T.D","");
                             }
                             else if (room.contains("LAB")){
                                 cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
@@ -803,18 +794,18 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean dateCompare(String actualWeek, String startenddates){
         String[] startandend = startenddates.split(" ");
-        String start = startandend[0] , end = startandend[1];
+        String start = startandend[0].split("\n")[0] , end = startandend[1].split("\n")[0];
 
         if(start.contains(end))
             return actualWeek.contains(start);
         if(actualWeek.contains(start )|| actualWeek.contains(end))
             return true;
 
-        String startToCompare[][] = new String[][]{start.split("-"),actualWeek.split(" ")[0].split("-")};
+        String startToCompare[][] = new String[][]{start.split("/"),actualWeek.split(" ")[0].split("/")};
         if(Integer.parseInt(startToCompare[0][2]+startToCompare[0][1]+startToCompare[0][0])
                 > Integer.parseInt(startToCompare[1][2]+startToCompare[1][1]+startToCompare[1][0]))
             return false;
-        String endToCompare[][] = new String[][]{end.split("-"),actualWeek.split(" ")[6].split("-")};
+        String endToCompare[][] = new String[][]{end.split("/"),actualWeek.split(" ")[6].split("/")};
         return Integer.parseInt(endToCompare[0][2] + endToCompare[0][1] + endToCompare[0][0]) >= Integer.parseInt(endToCompare[1][2] + endToCompare[1][1] + endToCompare[1][0]);
     }
 
