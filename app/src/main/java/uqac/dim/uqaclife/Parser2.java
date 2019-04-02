@@ -19,35 +19,36 @@ public class Parser2 {
         String[] lessons = html.split("<div class=\"card-header");
         for (int i = 1; i< lessons.length ; i++){
             String[] tmp =lessons[i].split("<div")[0].split("<span>");
-            String cours = tmp[1] + " - " + tmp[3];
+            String cours = tmp[1] + " -" + tmp[3].split("\n")[0];
             String[] heures = lessons[i].split("<div class=\"card-body p-1 text-small\">")[1].split("<ul class=\"list-unstyled\">");
             for (int j = 1 ; j < heures.length; j++){
                 String[] infos = heures[j].split("<li>");
                 int index = 0;
-                if (infos[1].contains("Lundi"))
+                if (infos[1].contains("lundi"))
                     index = 0;
-                else if (infos[1].contains("Mardi"))
+                else if (infos[1].contains("mardi"))
                     index = 1;
-                else if (infos[1].contains("Mercredi"))
+                else if (infos[1].contains("mercredi"))
                     index = 2;
-                else if (infos[1].contains("Jeudi"))
+                else if (infos[1].contains("jeudi"))
                     index = 3;
-                else if (infos[1].contains("Vendredi"))
+                else if (infos[1].contains("vendredi"))
                     index = 4;
-                else if (infos[1].contains("Samedi"))
+                else if (infos[1].contains("samedi"))
                     index = 5;
-                else if (infos[1].contains("Dimanche"))
+                else if (infos[1].contains("dimanche"))
                     index = 6;
 
                 tmp = infos[1].split("<span>");
                 String period = tmp[2].split(" ")[1] + " " + tmp[4].split(" ")[1];
                 tmp = infos [2].split("<span>");
                 String[] start = tmp[2].split(":");
-                int timevalue = Integer.parseInt(start[0])*100 + Integer.parseInt(start[1]);
-                String duration = tmp[2] + " à "+ tmp[4];
-                String local = 
+                int timevalue = Integer.parseInt(start[0])*100 + Integer.parseInt(start[1].split("\n")[0]);
 
-                String toAdd = cours + "#" + duration + "#" + "local"  + "#"+ period;
+                String duration = tmp[2].split("\n")[0] + " à "+ tmp[4].split("\n")[0];
+                String local = infos [3].split("<span>")[1].split("\n")[0] + (infos[3].contains("T.D")?"T.D":(infos[3].contains("LAB")?"LAB":""));
+
+                String toAdd = cours + "#" + duration + "#" + local  + "#"+ period;
                 //Ils sont inscrits sous la forme id-grp - Nom du cours#hh:mm à hh:mm#local#period
                 insertSorted(week.get(index), new Pair<>(timevalue, toAdd));
             }
