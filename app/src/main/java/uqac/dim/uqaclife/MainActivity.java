@@ -630,13 +630,6 @@ public class MainActivity extends AppCompatActivity {
                     t.setBackground(gd);
                     t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     t.setTypeface(Typeface.DEFAULT_BOLD);
-                    t.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            resetBlacklist();
-                            show_week(null);
-                        }
-                    });
                     dynamicContent.addView(t);
                 }
                 gd2.setCornerRadii(new float[]{px2,px2,0,0,0,0,px2,px2});
