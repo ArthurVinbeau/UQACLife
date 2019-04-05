@@ -2,6 +2,7 @@ package uqac.dim.uqaclife;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -31,9 +32,9 @@ public class blacklisted_activity extends MainActivity {
     }
 
     private void loadBlacklisted(){
-        LinearLayout blacklistedList = (LinearLayout)findViewById(R.id.blacklistedList);
+        final LinearLayout blacklistedList = (LinearLayout)findViewById(R.id.blacklistedList);
 
-        String blacklisted = sharedPref.getString("blacklisted", null);
+        final String blacklisted = sharedPref.getString("blacklisted", null);
         blacklistedList.removeAllViews();
         if(blacklisted!=null){
             Log.i("Unbli",blacklisted);
@@ -56,6 +57,16 @@ public class blacklisted_activity extends MainActivity {
                     public void onClick(View v) {
                         unblacklist(lesson);
                         loadBlacklisted();
+                        Snackbar snackbar =  Snackbar.make(blacklistedList, "Course unblacklisted", Snackbar.LENGTH_LONG);
+                        snackbar.setActionTextColor(0xffffffff);
+                        snackbar.setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                blacklist(lesson);
+                                loadBlacklisted();
+                            }
+                        });
+                        snackbar.show();
                     }
                 });
                 LinearLayout.LayoutParams l2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
