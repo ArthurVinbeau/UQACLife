@@ -1,6 +1,9 @@
 package uqac.dim.uqaclife;
 
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -12,6 +15,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -440,7 +445,31 @@ public class MainActivity extends AppCompatActivity {
         System.loadLibrary("native-lib");
     }
 
+    @Override
+    public   boolean onCreateOptionsMenu(Menu menu) {
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        if(b!=null && b.getInt("requestCode") == 42)
+            return false;
+        getMenuInflater().inflate(R.menu.main_drop_menu, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.preferences:
+                Intent intent = new Intent(getApplicationContext(), settingsActivity.class);
+                intent.putExtra("requestCode",42);
+                startActivityForResult(intent, 42);
+                return true;
+            case R.id.blacklisted:
+                Intent intent2 = new Intent(getApplicationContext(), blacklisted_activity.class);
+                intent2.putExtra("requestCode",42);
+                startActivityForResult(intent2, 42);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -478,14 +507,10 @@ public class MainActivity extends AppCompatActivity {
         //show_week(v);
     }
 
-    public void blacklist_activity(View v){
-        Intent intent = new Intent(getApplicationContext(), blacklisted_activity.class);
-        startActivityForResult(intent, 42);
-    }
-
     public void etPasLAuDela(View v) {
         sharedPref.edit().putString("json", null).commit();
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.putExtra("requestCode",42);
         startActivityForResult(intent, 42);
     }
 
