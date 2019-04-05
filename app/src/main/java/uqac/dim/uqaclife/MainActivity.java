@@ -441,6 +441,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
@@ -464,12 +465,18 @@ public class MainActivity extends AppCompatActivity {
         //tv.setText(stringFromJNI());
     }
 
+
     public void versLInfini(View v) {
         //setContentView(R.layout.activity_test);
         login.finish();
         sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
         sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();
         //show_week(v);
+    }
+
+    public void blacklist_activity(View v){
+        Intent intent = new Intent(getApplicationContext(), blacklisted_activity.class);
+        startActivityForResult(intent, 666);
     }
 
     public void etPasLAuDela(View v) {
@@ -637,13 +644,13 @@ public class MainActivity extends AppCompatActivity {
                              (cours.findViewById(R.id.blacklistButton)).setOnClickListener(new View.OnClickListener() {
                                  @Override
                                  public void onClick(View v) {
-                                     if(name.contains("Informatique mobile"))
+                                     /*if(name.contains("Informatique mobile"))
                                      {
                                          Snackbar snackbar =  Snackbar.make(findViewById(R.id.weekList), "This course can't be blacklisted", Snackbar.LENGTH_SHORT);
                                          snackbar.show();
 
 
-                                     } else {
+                                     } else {*/
 
                                          blacklist(name);
                                          show_week(null);
@@ -657,7 +664,7 @@ public class MainActivity extends AppCompatActivity {
                                              }
                                          });
                                          snackbar.show();
-                                     }
+                                     //}
 
 
                                      Log.i("Blacklisted","clicked");
@@ -713,11 +720,11 @@ public class MainActivity extends AppCompatActivity {
 
     //region blacklist
     private void blacklist(String lesson){
-        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " '" + lesson +"'").commit();
+        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " #'" + lesson +"'#").commit();
     }
 
     private void unblacklist(String lesson){
-        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") .replace(" '"+lesson+"'","")).commit();
+        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") .replace(" #'"+lesson+"'#","")).commit();
     }
 
     private void resetBlacklist(){
@@ -725,7 +732,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isBlacklisted(String lesson){
-        return sharedPref.getString("blacklisted", "").contains("'"+ lesson+ "'");
+        return sharedPref.getString("blacklisted", "").contains("#'"+ lesson+ "'#");
     }
     //endregion
 }
