@@ -465,6 +465,10 @@ public class MainActivity extends AppCompatActivity {
         //tv.setText(stringFromJNI());
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 42) show_week(null);
+    }
 
     public void versLInfini(View v) {
         //setContentView(R.layout.activity_test);
@@ -476,7 +480,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void blacklist_activity(View v){
         Intent intent = new Intent(getApplicationContext(), blacklisted_activity.class);
-        startActivityForResult(intent, 666);
+        startActivityForResult(intent, 42);
     }
 
     public void etPasLAuDela(View v) {
@@ -695,10 +699,7 @@ public class MainActivity extends AppCompatActivity {
         login.finish();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 42) show_week(null);
-    }
+
 
 
     private Boolean dateCompare(String actualWeek, String startenddates){
