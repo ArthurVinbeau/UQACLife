@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 
 public class settingsActivity extends MainActivity {
-    
+
+    View buttonsToCollapse[];
+    int toCollapseNumber = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +21,34 @@ public class settingsActivity extends MainActivity {
                 sharedPref.edit().putString("password",null).apply();
             }
         });
+        buttonsToCollapse = new View[toCollapseNumber];
+        buttonsToCollapse[0] = findViewById(R.id.styles_list);
+        buttonsToCollapse[1] = findViewById(R.id.language_list);
+        buttonsToCollapse[2] =  findViewById(R.id.notifications_list);
 
     }
 
+    void collapse(View v){
+        View selected = null;
+        switch (v.getId()){
+            case R.id.Styles:
+                selected = findViewById(R.id.styles_list);
+                break;
+            case R.id.Language:
+                selected = findViewById(R.id.language_list);
+                break;
+            case R.id.Notifications:
+                selected = findViewById(R.id.notifications_list);
+                break;
+        }
+        if(selected.getVisibility() == View.VISIBLE)
+            selected.setVisibility(View.GONE);
+        else
+        {
+            for(int i = 0 ; i < toCollapseNumber ; i++)
+                buttonsToCollapse[i].setVisibility(View.GONE);
+            selected.setVisibility(View.VISIBLE);
+        }
+    }
 
 }
