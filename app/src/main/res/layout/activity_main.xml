@@ -85,7 +85,7 @@
             android:checked="true"
             android:text="@string/save_password"
             android:textSize="26sp" />
-
+<!--
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,6 +110,7 @@
             android:imeOptions="actionDone"
             android:singleLine="true"
             android:padding="15dip" />
+            -->
 
         <LinearLayout
             android:layout_width="match_parent"

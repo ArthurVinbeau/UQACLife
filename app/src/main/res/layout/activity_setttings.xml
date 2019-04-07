@@ -92,15 +92,15 @@
 
                 <TextView
                     android:id="@+id/Styles"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="collapse"
                     android:text="@string/styles"
+                    android:textAlignment="center"
                     android:textSize="40sp"
-                    tools:layout_editor_absoluteY="98dp"
-                    app:layout_constraintTop_toBottomOf="@id/view2"
                     app:layout_constraintBottom_toTopOf="@id/styles_list"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/view2" />
 
                 <LinearLayout
                     android:id="@+id/notifications_list"
@@ -133,14 +133,14 @@
 
                 <TextView
                     android:id="@+id/Logout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/log_out"
+                    android:textAlignment="center"
                     android:textSize="40sp"
-                    app:layout_constraintTop_toBottomOf="@id/view4"
                     app:layout_constraintBottom_toTopOf="@id/view5"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="250dp" />
+                    app:layout_constraintTop_toBottomOf="@id/view4" />
 
                 <LinearLayout
                     android:id="@+id/styles_list"
@@ -173,14 +173,15 @@
 
                 <TextView
                     android:id="@+id/Language"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="collapse"
                     android:text="@string/language"
+                    android:textAlignment="center"
                     android:textSize="40sp"
-                    app:layout_constraintTop_toBottomOf="@id/view3"
                     app:layout_constraintBottom_toTopOf="@id/language_list"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="174dp" />
+                    app:layout_constraintTop_toBottomOf="@id/view3" />
 
                 <LinearLayout
                     android:id="@+id/language_list"
@@ -193,6 +194,69 @@
                     app:layout_constraintTop_toBottomOf="@id/Language">
 
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patate"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patate"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patate"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patate"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patate"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patate"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patate"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patate"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patate"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textView9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
@@ -213,14 +277,15 @@
 
                 <TextView
                     android:id="@+id/Notifications"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="collapse"
                     android:text="@string/notifications"
                     android:textSize="40sp"
-                    app:layout_constraintTop_toBottomOf="@id/view"
                     app:layout_constraintBottom_toTopOf="@id/notifications_list"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="22dp" />
+                    app:layout_constraintTop_toBottomOf="@id/view"
+                    android:textAlignment="center" />
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
