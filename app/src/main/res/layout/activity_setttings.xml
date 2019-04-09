@@ -91,16 +91,55 @@
                     app:layout_constraintEnd_toEndOf="parent"/>
 
                 <TextView
-                    android:id="@+id/Styles"
+                    android:id="@+id/Notifications"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="collapse"
-                    android:text="@string/styles"
+                    android:text="@string/notifications"
                     android:textAlignment="center"
-                    android:textSize="40sp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@id/notifications_list"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view" />
+
+                <TextView
+                    android:id="@+id/Styles"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:onClick="collapse"
+                    android:text="@string/styles"
+                    android:textAlignment="viewStart"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@id/styles_list"
+                    app:layout_constraintEnd_toStartOf="@+id/selected_style"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view2" />
+
+                <TextView
+                    android:id="@+id/Language"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:onClick="collapse"
+                    android:text="@string/language"
+                    android:textAlignment="viewStart"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@id/language_list"
+                    app:layout_constraintEnd_toStartOf="@id/selected_language"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view3" />
+
+                <TextView
+                    android:id="@+id/Logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/log_out"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@id/view5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view4" />
 
                 <LinearLayout
                     android:id="@+id/notifications_list"
@@ -116,31 +155,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/Logout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_out"
-                    android:textAlignment="center"
-                    android:textSize="40sp"
-                    app:layout_constraintBottom_toTopOf="@id/view5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view4" />
 
                 <LinearLayout
                     android:id="@+id/styles_list"
@@ -156,32 +184,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/Language"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="collapse"
-                    android:text="@string/language"
-                    android:textAlignment="center"
-                    android:textSize="40sp"
-                    app:layout_constraintBottom_toTopOf="@id/language_list"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view3" />
 
                 <LinearLayout
                     android:id="@+id/language_list"
@@ -197,95 +213,110 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patate"
-                        android:textSize="35sp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/Notifications"
-                    android:layout_width="match_parent"
+                    android:id="@+id/selected_style"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:onClick="collapse"
-                    android:text="@string/notifications"
-                    android:textSize="40sp"
-                    app:layout_constraintBottom_toTopOf="@id/notifications_list"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view"
-                    android:textAlignment="center" />
+                    android:text="selected"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@id/styles_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view2"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/selected_language"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="collapse"
+                    android:text="selected"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@id/language_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view3"
+                    app:layout_constraintVertical_bias="1.0" />
+
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
