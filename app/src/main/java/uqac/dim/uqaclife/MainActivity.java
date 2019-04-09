@@ -592,12 +592,10 @@ public class MainActivity extends AppCompatActivity {
             String savedJson = sharedPref.getString("json", null);
             if(savedJson==null)
             {
-                Log.i("TEST","ToParser");
                 json = new JSONObject(parser.toJson(html));
             }
             else
             {
-                Log.i("TEST","NOT");
                 json = new JSONObject(savedJson);
             }
             sharedPref.edit().putString("json", json.toString()).commit();
@@ -772,9 +770,6 @@ public class MainActivity extends AppCompatActivity {
                                          });
                                          snackbar.show();
                                      //}
-
-
-                                     Log.i("Blacklisted","clicked");
                                  }
                              });
                             dynamicContent.addView(cours);

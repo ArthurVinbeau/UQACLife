@@ -37,10 +37,8 @@ public class blacklisted_activity extends MainActivity {
         final String blacklisted = sharedPref.getString("blacklisted", null);
         blacklistedList.removeAllViews();
         if(blacklisted!=null){
-            Log.i("Unbli",blacklisted);
             String[] lessons = blacklisted.split(" #'");
             for(int i = 1; i < lessons.length ; i++){
-                Log.i("Unbli",lessons[i]);
                 final String lesson = lessons[i].split("'#")[0];
 
                 View cours = getLayoutInflater().inflate(R.layout.blacklisted_course, blacklistedList, false);
