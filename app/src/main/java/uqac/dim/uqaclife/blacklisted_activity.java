@@ -42,16 +42,10 @@ public class blacklisted_activity extends MainActivity {
             for(int i = 1; i < lessons.length ; i++){
                 Log.i("Unbli",lessons[i]);
                 final String lesson = lessons[i].split("'#")[0];
-                LinearLayout linearLayout = new LinearLayout(this);
 
-                TextView t1 = new TextView(this);
-                LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                l.setMargins(20,20,20,20);
-                t1.setLayoutParams(l);
-                t1.setText(lesson);
-                t1.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
-                t1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-                TextView t2 = new TextView(this);
+                View cours = getLayoutInflater().inflate(R.layout.blacklisted_course, blacklistedList, false);
+                ((TextView)cours.findViewById(R.id.blacklistedName)).setText(lesson);
+                View t2 = cours.findViewById((R.id.unblacklist_button));
                 t2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -69,17 +63,8 @@ public class blacklisted_activity extends MainActivity {
                         snackbar.show();
                     }
                 });
-                LinearLayout.LayoutParams l2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                l.setMargins(20,20,40,20);
 
-                t2.setLayoutParams(l2);
-                t2.setText("X");
-                t2.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-                t2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-                linearLayout.addView(t1);
-                linearLayout.addView(t2);
-
-                blacklistedList.addView(linearLayout);
+                blacklistedList.addView(cours);
 
             }
         }
