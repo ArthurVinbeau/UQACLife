@@ -252,38 +252,68 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Language">
 
+                    <View
+                        android:id="@+id/view13"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#999" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1"
+                        android:text="Franglais"
                         android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/view14"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#999" />
 
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2"
+                        android:text="Angçais"
                         android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/view15"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#999" />
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="3"
+                        android:text="Polonais"
                         android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/view17"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#999" />
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="4"
+                        android:text="Bosniak"
                         android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/view16"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#999" />
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="5"
+                        android:text="Zulu"
                         android:textSize="20sp" />
 
                 </LinearLayout>
