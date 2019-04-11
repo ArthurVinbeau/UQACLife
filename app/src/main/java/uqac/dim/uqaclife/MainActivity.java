@@ -33,7 +33,6 @@ import android.widget.Switch;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -54,18 +53,28 @@ public class MainActivity extends AppCompatActivity {
     
 
     int[][] colors = new int[][]{
-            new int[]{0xFFFFC107,0xFFFF9B00},           //mondayColors
-            new int[]{ 0xFFF75A4E,0xFFF81D0D},          // tuesdayColors
-            new int[]{ 0xFFD77EF5,0xFFBF0EDD},          //wednesdayColors
-            new int[]{ 0xFF5970E7,0xFF2040EC},          //thurdsdayColors
-            new int[]{ 0xFF4CE751,0xFF11A214},          //fridayColors
-            new int[]{ 0xFF47E1F5,0xFF0A8EA3},          //saturdayColors
-            new int[]{ 0xFFFFEB3B,0xFFEBD827}};        //sundayColors
-    String[] days = new String[]{"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+            new int[]{0xFFFFC107, 0xFFFF9B00},           //mondayColors
+            new int[]{0xFFF75A4E, 0xFFF81D0D},          // tuesdayColors
+            new int[]{0xFFD77EF5, 0xFFBF0EDD},          //wednesdayColors
+            new int[]{0xFF5970E7, 0xFF2040EC},          //thurdsdayColors
+            new int[]{0xFF4CE751, 0xFF11A214},          //fridayColors
+            new int[]{0xFF47E1F5, 0xFF0A8EA3},          //saturdayColors
+            new int[]{0xFFFFEB3B, 0xFFEBD827}};        //sundayColors
+    String[] strdays = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    int[] days = new int[]{
+            R.string.monday,
+        R.string.tuesday,
+        R.string.wednesday,
+        R.string.thursday,
+        R.string.friday,
+        R.string.saturday,
+        R.string.sunday};
 
     SharedPreferences sharedPref;
+    LinearLayout weeklist_layout;
 
     String html;
+
     //region sethtml
     {
         html = "\n" +
@@ -458,10 +467,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public   boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-        if(b!=null && b.getInt("requestCode") == 42)
+        if (b != null && b.getInt("requestCode") == 42)
             return false;
         getMenuInflater().inflate(R.menu.main_drop_menu, menu);
         return true;
@@ -471,12 +480,12 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.preferences:
                 Intent intent = new Intent(getApplicationContext(), settingsActivity.class);
-                intent.putExtra("requestCode",42);
+                intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
             case R.id.blacklisted:
                 Intent intent2 = new Intent(getApplicationContext(), blacklisted_activity.class);
-                intent2.putExtra("requestCode",42);
+                intent2.putExtra("requestCode", 42);
                 startActivityForResult(intent2, 42);
                 return true;
         }
@@ -490,6 +499,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_test);
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
+        weeklist_layout = findViewById(R.id.weekList);
         show_week(null);
         queue = Volley.newRequestQueue(this);
 
@@ -514,125 +524,157 @@ public class MainActivity extends AppCompatActivity {
     public void versLInfini(View v) {
         //setContentView(R.layout.activity_test);
         login.finish();
-        sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
-        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();
+        sharedPref.edit().putString("login", ((TextView) findViewById(R.id.login)).getText().toString()).commit();
+        sharedPref.edit().putString("password", ((CheckBox) findViewById(R.id.save_password)).isChecked() ? ((TextView) findViewById(R.id.login)).getText().toString() : "").commit();
         //show_week(v);
     }
 
     public void etPasLAuDela(View v) {
         sharedPref.edit().putString("json", null).commit();
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.putExtra("requestCode",42);
+        intent.putExtra("requestCode", 42);
         startActivityForResult(intent, 42);
     }
 
 
-    public void refresh_week(View v){
+    public void refresh_week(View v) {
         //html = htmlRequest();
         show_week(v);
     }
 
     public void show_week(View v) {
 
-
-        DateFormat dateFormat= new SimpleDateFormat("dd-MM-yyyy-u");
-        String currentDate  = dateFormat.format(new Date());
-        int[] movingDate = new int[4];
-        int i = 0;
-        for (String inte: currentDate.split("-")) {
-            movingDate[i++] = Integer.parseInt(inte);
-        }
-
-        while(movingDate[3]-- > 1){
-            movingDate[0]--;
-            if(movingDate[0] == 0){
-                movingDate[1]--;
-                if(movingDate[1]== 0)
-                {
-                    movingDate[2]--;
-                    movingDate[1] = 12;
-                }
-                if(movingDate[1] == 2)
-                    movingDate[0] = (movingDate[0]%4 == 0 && movingDate[0]%100 != 0?29:28);
-                else if(movingDate[1]>7 ? movingDate[1]%2 == 0 : movingDate[1]==1)
-                    movingDate[0] = 30;
-                else
-                    movingDate[0] = 31;
-            }
-        }
-        String currentweek =  String.format("%02d",movingDate[0]) + "/" + String.format("%02d", movingDate[1]) +"/" + String.format("%02d",movingDate[2]);
-        for ( i = 1 ; i < 7; i++) {
-            movingDate[0]++;
-            if(movingDate[0]==32) {
-                movingDate[0] = 1;
-                movingDate[1]++;
-            } else if(movingDate[0] == 31 && (movingDate[1]>7 ? movingDate[1]%2 == 0 : movingDate[1]==1)) {
-                movingDate[0] = 1;
-                movingDate[1]++;
-            }
-            else  if(movingDate[1] ==2 && movingDate[0] > 28) {
-                if (movingDate[0] == 30) {
-                    movingDate[0] = 1;
-                    movingDate[1]++;
-                } else if (!(movingDate[2]%4 == 0 && movingDate[2]%100 != 0)){
-                    movingDate[0] = 1;
-                    movingDate[1]++;
-                }
-            }
-
-            currentweek += " " + String.format("%02d",movingDate[0]) + "/" + String.format("%02d", movingDate[1]) +"/" + String.format("%02d",movingDate[2]);
-        }
-
-
-
-        Parser2 parser = new Parser2();
-
-        JSONObject json = null;
         try {
-            String savedJson = sharedPref.getString("json", null);
-            if(savedJson==null)
-            {
-                json = new JSONObject(parser.toJson(html));
+
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-u");
+            String currentDate = dateFormat.format(new Date());
+            int[] movingDate = new int[4];
+            int i = 0;
+            for (String inte : currentDate.split("-")) {
+                movingDate[i++] = Integer.parseInt(inte);
             }
-            else
-            {
-                json = new JSONObject(savedJson);
-            }
-            sharedPref.edit().putString("json", json.toString()).commit();
-        } catch (JSONException e){
-            Log.i("JSON error",e.toString(),e);
-        }
 
-
-        LinearLayout dynamicContent = findViewById(R.id.weekList);
-        dynamicContent.removeAllViews();
-        int px = (int)(2* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
-        int px2 = (int)(15* getApplicationContext().getResources().getDisplayMetrics().density+ 0.5f);
-
-        for( i = 0; i < 7 ; i++) {
-
-            GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
-            GradientDrawable gd2 = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
-
-
-            try {
-                JSONArray day = json.getJSONArray(days[i]);
-                if(!hideEmptyDay ||day.length()>0) {
-                    TextView t = new TextView(this);
-                    LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    t.setPadding(0, px, 0, px);
-                    t.setLayoutParams(l);
-                    t.setText(days[i]);
-                    t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                    t.setTextColor(0xffffffff);
-                    t.setBackground(gd);
-                    t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-                    t.setTypeface(Typeface.DEFAULT_BOLD);
-                    dynamicContent.addView(t);
+            while (movingDate[3]-- > 1) {
+                movingDate[0]--;
+                if (movingDate[0] == 0) {
+                    movingDate[1]--;
+                    if (movingDate[1] == 0) {
+                        movingDate[2]--;
+                        movingDate[1] = 12;
+                    }
+                    if (movingDate[1] == 2)
+                        movingDate[0] = (movingDate[0] % 4 == 0 && movingDate[0] % 100 != 0 ? 29 : 28);
+                    else if (movingDate[1] > 7 ? movingDate[1] % 2 == 0 : movingDate[1] == 1)
+                        movingDate[0] = 30;
+                    else
+                        movingDate[0] = 31;
                 }
-                gd2.setCornerRadii(new float[]{px2,px2,0,0,0,0,px2,px2});
-                for(int j = 0 ; j < day.length();j++) {
-                    try {
+            }
+            String currentweek = String.format("%02d", movingDate[0]) + "/" + String.format("%02d", movingDate[1]) + "/" + String.format("%02d", movingDate[2]);
+            for (i = 1; i < 7; i++) {
+                movingDate[0]++;
+                if (movingDate[0] == 32) {
+                    movingDate[0] = 1;
+                    movingDate[1]++;
+                } else if (movingDate[0] == 31 && (movingDate[1] > 7 ? movingDate[1] % 2 == 0 : movingDate[1] == 1)) {
+                    movingDate[0] = 1;
+                    movingDate[1]++;
+                } else if (movingDate[1] == 2 && movingDate[0] > 28) {
+                    if (movingDate[0] == 30) {
+                        movingDate[0] = 1;
+                        movingDate[1]++;
+                    } else if (!(movingDate[2] % 4 == 0 && movingDate[2] % 100 != 0)) {
+                        movingDate[0] = 1;
+                        movingDate[1]++;
+                    }
+                }
+
+                currentweek += " " + String.format("%02d", movingDate[0]) + "/" + String.format("%02d", movingDate[1]) + "/" + String.format("%02d", movingDate[2]);
+            }
+
+
+            Parser2 parser = new Parser2();
+
+            JSONObject json = null;
+            try {
+                String savedJson = sharedPref.getString("json", null);
+                if (savedJson == null) {
+                    json = new JSONObject(parser.toJson(html));
+                } else {
+                    json = new JSONObject(savedJson);
+                }
+                sharedPref.edit().putString("json", json.toString()).commit();
+            } catch (JSONException e) {
+                Log.i("JSON error", e.toString(), e);
+            }
+
+
+
+            weeklist_layout.removeAllViews();
+            int px = (int) (2 * getApplicationContext().getResources().getDisplayMetrics().density + 0.5f);
+            int px2 = (int) (15 * getApplicationContext().getResources().getDisplayMetrics().density + 0.5f);
+
+            for (i = 0; i < 7; i++) {
+
+                GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
+                GradientDrawable gd2 = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
+
+
+                try {
+                    JSONArray day = json.getJSONArray(strdays[i]);
+                    if (!hideEmptyDay || day.length() > 0) {
+                        TextView t = new TextView(this);
+                        LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        t.setPadding(0, px, 0, px);
+                        t.setLayoutParams(l);
+                        t.setText(getString(days[i]));
+                        t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        t.setTextColor(0xffffffff);
+                        t.setBackground(gd);
+                        t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                        t.setTypeface(Typeface.DEFAULT_BOLD);
+                        weeklist_layout.addView(t);
+                    }
+                    gd2.setCornerRadii(new float[]{px2, px2, 0, 0, 0, 0, px2, px2});
+                    for (int j = 0; j < day.length(); j++) {
+                        try {
+
+                            JSONObject lesson = day.getJSONObject(j);
+                            final String name = lesson.getString("name");
+                            if (!isBlacklisted(name) && dateCompare(currentweek, lesson.getString("dates"))) {
+                                View cours = getLayoutInflater().inflate(R.layout.cours, weeklist_layout, false);
+                                cours.findViewById(R.id.courstimes).setBackground(gd2);
+                                String room = lesson.getString("room");
+                                if (room.contains("T.D")) {
+                                    cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
+                                    room = room.replace("T.D", "");
+                                } else if (room.contains("LAB")) {
+                                    cours.findViewById(R.id.TD).setVisibility(View.VISIBLE);
+                                    ((TextView) cours.findViewById(R.id.TD)).setText("LAB   ");
+                                    room = room.replace("LAB", "");
+                                }
+                                final String room2 = room;
+                                String id = lesson.getString("id");
+                                ((TextView) cours.findViewById(R.id.lessonid)).setText(id);
+                                ((TextView) cours.findViewById(R.id.lessonname)).setText(name);
+                                ((TextView) cours.findViewById(R.id.lessonroom)).setText(room);
+                                ((TextView) cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
+                                ((TextView) cours.findViewById(R.id.timeend)).setText(lesson.getString("end"));
+                                ((TextView) cours.findViewById(R.id.group)).setText(getString(R.string.groupe)+ " : " + lesson.getString("grp"));        //groupe
+                                final View more_infos = cours.findViewById(R.id.more_infos);
+                                (cours.findViewById(R.id.matiere)).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        more_infos.setVisibility(more_infos.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                                    }
+                                });
+                                (cours.findViewById(R.id.notif)).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        NotificationCompat.Builder b = notification.getnotif(name, room2);
+                                        notification.getManager().notify(new Random().nextInt(), b.build());
+                                    }
+                                });
 
                         JSONObject lesson = day.getJSONObject(j);
                         final String name = lesson.getString("name");
@@ -757,33 +799,45 @@ public class MainActivity extends AppCompatActivity {
 
                                      } else {*/
 
-                                         blacklist(name);
-                                         show_week(null);
-                                         Snackbar snackbar =  Snackbar.make(findViewById(R.id.weekList), "Course blacklisted", Snackbar.LENGTH_SHORT);
-                                         snackbar.setActionTextColor(0xffffffff);
-                                         snackbar.setAction("Undo", new View.OnClickListener() {
-                                             @Override
-                                             public void onClick(View v) {
-                                                 unblacklist(name);
-                                                 show_week(null);
-                                             }
-                                         });
-                                         snackbar.show();
-                                     //}
-                                 }
-                             });
-                            dynamicContent.addView(cours);
-                        }
+                                        blacklist(name);
+                                        show_week(null);
+                                        Snackbar snackbar = Snackbar.make(findViewById(R.id.weekList), getString(R.string.course_blacklisted), Snackbar.LENGTH_SHORT);
+                                        snackbar.setActionTextColor(0xffffffff);
+                                        snackbar.setAction(getString(R.string.undo), new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                unblacklist(name);
+                                                show_week(null);
+                                            }
+                                        });
+                                        snackbar.show();
+                                        //}
+                                    }
+                                });
+                                weeklist_layout.addView(cours);
+                            }
 
-                    }catch (JSONException e){
-                        Log.i("JSON error",e.toString(),e);
+                        } catch (JSONException e) {
+                            Log.i("JSON error", e.toString(), e);
+                        }
                     }
+                } catch (JSONException e) {
+                    Log.i("JSON error", e.toString(), e);
                 }
-            }catch (JSONException e){
-                Log.i("JSON error",e.toString(),e);
             }
+            ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
+        } catch (Exception e){
+            Log.i("Error",e.toString(),e);
+            TextView t = new TextView(this);
+            t.setText(getString(R.string.error_calendar_message));
+            t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            t.setTextColor(0xffffffff);
+            t.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[1]));
+            t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            t.setTypeface(Typeface.DEFAULT_BOLD);
+            weeklist_layout.addView(t);
         }
-        ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
+
     }
 
     public void fleur(View v) {

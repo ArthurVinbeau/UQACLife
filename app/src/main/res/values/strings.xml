@@ -17,4 +17,26 @@
     <string name="notifications">Notifications</string>
     <string name="language">Language</string>
     <string name="log_out">Log out</string>
+    <string name="style_1">Default</string>
+    <string name="style_2">Default</string>
+    <string name="style_3">Default</string>
+    <string name="language_1">Franglais</string>
+    <string name="laguage_2">Angçais</string>
+    <string name="language_3">Polonais</string>
+    <string name="language_4">Bosniak</string>
+    <string name="language_5">Zulu</string>
+    <string name="error_calendar_message">An error occured while loading calendar</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="blacklist">Blacklist</string>
+    <string name="notification_button">Notif me sempai</string>
+    <string name="groupe">Groupe</string>
+    <string name="course_blacklisted">Course blacklisted</string>
+    <string name="course_unblacklisted">Course unblacklisted</string>
+    <string name="undo">undo</string>
 </resources>

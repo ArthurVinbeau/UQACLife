@@ -49,9 +49,9 @@ public class blacklisted_activity extends MainActivity {
                     public void onClick(View v) {
                         unblacklist(lesson);
                         loadBlacklisted();
-                        Snackbar snackbar =  Snackbar.make(blacklistedList, "Course unblacklisted", Snackbar.LENGTH_LONG);
+                        Snackbar snackbar =  Snackbar.make(blacklistedList, getString(R.string.course_unblacklisted), Snackbar.LENGTH_LONG);
                         snackbar.setActionTextColor(0xffffffff);
-                        snackbar.setAction("Undo", new View.OnClickListener() {
+                        snackbar.setAction(getString(R.string.undo), new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 blacklist(lesson);
