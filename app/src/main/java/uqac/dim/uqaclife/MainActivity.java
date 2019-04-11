@@ -462,16 +462,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.preferences:
-                Intent intent = new Intent(getApplicationContext(), settingsActivity.class);
+                intent = new Intent(getApplicationContext(), settingsActivity.class);
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
             case R.id.blacklisted:
-                Intent intent2 = new Intent(getApplicationContext(), blacklisted_activity.class);
-                intent2.putExtra("requestCode", 42);
-                startActivityForResult(intent2, 42);
+                intent = new Intent(getApplicationContext(), blacklisted_activity.class);
+                intent.putExtra("requestCode", 42);
+                startActivityForResult(intent, 42);
+                return true;
+            case R.id.grades_button:
+                intent = new Intent(getApplicationContext(), blacklisted_activity.class);
+                intent.putExtra("requestCode", 42);
+                startActivityForResult(intent, 42);
                 return true;
         }
         return super.onOptionsItemSelected(item);

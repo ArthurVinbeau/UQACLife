@@ -39,4 +39,7 @@
     <string name="course_blacklisted">Course blacklisted</string>
     <string name="course_unblacklisted">Course unblacklisted</string>
     <string name="undo">undo</string>
+    <string name="blacklisted">Blacklisted</string>
+    <string name="preferences">Preferences</string>
+    <string name="grades">Grades</string>
 </resources>
