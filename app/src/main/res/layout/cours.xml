@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dip"
-                android:text="H debut"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dip"
-                android:text="H fin"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dip"
                     android:layout_marginTop="5dip"
-                    android:text="Nom du cours"
+                    android:text=""
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dip"
                 android:layout_marginTop="5dip"
-                android:text="ID du cours"
+                android:text=""
                 android:textSize="16sp" />
 
             <TextView
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dip"
                 android:layout_marginTop="5dip"
-                android:text="Salle du cours"
+                android:text=""
                 android:textColor="@color/colorlightBlue"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -137,13 +137,13 @@
                         android:id="@+id/blacklistButton"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
-                        android:text="Blacklist" />
+                        android:text="@string/blacklist" />
 
                     <Button
                         android:id="@+id/notif"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
-                        android:text="Notif me sempai" />
+                        android:text="@string/notification_button" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -212,7 +212,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Default"
+                        android:text="@string/style_1"
                         android:textSize="20sp" />
 
                     <View
@@ -224,7 +224,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Default"
+                        android:text="@string/style_2"
                         android:textSize="20sp" />
 
                     <View
@@ -236,7 +236,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Default"
+                        android:text="@string/style_3"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -261,7 +261,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Franglais"
+                        android:text="@string/language_1"
                         android:textSize="20sp" />
 
                     <View
@@ -274,7 +274,7 @@
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Angçais"
+                        android:text="@string/laguage_2"
                         android:textSize="20sp" />
 
                     <View
@@ -287,7 +287,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Polonais"
+                        android:text="@string/language_3"
                         android:textSize="20sp" />
 
                     <View
@@ -300,7 +300,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bosniak"
+                        android:text="@string/language_4"
                         android:textSize="20sp" />
 
                     <View
@@ -313,7 +313,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Zulu"
+                        android:text="@string/language_5"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -334,7 +334,7 @@
                     android:id="@+id/selected_style"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="selected"
+                    android:text=""
                     android:textAlignment="textEnd"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@id/styles_list"
@@ -346,7 +346,7 @@
                     android:id="@+id/selected_language"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="selected"
+                    android:text=""
                     android:textAlignment="textEnd"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@id/language_list"
