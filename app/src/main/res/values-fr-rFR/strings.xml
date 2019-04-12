@@ -22,10 +22,10 @@
     <string name="monday">Lundi</string>
     <string name="tuesday">Mardi</string>
     <string name="wednesday">Mercredi</string>
-    <string name="thursday">Mercredi</string>
+    <string name="thursday">Jeudi</string>
     <string name="friday">Vendredi</string>
-    <string name="saturday">Vendredi</string>
-    <string name="sunday">Dimandche</string>
+    <string name="saturday">Samedi</string>
+    <string name="sunday">Dimanche</string>
     <string name="blacklist">Liste noire</string>
     <string name="notification_button">Notif moi maitre</string>
     <string name="groupe">Groupe</string>
