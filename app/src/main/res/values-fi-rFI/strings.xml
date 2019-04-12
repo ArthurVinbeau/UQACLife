@@ -30,7 +30,7 @@
     <string name="notification_button">Ilm minulle sempai</string>
     <string name="groupe">Ryhmä</string>
     <string name="course_blacklisted">tietenkin mustalle listalle</string>
-    <string name="course_unblacklisted">tietenkin unblacklisted</string>
+    <string name="course_unblacklisted">Tietenkin poistetaan mustalle listalle</string>
     <string name="undo">purkaa</string>
     <string name="blacklisted">Mustalla listalla</string>
     <string name="preferences">Asetukset</string>
