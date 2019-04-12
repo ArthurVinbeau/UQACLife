@@ -120,6 +120,7 @@ public class settingsActivity extends MainActivity {
                 refresh.putExtra("requestCode", 42);
                 startActivity(refresh);
                 finish();
+                invalidateOptionsMenu();
                 overridePendingTransition (0,0);
                 break;
         }
