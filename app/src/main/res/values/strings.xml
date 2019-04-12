@@ -28,6 +28,7 @@
     <string name="language_7" translatable="false">Polish</string>
     <string name="language_8" translatable="false">Spanish</string>
     <string name="language_9" translatable="false">Zulu</string>
+    <string name="language_10" translatable="false">Korean</string>
     <string name="error_calendar_message">An error occured while loading calendar</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
