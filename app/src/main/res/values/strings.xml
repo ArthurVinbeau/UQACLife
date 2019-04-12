@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UQACLife</string>
+    <string name="app_name" translatable="false">UQACLife</string>
     <string name="session">Open a session</string>
     <string name="Identifiant">Login</string>
     <string name="Mdp">Password</string>
@@ -7,11 +7,10 @@
     <string name="Valider">Done</string>
     <string name="Login_suite">Write your login </string>
     <string name="Mdp_suite">Write your password </string>
-    <string name="Captcha_suite">Write the captcha</string>
     <string name="J_attends_la_finalisation_du_captcha">J attends</string>
     <string name="login">Login</string>
     <string name="refresh">Refresh</string>
-    <string name="preferences_file">com.uqacLifeTeam.uqacLife.PREFERENCE_FILE_KEY</string>
+    <string name="preferences_file" translatable="false">com.uqacLifeTeam.uqacLife.PREFERENCE_FILE_KEY</string>
     <string name="save_password">Save password</string>
     <string name="styles">Styles</string>
     <string name="notifications">Notifications</string>
@@ -20,11 +19,15 @@
     <string name="style_1">Default</string>
     <string name="style_2">Default</string>
     <string name="style_3">Default</string>
-    <string name="language_1">Franglais</string>
-    <string name="laguage_2">Angçais</string>
-    <string name="language_3">Polonais</string>
-    <string name="language_4">Bosniak</string>
-    <string name="language_5">Zulu</string>
+    <string name="language_1" translatable="false">English</string>
+    <string name="laguage_2" translatable="false">Français</string>
+    <string name="language_3" translatable="false">Bosnian</string>
+    <string name="language_4" translatable="false">Deutsch</string>
+    <string name="language_5" translatable="false">Finnish</string>
+    <string name="language_6" translatable="false">Icelandic</string>
+    <string name="language_7" translatable="false">Polish</string>
+    <string name="language_8" translatable="false">Spanish</string>
+    <string name="language_9" translatable="false">Zulu</string>
     <string name="error_calendar_message">An error occured while loading calendar</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
@@ -35,11 +38,12 @@
     <string name="sunday">Sunday</string>
     <string name="blacklist">Blacklist</string>
     <string name="notification_button">Notif me sempai</string>
-    <string name="groupe">Groupe</string>
+    <string name="groupe">Group</string>
     <string name="course_blacklisted">Course blacklisted</string>
     <string name="course_unblacklisted">Course unblacklisted</string>
-    <string name="undo">undo</string>
+    <string name="undo">Undo</string>
     <string name="blacklisted">Blacklisted</string>
     <string name="preferences">Preferences</string>
     <string name="grades">Grades</string>
+
 </resources>

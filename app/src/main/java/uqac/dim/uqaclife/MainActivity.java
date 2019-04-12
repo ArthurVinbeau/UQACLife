@@ -3,6 +3,7 @@ package uqac.dim.uqaclife;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -30,7 +31,11 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
+
+
+import android.content.res.Resources;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -485,11 +490,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
+        changeLanguage(sharedPref.getString("Language",""));
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         notification = new Notification(this);
         setContentView(R.layout.activity_test);
-        sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         weeklist_layout = findViewById(R.id.weekList);
         show_week(null);
         queue = Volley.newRequestQueue(this);
@@ -767,4 +773,12 @@ public class MainActivity extends AppCompatActivity {
         return sharedPref.getString("blacklisted", "").contains("#'"+ lesson+ "'#");
     }
     //endregion
+
+    private void changeLanguage(String language){
+        Locale myLocale = new Locale(language);
+        Resources res = getResources();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf,res.getDisplayMetrics());
+    }
 }

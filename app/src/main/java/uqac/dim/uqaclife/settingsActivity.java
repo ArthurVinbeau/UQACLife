@@ -1,9 +1,14 @@
 package uqac.dim.uqaclife;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class settingsActivity extends MainActivity {
 
@@ -25,6 +30,7 @@ public class settingsActivity extends MainActivity {
                 sharedPref.edit().putString("password",null).apply();
             }
         });
+        ((TextView)findViewById(R.id.selected_language)).setText(sharedPref.getString("Langue","English"));
 
         buttonsToCollapse[0] = findViewById(R.id.styles_list);
         buttonsToCollapse[1] = findViewById(R.id.language_list);
@@ -89,15 +95,43 @@ public class settingsActivity extends MainActivity {
     void selectOption(View v) {
         View parent = (View) v.getParent();
         TextView changeText = null;
+        String newText = (String)((TextView) v).getText();
         switch (parent.getId()) {
             case R.id.styles_list:
                 changeText = (TextView) findViewById(R.id.selected_style);
                 break;
             case R.id.language_list:
                 changeText = (TextView) findViewById(R.id.selected_language);
+                changeLanguage(newText == "en"?"":newText);
+                String newLanguage;
+                switch (newText){
+                    default: newLanguage = ""; break;
+                    case "Français": newLanguage = "fr"; break;
+                    case "Bosnian": newLanguage = "bs"; break;
+                    case "Deutsch": newLanguage = "de"; break;
+                    case "Spanish": newLanguage = "es"; break;
+                    case "Finnish": newLanguage = "fi"; break;
+                    case "Icelandic": newLanguage = "is"; break;
+                    case "Polish": newLanguage = "pl"; break;
+                    case "Zulu": newLanguage = "zu"; break;
+                }
+                sharedPref.edit().putString("Language",newLanguage).putString("Langue",newText).apply();
+                Intent refresh = new Intent(this, settingsActivity.class);
+                refresh.putExtra("requestCode", 42);
+                startActivity(refresh);
+                finish();
+                overridePendingTransition (0,0);
                 break;
         }
-        changeText.setText(((TextView) v).getText());
+        changeText.setText(newText);
         parent.setVisibility(View.GONE);
+    }
+
+    private void changeLanguage(String language){
+        Locale myLocale = new Locale(language);
+        Resources res = getResources();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf,res.getDisplayMetrics());
     }
 }
