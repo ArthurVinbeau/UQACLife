@@ -30,7 +30,7 @@
     <string name="notification_button">Notyfikacji mnie sempai</string>
     <string name="groupe">Grupa</string>
     <string name="course_blacklisted">Oczywiście na czarnej liście</string>
-    <string name="course_unblacklisted">Oczywiście unblacklisted</string>
+    <string name="course_unblacklisted">Oczywiście usunięty z czarnej listy</string>
     <string name="undo">Cofnij</string>
     <string name="blacklisted">czarnej liście</string>
     <string name="preferences">Preferencje</string>

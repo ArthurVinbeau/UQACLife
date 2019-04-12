@@ -30,7 +30,7 @@
     <string name="notification_button">	나 NOTIF sempai	</string>
     <string name="groupe">	그룹	</string>
     <string name="course_blacklisted">	코스 블랙리스트	</string>
-    <string name="course_unblacklisted">	코스 unblacklisted	</string>
+    <string name="course_unblacklisted">코스 블랙리스트에서 제거</string>
     <string name="undo">	끄르다	</string>
     <string name="blacklisted">	블랙리스트	</string>
     <string name="preferences">	환경 설정	</string>

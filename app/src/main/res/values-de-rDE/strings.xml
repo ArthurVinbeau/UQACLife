@@ -30,7 +30,7 @@
     <string name="notification_button">Notif mich sempai</string>
     <string name="groupe">Gruppe</string>
     <string name="course_blacklisted">Kurs der schwarzen Liste</string>
-    <string name="course_unblacklisted">Course unblacklisted</string>
+    <string name="course_unblacklisted">Kurs aus schwarzer Liste entfernt</string>
     <string name="undo">Rückgängig machen</string>
     <string name="blacklisted">die schwarze Liste gesetzt</string>
     <string name="preferences">Voreinstellungen</string>

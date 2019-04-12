@@ -28,9 +28,9 @@
     <string name="sunday">sunnudagur</string>
     <string name="blacklist">Svartur listi</string>
     <string name="notification_button">Skilaboðastill mig Sempai</string>
-    <string name="groupe">Group</string>
+    <string name="groupe">hópur</string>
     <string name="course_blacklisted">Auðvitað svartur listi</string>
-    <string name="course_unblacklisted">Auðvitað unblacklisted</string>
+    <string name="course_unblacklisted">Course fjarlægt úr bannlista</string>
     <string name="undo">Afturkalla</string>
     <string name="blacklisted">svartur listi</string>
     <string name="preferences">Óskir</string>
