@@ -1,18 +1,11 @@
 package uqac.dim.uqaclife;
 
-import android.graphics.Typeface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.content.SharedPreferences;
 import android.widget.TextView;
-
-import com.android.volley.toolbox.Volley;
-
-import java.io.Console;
 
 
 public class blacklisted_activity extends MainActivity {

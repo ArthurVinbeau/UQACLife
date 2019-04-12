@@ -2,10 +2,8 @@ package uqac.dim.uqaclife;
 
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.LruCache;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -15,7 +13,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
