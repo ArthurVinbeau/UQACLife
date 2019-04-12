@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">	세션을 엽니 다	</string>
+    <string name="Identifiant">	로그인	</string>
+    <string name="Mdp">	암호	</string>
+    <string name="Captcha">	보안 문자	</string>
+    <string name="Valider">	끝난	</string>
+    <string name="Login_suite">	로그인을 쓰기	</string>
+    <string name="Mdp_suite">	비밀번호를 쓰기	</string>
+    <string name="J_attends_la_finalisation_du_captcha">	J는 참석	</string>
+    <string name="login">	로그인	</string>
+    <string name="refresh">	새롭게 하다	</string>
+    <string name="save_password">	암호 저장	</string>
+    <string name="styles">	스타일	</string>
+    <string name="notifications">	알림	</string>
+    <string name="language">	언어	</string>
+    <string name="log_out">	로그 아웃	</string>
+    <string name="style_1">	태만	</string>
+    <string name="style_2">	태만	</string>
+    <string name="style_3">	태만	</string>
+    <string name="error_calendar_message">	일정을로드하는 중에 오류가 발생했습니다	</string>
+    <string name="monday">	월요일	</string>
+    <string name="tuesday">	화요일	</string>
+    <string name="wednesday">	수요일	</string>
+    <string name="thursday">	목요일	</string>
+    <string name="friday">	금요일	</string>
+    <string name="saturday">	토요일	</string>
+    <string name="sunday">	일요일	</string>
+    <string name="blacklist">	블랙리스트	</string>
+    <string name="notification_button">	나 NOTIF sempai	</string>
+    <string name="groupe">	그룹	</string>
+    <string name="course_blacklisted">	코스 블랙리스트	</string>
+    <string name="course_unblacklisted">	코스 unblacklisted	</string>
+    <string name="undo">	끄르다	</string>
+    <string name="blacklisted">	블랙리스트	</string>
+    <string name="preferences">	환경 설정	</string>
+    <string name="grades">	학년	</string>
+</resources>

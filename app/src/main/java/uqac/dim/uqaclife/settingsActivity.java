@@ -109,6 +109,7 @@ public class settingsActivity extends MainActivity {
                     case "Français": newLanguage = "fr"; break;
                     case "Bosnian": newLanguage = "bs"; break;
                     case "Deutsch": newLanguage = "de"; break;
+                    case "Korean": newLanguage= "ko" ; break;
                     case "Spanish": newLanguage = "es"; break;
                     case "Finnish": newLanguage = "fi"; break;
                     case "Icelandic": newLanguage = "is"; break;
