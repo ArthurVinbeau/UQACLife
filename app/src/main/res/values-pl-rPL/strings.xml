@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">Otwórz sesję</string>
+    <string name="Identifiant">Zaloguj Się</string>
+    <string name="Mdp">Hasło</string>
+    <string name="Captcha">Captcha</string>
+    <string name="Valider">Gotowe</string>
+    <string name="Login_suite">Wpisz swój login</string>
+    <string name="Mdp_suite">Wpisz swoje hasło</string>
+    <string name="J_attends_la_finalisation_du_captcha">J uczestniczy</string>
+    <string name="login">Zaloguj Się</string>
+    <string name="refresh">Odświeżać</string>
+    <string name="save_password">Zapisz hasło</string>
+    <string name="styles">style</string>
+    <string name="notifications">Powiadomienia</string>
+    <string name="language">Język</string>
+    <string name="log_out">Wyloguj</string>
+    <string name="style_1">Domyślna</string>
+    <string name="style_2">Domyślna</string>
+    <string name="style_3">Domyślna</string>
+    <string name="error_calendar_message">Wystąpił błąd podczas wczytywania kalendarza</string>
+    <string name="monday">poniedziałek</string>
+    <string name="tuesday">wtorek</string>
+    <string name="wednesday">środa</string>
+    <string name="thursday">czwartek</string>
+    <string name="friday">piątek</string>
+    <string name="saturday">sobota</string>
+    <string name="sunday">niedziela</string>
+    <string name="blacklist">Czarna lista</string>
+    <string name="notification_button">Notyfikacji mnie sempai</string>
+    <string name="groupe">Grupa</string>
+    <string name="course_blacklisted">Oczywiście na czarnej liście</string>
+    <string name="course_unblacklisted">Oczywiście unblacklisted</string>
+    <string name="undo">Cofnij</string>
+    <string name="blacklisted">czarnej liście</string>
+    <string name="preferences">Preferencje</string>
+    <string name="grades">Klas</string>
+</resources>
