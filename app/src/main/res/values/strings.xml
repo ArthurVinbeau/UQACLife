@@ -46,5 +46,11 @@
     <string name="blacklisted">Blacklisted</string>
     <string name="preferences">Preferences</string>
     <string name="grades">Grades</string>
+    <string name="error_grades_message">An error occured while loading grades</string>
+    <string name="element">Element</string>
+    <string name="non_pondere">Not weighted</string>
+    <string name="pondere">Pondere</string>
+    <string name="total">Total</string>
+    <string name="language_11" translatable="false">Pashto</string>
 
 </resources>

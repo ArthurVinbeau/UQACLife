@@ -54,54 +54,7 @@ public class Parser2 {
             }
 
         }
-        /*
-        for (int i = 1; i < lessons.length; i++) {
-            String name = lessons[i].split("</b>")[0];
 
-            String[] times = lessons[i].split("<LI><b>");
-
-
-            for (int j = 1; j < times.length; j++) {
-                String dates = times[j].split("<li><b>")[0].split("</b> ")[1];
-                String parsedDates = "#";
-                if(dates.contains("Le")) {
-                    parsedDates +=  dates.split(" ")[2] + " " + dates.split(" ")[2];
-                }
-                else
-                {
-                    String[] splited = dates.split(" ");
-                    parsedDates += splited[2] + " " + splited[5];
-                }
-
-
-                String hour = times[j].split(" de ")[1].split("</li>")[0];
-                String[] from = hour.split(" à ")[0].split(":");
-                int timevalue = Integer.parseInt(from[0]) * 100 + Integer.parseInt(from[1]);
-
-
-                String local = times[j].split("Local:</b> ")[1].split("</li>")[0];
-                int index = 0;
-                if (times[j].contains("Lundi"))
-                    index = 0;
-                else if (times[j].contains("Mardi"))
-                    index = 1;
-                else if (times[j].contains("Mercredi"))
-                    index = 2;
-                else if (times[j].contains("Jeudi"))
-                    index = 3;
-                else if (times[j].contains("Vendredi"))
-                    index = 4;
-                else if (times[j].contains("Samedi"))
-                    index = 5;
-                else if (times[j].contains("Dimanche"))
-                    index = 6;
-
-
-                String toAdd = name + "#" + hour + "#" + local+parsedDates;
-
-                insertSorted(week.get(index), new Pair<>(timevalue, toAdd));
-            }
-        }*/
         //Normalement, ici on a week avec chaque jour rempli par les cours dans l'ordre de la journee
         //Ils sont inscrits sous la forme id-grp - Nom du cours#hh:mm à hh:mm#local#period#TD
         String json = "{\n";
@@ -147,10 +100,6 @@ public class Parser2 {
                         + "\",\n\"dates\": \"" + actualLesson[3]
                         + "\",\n\"room\": \"" + actualLesson[2].replaceAll("&nbsp", "")
                         + "\"\n}" + ((j + 1 < week.get(i).size()) ? "," : "") + "\n";
-
-
-
-
                 //{
                 //      "id": "8GIF150",
                 //      "name": "Conception de jeux vidéo",

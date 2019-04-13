@@ -35,4 +35,9 @@
     <string name="blacklisted">Mustalla listalla</string>
     <string name="preferences">Asetukset</string>
     <string name="grades">asteet</string>
+    <string name="element">elementti</string>
+    <string name="error_grades_message">Virhe loading laadut</string>
+    <string name="non_pondere">ei painotettu</string>
+    <string name="pondere">painotettu</string>
+    <string name="total">Kaikki yhteensä</string>
 </resources>
