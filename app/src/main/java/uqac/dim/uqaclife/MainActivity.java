@@ -729,7 +729,8 @@ public class MainActivity extends AppCompatActivity {
     public void fleur(View v) {
         sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
         sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();
-        login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
+        //login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
+        login.letsTrySomethingElse((TextView) findViewById(R.id.debug));
     }
 
     public void truc(String html) {
