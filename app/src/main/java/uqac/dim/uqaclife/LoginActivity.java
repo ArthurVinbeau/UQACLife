@@ -6,24 +6,31 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 
+import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
+import java.net.CookieStore;
+import java.net.HttpCookie;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LoginActivity extends  MainActivity{
 
     private RequestQueue queue;
-    private ImageLoader iLoader;
     private CookieManager cookieManager;
     SharedPreferences sharedPref;
 
@@ -42,42 +49,161 @@ public class LoginActivity extends  MainActivity{
         super.login = this;
         cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
-        Log.i("request", cookieManager.getCookieStore().getCookies().toString());
-        /*iLoader = new ImageLoader(queue, new ImageLoader.ImageCache() {
-            private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
-
-            public void putBitmap(String url, Bitmap bitmap) {
-                mCache.put(url, bitmap);
-            }
-
-            public Bitmap getBitmap(String url) {
-                return mCache.get(url);
-            }
-        });*/
-
-
-        //getCaptcha((NetworkImageView) findViewById(R.id.container_captcha));
+        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
     }
 
+    public void letsTrySomethingElse(final TextView txt) {
+        Log.i("request", "Let's try something else!");
+        String url = "https://etudiant.uqac.ca/EtudiantApp/SignIn";
+        cookieManager.getCookieStore().removeAll();
 
-    public void getCaptcha(final NetworkImageView captchaContainer) {
+        final Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("request", "That didn't work!");
+                Log.e("request", error.toString());
+            }
+        };
 
-        String url = "https://wprodl.uqac.ca/dossier_etudiant/";
-
-        Map<String, String> headers = new LinkedHashMap<>();
-
-
-        // Request a string response from the provided URL.
+        // Request to the login page to get the cookies and the next URL
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        //Log.i("request", "Response is: " + response.substring(500));
-                        String captcha = "https://wprodl.uqac.ca" + response.substring(response.indexOf("/commun/"), response.indexOf("\' alt=\"CAPTCHA\"")) + "&cookie=" + "hpn201jdp2qmsi3cl89u3l00i1";
-                        Log.i("request", captcha);
-                        Log.i("request", "Cookie: " + cookieManager.getCookieStore().getCookies().toString());
-                        captchaContainer.setImageUrl(captcha, iLoader);
+
+                        // Extract URL
+                        String s = response.substring(response.indexOf("<form method="));
+                        final String url = "https://fs.uqac.ca" + s.substring(s.indexOf("/adfs"), s.indexOf("\" >"));
+
+                        Log.i("request", "url : " + url);
+                        Log.i("request", cookieManager.getCookieStore().getCookies().toString());
+
+                        // Post to the extracted url with login & password to get the last encoded Data
+                        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                                new Response.Listener<String>()
+                                {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.i("request", response);
+
+                                        // Extract Data
+                                        String s = response.substring(response.indexOf("value=\"") + 7);
+                                        final String code = s.substring(0, s.indexOf("\" />"));
+                                        s = s.substring(s.indexOf("value=\"") + 7);
+                                        final String idToken = s.substring(0, s.indexOf("\" />"));
+                                        s = s.substring(s.indexOf("value=\"") + 7);
+                                        final String state = s.substring(0, s.indexOf("\" />"));
+
+
+                                        Log.i("request", "code : " + code);
+                                        Log.i("request", "idToken : " + idToken);
+                                        Log.i("request", "state : " + state);
+                                        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
+
+
+                                        s = response.substring(response.indexOf("http"));
+                                        final String url2 = s.substring(0, s.indexOf("\""));
+                                        Log.i("request", "url2 : " + url2);
+
+                                        // Post to the login url to get the cookies and finally be logged in
+                                        StringRequest postRequest = new StringRequest(Request.Method.POST, url2,
+                                                new Response.Listener<String>()
+                                                {
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        Log.i("request", "Post successful");
+                                                        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
+
+                                                        getSchedule(txt);
+                                                    }
+                                                }, errorListener) {
+                                            @Override
+                                            public byte[] getBody() {
+                                                String httpPostBody = String.format("code=%s&id_token=%s&state=%s", code, idToken, state);
+                                                Log.i("request", "body : " + httpPostBody);
+
+                                                return httpPostBody.getBytes();
+                                            }
+
+                                            @Override
+                                            public Map<String, String> getHeaders() {
+                                                HashMap headers = new HashMap();
+                                                headers.put("Content-Type", "application/x-www-form-urlencoded");
+                                                headers.put("Origin", "https://fs.uqac.ca");
+                                                headers.put("Referer", url);
+
+                                                return headers;
+                                            }
+                                        };
+
+                                        postRequest.setRetryPolicy(new DefaultRetryPolicy(10000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                                        queue.add(postRequest);
+
+
+                                    }
+                                }, errorListener) {
+                            @Override
+                            public byte[] getBody() {
+                                String httpPostBody = String.format("UserName=%s&Password=%s&AuthMethod=%s", "login", "password", "FormsAuthentication");
+
+                                return httpPostBody.getBytes();
+                            }
+
+                            @Override
+                            public Map getHeaders() {
+                                HashMap headers = new HashMap();
+                                headers.put("Content-Type", "application/x-www-form-urlencoded");
+                                headers.put("Origin", "https://fs.uqac.ca");
+                                headers.put("Referer", url);
+
+                                return headers;
+                            }
+                        };
+                        queue.add(postRequest);
+                    }
+                }, errorListener);
+
+        queue.add(stringRequest);
+    }
+
+    public void getSchedule(final TextView txt) {
+        String url = "https://etudiant.uqac.ca/Dashboard";
+
+        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
+        Log.i("request", "URIs    : " + cookieManager.getCookieStore().getURIs().toString());
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("request", "dashboard");
+                        //txt.setText(response);
+                        if (!response.contains("aria-labelledby=\"Trimestre-dropdown\"")) return;
+                        String s = response.substring(response.indexOf("aria-labelledby=\"Trimestre-dropdown\""));
+                        s = s.substring(s.indexOf("href=\""));
+                        s = s.substring(s.indexOf("href=\"") + 6);
+                        String url = s.substring(0, s.indexOf("\">"));
+                        url = "https://etudiant.uqac.ca/EtudiantApp/HoraireListePartial/" + url.split("/")[url.split("/").length - 1] + "?_=" + new Date().getTime();
+                        Log.i("request", "url : " + url);
+                        String d = Calendar.getInstance().getTime().toLocaleString() + " : " + response.contains("Trimestre-dropdown") + "\n" + response;
+                        txt.setText(d);
+
+                        StringRequest getSchedule = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                Log.i("request", response);
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.i("request", "That didn't work!");
+                                Log.e("request", error.toString());
+                            }
+                        });
+
+                        queue.add(getSchedule);
+
                     }
                 }, new Response.ErrorListener() {
             @Override
