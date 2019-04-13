@@ -49,7 +49,7 @@
     <string name="error_grades_message">An error occured while loading grades</string>
     <string name="element">Element</string>
     <string name="non_pondere">Not weighted</string>
-    <string name="pondere">Pondere</string>
+    <string name="pondere">Weighted</string>
     <string name="total">Total</string>
     <string name="language_11" translatable="false">Pashto</string>
 

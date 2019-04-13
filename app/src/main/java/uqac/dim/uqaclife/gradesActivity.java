@@ -52,89 +52,43 @@ public class gradesActivity extends MainActivity {
                 "\n" +
                 "<div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3\">\n" +
                 "    <h1 class=\"h2\">\n" +
-                "        Éthique et informatique \n" +
+                "        Patate \n" +
                 "\n" +
                 "                    <span class=\"badge badge-secondary bg-warning\">&#xC0; venir</span>\n" +
                 "    </h1>    \n" +
-                "        <div class=\"mr-1\">\n" +
-                "                <a class=\"btn btn-sm btn-outline-secondary bg-success text-white\" target=\"_blank\" href=\"/EtudiantApp/Trimestre/20191/Moodle/4ETH236\">Moodle</a>                \n" +
-                "    </div>    \n" +
-                "</div>\n" +
-                "\n" +
-                "<div class=\"row\">\n" +
-                "    <div class=\"col\">\n" +
-                "        <div class=\"row\">\n" +
-                "            <div class=\"col-md-6 mb-3\">\n" +
-                "                    <label class=\"font-weight-bold\" for=\"enseignant\">Enseignant(s)</label>\n" +
-                "                    <p id=\"enseignant\">Jean-pierre Beland</p>\n" +
-                "                            </div>\n" +
-                "            <div class=\"col-md-6 mb-3\">\n" +
-                "                    <label class=\"font-weight-bold\" for=\"programme\">Programme d'études</label>\n" +
-                "                    <p id=\"programme\">Programme court de premier cycle en informatique pour &#xE9;tudiants en s&#xE9;jour d&#x27;&#xE9;tudes (0711)</p>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "            <div class=\"row\">\n" +
-                "\n" +
-                "                <div class=\"col-md-6 mb-3\">\n" +
-                "\n" +
-                "                    <label class=\"font-weight-bold\" for=\"horaire\">Horaire</label>\n" +
-                "                        <p> du Monday 1/7/2019 au Monday 4/22/2019  de 8:00 AM &#xE0; 10:45 AM <span class=\"d-md-none\"> local H2-1090</span></p>\n" +
-                "                </div>\n" +
-                "                <div class=\"col-md-6 mb-3 d-none d-md-block\">\n" +
-                "                    <label class=\"font-weight-bold\" for=\"local\">Local</label>\n" +
-                "                        <p>H2-1090</p>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "    </div>\n" +
-                "</div>\n" +
-                "<div>\n" +
-                "\n" +
-                "            \n" +
-                "<div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3\">\n" +
-                "    <h4>Résultats académiques</h4>\n" +
-                "</div>\n" +
-                "<div class=\"table-responsive\">\n" +
-                "    <table class=\"table table-sm\">\n" +
-                "        <thead>\n" +
-                "            <tr>\n" +
-                "                <th>Éléments</th>\n" +
-                "                <th>Non pondérés</th>\n" +
-                "                <th>Pondérés</th>\n" +
-                "            </tr>\n" +
-                "        </thead>\n" +
                 "        <tbody>\n" +
                 "                <tr class=\"\">\n" +
-                "                    <td>Travail 1 en classe</td>\n" +
+                "                    <td>Travail 1</td>\n" +
                 "                    <td>5.00/5.00</td>\n" +
                 "                    <td>5.00/5.00</td>\n" +
                 "                </tr>\n" +
                 "                <tr class=\"\">\n" +
-                "                    <td>Travail 2 en classe</td>\n" +
+                "                    <td>Travail 2</td>\n" +
                 "                    <td>5.00/5.00</td>\n" +
                 "                    <td>5.00/5.00</td>\n" +
                 "                </tr>\n" +
                 "                <tr class=\"\">\n" +
                 "                    <td>Travail Maison 1</td>\n" +
-                "                    <td>6.50/10.00</td>\n" +
-                "                    <td>6.50/10.00</td>\n" +
+                "                    <td>10.00/10.00</td>\n" +
+                "                    <td>10.00/10.00</td>\n" +
                 "                </tr>\n" +
                 "                <tr class=\"\">\n" +
                 "                    <td>Travail Maison 2</td>\n" +
-                "                    <td>18.00/20.00</td>\n" +
-                "                    <td>18.00/20.00</td>\n" +
+                "                    <td>20.00/20.00</td>\n" +
+                "                    <td>20.00/20.00</td>\n" +
                 "                </tr>\n" +
                 "                <tr class=\"\">\n" +
-                "                    <td>Travail 3 en classe</td>\n" +
+                "                    <td>Travail 3</td>\n" +
                 "                    <td>5.00/5.00</td>\n" +
                 "                    <td>5.00/5.00</td>\n" +
                 "                </tr>\n" +
                 "                <tr class=\"\">\n" +
-                "                    <td>Travail 4 en classe </td>\n" +
-                "                    <td>7.50/10.00</td>\n" +
-                "                    <td>7.50/10.00</td>\n" +
+                "                    <td>Travail 4 </td>\n" +
+                "                    <td>10.00/10.00</td>\n" +
+                "                    <td>10.00/10.00</td>\n" +
                 "                </tr>\n" +
                 "                <tr class=\"\">\n" +
-                "                    <td>Travail 5 en clase</td>\n" +
+                "                    <td>Travail 5</td>\n" +
                 "                    <td>5.00/5.00</td>\n" +
                 "                    <td>5.00/5.00</td>\n" +
                 "                </tr>\n" +
@@ -161,69 +115,15 @@ public class gradesActivity extends MainActivity {
                 "\n" +
                 "<div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3\">\n" +
                 "    <h1 class=\"h2\">\n" +
-                "        Réseaux d'ordinateurs\n" +
+                "        Elephant\n" +
                 "\n" +
                 "                    <span class=\"badge badge-secondary bg-warning\">&#xC0; venir</span>\n" +
                 "    </h1>    \n" +
-                "        <div class=\"mr-1\">\n" +
-                "                <a class=\"btn btn-sm btn-outline-secondary bg-success text-white\" target=\"_blank\" href=\"/EtudiantApp/Trimestre/20191/Moodle/6GEN720\">Moodle</a>                \n" +
-                "    </div>    \n" +
-                "</div>\n" +
-                "\n" +
-                "<div class=\"row\">\n" +
-                "    <div class=\"col\">\n" +
-                "        <div class=\"row\">\n" +
-                "            <div class=\"col-md-6 mb-3\">\n" +
-                "                    <label class=\"font-weight-bold\" for=\"enseignant\">Enseignant(s)</label>\n" +
-                "                    <p id=\"enseignant\">Daniel Audet</p>\n" +
-                "                            </div>\n" +
-                "            <div class=\"col-md-6 mb-3\">\n" +
-                "                    <label class=\"font-weight-bold\" for=\"programme\">Programme d'études</label>\n" +
-                "                    <p id=\"programme\">Programme court de premier cycle en informatique pour &#xE9;tudiants en s&#xE9;jour d&#x27;&#xE9;tudes (0711)</p>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "            <div class=\"row\">\n" +
-                "\n" +
-                "                <div class=\"col-md-6 mb-3\">\n" +
-                "\n" +
-                "                    <label class=\"font-weight-bold\" for=\"horaire\">Horaire</label>\n" +
-                "                        <p> du Monday 1/7/2019 au Monday 4/22/2019  de 4:00 PM &#xE0; 6:45 PM <span class=\"d-md-none\"> local P2-1030</span></p>\n" +
-                "                        <p> du Friday 1/11/2019 au Friday 4/26/2019  de 1:00 PM &#xE0; 3:45 PM <span class=\"d-md-none\"> local P2-4020</span></p>\n" +
-                "                        <p> du Tuesday 1/8/2019 au Tuesday 2/12/2019  de 8:00 AM &#xE0; 10:45 AM <span class=\"d-md-none\"> local P2-1020</span></p>\n" +
-                "                        <p> du Tuesday 2/19/2019 au Tuesday 2/19/2019  de 8:00 AM &#xE0; 10:45 AM <span class=\"d-md-none\"> local P1-6140</span></p>\n" +
-                "                        <p> du Tuesday 2/26/2019 au Tuesday 4/23/2019  de 8:00 AM &#xE0; 10:45 AM <span class=\"d-md-none\"> local P2-1020</span></p>\n" +
-                "                </div>\n" +
-                "                <div class=\"col-md-6 mb-3 d-none d-md-block\">\n" +
-                "                    <label class=\"font-weight-bold\" for=\"local\">Local</label>\n" +
-                "                        <p>P2-1030</p>\n" +
-                "                        <p>P2-4020</p>\n" +
-                "                        <p>P2-1020</p>\n" +
-                "                        <p>P1-6140</p>\n" +
-                "                        <p>P2-1020</p>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "    </div>\n" +
-                "</div>\n" +
-                "<div>\n" +
-                "\n" +
-                "            \n" +
-                "<div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3\">\n" +
-                "    <h4>Résultats académiques</h4>\n" +
-                "</div>\n" +
-                "<div class=\"table-responsive\">\n" +
-                "    <table class=\"table table-sm\">\n" +
-                "        <thead>\n" +
-                "            <tr>\n" +
-                "                <th>Éléments</th>\n" +
-                "                <th>Non pondérés</th>\n" +
-                "                <th>Pondérés</th>\n" +
-                "            </tr>\n" +
-                "        </thead>\n" +
                 "        <tbody>\n" +
                 "                <tr class=\"\">\n" +
                 "                    <td>Examen partiel</td>\n" +
-                "                    <td>74.50/100.00</td>\n" +
-                "                    <td>18.62/25.00</td>\n" +
+                "                    <td>100.00/100.00</td>\n" +
+                "                    <td>25.00/25.00</td>\n" +
                 "                </tr>\n" +
                 "                <tr class=\"\">\n" +
                 "                    <td>Travail 1</td>\n" +
@@ -237,8 +137,8 @@ public class gradesActivity extends MainActivity {
                 "                </tr>\n" +
                 "                <tr class=\"\">\n" +
                 "                    <td>Travail 3</td>\n" +
-                "                    <td>15.00/20.00</td>\n" +
-                "                    <td>4.50/6.00</td>\n" +
+                "                    <td>20.00/20.00</td>\n" +
+                "                    <td>6.00/6.00</td>\n" +
                 "                </tr>\n" +
                 "        </tbody>\n" +
                 "    </table>\n" +
@@ -246,7 +146,7 @@ public class gradesActivity extends MainActivity {
                 "<div class=\"card float-right\">\n" +
                 "    <div class=\"card-header p-1 font-weight-bold\">Total</div>\n" +
                 "\n" +
-                "        <div class=\"card-body p-1 \">30.12/38.00</div>\n" +
+                "        <div class=\"card-body p-1 \">42.00/38.00</div>\n" +
                 "\n" +
                 "</div>\n" +
                 "<div class=\"clearfix\"></div>\n" +
@@ -261,33 +161,13 @@ public class gradesActivity extends MainActivity {
         }
     }
 
-    /*private void showGrades(String json){
-        grades_scroll.removeAllViews();
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-
-        }
-        catch (JSONException e)
-        {
-            Log.i("Json Error",e.toString(),e);
-            TextView t = new TextView(this);
-            t.setText(getString(R.string.error_calendar_message));
-            t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            t.setTextColor(0xffffffff);
-            t.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0xFFF75A4E, 0xFFF81D0D}));
-            t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            t.setTypeface(Typeface.DEFAULT_BOLD);
-            grades_scroll.addView(t);
-        }
-    }*/
-
     private Boolean showGrades(String html) {
         try {
             TextView lessonName = new TextView(this);
             lessonName.setText(html.split("<h1 class=\"h2\">")[1].split("</h1>")[0].split("\n")[1]);
             lessonName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             lessonName.setTextColor(0xffffffff);
-            lessonName.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[displayed++]));
+            lessonName.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[displayed++ % 7]));
             lessonName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             lessonName.setTypeface(Typeface.DEFAULT_BOLD);
             grades_scroll.addView(lessonName);
