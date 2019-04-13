@@ -496,7 +496,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 42);
                 return true;
             case R.id.grades_button:
-                intent = new Intent(getApplicationContext(), blacklisted_activity.class);
+                intent = new Intent(getApplicationContext(), gradesActivity.class);
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;

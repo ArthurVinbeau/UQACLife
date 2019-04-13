@@ -35,4 +35,9 @@
     <string name="blacklisted">	블랙리스트	</string>
     <string name="preferences">	환경 설정	</string>
     <string name="grades">	학년	</string>
+    <string name="error_grades_message">오류가로드 학년 동안 발생</string>
+    <string name="element">요소</string>
+    <string name="non_pondere">가중되지 않음</string>
+    <string name="pondere">가중</string>
+    <string name="total">합계</string>
 </resources>

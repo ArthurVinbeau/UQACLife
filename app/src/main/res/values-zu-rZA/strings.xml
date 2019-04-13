@@ -35,4 +35,9 @@
     <string name="blacklisted">sivalwe</string>
     <string name="preferences">Izintandokazi</string>
     <string name="grades">amabanga</string>
+    <string name="error_grades_message">Kuvele iphutha ngenkathi kulayishwa amamaki</string>
+    <string name="element">I-elementi</string>
+    <string name="non_pondere">Hhayi isisindo</string>
+    <string name="pondere">ezinesisindo</string>
+    <string name="total">Ubude</string>
 </resources>

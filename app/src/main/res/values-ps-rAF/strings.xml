@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">	يوه غونډه دابرخه	</string>
+    <string name="Identifiant">	د ننه کیدل	</string>
+    <string name="Mdp">	رمز	</string>
+    <string name="Captcha">	Captcha	</string>
+    <string name="Valider">	وشو	</string>
+    <string name="Login_suite">	خپل د ننوت ولیکئ	</string>
+    <string name="Mdp_suite">	خپل پټ نوم ولیکئ	</string>
+    <string name="J_attends_la_finalisation_du_captcha">	J ګډون	</string>
+    <string name="login">	د ننه کیدل	</string>
+    <string name="refresh">	سمادول	</string>
+    <string name="save_password">	Save پټنوم	</string>
+    <string name="styles">	سبک	</string>
+    <string name="notifications">	د خبرتیا	</string>
+    <string name="language">	ژبه	</string>
+    <string name="log_out">	وتل	</string>
+    <string name="style_1">	Default	</string>
+    <string name="style_2">	Default	</string>
+    <string name="style_3">	Default	</string>
+    <string name="error_calendar_message">د پورته کېدو په داسې حال کې جنتري کې تېروتنه قصر ته</string>
+    <string name="monday">	دوشنبه	</string>
+    <string name="tuesday">	سه شنبه	</string>
+    <string name="wednesday">	چهارشنبه	</string>
+    <string name="thursday">	پنجشنبه	</string>
+    <string name="friday">	جمعه	</string>
+    <string name="saturday">	شنبه	</string>
+    <string name="sunday">	یک شنبه	</string>
+    <string name="blacklist">	تور لست	</string>
+    <string name="notification_button">	Notif ما sempai	</string>
+    <string name="groupe">	ګروپ	</string>
+    <string name="course_blacklisted">	د کورس په تور لست	</string>
+    <string name="course_unblacklisted">	د کورس له تور لیست لرې	</string>
+    <string name="undo">	ناکړ	</string>
+    <string name="blacklisted">	په بمبې	</string>
+    <string name="preferences">	غوره توبونه	</string>
+    <string name="grades">	ټولګي	</string>
+    <string name="error_grades_message">په داسې حال کې پورته کول ټولګي کې تېروتنه قصر ته</string>
+    <string name="element">عنصر</string>
+    <string name="non_pondere">نه وزن</string>
+    <string name="pondere">نسبی</string>
+    <string name="total">ټول</string>
+</resources>

@@ -35,4 +35,9 @@
     <string name="blacklisted">die schwarze Liste gesetzt</string>
     <string name="preferences">Voreinstellungen</string>
     <string name="grades">Noten</string>
+    <string name="error_grades_message">Fehler beim Laden Noten</string>
+    <string name="element">Element</string>
+    <string name="non_pondere">nicht gewichtet</string>
+    <string name="pondere">Die gewichteten</string>
+    <string name="total">Gesamt</string>
 </resources>
