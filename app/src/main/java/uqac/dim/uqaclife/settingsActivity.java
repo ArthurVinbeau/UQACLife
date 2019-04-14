@@ -115,6 +115,7 @@ public class settingsActivity extends MainActivity {
                     case "Icelandic": newLanguage = "is"; break;
                     case "Pashto": newLanguage = "ps"; break;
                     case "Polish": newLanguage = "pl"; break;
+                    case "Russian": newLanguage = "ru"; break;
                     case "Zulu": newLanguage = "zu"; break;
                 }
                 sharedPref.edit().putString("Language",newLanguage).putString("Langue",newText).apply();
