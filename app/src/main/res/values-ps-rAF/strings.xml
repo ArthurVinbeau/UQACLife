@@ -34,11 +34,6 @@
     <string name="blacklisted">په بمبې</string>
     <string name="preferences">غوره توبونه</string>
     <string name="grades">ټولګي</string>
-    <string name="grades">په داسې حال کې پورته کول ټولګي کې تېروتنه قصر ته</string>
-    <string name="grades">عنصر</string>
-    <string name="grades">نه وزن</string>
-    <string name="grades">نسبی</string>
-    <string name="grades">ټول</string>
     <string name="error_grades_message">په داسې حال کې پورته کول ټولګي کې تېروتنه قصر ته</string>
     <string name="element">عنصر</string>
     <string name="non_pondere">نه وزن</string>
