@@ -253,7 +253,7 @@
                     app:layout_constraintTop_toBottomOf="@id/Language">
 
                     <View
-                        android:id="@+id/view13"
+                        android:id="@+id/view001"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#999" />
@@ -265,7 +265,7 @@
                         android:textSize="20sp" />
 
                     <View
-                        android:id="@+id/view14"
+                        android:id="@+id/view002"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#999" />
@@ -274,11 +274,11 @@
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/laguage_2"
+                        android:text="@string/language_2"
                         android:textSize="20sp" />
 
                     <View
-                        android:id="@+id/view15"
+                        android:id="@+id/view003"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#999" />
@@ -291,7 +291,7 @@
                         android:textSize="20sp" />
 
                     <View
-                        android:id="@+id/view17"
+                        android:id="@+id/view004"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#999" />
@@ -304,7 +304,7 @@
                         android:textSize="20sp" />
 
                     <View
-                        android:id="@+id/view16"
+                        android:id="@+id/view005"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#999" />
@@ -318,17 +318,7 @@
 
 
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/language_10"
-                        android:textSize="20sp" />
-
-                    <View
+                        android:id="@+id/view006"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#999" />
@@ -340,17 +330,7 @@
                         android:textSize="20sp" />
 
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/language_11"
-                        android:textSize="20sp" />
-
-                    <View
+                        android:id="@+id/view007"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#999" />
@@ -362,17 +342,7 @@
                         android:textSize="20sp" />
 
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/language_12"
-                        android:textSize="20sp" />
-
-                    <View
+                        android:id="@+id/view008"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#999" />
@@ -384,6 +354,7 @@
                         android:textSize="20sp" />
 
                     <View
+                        android:id="@+id/view009"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#999" />
@@ -392,6 +363,42 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/language_9"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/view010"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#999" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/language_10"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/view011"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#999" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/language_11"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/view012"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#999" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/language_12"
                         android:textSize="20sp" />
 
                 </LinearLayout>
