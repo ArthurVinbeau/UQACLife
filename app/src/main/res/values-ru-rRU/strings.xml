@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">	Открытие сессии	</string>
+    <string name="Identifiant">	Авторизоваться	</string>
+    <string name="Mdp">	пароль	</string>
+    <string name="Captcha">	Защитный код	</string>
+    <string name="Valider">	Готово	</string>
+    <string name="Login_suite">	Написать свой логин	</string>
+    <string name="Mdp_suite">	Написать свой пароль	</string>
+    <string name="J_attends_la_finalisation_du_captcha">	J присутствует	</string>
+    <string name="login">	Авторизоваться	</string>
+    <string name="refresh">	обновление	</string>
+    <string name="save_password">	Сохранить пароль	</string>
+    <string name="styles">	Стили	</string>
+    <string name="notifications">	Уведомления	</string>
+    <string name="language">	язык	</string>
+    <string name="log_out">	Выйти	</string>
+    <string name="style_1">	По умолчанию	</string>
+    <string name="style_2">	По умолчанию	</string>
+    <string name="style_3">	По умолчанию	</string>
+    <string name="error_calendar_message">	Произошла ошибка при загрузке календаря	</string>
+    <string name="monday">	понедельник	</string>
+    <string name="tuesday">	вторник	</string>
+    <string name="wednesday">	среда	</string>
+    <string name="thursday">	Четверг	</string>
+    <string name="friday">	пятница	</string>
+    <string name="saturday">	суббота	</string>
+    <string name="sunday">	Воскресенье	</string>
+    <string name="blacklist">	Черный список	</string>
+    <string name="notification_button">	Notif меня сэмпай	</string>
+    <string name="groupe">	группа	</string>
+    <string name="course_blacklisted">	курс занесен в черный список	</string>
+    <string name="course_unblacklisted">	Курс удален из черного списка	</string>
+    <string name="undo">	расстегивать	</string>
+    <string name="blacklisted">	Блокированные	</string>
+    <string name="preferences">	предпочтения	</string>
+    <string name="grades">	Оценки	</string>
+    <string name="error_grades_message">	Произошла ошибка при загрузке классов	</string>
+    <string name="element">	Элемент	</string>
+    <string name="non_pondere">	Не взвешенная	</string>
+    <string name="pondere">	утяжеленный	</string>
+    <string name="total">	Всего	</string>
+</resources>		
