@@ -40,4 +40,5 @@
     <string name="non_pondere">nije weighted</string>
     <string name="pondere">ponderirana</string>
     <string name="total">ukupan</string>
+    <string name="search">pretraživanje</string>
 </resources>

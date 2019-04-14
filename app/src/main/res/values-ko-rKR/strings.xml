@@ -40,4 +40,5 @@
     <string name="non_pondere">가중되지 않음</string>
     <string name="pondere">가중</string>
     <string name="total">합계</string>
+    <string name="search">수색</string>
 </resources>

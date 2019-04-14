@@ -507,7 +507,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
-        changeLanguage(sharedPref.getString("Language",""));
+        changeLanguage(sharedPref.getString("Language","fr"));
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 

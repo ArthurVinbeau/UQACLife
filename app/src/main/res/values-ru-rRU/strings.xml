@@ -40,4 +40,5 @@
     <string name="non_pondere">	Не взвешенная	</string>
     <string name="pondere">	утяжеленный	</string>
     <string name="total">	Всего	</string>
+    <string name="search">Поиск</string>
 </resources>		

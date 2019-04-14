@@ -40,4 +40,5 @@
     <string name="non_pondere">ei painotettu</string>
     <string name="pondere">painotettu</string>
     <string name="total">Kaikki yhteensä</string>
+    <string name="search">Hae</string>
 </resources>
