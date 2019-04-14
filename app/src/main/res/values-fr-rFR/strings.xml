@@ -40,4 +40,5 @@
     <string name="non_pondere">non pondéré</string>
     <string name="pondere">Pondéré</string>
     <string name="total">Total</string>
+    <string name="search">Chercher</string>
 </resources>

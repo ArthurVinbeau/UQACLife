@@ -40,4 +40,5 @@
     <string name="non_pondere">nicht gewichtet</string>
     <string name="pondere">Die gewichteten</string>
     <string name="total">Gesamt</string>
+    <string name="search">Suche</string>
 </resources>
