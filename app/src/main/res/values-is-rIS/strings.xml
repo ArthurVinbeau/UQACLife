@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Opna fundi</string>
-    <string name="Identifiant">Skrá inn</string>
     <string name="Mdp">Lykilorð</string>
     <string name="Captcha">Captcha</string>
     <string name="Valider">Lokið</string>

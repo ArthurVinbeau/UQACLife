@@ -1,6 +1,5 @@
 <resources>
     <string name="session">يوه غونډه دابرخه</string>
-    <string name="Identifiant">د ننه کیدل</string>
     <string name="Mdp">رمز</string>
     <string name="Captcha">Captcha</string>
     <string name="Valider">وشو</string>
@@ -17,7 +16,7 @@
     <string name="style_1">په تلواله</string>
     <string name="style_2">په تلواله</string>
     <string name="style_3">په تلواله</string>
-    <string name="error_calendar_message">د پورته کېدو په داسې حال کې جنتري کې تېروتنه قصر ته</string>
+    <string name="error_calendar_message">د پورته کېدو په داسې حال کې جنتري یوه تېروتنه رامنځته شوه</string>
     <string name="monday">دوشنبه</string>
     <string name="tuesday">سه شنبه</string>
     <string name="wednesday">چهارشنبه</string>
@@ -34,7 +33,7 @@
     <string name="blacklisted">په بمبې</string>
     <string name="preferences">غوره توبونه</string>
     <string name="grades">ټولګي</string>
-    <string name="error_grades_message">په داسې حال کې پورته کول ټولګي کې تېروتنه قصر ته</string>
+    <string name="error_grades_message">په داسې حال کې پورته کول ټولګي یوه تېروتنه رامنځته شوه</string>
     <string name="element">عنصر</string>
     <string name="non_pondere">نه وزن</string>
     <string name="pondere">نسبی</string>

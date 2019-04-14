@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Otvorite sesije</string>
-    <string name="Identifiant">Ulogovati se</string>
     <string name="Mdp">lozinka</string>
     <string name="Captcha">captcha</string>
     <string name="Valider">Gotovo</string>
