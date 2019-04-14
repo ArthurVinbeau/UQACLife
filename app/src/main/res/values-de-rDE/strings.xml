@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Öffnen Sie eine Sitzung</string>
-    <string name="Identifiant">Anmeldung</string>
     <string name="Mdp">Passwort</string>
     <string name="Captcha">captcha</string>
     <string name="Valider">Erledigt</string>

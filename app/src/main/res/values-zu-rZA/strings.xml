@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Vula kuseshini</string>
-    <string name="Identifiant">Ngena ngemvume</string>
     <string name="Mdp">Iphasiwedi</string>
     <string name="Captcha">Captcha</string>
     <string name="Valider">Kwenziwe</string>

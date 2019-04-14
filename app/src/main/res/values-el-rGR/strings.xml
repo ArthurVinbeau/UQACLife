@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">Ανοίξτε μια συνεδρία</string>
+    <string name="Mdp">Κωδικός πρόσβασης</string>
+    <string name="Captcha">captcha</string>
+    <string name="Valider">Εγινε</string>
+    <string name="Login_suite">Γράψτε σύνδεσή σας</string>
+    <string name="Mdp_suite">Γράψτε τον κωδικό σας</string>
+    <string name="J_attends_la_finalisation_du_captcha">J φοιτά</string>
+    <string name="login">Σύνδεση</string>
+    <string name="refresh">Φρεσκάρω</string>
+    <string name="save_password">Αποθήκευση κωδικού</string>
+    <string name="styles">στυλ</string>
+    <string name="notifications">Ειδοποιήσεις</string>
+    <string name="language">Γλώσσα</string>
+    <string name="log_out">Αποσυνδέση</string>
+    <string name="style_1">Προκαθορισμένο</string>
+    <string name="style_2">Προκαθορισμένο</string>
+    <string name="style_3">Προκαθορισμένο</string>
+    <string name="error_calendar_message">Παρουσιάστηκε σφάλμα κατά τη φόρτωση του ημερολογίου</string>
+    <string name="monday">Δευτέρα</string>
+    <string name="tuesday">Τρίτη</string>
+    <string name="wednesday">Τετάρτη</string>
+    <string name="thursday">Πέμπτη</string>
+    <string name="friday">Παρασκευή</string>
+    <string name="saturday">Σάββατο</string>
+    <string name="sunday">Κυριακή</string>
+    <string name="blacklist">Προγραφή</string>
+    <string name="notification_button">Κοινοποίησης μου sempai</string>
+    <string name="groupe">Ομάδα</string>
+    <string name="course_blacklisted">Μάθημα στη μαύρη λίστα</string>
+    <string name="course_unblacklisted">Φυσικά αφαιρεθεί από τη μαύρη λίστα</string>
+    <string name="undo">Ξεκάνω</string>
+    <string name="blacklisted">Σε μαύρη λίστα</string>
+    <string name="preferences">προτιμήσεις</string>
+    <string name="grades">Βαθμοί</string>
+    <string name="error_grades_message">Παρουσιάστηκε σφάλμα κατά τη φόρτωση των τάξεων</string>
+    <string name="element">Στοιχείο</string>
+    <string name="non_pondere">δεν σταθμισμένη</string>
+    <string name="pondere">Σταθμισμένη</string>
+    <string name="total">Σύνολο</string>
+    <string name="search">Ψάξιμο</string>
+</resources>

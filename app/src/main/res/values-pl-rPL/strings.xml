@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Otwórz sesję</string>
-    <string name="Identifiant">Zaloguj Się</string>
     <string name="Mdp">Hasło</string>
     <string name="Captcha">Captcha</string>
     <string name="Valider">Gotowe</string>
@@ -35,7 +34,7 @@
     <string name="blacklisted">czarnej liście</string>
     <string name="preferences">Preferencje</string>
     <string name="grades">Klas</string>
-    <string name="error_grades_message">Wystąpił błąd podczas ładowanie klas</string>
+    <string name="error_grades_message">Wystąpił błąd podczas wczytywania klas</string>
     <string name="element">Element</string>
     <string name="non_pondere">nie ważone</string>
     <string name="pondere">ważona</string>

@@ -322,6 +322,43 @@
                         android:text="@string/language_12"
                         android:textSize="20sp" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_13"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_14"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_15"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_16"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_17"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_18"
+                        android:textSize="20sp" />
+
                 </LinearLayout>
 
                 <TextView

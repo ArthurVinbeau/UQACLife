@@ -137,14 +137,20 @@ public class settingsActivity extends MainActivity {
                     default: newLanguage = ""; break;
                     case "Français": newLanguage = "fr"; break;
                     case "Bosnian": newLanguage = "bs"; break;
+                    case "Chinese": newLanguage = "zh"; break;
                     case "Deutsch": newLanguage = "de"; break;
                     case "Korean": newLanguage= "ko" ; break;
                     case "Spanish": newLanguage = "es"; break;
                     case "Finnish": newLanguage = "fi"; break;
+                    case "Greek": newLanguage = "el"; break;
                     case "Icelandic": newLanguage = "is"; break;
+                    case "Japanese": newLanguage = "ja"; break;
+                    case "Javanese": newLanguage = "jv"; break;
+                    case "Latin": newLanguage = "la"; break;
                     case "Pashto": newLanguage = "ps"; break;
                     case "Polish": newLanguage = "pl"; break;
                     case "Russian": newLanguage = "ru"; break;
+                    case "Yoruba": newLanguage = "yo"; break;
                     case "Zulu": newLanguage = "zu"; break;
                 }
                 sharedPref.edit().putString("Language",newLanguage).putString("Langue",newText).apply();
