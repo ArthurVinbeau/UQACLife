@@ -154,9 +154,9 @@ public class settingsActivity extends MainActivity {
                     case "Zulu": newLanguage = "zu"; break;
                 }
                 sharedPref.edit().putString("Language",newLanguage).putString("Langue",newText).apply();
+                invalidateOptionsMenu();
                 Intent refresh = new Intent(this, settingsActivity.class);
                 refresh.putExtra("requestCode", 42);
-                invalidateOptionsMenu();
                 startActivity(refresh);
                 finish();
                 overridePendingTransition (0,0);
