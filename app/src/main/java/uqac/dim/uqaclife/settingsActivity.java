@@ -156,9 +156,9 @@ public class settingsActivity extends MainActivity {
                 sharedPref.edit().putString("Language",newLanguage).putString("Langue",newText).apply();
                 Intent refresh = new Intent(this, settingsActivity.class);
                 refresh.putExtra("requestCode", 42);
+                invalidateOptionsMenu();
                 startActivity(refresh);
                 finish();
-                invalidateOptionsMenu();
                 overridePendingTransition (0,0);
                 break;
         }
