@@ -112,45 +112,18 @@
             android:padding="15dip" />
             -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/infini"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="versLInfini"
-                android:text="Vers l'infini et l'au-delà" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="fleur"
-                android:text="@string/Valider"
-                android:textSize="18sp"
-                android:layout_gravity="end"
-                android:layout_margin="15dip"
-                android:background="@drawable/cours"
-                android:backgroundTint="#999"
-                android:textColor="#fff"/>
-
-          <!--  <TextView
-                android:id="@+id/validation"
-                android:layout_width="99dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="15dip"
-                android:background="@drawable/rounded_edittext"
-                android:gravity="center"
-                android:onClick="fleur"
-                android:padding="15dip"
-                android:text="@string/Valider"
-                android:textSize="20sp" />-->
-        </LinearLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="15dip"
+            android:background="@drawable/cours"
+            android:backgroundTint="#999"
+            android:onClick="fleur"
+            android:text="@string/Valider"
+            android:textColor="#fff"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/debug"
