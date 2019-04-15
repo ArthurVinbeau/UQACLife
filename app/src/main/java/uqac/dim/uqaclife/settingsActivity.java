@@ -56,7 +56,7 @@ public class settingsActivity extends MainActivity {
         for(int j = 0 ; j < toCollapseNumber -1 ; j++)
         {
             ViewGroup viewGroup = (ViewGroup) buttonsToCollapse[j];
-            for (int i = 0 ; i < viewGroup.getChildCount() ; i++) {
+            for (int i = 1 ; i < viewGroup.getChildCount() ; i++) {
                 viewGroup.getChildAt(i).setOnClickListener(o);
             }
         }
