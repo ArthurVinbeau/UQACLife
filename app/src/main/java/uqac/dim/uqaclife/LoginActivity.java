@@ -33,6 +33,8 @@ public class LoginActivity extends MainActivity {
     private RequestQueue queue;
     private CookieManager cookieManager;
     SharedPreferences sharedPref;
+    private int retrys;
+    private int maxRetrys = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class LoginActivity extends MainActivity {
 
         queue = super.queue;
         super.login = this;
+        retrys = 0;
         cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
         Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
@@ -192,9 +195,18 @@ public class LoginActivity extends MainActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
+                        if (!response.contains("aria-labelledby=\"Trimestre-dropdown\"")) {
+                            Log.i("request", "not logged in! retrying... retry count : " + retrys);
+                            if (retrys < maxRetrys) {
+                                retrys++;
+                                letsTrySomethingElse(null);
+                            } else
+                                return;
+                        }
+
                         Log.i("request", "dashboard");
-                        //txt.setText(response);
-                        if (!response.contains("aria-labelledby=\"Trimestre-dropdown\"")) return;
+
                         String s = response.substring(response.indexOf("aria-labelledby=\"Trimestre-dropdown\""));
                         s = s.substring(s.indexOf("href=\""));
                         s = s.substring(s.indexOf("href=\"") + 6);
@@ -206,7 +218,9 @@ public class LoginActivity extends MainActivity {
                             @Override
                             public void onResponse(String response) {
 
-                                Log.i("request", response);
+                                Log.i("request", "transmitting schedule...");
+
+                                LoginActivity.super.truc(response);
                             }
                         }, new Response.ErrorListener() {
                             @Override
