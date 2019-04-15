@@ -9,6 +9,6 @@
         android:title="@string/blacklisted" />
     <item
         android:id="@+id/grades_button"
-        android:title="@string/grades"
-        android:visible="false"/>
+        android:title="@string/grades"/>
+    <!--android:visible="false"-->
 </menu>

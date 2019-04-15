@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Öffnen Sie eine Sitzung</string>
-    <string name="Identifiant">Anmeldung</string>
     <string name="Mdp">Passwort</string>
     <string name="Captcha">captcha</string>
     <string name="Valider">Erledigt</string>
@@ -35,4 +34,10 @@
     <string name="blacklisted">die schwarze Liste gesetzt</string>
     <string name="preferences">Voreinstellungen</string>
     <string name="grades">Noten</string>
+    <string name="error_grades_message">Fehler beim Laden Noten</string>
+    <string name="element">Element</string>
+    <string name="non_pondere">nicht gewichtet</string>
+    <string name="pondere">Die gewichteten</string>
+    <string name="total">Gesamt</string>
+    <string name="search">Suche</string>
 </resources>

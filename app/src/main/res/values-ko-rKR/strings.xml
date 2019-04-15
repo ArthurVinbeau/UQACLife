@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">	세션을 엽니 다	</string>
-    <string name="Identifiant">	로그인	</string>
     <string name="Mdp">	암호	</string>
     <string name="Captcha">	보안 문자	</string>
     <string name="Valider">	끝난	</string>
@@ -18,7 +17,7 @@
     <string name="style_1">	태만	</string>
     <string name="style_2">	태만	</string>
     <string name="style_3">	태만	</string>
-    <string name="error_calendar_message">	일정을로드하는 중에 오류가 발생했습니다	</string>
+    <string name="error_calendar_message">일정을로드하는 중에 오류가 발생했습니다</string>
     <string name="monday">	월요일	</string>
     <string name="tuesday">	화요일	</string>
     <string name="wednesday">	수요일	</string>
@@ -35,4 +34,10 @@
     <string name="blacklisted">	블랙리스트	</string>
     <string name="preferences">	환경 설정	</string>
     <string name="grades">	학년	</string>
+    <string name="error_grades_message">오류가로드 학년 동안 발생</string>
+    <string name="element">요소</string>
+    <string name="non_pondere">가중되지 않음</string>
+    <string name="pondere">가중</string>
+    <string name="total">합계</string>
+    <string name="search">수색</string>
 </resources>

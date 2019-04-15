@@ -481,7 +481,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 42);
                 return true;
             case R.id.grades_button:
-                intent = new Intent(getApplicationContext(), blacklisted_activity.class);
+                intent = new Intent(getApplicationContext(), gradesActivity.class);
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
@@ -492,7 +492,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
-        changeLanguage(sharedPref.getString("Language",""));
+        changeLanguage(sharedPref.getString("Language","fr"));
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         notification = new Notification(this);
@@ -516,7 +516,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 42) show_week(null);
+        if (requestCode == 42) {
+            invalidateOptionsMenu();
+            show_week(null);
+        }
     }
 
     public void versLInfini(View v) {

@@ -14,7 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -153,39 +155,24 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Notifications">
 
-                    <View
-                        android:id="@+id/view6"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="Patate"
                         android:textSize="20sp" />
 
-                    <View
-                        android:id="@+id/view7"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="Patate"
                         android:textSize="20sp" />
 
-                    <View
-                        android:id="@+id/view9"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="Patate"
                         android:textSize="20sp" />
 
@@ -203,39 +190,24 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Styles">
 
-                    <View
-                        android:id="@+id/view10"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/style_1"
                         android:textSize="20sp" />
 
-                    <View
-                        android:id="@+id/view11"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/style_2"
                         android:textSize="20sp" />
 
-                    <View
-                        android:id="@+id/view12"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/style_3"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -252,124 +224,139 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Language">
 
-                    <View
-                        android:id="@+id/view13"
+                    <EditText
+                        android:id="@+id/searchEditText"
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:drawableLeft="@drawable/ic_search_black_24dp"
+                        android:drawableStart="@drawable/ic_search_black_24dp"
+                        android:hint="@string/search"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/language_1"
                         android:textSize="20sp" />
-
-                    <View
-                        android:id="@+id/view14"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
 
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/laguage_2"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_2"
                         android:textSize="20sp" />
-
-                    <View
-                        android:id="@+id/view15"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/language_3"
                         android:textSize="20sp" />
-
-                    <View
-                        android:id="@+id/view17"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/language_4"
                         android:textSize="20sp" />
-
-                    <View
-                        android:id="@+id/view16"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/language_5"
                         android:textSize="20sp" />
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/language_10"
-                        android:textSize="20sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/language_6"
                         android:textSize="20sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/language_7"
                         android:textSize="20sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
                         android:text="@string/language_8"
                         android:textSize="20sp" />
 
-                    <View
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#999" />
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_9"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/language_9"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_10"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_11"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_12"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_13"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_14"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_15"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_16"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_17"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_18"
                         android:textSize="20sp" />
 
                 </LinearLayout>

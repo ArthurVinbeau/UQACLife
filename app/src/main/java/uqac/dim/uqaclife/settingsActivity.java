@@ -4,10 +4,16 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class settingsActivity extends MainActivity {
@@ -15,6 +21,7 @@ public class settingsActivity extends MainActivity {
     int toCollapseNumber = 3;
     View buttonsToCollapse[] = new View[toCollapseNumber];
     TextView textView;
+    List<TextView> languages = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +37,15 @@ public class settingsActivity extends MainActivity {
                 sharedPref.edit().putString("password",null).apply();
             }
         });
-        ((TextView)findViewById(R.id.selected_language)).setText(sharedPref.getString("Langue","English"));
+        ((TextView)findViewById(R.id.selected_language)).setText(sharedPref.getString("Langue"," Français"));
 
         buttonsToCollapse[0] = findViewById(R.id.styles_list);
         buttonsToCollapse[1] = findViewById(R.id.language_list);
         buttonsToCollapse[2] =  findViewById(R.id.notifications_list);
+
+        for(int index=1; index<((ViewGroup)buttonsToCollapse[1]).getChildCount(); index++) {
+            languages.add((TextView)(((ViewGroup)buttonsToCollapse[1]).getChildAt(index)));
+        }
 
         View.OnClickListener o = new View.OnClickListener() {
             @Override
@@ -59,6 +70,24 @@ public class settingsActivity extends MainActivity {
         findViewById(R.id.Notifications).setOnClickListener(onClickListener);
         findViewById(R.id.Styles).setOnClickListener(onClickListener);
         findViewById(R.id.Language).setOnClickListener(onClickListener);
+
+        ((EditText)findViewById(R.id.searchEditText)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                for (TextView t: languages) {
+                    if(t.getText().toString().toLowerCase().contains(s.toString().toLowerCase()))
+                        t.setVisibility(View.VISIBLE);
+                    else
+                        t.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 
     }
 
@@ -102,26 +131,34 @@ public class settingsActivity extends MainActivity {
                 break;
             case R.id.language_list:
                 changeText = (TextView) findViewById(R.id.selected_language);
-                changeLanguage(newText == "en"?"":newText);
+                changeLanguage(newText);
                 String newLanguage;
                 switch (newText){
                     default: newLanguage = ""; break;
                     case "Français": newLanguage = "fr"; break;
                     case "Bosnian": newLanguage = "bs"; break;
+                    case "Chinese": newLanguage = "zh"; break;
                     case "Deutsch": newLanguage = "de"; break;
                     case "Korean": newLanguage= "ko" ; break;
                     case "Spanish": newLanguage = "es"; break;
                     case "Finnish": newLanguage = "fi"; break;
+                    case "Greek": newLanguage = "el"; break;
                     case "Icelandic": newLanguage = "is"; break;
+                    case "Japanese": newLanguage = "ja"; break;
+                    case "Javanese": newLanguage = "jv"; break;
+                    case "Latin": newLanguage = "la"; break;
+                    case "Pashto": newLanguage = "ps"; break;
                     case "Polish": newLanguage = "pl"; break;
+                    case "Russian": newLanguage = "ru"; break;
+                    case "Yoruba": newLanguage = "yo"; break;
                     case "Zulu": newLanguage = "zu"; break;
                 }
                 sharedPref.edit().putString("Language",newLanguage).putString("Langue",newText).apply();
+                invalidateOptionsMenu();
                 Intent refresh = new Intent(this, settingsActivity.class);
                 refresh.putExtra("requestCode", 42);
                 startActivity(refresh);
                 finish();
-                invalidateOptionsMenu();
                 overridePendingTransition (0,0);
                 break;
         }

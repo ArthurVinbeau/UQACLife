@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Vula kuseshini</string>
-    <string name="Identifiant">Ngena ngemvume</string>
     <string name="Mdp">Iphasiwedi</string>
     <string name="Captcha">Captcha</string>
     <string name="Valider">Kwenziwe</string>
@@ -35,4 +34,10 @@
     <string name="blacklisted">sivalwe</string>
     <string name="preferences">Izintandokazi</string>
     <string name="grades">amabanga</string>
+    <string name="error_grades_message">Kuvele iphutha ngenkathi kulayishwa amamaki</string>
+    <string name="element">I-elementi</string>
+    <string name="non_pondere">Hhayi isisindo</string>
+    <string name="pondere">ezinesisindo</string>
+    <string name="total">Ubude</string>
+    <string name="search">Ukucinga</string>
 </resources>

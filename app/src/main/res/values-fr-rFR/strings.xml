@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Ouvrir une session</string>
-    <string name="Identifiant">Identifiant</string>
     <string name="Mdp">Mot de passe</string>
     <string name="Captcha">Captcha</string>
     <string name="Valider">Valider</string>
@@ -18,7 +17,7 @@
     <string name="style_1">1er style</string>
     <string name="style_2">2eme style</string>
     <string name="style_3">3eme style</string>
-    <string name="error_calendar_message">Une erreur s\'est produite en chargeant le calendrier</string>
+    <string name="error_calendar_message">Une erreur est survenue pendant le chargement calendrier</string>
     <string name="monday">Lundi</string>
     <string name="tuesday">Mardi</string>
     <string name="wednesday">Mercredi</string>
@@ -35,4 +34,10 @@
     <string name="blacklisted">Liste noire</string>
     <string name="preferences">Préferences</string>
     <string name="grades">Notes</string>
+    <string name="element">Élément</string>
+    <string name="non_pondere">non pondéré</string>
+    <string name="pondere">Pondéré</string>
+    <string name="total">Total</string>
+    <string name="search">Chercher</string>
+    <string name="error_grades_message">Une erreur est survenue pendant le chargement des notes</string>
 </resources>

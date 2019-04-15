@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Abrir una sesión</string>
-    <string name="Identifiant">Iniciar sesión</string>
     <string name="Mdp">Contraseña</string>
     <string name="Captcha">Captcha</string>
     <string name="Valider">Hecho</string>
@@ -18,7 +17,7 @@
     <string name="style_1">Defecto</string>
     <string name="style_2">Defecto</string>
     <string name="style_3">Defecto</string>
-    <string name="error_calendar_message">Se produjo un error durante la carga de calendario</string>
+    <string name="error_calendar_message">Se ha producido un error durante la carga de calendario</string>
     <string name="monday">lunes</string>
     <string name="tuesday">martes</string>
     <string name="wednesday">miércoles</string>
@@ -35,4 +34,10 @@
     <string name="blacklisted">la lista negra</string>
     <string name="preferences">preferencias</string>
     <string name="grades">grados</string>
+    <string name="error_grades_message">Se produjo un error mientras que los grados de carga</string>
+    <string name="element">Elemento</string>
+    <string name="non_pondere">no ponderada</string>
+    <string name="pondere">Ponderado</string>
+    <string name="total">Total</string>
+    <string name="search">Buscar</string>
 </resources>

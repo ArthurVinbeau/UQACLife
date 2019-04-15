@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Otvorite sesije</string>
-    <string name="Identifiant">Ulogovati se</string>
     <string name="Mdp">lozinka</string>
     <string name="Captcha">captcha</string>
     <string name="Valider">Gotovo</string>
@@ -26,13 +25,19 @@
     <string name="friday">petak</string>
     <string name="saturday">subota</string>
     <string name="sunday">nedjelja</string>
-    <string name="blacklist">Blacklist</string>
+    <string name="blacklist">crnu listu</string>
     <string name="notification_button">Obavij me sempai</string>
     <string name="groupe">Grupa</string>
     <string name="course_blacklisted">crnoj listi, naravno</string>
     <string name="course_unblacklisted">Naravno ukloniti iz crne liste</string>
     <string name="undo">opovrgnuti</string>
-    <string name="blacklisted">Blacklisted</string>
-    <string name="preferences">Preferences</string>
+    <string name="blacklisted">crnoj listi</string>
+    <string name="preferences">preferencije</string>
     <string name="grades">razreda</string>
+    <string name="error_grades_message">Došlo je do greške prilikom učitavanja razreda</string>
+    <string name="element">element</string>
+    <string name="non_pondere">nije weighted</string>
+    <string name="pondere">ponderirana</string>
+    <string name="total">ukupan</string>
+    <string name="search">pretraživanje</string>
 </resources>

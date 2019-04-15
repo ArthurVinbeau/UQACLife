@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="session">Opna fundi</string>
-    <string name="Identifiant">Skrá inn</string>
     <string name="Mdp">Lykilorð</string>
     <string name="Captcha">Captcha</string>
     <string name="Valider">Lokið</string>
@@ -35,4 +34,10 @@
     <string name="blacklisted">svartur listi</string>
     <string name="preferences">Óskir</string>
     <string name="grades">bekk</string>
+    <string name="error_grades_message">Villa kom upp við að hlaða bekk</string>
+    <string name="element">þáttur</string>
+    <string name="non_pondere">ekki vegið</string>
+    <string name="pondere">vegið</string>
+    <string name="total">alls</string>
+    <string name="search">leit</string>
 </resources>

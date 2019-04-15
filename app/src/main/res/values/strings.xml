@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">UQACLife</string>
     <string name="session">Open a session</string>
-    <string name="Identifiant">Login</string>
     <string name="Mdp">Password</string>
     <string name="Captcha">Captcha</string>
     <string name="Valider">Done</string>
@@ -19,16 +18,6 @@
     <string name="style_1">Default</string>
     <string name="style_2">Default</string>
     <string name="style_3">Default</string>
-    <string name="language_1" translatable="false">English</string>
-    <string name="laguage_2" translatable="false">Français</string>
-    <string name="language_3" translatable="false">Bosnian</string>
-    <string name="language_4" translatable="false">Deutsch</string>
-    <string name="language_5" translatable="false">Finnish</string>
-    <string name="language_6" translatable="false">Icelandic</string>
-    <string name="language_7" translatable="false">Polish</string>
-    <string name="language_8" translatable="false">Spanish</string>
-    <string name="language_9" translatable="false">Zulu</string>
-    <string name="language_10" translatable="false">Korean</string>
     <string name="error_calendar_message">An error occured while loading calendar</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
@@ -46,5 +35,31 @@
     <string name="blacklisted">Blacklisted</string>
     <string name="preferences">Preferences</string>
     <string name="grades">Grades</string>
+    <string name="error_grades_message">An error occurred while loading grades</string>
+    <string name="element">Element</string>
+    <string name="non_pondere">Not weighted</string>
+    <string name="pondere">Weighted</string>
+    <string name="total">Total</string>
+    <string name="search">Search</string>
+
+
+    <string name="language_1" translatable="false">English</string>
+    <string name="language_2" translatable="false">Français</string>
+    <string name="language_3" translatable="false">Bosnian</string>
+    <string name="language_4" translatable="false">Chinese</string>
+    <string name="language_5" translatable="false">Deutsch</string>
+    <string name="language_6" translatable="false">Greek</string>
+    <string name="language_7" translatable="false">Finnish</string>
+    <string name="language_8" translatable="false">Icelandic</string>
+    <string name="language_9" translatable="false">Japanese</string>
+    <string name="language_10" translatable="false">Javanese</string>
+    <string name="language_11" translatable="false">Korean</string>
+    <string name="language_12" translatable="false">Latin</string>
+    <string name="language_13" translatable="false">Pashto</string>
+    <string name="language_14" translatable="false">Polish</string>
+    <string name="language_15" translatable="false">Russian</string>
+    <string name="language_16" translatable="false">Spanish</string>
+    <string name="language_17" translatable="false">Yoruba</string>
+    <string name="language_18" translatable="false">Zulu</string>
 
 </resources>
