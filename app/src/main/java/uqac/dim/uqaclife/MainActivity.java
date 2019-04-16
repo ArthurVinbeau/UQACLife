@@ -1,6 +1,9 @@
 package uqac.dim.uqaclife;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences;
@@ -20,6 +23,8 @@ import android.widget.CheckBox;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -34,6 +39,7 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -99,6 +105,19 @@ public class MainActivity extends AppCompatActivity {
         // Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
         //tv.setText(stringFromJNI());
+    }
+
+
+    public void startService(View v)
+    {
+        Intent serviceIntent = new Intent(this,NotifService.class);
+        //serviceIntent.putExtra("bool",b);
+        startService(serviceIntent);
+    }
+    public void stopService(View v)
+    {
+        Intent serviceIntent = new Intent(this,NotifService.class);
+        stopService(serviceIntent);
     }
 
     public void versLInfini(View v) {
@@ -233,6 +252,9 @@ public class MainActivity extends AppCompatActivity {
                             String id = lesson.getString("id");
                             ((TextView) cours.findViewById(R.id.lessonid)).setText(id);
                             final String name = lesson.getString("name");
+                            final String deb = lesson.getString("start");
+                            final String dateseb = lesson.getString("dates");
+                            final int bbbb = ((i+1)%7)+1;
                             ((TextView) cours.findViewById(R.id.lessonname)).setText(name);
                             ((TextView) cours.findViewById(R.id.lessonroom)).setText(room);
                             ((TextView) cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
@@ -245,6 +267,25 @@ public class MainActivity extends AppCompatActivity {
                                      more_infos.setVisibility(more_infos.getVisibility()==View.VISIBLE?View.GONE:View.VISIBLE);
                                  }
                              });
+                             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                             Calendar cal = Calendar.getInstance();
+                             Calendar toret = Calendar.getInstance();
+                             int hour = cal.get(Calendar.HOUR_OF_DAY);
+                             int min = cal.get(Calendar.MINUTE);
+                             int daye = cal.get(Calendar.DAY_OF_WEEK);
+                             String debh = deb.substring(0, 2);
+                             String debm = deb.substring(3, 5);
+                             int h = 3600000 * (Integer.parseInt(debh) - hour);
+                             int m = 60000 * (Integer.parseInt(debm) - min);
+                             int d = 86400000 * (bbbb - daye);
+                             int totwait = h + d + m < 0 ? h + d + m + 604800000 : h + d + m;
+                             toret.add(Calendar.MILLISECOND,totwait);
+                             Intent notificationIntent = new Intent(getBaseContext(), NotifReceiver.class);
+                             notificationIntent.putExtra("nom",name);
+                             notificationIntent.putExtra("room",room2);
+                             PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), new Random().nextInt(100), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                             alarmManager.setExact(AlarmManager.RTC_WAKEUP, toret.getTimeInMillis(), broadcast);
+
                              (cours.findViewById(R.id.blacklistButton)).setOnClickListener(new View.OnClickListener() {
                                  @Override
                                  public void onClick(View v) {
@@ -254,9 +295,9 @@ public class MainActivity extends AppCompatActivity {
 
                                      editor.putString("blacklisted", " " +  id);
                                      editor.commit();*/
-                                     if(name.contains("Informatique mobile"))
+                                     /*if(name.contains("Informatique mobile"))
                                      {
-                                         NotificationCompat.Builder b = notification.getnotif(name,"Impossible de blacklister ce cours");
+
                                          notification.getManager().notify(new Random().nextInt(), b.build());
                                      }else {
 
@@ -264,8 +305,43 @@ public class MainActivity extends AppCompatActivity {
                                      NotificationCompat.Builder b = notification.getnotif(name,room2);
                                      notification.getManager().notify(new Random().nextInt(), b.build());
                                      Log.i("Blacklisted","clicked");
-                                     }
+                                     }*/
+                                    /* Intent serviceIntent1 = new Intent(getBaseContext(), NotifService.class);
+                                     serviceIntent1.putExtra("nom",name);
+                                     serviceIntent1.putExtra("room",room2);
+                                     serviceIntent1.putExtra("deb",deb);
+                                     serviceIntent1.putExtra("day",bbbb);
+                                     //serviceIntent1.putExtra("jour",bou);
+                                     startService(serviceIntent1);*/
+
+                                     AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                     Calendar cal = Calendar.getInstance();
+                                     Calendar toret = Calendar.getInstance();
+
+
+                                     int hour = cal.get(Calendar.HOUR_OF_DAY);
+                                     int min = cal.get(Calendar.MINUTE);
+                                     int daye = cal.get(Calendar.DAY_OF_WEEK);
+                                     String debh = deb.substring(0, 2);
+                                     String debm = deb.substring(3, 5);
+                                     int h = 3600000 * (Integer.parseInt(debh) - hour);
+                                     int m = 60000 * (Integer.parseInt(debm) - min);
+                                     int d = 86400000 * (bbbb - daye);
+                                     int totwait = h + d + m < 0 ? h + d + m + 604800000 : h + d + m;
+                                     Intent notificationIntent = new Intent(getBaseContext(), NotifReceiver.class);
+                                     notificationIntent.putExtra("nom",name);
+                                     notificationIntent.putExtra("room",room2);
+                                     notificationIntent.putExtra("towait",totwait);
+                                     toret.add(Calendar.MILLISECOND,totwait);
+                                     Random rn = new Random();
+                                     PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), rn.nextInt(100), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, 0, broadcast);
+
+
+
+
                                  }
+
                              });
                             dynamicContent.addView(cours);
                         }
