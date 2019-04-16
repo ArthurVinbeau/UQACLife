@@ -532,6 +532,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 etPasLAuDela(null);
+                swipe.setRefreshing(false);
             }
         });
 
