@@ -3,6 +3,7 @@ package uqac.dim.uqaclife;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -52,7 +53,7 @@ public class NotifService extends Service {
                     PendingIntent.FLAG_CANCEL_CURRENT);
 
             android.app.Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setContentTitle(intent.getStringExtra("nom"))
+                    .setContentTitle((intent.getStringExtra("nom")))
                     .setContentText(intent.getStringExtra("room"))
                     .setContentText(Integer.toString(d + h + m))
                     .setSmallIcon(R.drawable.mini_ul)

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -68,6 +69,14 @@ public class settingsActivity extends MainActivity {
             }
         };
         findViewById(R.id.Notifications).setOnClickListener(onClickListener);
+        Switch s = findViewById(R.id.switch1);
+        s.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activenotif(v);
+            }
+        });
+
         findViewById(R.id.Styles).setOnClickListener(onClickListener);
         findViewById(R.id.Language).setOnClickListener(onClickListener);
 
@@ -88,6 +97,10 @@ public class settingsActivity extends MainActivity {
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        boolean statenotifswitch = sharedPref.getBoolean("switchnotif",true);
+        Switch swich_notif = (Switch)findViewById(R.id.switch1);
+        swich_notif.setChecked(statenotifswitch);
 
     }
 
@@ -172,5 +185,20 @@ public class settingsActivity extends MainActivity {
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf,res.getDisplayMetrics());
+    }
+
+    public void Activenotif(View v)
+    {
+        Switch s = (Switch)findViewById(R.id.switch1);
+        sharedPref.edit().putBoolean("switchnotif",s.isChecked()).apply();
+        show_week(v);
+
+    }
+    public void ActiveService(View v)
+    {
+        Switch s = (Switch)findViewById(R.id.switch2);
+        sharedPref.edit().putBoolean("switchservice",s.isChecked()).apply();
+        show_week(v);
+
     }
 }

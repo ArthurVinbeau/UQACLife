@@ -155,12 +155,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Notifications">
 
-                    <TextView
+                    <Switch
+                        android:id="@+id/switch1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:background="@drawable/listview_option"
-                        android:text="Patate"
-                        android:textSize="20sp" />
+                        android:text="@string/Switch_Notification" />
+
+                    <Switch
+                        android:id="@+id/switch2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Switch_service" />
 
                     <TextView
                         android:layout_width="match_parent"
