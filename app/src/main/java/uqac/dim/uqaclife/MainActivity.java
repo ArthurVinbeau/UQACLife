@@ -680,13 +680,15 @@ public class MainActivity extends AppCompatActivity {
                                     room = room.replace("LAB", "");
                                 }
                                 final String room2 = room;
+                                final String start = lesson.getString("start");
+                                final String end = lesson.getString("end");
                                 String id = lesson.getString("id");
                                 ((TextView) cours.findViewById(R.id.lessonid)).setText(id);
                                 ((TextView) cours.findViewById(R.id.lessonname)).setText(name);
                                 ((TextView) cours.findViewById(R.id.lessonroom)).setText(room);
-                                ((TextView) cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
-                                ((TextView) cours.findViewById(R.id.timeend)).setText(lesson.getString("end"));
-                                ((TextView) cours.findViewById(R.id.group)).setText(getString(R.string.groupe) + " : " + lesson.getString("grp"));        //groupe
+                                ((TextView) cours.findViewById(R.id.timestart)).setText(start);
+                                ((TextView) cours.findViewById(R.id.timeend)).setText(end);
+                                ((TextView) cours.findViewById(R.id.group)).setText(getString(R.string.groupe)+ " : " + lesson.getString("grp"));        //groupe
                                 final View more_infos = cours.findViewById(R.id.more_infos);
                                 (cours.findViewById(R.id.matiere)).setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -748,6 +750,9 @@ public class MainActivity extends AppCompatActivity {
                                     Intent notificationIntent = new Intent(getBaseContext(), NotifReceiver.class);
                                     notificationIntent.putExtra("nom", name);
                                     notificationIntent.putExtra("room", room2);
+                                    notificationIntent.putExtra("start",start);
+                                    notificationIntent.putExtra("end",end);
+                                    Log.i("PATATE",start + "   " + end);
                                     PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, toret.getTimeInMillis(), broadcast);
                                     id_notif++;
@@ -766,6 +771,8 @@ public class MainActivity extends AppCompatActivity {
                                             Intent notificationIntent = new Intent(getBaseContext(), NotifReceiver.class);
                                             notificationIntent.putExtra("nom", name);
                                             notificationIntent.putExtra("room", room2);
+                                            notificationIntent.putExtra("start",start);
+                                            notificationIntent.putExtra("end",end);
                                             PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                                             alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
                                         }

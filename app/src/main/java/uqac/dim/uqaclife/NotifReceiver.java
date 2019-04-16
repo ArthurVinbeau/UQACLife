@@ -10,9 +10,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import java.util.Random;
 
@@ -29,14 +34,20 @@ public class NotifReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(100, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification.Builder builder = new Notification.Builder(context);
 
-        Notification notification = builder.setContentTitle(intent.getStringExtra("nom"))
-                .setContentText(intent.getStringExtra("room"))
-                .setSmallIcon(R.drawable.mini_ul)
-                .setColor(Color.rgb(255,0,0))
-                .setLargeIcon(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_ulrond2)))
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
-                .build();
+
+        String room = intent.getStringExtra("room");
+
+        Log.i("PATATE",intent.getStringExtra("start") + "    " + intent.getStringExtra("end"));
+            Notification notification = builder
+                    .setContentTitle(intent.getStringExtra("nom"))
+                    .setContentText(room)
+//                    .setSmallIcon(R.drawable.mini_ul)
+                    .setSmallIcon(Icon.createWithBitmap(createBitmap(room.substring(3,5),room.substring(5,7),false)))
+//                    .setLargeIcon(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_ulrond2)))
+                    .setLargeIcon(Icon.createWithBitmap(createBitmap(intent.getStringExtra("start"),intent.getStringExtra("end"),true)))
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+                    .build();
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -54,6 +65,45 @@ public class NotifReceiver extends BroadcastReceiver {
             notificationManager.createNotificationChannel(channel);
         }
         notificationManager.notify(new Random().nextInt(100), notification);
+
+    }
+
+    private Bitmap createBitmap(String text, Boolean square){
+        //text = "a\na";
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setTextSize(50);
+        paint.setColor(Color.parseColor("#000000"));
+        paint.setTextAlign(Paint.Align.LEFT);
+        float baseline = -paint.ascent(); // ascent() is negative
+        int width = (int) (paint.measureText(text)); // round
+        int height = (int) (baseline + paint.descent() );
+        Bitmap image ;
+        if(square)
+            image = Bitmap.createBitmap(Math.max(width,height), Math.max(width,height), Bitmap.Config.ARGB_8888);
+        else
+            image = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(image);
+        canvas.drawText(text, 0, baseline, paint);
+        return image;
+    }
+
+    private Bitmap createBitmap(String text1, String text2 , Boolean square){
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setTextSize(50);
+        paint.setColor(Color.parseColor("#000000"));
+        paint.setTextAlign(Paint.Align.LEFT);
+        float baseline = -paint.ascent(); // ascent() is negative
+        int width = (int) (paint.measureText(text1)); // round
+        int height = (int) (baseline + paint.descent() );
+        Bitmap image ;
+        if(square)
+            image = Bitmap.createBitmap(Math.max(width,2*height-20), Math.max(width,2*height), Bitmap.Config.ARGB_8888);
+        else
+            image = Bitmap.createBitmap(width, 2*height - 20, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(image);
+        canvas.drawText(text1, 0, baseline -10, paint);
+        canvas.drawText(text2, 0,height + baseline -10, paint);
+        return image;
     }
 
 }
