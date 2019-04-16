@@ -121,7 +121,7 @@
             android:layout_margin="15dip"
             android:background="@drawable/cours"
             android:backgroundTint="#999"
-            android:onClick="fleur"
+            android:onClick="send"
             android:text="@string/Valider"
             android:textColor="#fff"
             android:textSize="18sp" />

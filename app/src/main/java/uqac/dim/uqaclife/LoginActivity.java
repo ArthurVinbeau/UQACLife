@@ -34,6 +34,9 @@ public class LoginActivity extends MainActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
 
+        ((EditText)findViewById(R.id.login)).setText(sharedPref.getString("login", ""));
+        ((EditText)findViewById(R.id.password)).setText(sharedPref.getString("password", ""));
+
         super.loginActivity = this;
         login = super.login;
     }
@@ -41,6 +44,13 @@ public class LoginActivity extends MainActivity {
     public void send(View v) {
         String id = ((EditText)findViewById(R.id.login)).getText().toString();
         String pwd = ((EditText)findViewById(R.id.password)).getText().toString();
+
+        sharedPref.edit().putString("login", id).commit();
+        sharedPref.edit().putString("password", pwd).commit();
+
+        login.login(id, pwd);
+
+        finish();
     }
 
 }
