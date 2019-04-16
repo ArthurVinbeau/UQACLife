@@ -33,7 +33,7 @@ public class settingsActivity extends MainActivity {
         findViewById(R.id.Logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPref.edit().putString("login",null).apply();
+                sharedPref.edit().putString("loginActivity",null).apply();
                 sharedPref.edit().putString("password",null).apply();
             }
         });
