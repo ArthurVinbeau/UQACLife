@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">Bukak sesi</string>
+    <string name="Mdp">sandi</string>
+    <string name="Captcha">captcha</string>
+    <string name="Valider">rampung</string>
+    <string name="Login_suite">Tulis mlebu</string>
+    <string name="Mdp_suite">Tulis sandhi</string>
+    <string name="J_attends_la_finalisation_du_captcha">J nekani</string>
+    <string name="login">mlebu</string>
+    <string name="refresh">refresh</string>
+    <string name="save_password">Simpen sandi</string>
+    <string name="styles">gaya</string>
+    <string name="notifications">kabar</string>
+    <string name="language">basa</string>
+    <string name="log_out">Metu</string>
+    <string name="style_1">standar</string>
+    <string name="style_2">standar</string>
+    <string name="style_3">standar</string>
+    <string name="monday">ana</string>
+    <string name="tuesday">Selasa</string>
+    <string name="wednesday">Rebo</string>
+    <string name="thursday">ana</string>
+    <string name="friday">ana</string>
+    <string name="saturday">ana</string>
+    <string name="sunday">Minggu</string>
+    <string name="blacklist">blacklist</string>
+    <string name="notification_button">Notif kula sempai</string>
+    <string name="groupe">grup</string>
+    <string name="course_blacklisted">mesthi blacklisted</string>
+    <string name="course_unblacklisted">mesthi dibusak saka daftar ireng</string>
+    <string name="undo">batalaken</string>
+    <string name="blacklisted">blacklisted</string>
+    <string name="preferences">Gawe</string>
+    <string name="grades">gelar</string>
+    <string name="element">unsur</string>
+    <string name="non_pondere">ora bobot</string>
+    <string name="pondere">bobot</string>
+    <string name="total">total</string>
+    <string name="search">search</string>
+    <string name="error_calendar_message">Ana kaluputan nalika loading tanggalan</string>
+    <string name="error_grades_message">Kesalahan naliko gelar loading</string>
+</resources>

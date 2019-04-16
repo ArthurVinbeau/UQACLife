@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">Opna fundi</string>
+    <string name="Mdp">Lykilorð</string>
+    <string name="Captcha">Captcha</string>
+    <string name="Valider">Lokið</string>
+    <string name="Login_suite">Skrifaðu notandanafnið þitt</string>
+    <string name="Mdp_suite">Skrifaðu aðgangsorðið</string>
+    <string name="J_attends_la_finalisation_du_captcha">J sækir</string>
+    <string name="login">Skrá inn</string>
+    <string name="refresh">Uppfæra</string>
+    <string name="save_password">Vista lykilorð</string>
+    <string name="styles">stíll</string>
+    <string name="notifications">Tilkynningar</string>
+    <string name="language">Tungumál</string>
+    <string name="log_out">Að skrá þig út</string>
+    <string name="style_1">Default</string>
+    <string name="style_2">Default</string>
+    <string name="style_3">Default</string>
+    <string name="error_calendar_message">Villa kom upp við að hlaða dagatalið</string>
+    <string name="monday">Mánudagur</string>
+    <string name="tuesday">þriðjudagur</string>
+    <string name="wednesday">miðvikudagur</string>
+    <string name="thursday">fimmtudagur</string>
+    <string name="friday">föstudagur</string>
+    <string name="saturday">laugardagur</string>
+    <string name="sunday">sunnudagur</string>
+    <string name="blacklist">Svartur listi</string>
+    <string name="notification_button">Skilaboðastill mig Sempai</string>
+    <string name="groupe">hópur</string>
+    <string name="course_blacklisted">Auðvitað svartur listi</string>
+    <string name="course_unblacklisted">Course fjarlægt úr bannlista</string>
+    <string name="undo">Afturkalla</string>
+    <string name="blacklisted">svartur listi</string>
+    <string name="preferences">Óskir</string>
+    <string name="grades">bekk</string>
+    <string name="error_grades_message">Villa kom upp við að hlaða bekk</string>
+    <string name="element">þáttur</string>
+    <string name="non_pondere">ekki vegið</string>
+    <string name="pondere">vegið</string>
+    <string name="total">alls</string>
+    <string name="search">leit</string>
+</resources>

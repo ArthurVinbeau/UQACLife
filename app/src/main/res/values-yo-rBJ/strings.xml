@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">Ṣii a igba</string>
+    <string name="Mdp">ọrọigbaniwọle</string>
+    <string name="Captcha">KỌMPUTA</string>
+    <string name="Valider">ṣe</string>
+    <string name="Login_suite">Kọ wiwọle re</string>
+    <string name="Mdp_suite">Kọ ọrọ aṣínà rẹ</string>
+    <string name="J_attends_la_finalisation_du_captcha">J deede</string>
+    <string name="login">Wo ile</string>
+    <string name="refresh">Sọ</string>
+    <string name="save_password">Fi ọrọigbaniwọle</string>
+    <string name="styles">aza</string>
+    <string name="notifications">iwifunni</string>
+    <string name="language">ede</string>
+    <string name="log_out">buwolu jade</string>
+    <string name="style_1">aiyipada</string>
+    <string name="style_2">aiyipada</string>
+    <string name="style_3">aiyipada</string>
+    <string name="error_calendar_message">An sele nigbati ikojọpọ kalẹnda</string>
+    <string name="monday">aarọ</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">ọjọrú</string>
+    <string name="thursday">ọjọbọ</string>
+    <string name="friday">friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="blacklist">blacklist</string>
+    <string name="notification_button">Notif mi sempai</string>
+    <string name="groupe">Ẹgbẹ</string>
+    <string name="course_blacklisted">dajudaju blacklisted</string>
+    <string name="course_unblacklisted">Dajudaju kuro lati blacklist</string>
+    <string name="undo">Mu</string>
+    <string name="blacklisted">Blacklisted</string>
+    <string name="preferences">lọrun</string>
+    <string name="grades">onipò</string>
+    <string name="error_grades_message">An sele nigbati ikojọpọ onipò</string>
+    <string name="element">ano</string>
+    <string name="non_pondere">ko ti iwọn</string>
+    <string name="pondere">ti iwọn</string>
+    <string name="total">lapapọ</string>
+    <string name="search">àwárí</string>
+</resources>

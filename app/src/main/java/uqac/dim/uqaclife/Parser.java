@@ -1,8 +1,6 @@
 package uqac.dim.uqaclife;
 
-import android.util.Log;
 import android.util.Pair;
-import android.view.View;
 
 import java.util.ArrayList;
 
@@ -105,7 +103,7 @@ public class Parser  {
                         + "\",\n\"start\": \"" + actualLesson[1].split(" à ")[0]
                         + "\",\n\"end\": \"" + actualLesson[1].split(" à ")[1]
                         + "\",\n\"dates\": \"" + actualLesson[3]
-                        + "\",\n\"room\": \"" + actualLesson[2].replaceAll("&nbsp", "")
+                        + "\",\n\"room\": \"" + actualLesson[2].replaceAll("&nbsp;", "")
                         + "\"\n}" + ((j + 1 < week.get(i).size()) ? "," : "") + "\n";
 
 

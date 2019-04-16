@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">Abrir una sesión</string>
+    <string name="Mdp">Contraseña</string>
+    <string name="Captcha">Captcha</string>
+    <string name="Valider">Hecho</string>
+    <string name="Login_suite">Escriba su nombre de usuario</string>
+    <string name="Mdp_suite">Escribir su contraseña</string>
+    <string name="J_attends_la_finalisation_du_captcha">J asiste</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="refresh">Refrescar</string>
+    <string name="save_password">Guardar contraseña</string>
+    <string name="styles">estilos</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="language">Idioma</string>
+    <string name="log_out">Cerrar sesión</string>
+    <string name="style_1">Defecto</string>
+    <string name="style_2">Defecto</string>
+    <string name="style_3">Defecto</string>
+    <string name="error_calendar_message">Se ha producido un error durante la carga de calendario</string>
+    <string name="monday">lunes</string>
+    <string name="tuesday">martes</string>
+    <string name="wednesday">miércoles</string>
+    <string name="thursday">jueves</string>
+    <string name="friday">viernes</string>
+    <string name="saturday">sábado</string>
+    <string name="sunday">domingo</string>
+    <string name="blacklist">Lista negra</string>
+    <string name="notification_button">Entr mi sempai</string>
+    <string name="groupe">Grupo</string>
+    <string name="course_blacklisted">Por supuesto la lista negra</string>
+    <string name="course_unblacklisted">Por supuesto eliminado de la lista negra</string>
+    <string name="undo">Deshacer</string>
+    <string name="blacklisted">la lista negra</string>
+    <string name="preferences">preferencias</string>
+    <string name="grades">grados</string>
+    <string name="error_grades_message">Se produjo un error mientras que los grados de carga</string>
+    <string name="element">Elemento</string>
+    <string name="non_pondere">no ponderada</string>
+    <string name="pondere">Ponderado</string>
+    <string name="total">Total</string>
+    <string name="search">Buscar</string>
+</resources>

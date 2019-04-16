@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">Avaa istunto</string>
+    <string name="Mdp">Salasana</string>
+    <string name="Captcha">Captcha</string>
+    <string name="Valider">Tehty</string>
+    <string name="Login_suite">Kirjoita tunnuksesi</string>
+    <string name="Mdp_suite">Kirjoita salasana</string>
+    <string name="J_attends_la_finalisation_du_captcha">J osallistuu</string>
+    <string name="login">Kirjaudu sisään</string>
+    <string name="refresh">virkistää</string>
+    <string name="save_password">Tallenna salasana</string>
+    <string name="styles">tyylit</string>
+    <string name="notifications">ilmoitukset</string>
+    <string name="language">Kieli</string>
+    <string name="log_out">Kirjautua ulos</string>
+    <string name="style_1">oletusarvo</string>
+    <string name="style_2">oletusarvo</string>
+    <string name="style_3">oletusarvo</string>
+    <string name="error_calendar_message">Tapahtui virhe lastaus kalenteri</string>
+    <string name="monday">maanantai</string>
+    <string name="tuesday">tiistai</string>
+    <string name="wednesday">keskiviikko</string>
+    <string name="thursday">torstai</string>
+    <string name="friday">perjantai</string>
+    <string name="saturday">lauantai</string>
+    <string name="sunday">sunnuntai</string>
+    <string name="blacklist">musta lista</string>
+    <string name="notification_button">Ilm minulle sempai</string>
+    <string name="groupe">Ryhmä</string>
+    <string name="course_blacklisted">tietenkin mustalle listalle</string>
+    <string name="course_unblacklisted">Tietenkin poistetaan mustalle listalle</string>
+    <string name="undo">purkaa</string>
+    <string name="blacklisted">Mustalla listalla</string>
+    <string name="preferences">Asetukset</string>
+    <string name="grades">asteet</string>
+    <string name="element">elementti</string>
+    <string name="error_grades_message">Tapahtui virhe loading laadut</string>
+    <string name="non_pondere">ei painotettu</string>
+    <string name="pondere">painotettu</string>
+    <string name="total">Kaikki yhteensä</string>
+    <string name="search">Hae</string>
+</resources>

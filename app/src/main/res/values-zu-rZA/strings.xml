@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session">Vula kuseshini</string>
+    <string name="Mdp">Iphasiwedi</string>
+    <string name="Captcha">Captcha</string>
+    <string name="Valider">Kwenziwe</string>
+    <string name="Login_suite">Bhala ngemvume kwakho</string>
+    <string name="Mdp_suite">Bhala iphasiwedi yakho</string>
+    <string name="J_attends_la_finalisation_du_captcha">J iyaya</string>
+    <string name="login">Ngena ngemvume</string>
+    <string name="refresh">Vuselela</string>
+    <string name="save_password">Londoloza iphasiwedi</string>
+    <string name="styles">izitayela</string>
+    <string name="notifications">Izaziso</string>
+    <string name="language">Ulimi</string>
+    <string name="log_out">Phuma</string>
+    <string name="style_1">Okuzenzakalelayo</string>
+    <string name="style_2">Okuzenzakalelayo</string>
+    <string name="style_3">Okuzenzakalelayo</string>
+    <string name="error_calendar_message">Kuvele iphutha ngenkathi kulayishwa ikhalenda</string>
+    <string name="monday">UMsombuluko</string>
+    <string name="tuesday">ULwesibili</string>
+    <string name="wednesday">ULwesithathu</string>
+    <string name="thursday">ULwesine</string>
+    <string name="friday">ULwesihlanu</string>
+    <string name="saturday">ngoMgqibelo</string>
+    <string name="sunday">ngeSonto</string>
+    <string name="blacklist">lwabashokobezi</string>
+    <string name="notification_button">Notif kimi sempai</string>
+    <string name="groupe">iqembu</string>
+    <string name="course_blacklisted">Course sivalwe</string>
+    <string name="course_unblacklisted">Course ikhishiwe ukusuka lokuvinjelwe</string>
+    <string name="undo">Hlehlisa</string>
+    <string name="blacklisted">sivalwe</string>
+    <string name="preferences">Izintandokazi</string>
+    <string name="grades">amabanga</string>
+    <string name="error_grades_message">Kuvele iphutha ngenkathi kulayishwa amamaki</string>
+    <string name="element">I-elementi</string>
+    <string name="non_pondere">Hhayi isisindo</string>
+    <string name="pondere">ezinesisindo</string>
+    <string name="total">Ubude</string>
+    <string name="search">Ukucinga</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/preferences"
+        android:title="@string/preferences"/>
+    <item
+        android:id="@+id/blacklisted"
+        android:title="@string/blacklisted" />
+    <item
+        android:id="@+id/grades_button"
+        android:title="@string/grades"/>
+    <!--android:visible="false"-->
+</menu>

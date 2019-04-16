@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dip"
-            android:text="@string/Identifiant"
+            android:text="@string/login"
             android:textSize="26sp" />
 
         <EditText
@@ -86,7 +86,7 @@
             android:checked="true"
             android:text="@string/save_password"
             android:textSize="26sp" />
-
+<!--
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,6 +111,7 @@
             android:imeOptions="actionDone"
             android:singleLine="true"
             android:padding="15dip" />
+            -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,7 +126,20 @@
                 android:onClick="versLInfini"
                 android:text="Vers l'infini et l'au-delà" />
 
-            <TextView
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="fleur"
+                android:text="@string/Valider"
+                android:textSize="18sp"
+                android:layout_gravity="end"
+                android:layout_margin="15dip"
+                android:background="@drawable/cours"
+                android:backgroundTint="#999"
+                android:textColor="#fff"/>
+
+          <!--  <TextView
                 android:id="@+id/validation"
                 android:layout_width="99dp"
                 android:layout_height="wrap_content"
@@ -136,7 +150,7 @@
                 android:onClick="fleur"
                 android:padding="15dip"
                 android:text="@string/Valider"
-                android:textSize="20sp" />
+                android:textSize="20sp" />-->
         </LinearLayout>
 
         <Button
