@@ -55,7 +55,7 @@ public class NotifService extends Service {
                     .setContentTitle(intent.getStringExtra("nom"))
                     .setContentText(intent.getStringExtra("room"))
                     .setContentText(Integer.toString(d + h + m))
-                    .setSmallIcon(R.mipmap.application_image)
+                    .setSmallIcon(R.drawable.mini_ul)
                     .setContentIntent(pendingIntent)
                     .setDeleteIntent(deletePendingIntent)
                     .build();

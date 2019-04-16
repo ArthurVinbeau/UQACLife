@@ -8,12 +8,12 @@ import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 import java.util.Random;
-
-import static uqac.dim.uqaclife.Appservice.CHANNEL_ID;
 
 public class NotifReceiver extends BroadcastReceiver {
     private static final String CHANNEL_ID = "1234";
@@ -28,12 +28,16 @@ public class NotifReceiver extends BroadcastReceiver {
         Random rn = new Random();
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(100, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification.Builder builder = new Notification.Builder(context);
-        Notification notification = builder.setContentTitle(intent.getStringExtra("nom"))
-                .setContentText(intent.getStringExtra("room"))
-                .setSmallIcon(R.drawable.uqaclife)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
-                .build();
+
+
+            Notification notification = builder.setContentTitle(intent.getStringExtra("nom"))
+                    .setContentText(intent.getStringExtra("room"))
+                    .setSmallIcon(R.drawable.mini_ul)
+                    .setLargeIcon(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_ulrond2)))
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+                    .build();
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId(CHANNEL_ID);
