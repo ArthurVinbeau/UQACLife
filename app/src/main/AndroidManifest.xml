@@ -3,6 +3,7 @@
     package="uqac.dim.uqaclife">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".Appservice"
         android:allowBackup="true"
         android:icon="@mipmap/application_image"
         android:label="@string/app_name"
@@ -23,6 +24,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity android:name=".NotificationActivity" />
+        <service android:name=".NotifService" />
+        <receiver android:name=".NotifReceiver">
+
+        </receiver>
 
     </application>
 
