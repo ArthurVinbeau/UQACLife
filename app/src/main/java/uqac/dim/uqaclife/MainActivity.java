@@ -46,7 +46,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     Boolean hideEmptyDay = true;
-    Notification notification;
+    
 
     int[][] colors = new int[][]{
             new int[]{0xFFFFC107,0xFFFF9B00},           //mondayColors
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-        notification = new Notification(this);
+
         setContentView(R.layout.activity_test);
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         show_week(null);
