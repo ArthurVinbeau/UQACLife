@@ -18,7 +18,9 @@
         android:id="@+id/Ecran_daccueil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
 
         <ImageView
             android:layout_width="217dp"
@@ -45,7 +47,6 @@
             android:textSize="26sp" />
 
         <EditText
-            android:singleLine="true"
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +54,9 @@
             android:hint="@string/Login_suite"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
-            android:padding="15dip" />
+            android:padding="15dip"
+            android:selectAllOnFocus="true"
+            android:singleLine="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -63,26 +66,27 @@
             android:textSize="26sp" />
 
         <EditText
-            android:singleLine="true"
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_edittext"
             android:hint="@string/Mdp_suite"
             android:inputType="textPassword"
-            android:nextFocusForward="@+id/captcha"
-            android:nextFocusDown="@+id/captcha"
+            android:nextFocusLeft="@+id/login"
             android:nextFocusRight="@+id/captcha"
             android:nextFocusUp="@+id/login"
-            android:nextFocusLeft="@+id/login"
-            android:padding="15dip" />
+            android:nextFocusDown="@+id/captcha"
+            android:nextFocusForward="@+id/captcha"
+            android:padding="15dip"
+            android:selectAllOnFocus="true"
+            android:singleLine="true" />
 
         <CheckBox
             android:id="@+id/save_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dip"
-            android:checked="true"
+            android:checked="false"
             android:text="@string/save_password"
             android:textSize="26sp" />
 <!--
