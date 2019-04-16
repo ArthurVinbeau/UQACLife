@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPref;
     LinearLayout weeklist_layout;
 
-    String html;
+    String html ="";
 
-    //region sethtml
+/*    //region sethtml
     {
         html = "\n" +
                 "\n" +
@@ -466,10 +466,13 @@ public class MainActivity extends AppCompatActivity {
                 "        </div>\n" +
                 "</div>";
     }
-    //endregion
+    //endregion*/
 
-    LoginActivity login;
+    LoginActivity loginActivity;
+    Login login;
     RequestQueue queue;
+
+    SwipeRefreshLayout swipe;
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -511,21 +514,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_Design_Light);
+        html = "coucou";
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         changeLanguage(sharedPref.getString("Language","fr"));
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         weeklist_layout = findViewById(R.id.weekList);
+        swipe = findViewById(R.id.pullToRefresh);
         show_week(null);
         queue = Volley.newRequestQueue(this);
+        login = new Login(this);
 
 
-        ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                etPasLAuDela(null);
+                fleur(null);
             }
         });
 
@@ -548,16 +554,18 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 42) {
+            //Log.i("request", "result : " + html);
             invalidateOptionsMenu();
-            show_week(null);
+            //show_week(null);
         }
     }
 
     public void versLInfini(View v) {
         //setContentView(R.layout.activity_test);
-        login.finish();
-        sharedPref.edit().putString("login", ((TextView) findViewById(R.id.login)).getText().toString()).commit();
+        loginActivity.finish();
+        sharedPref.edit().putString("loginActivity", ((TextView) findViewById(R.id.login)).getText().toString()).commit();
         sharedPref.edit().putString("password", ((CheckBox) findViewById(R.id.save_password)).isChecked() ? ((TextView) findViewById(R.id.login)).getText().toString() : "").commit();
         //show_week(v);
     }
@@ -576,7 +584,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void show_week(View v) {
-
+        int debug = 0;
         try {
 
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-u");
@@ -587,6 +595,7 @@ public class MainActivity extends AppCompatActivity {
                 movingDate[i++] = Integer.parseInt(inte);
             }
 
+            Log.i("request", "debug " + debug++);
             while (movingDate[3]-- > 1) {
                 movingDate[0]--;
                 if (movingDate[0] == 0) {
@@ -602,6 +611,8 @@ public class MainActivity extends AppCompatActivity {
                     else
                         movingDate[0] = 31;
                 }
+                Log.i("request", "debug " + debug++);
+
             }
             String currentweek = String.format("%02d", movingDate[0]) + "/" + String.format("%02d", movingDate[1]) + "/" + String.format("%02d", movingDate[2]);
             for (i = 1; i < 7; i++) {
@@ -623,10 +634,14 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 currentweek += " " + String.format("%02d", movingDate[0]) + "/" + String.format("%02d", movingDate[1]) + "/" + String.format("%02d", movingDate[2]);
+                Log.i("request", "debug " + debug++);
+
             }
 
 
             Parser2 parser = new Parser2();
+
+            Log.i("request", "debug " + debug++);
 
             JSONObject json = null;
             try {
@@ -640,6 +655,8 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 Log.i("JSON error", e.toString(), e);
             }
+            Log.i("request", "debug " + debug++);
+
 
 
 
@@ -661,6 +678,7 @@ public class MainActivity extends AppCompatActivity {
                 GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
                 GradientDrawable gd2 = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
 
+                Log.i("request", "debug " + debug++);
 
                 try {
                     JSONArray day = json.getJSONArray(strdays[i]);
@@ -807,8 +825,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("JSON error", e.toString(), e);
                 }
             }
-            ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
+            Log.i("request", "html : " + html.substring(0, 50));
         } catch (Exception e){
+            Log.i("request", "err");
             Log.i("Error",e.toString(),e);
             TextView t = new TextView(this);
             t.setText(getString(R.string.error_calendar_message));
@@ -820,20 +839,22 @@ public class MainActivity extends AppCompatActivity {
             weeklist_layout.addView(t);
         }
 
-
+        swipe.setRefreshing(false);
 
     }
 
     public void fleur(View v) {
-        sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
-        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();
-        //login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
+        /*sharedPref.edit().putString("loginActivity", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
+        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();*/
+        //loginActivity.Login(((EditText) findViewById(R.id.loginActivity)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
         login.letsTrySomethingElse((TextView) findViewById(R.id.debug));
     }
 
     public void truc(String html) {
-        this.html = html;
-        login.finish();
+        this.html = html.replace("\r", "");
+        sharedPref.edit().putString("json", null).commit();
+        Log.i("request", "truc : " + html);
+        show_week(null);
     }
 
 
