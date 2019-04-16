@@ -10,7 +10,7 @@ import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.Snakbar;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +45,7 @@ import android.content.res.Resources;
 public class MainActivity extends AppCompatActivity {
 
     Boolean hideEmptyDay = true;
-    
+
 
     int[][] colors = new int[][]{
             new int[]{0xFFFFC107, 0xFFFF9B00},           //mondayColors
@@ -684,6 +684,12 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
                                         more_infos.setVisibility(more_infos.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                                    }
+                                });
+                                (cours.findViewById(R.id.notif)).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        //JAIME LA GROSSE BITE
                                     }
                                 });
 
