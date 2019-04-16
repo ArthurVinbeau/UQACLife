@@ -2,6 +2,7 @@ package uqac.dim.uqaclife;
 
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Login {
 
     private MainActivity mainActivity;
@@ -29,6 +32,7 @@ public class Login {
     private DefaultRetryPolicy def;
     public String ZeHtml;
     private Login login;
+    private SharedPreferences sharedPref;
 
     public Login(MainActivity context) {
 
@@ -38,6 +42,7 @@ public class Login {
         def = new DefaultRetryPolicy(5000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
+        sharedPref = mainActivity.getSharedPreferences(mainActivity.getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
     }
 
@@ -45,16 +50,6 @@ public class Login {
         Log.i("request", "Let's try something else!");
         String url = "https://etudiant.uqac.ca/EtudiantApp/SignIn";
         cookieManager.getCookieStore().removeAll();
-
-//        mainActivity.loginActivity.finish();
-
-        final Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("request", "That didn't work!");
-                Log.e("request", error.toString());
-            }
-        };
 
         // Request to the loginActivity page to get the cookies and the next URL
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -71,7 +66,14 @@ public class Login {
 
                         postRaw(url, id, pwd);
                     }
-                }, errorListener);
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("request", "That didn't work!");
+                Log.e("request", error.toString());
+                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
+            }
+        });
 
         stringRequest.setRetryPolicy(def);
         queue.add(stringRequest);
@@ -111,6 +113,7 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
+                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
             }
         }) {
             @Override
@@ -150,6 +153,7 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
+                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
             }
         }) {
             @Override
@@ -190,7 +194,7 @@ public class Login {
                             Log.i("request", "not logged in! retrying... retry count : " + retrys);
                             if (retrys < maxRetrys) {
                                 retrys++;
-                                //letsTrySomethingElse(null);
+                                login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
                             } else
                                 return;
                         }
@@ -222,6 +226,7 @@ public class Login {
                             public void onErrorResponse(VolleyError error) {
                                 Log.i("request", "That didn't work!");
                                 Log.e("request", error.toString());
+                                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
                             }
                         }) {
                             @Override
@@ -243,6 +248,7 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
+                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
             }
         });
 

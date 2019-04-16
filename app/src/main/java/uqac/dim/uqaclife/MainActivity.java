@@ -511,7 +511,7 @@ public class MainActivity extends AppCompatActivity {
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                fleur(null);
+                etPasLAuDela(null);
             }
         });
 
@@ -524,9 +524,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 42) {
-            //Log.i("request", "result : " + html);
             invalidateOptionsMenu();
-            //show_week(null);
+            show_week(null);
         }
     }
 
@@ -541,8 +540,7 @@ public class MainActivity extends AppCompatActivity {
     public void etPasLAuDela(View v) {
         sharedPref.edit().putString("json", null).commit();
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.putExtra("requestCode", 42);
-        startActivityForResult(intent, 42);
+        startActivity(intent);
     }
 
 
@@ -551,7 +549,8 @@ public class MainActivity extends AppCompatActivity {
         show_week(v);
     }
 
-    public void show_week(View v) {
+
+    public void show_week(View v, boolean endPull) {
         int debug = 0;
         try {
 
@@ -732,7 +731,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("JSON error", e.toString(), e);
                 }
             }
-            Log.i("request", "html : " + html.substring(0, 50));
+            Log.i("request", "html : " + html.substring(0, 100));
         } catch (Exception e){
             Log.i("request", "err");
             Log.i("Error",e.toString(),e);
@@ -746,22 +745,19 @@ public class MainActivity extends AppCompatActivity {
             weeklist_layout.addView(t);
         }
 
-        swipe.setRefreshing(false);
-
+        /*if (endPull)
+            ((SwipeRefreshLayout)findViewById(R.id.pullToRefresh)).setRefreshing(false);*/
     }
 
-    public void fleur(View v) {
-        /*sharedPref.edit().putString("loginActivity", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
-        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();*/
-        //loginActivity.Login(((EditText) findViewById(R.id.loginActivity)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
-        login.letsTrySomethingElse((TextView) findViewById(R.id.debug));
+    public void show_week(View v) {
+        show_week(v, false);
     }
 
     public void truc(String html) {
         this.html = html.replace("\r", "");
         sharedPref.edit().putString("json", null).commit();
         Log.i("request", "truc : " + html);
-        show_week(null);
+        show_week(null, true);
     }
 
 
