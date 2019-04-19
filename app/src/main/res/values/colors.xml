@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#1A9E90</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
@@ -18,26 +18,28 @@
     <color name="colorGreenday">#4EAC52</color>
     <color name="colorlightBlue">#0BBED5</color>
 
+    <color name="lessonbqckground">#DDDDDD</color>
+    <color name="td_text">#FFFF9B00</color>
 
-    <color name="colorOrange1">#FFC107</color>
-    <color name="colorOrange2">#FF9B00</color>
+    <color name="lundi1">#FFC107</color>
+    <color name="lundi2">#FF9B00</color>
 
 
-    <color name="colorYellow1">#FFEB3B</color>
-    <color name="colorYellow2">#EBD827</color>
+    <color name="dimanche1">#FFEB3B</color>
+    <color name="dimanche2">#EBD827</color>
 
-    <color name="colorRed1">#F75A4E</color>
-    <color name="colorRed2">#F81D0D</color>
+    <color name="mardi1">#F75A4E</color>
+    <color name="mardi2">#F81D0D</color>
     
-    <color name="colorPurple1">#D77EF5</color>
-    <color name="colorPurple2">#BF0EDD</color>
+    <color name="mercredi1">#D77EF5</color>
+    <color name="mercredi2">#BF0EDD</color>
 
-    <color name="colorBlue1">#5970E7</color>
-    <color name="colorBlue2">#2040EC</color>
+    <color name="jeudi1">#5970E7</color>
+    <color name="jeudi2">#2040EC</color>
 
-    <color name="colorGreen1">#4CE751</color>
-    <color name="colorGreen2">#11A214</color>
+    <color name="vendredi1">#4CE751</color>
+    <color name="vendredi2">#11A214</color>
 
-    <color name="colorlightBlue1">#47E1F5</color>
-    <color name="colorlightBlue2">#0A8EA3</color>
+    <color name="samedi1">#47E1F5</color>
+    <color name="samedi2">#0A8EA3</color>
 </resources>

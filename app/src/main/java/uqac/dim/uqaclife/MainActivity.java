@@ -3,6 +3,7 @@ package uqac.dim.uqaclife;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,6 +26,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -497,11 +500,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         changeLanguage(sharedPref.getString("Language","fr"));
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_test);
         weeklist_layout = findViewById(R.id.weekList);
         show_week(null);
@@ -525,7 +528,7 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent serviceIntent = new Intent(this,NotifService.class);
         //serviceIntent.putExtra("bool",b);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
     public void stopService(View v)
     {
@@ -657,7 +660,7 @@ public class MainActivity extends AppCompatActivity {
                         t.setLayoutParams(l);
                         t.setText(getString(days[i]));
                         t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                        t.setTextColor(0xffffffff);
+                        t.setTextColor(getColor(R.color.colorWhite));
                         t.setBackground(gd);
                         t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                         t.setTypeface(Typeface.DEFAULT_BOLD);
@@ -732,29 +735,30 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                                 final String deb = lesson.getString("start");
-                                final int bbbb = ((i + 1) % 7) + 1;
-
-
+                                final int lessonDay = ((i + 1) % 7) + 1;
                                 final boolean notify = sharedPref.getBoolean("switchnotif",true);
+                                final boolean service = sharedPref.getBoolean("switchservice",false);
                                 if(notify) {
+                                    int toadd  = Integer.parseInt(sharedPref.getString("minutetoadd","0")) * 60000;
+
                                     Calendar cal = Calendar.getInstance();
                                     Calendar toret = Calendar.getInstance();
                                     int hour = cal.get(Calendar.HOUR_OF_DAY);
                                     int min = cal.get(Calendar.MINUTE);
-                                    int daye = cal.get(Calendar.DAY_OF_WEEK);
+                                    int CurrentDay = cal.get(Calendar.DAY_OF_WEEK);
                                     String debh = deb.substring(0, 2);
                                     String debm = deb.substring(3, 5);
                                     int h = 3600000 * (Integer.parseInt(debh) - hour);
                                     int m = 60000 * (Integer.parseInt(debm) - min);
-                                    int d = 86400000 * (bbbb - daye);
-                                    int totwait = h + d + m < 0 ? h + d + m + 604800000 : h + d + m;
+                                    int d = 86400000 * (lessonDay - CurrentDay);
+                                    int totwait = h + d + m- toadd < 0 ? h + d + m-toadd + 604800000 : h + d + m-toadd;
                                     toret.add(Calendar.MILLISECOND, totwait);
                                     Intent notificationIntent = new Intent(getBaseContext(), NotifReceiver.class);
                                     notificationIntent.putExtra("nom", name);
                                     notificationIntent.putExtra("room", room2);
+                                    notificationIntent.putExtra("service",service);
                                     notificationIntent.putExtra("start",start);
                                     notificationIntent.putExtra("end",end);
-                                    Log.i("PATATE",start + "   " + end);
                                     PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, toret.getTimeInMillis(), broadcast);
                                     id_notif++;
@@ -765,7 +769,7 @@ public class MainActivity extends AppCompatActivity {
                                 (cours.findViewById(R.id.notif)).setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        //JAIME LA GROSSE BITE
+                                        //SEB
                                         if(notify) {
                                             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                                             Calendar cal = Calendar.getInstance();

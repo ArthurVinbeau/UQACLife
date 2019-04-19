@@ -6,12 +6,15 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.NumberPicker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,14 +71,31 @@ public class settingsActivity extends MainActivity {
                 collapse(v);
             }
         };
+        //SEB
         findViewById(R.id.Notifications).setOnClickListener(onClickListener);
         Switch s = findViewById(R.id.switch1);
+        Switch s2 = findViewById(R.id.switch2);
+        //EditText e1 = findViewById(R.id.minute_delay);
+        Button b1 = findViewById(R.id.validate);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveMinute(v);
+            }
+        });
         s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Activenotif(v);
             }
         });
+        s2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActiveService(v);
+            }
+        });
+
 
         findViewById(R.id.Styles).setOnClickListener(onClickListener);
         findViewById(R.id.Language).setOnClickListener(onClickListener);
@@ -99,8 +119,16 @@ public class settingsActivity extends MainActivity {
         });
 
         boolean statenotifswitch = sharedPref.getBoolean("switchnotif",true);
+        boolean stateservswitch = sharedPref.getBoolean("switchservice",false);
         Switch swich_notif = (Switch)findViewById(R.id.switch1);
+        Switch swich_sevice = (Switch)findViewById(R.id.switch1);
+        EditText button = findViewById(R.id.minute_delay);
         swich_notif.setChecked(statenotifswitch);
+        swich_sevice.setChecked(stateservswitch);
+        button.setText(sharedPref.getString("minutetoadd",""));
+
+
+
 
     }
 
@@ -190,6 +218,12 @@ public class settingsActivity extends MainActivity {
     public void Activenotif(View v)
     {
         Switch s = (Switch)findViewById(R.id.switch1);
+        Switch s2 = (Switch)findViewById(R.id.switch2);
+        if(!s.isChecked()) {
+            s2.setChecked(false);
+            stopService(v);
+            sharedPref.edit().putBoolean("switchservice",s.isChecked()).apply();
+        }
         sharedPref.edit().putBoolean("switchnotif",s.isChecked()).apply();
         show_week(v);
 
@@ -197,7 +231,36 @@ public class settingsActivity extends MainActivity {
     public void ActiveService(View v)
     {
         Switch s = (Switch)findViewById(R.id.switch2);
+        Switch s2 = (Switch)findViewById(R.id.switch1);
+        if(s.isChecked()) {
+            s2.setChecked(true);
+            startService(v);
+            sharedPref.edit().putBoolean("switchnotif",s.isChecked()).apply();
+        }
+        else
+        {
+            stopService(v);
+        }
         sharedPref.edit().putBoolean("switchservice",s.isChecked()).apply();
+        show_week(v);
+
+    }
+
+    public void SaveMinute(View v)
+    {
+        EditText e1 = findViewById(R.id.minute_delay);
+        String s = e1.getText().toString();
+        Boolean isminute = true;
+        for(int i = 0; i< s.length() && isminute;i++){
+            if(s.charAt(i)<'0' ||s.charAt(i)>'9')
+                isminute = false;
+        }
+        if(isminute && s.length()< 3)
+            sharedPref.edit().putString("minutetoadd",s).apply();
+        else{
+            sharedPref.edit().putString("minutetoadd","").apply();
+            e1.setText("");
+        }
         show_week(v);
 
     }

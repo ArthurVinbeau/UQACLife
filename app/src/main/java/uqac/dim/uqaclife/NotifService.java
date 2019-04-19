@@ -23,48 +23,30 @@ public class NotifService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Calendar cal = Calendar.getInstance();
-        int hour = cal.get(Calendar.HOUR_OF_DAY);
-        int min = cal.get(Calendar.MINUTE);
-        int day = cal.get(Calendar.DAY_OF_WEEK);
-        String debut = intent.getStringExtra("deb");
-        String debh = debut.substring(0, 2);
-        String debm = debut.substring(3, 5);
-        int h = 3600000 * (Integer.parseInt(debh) - hour);
-        int m = 60000 * (Integer.parseInt(debm) - min);
-        int d = 86400000 * (intent.getIntExtra("day", -1) - day);
-        int totwait = h + d + m < 0 ? h + d + m + 604800000 : h + d + m;
-
-        try {
-            Thread.sleep(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (Integer.parseInt(debh) - 1 <= hour && (Integer.parseInt(debm)) <= min && day == intent.getIntExtra("day", -1)) {
-            Intent notificationIntent = new Intent(this, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this,
-                    0, notificationIntent, 0);
-
-            Intent deleteIntent = new Intent(this, MainActivity.class);
-            deleteIntent.putExtra("4", 4);
-            PendingIntent deletePendingIntent = PendingIntent.getService(this,
-                    4,
-                    deleteIntent,
-                    PendingIntent.FLAG_CANCEL_CURRENT);
-
-            android.app.Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setContentTitle((intent.getStringExtra("nom")))
-                    .setContentText(intent.getStringExtra("room"))
-                    .setContentText(Integer.toString(d + h + m))
-                    .setSmallIcon(R.drawable.mini_ul)
-                    .setContentIntent(pendingIntent)
-                    .setDeleteIntent(deletePendingIntent)
-                    .build();
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            notificationManager.notify(4, notification);
-        }
 
 
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                0, notificationIntent, 0);
+
+        Intent deleteIntent = new Intent(this, MainActivity.class);
+        PendingIntent deletePendingIntent = PendingIntent.getService(this,
+                4,
+                deleteIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+
+        android.app.Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle(intent.getStringExtra("nom"))
+                .setContentText(intent.getStringExtra("room"))
+                .setSmallIcon(R.drawable.mini_ul)
+                .setContentIntent(pendingIntent)
+                .setDeleteIntent(deletePendingIntent)
+                .setOngoing(true)
+                .build();
+        //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        //notificationManager.notify(4, notification);
+
+        startForeground(1,notification);
         //do heavy work on a background thread
         //stopSelf();
 
