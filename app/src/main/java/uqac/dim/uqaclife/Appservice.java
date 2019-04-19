@@ -20,7 +20,7 @@ public class Appservice extends Application {
             NotificationChannel serviceChannel = new NotificationChannel(
                     CHANNEL_ID,
                     "Example Service Channel",
-                    NotificationManager.IMPORTANCE_DEFAULT
+                    NotificationManager.IMPORTANCE_HIGH
             );
 
             NotificationManager manager = getSystemService(NotificationManager.class);

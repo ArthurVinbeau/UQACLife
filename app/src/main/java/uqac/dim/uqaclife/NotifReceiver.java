@@ -26,47 +26,55 @@ public class NotifReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent notificationIntent = new Intent(context, NotificationActivity.class);
 
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        stackBuilder.addParentStack(MainActivity.class);
-        stackBuilder.addNextIntent(notificationIntent);
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(100, PendingIntent.FLAG_UPDATE_CURRENT);
-        Notification.Builder builder = new Notification.Builder(context);
+        if(intent.getBooleanExtra("service",false))
+        {
+            Intent serviceintent = new Intent(context, NotifService.class);
+            serviceintent.putExtra("nom", intent.getStringExtra("nom"));
+            serviceintent.putExtra("room", intent.getStringExtra("room"));
+            ContextCompat.startForegroundService(context, serviceintent);
+        }
+        else
+        {
 
-
-        String room = intent.getStringExtra("room");
-
-        Log.i("PATATE",intent.getStringExtra("start") + "    " + intent.getStringExtra("end"));
+            Intent notificationIntent = new Intent(context, NotificationActivity.class);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            stackBuilder.addParentStack(MainActivity.class);
+            stackBuilder.addNextIntent(notificationIntent);
+            PendingIntent pendingIntent = stackBuilder.getPendingIntent(100, PendingIntent.FLAG_UPDATE_CURRENT);
+            Notification.Builder builder = new Notification.Builder(context);
             Notification notification = builder
                     .setContentTitle(intent.getStringExtra("nom"))
-                    .setContentText(room)
+                    .setContentText(intent.getStringExtra("room"))
 //                    .setSmallIcon(R.drawable.mini_ul)
-                    .setSmallIcon(Icon.createWithBitmap(createBitmap(room.substring(3,5),room.substring(5,7),false)))
+                    .setSmallIcon(Icon.createWithBitmap(createBitmap(intent.getStringExtra("room").substring(3, 5), intent.getStringExtra("room").substring(5, 7), false)))
 //                    .setLargeIcon(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_ulrond2)))
-                    .setLargeIcon(Icon.createWithBitmap(createBitmap(intent.getStringExtra("start"),intent.getStringExtra("end"),true)))
+                    .setLargeIcon(Icon.createWithBitmap(createBitmap(intent.getStringExtra("start"), intent.getStringExtra("end"), true)))
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
                     .build();
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder.setChannelId(CHANNEL_ID);
-        }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                builder.setChannelId(CHANNEL_ID);
+            }
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "channel",
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
-            notificationManager.createNotificationChannel(channel);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel(
+                        CHANNEL_ID,
+                        "channel",
+                        NotificationManager.IMPORTANCE_HIGH
+                );
+                notificationManager.createNotificationChannel(channel);
+            }
+            notificationManager.notify(new Random().nextInt(10), notification);
         }
-        notificationManager.notify(new Random().nextInt(100), notification);
 
     }
+
+
 
     private Bitmap createBitmap(String text, Boolean square){
         //text = "a\na";

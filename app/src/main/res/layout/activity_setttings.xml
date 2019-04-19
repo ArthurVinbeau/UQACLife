@@ -167,21 +167,25 @@
                         android:id="@+id/switch2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Switch_service" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:background="@drawable/listview_option"
-                        android:text="Patate"
+                        android:text="@string/Switch_service"
                         android:textSize="20sp" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/minute_delay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/listview_option"
-                        android:text="Patate"
-                        android:textSize="20sp" />
+                        android:ems="10"
+                        android:hint="000"
+                        android:inputType="time"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="true" />
+
+                    <Button
+                        android:id="@+id/validate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Button" />
 
                 </LinearLayout>
 
