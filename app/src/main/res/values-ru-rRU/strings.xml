@@ -40,4 +40,9 @@
     <string name="pondere">	утяжеленный	</string>
     <string name="total">	Всего	</string>
     <string name="search">Поиск</string>
+    <string name="login_log_1">Получение URL для входа и печенье ...</string>
+    <string name="login_log_2">Отправка регистрационной информации ...</string>
+    <string name="login_log_3">Получение кодированного маркера ...</string>
+    <string name="login_log_4">Вход в систему...</string>
+    <string name="login_log_5">Получение расписания ...</string>
 </resources>		

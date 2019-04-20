@@ -40,4 +40,9 @@
     <string name="search">search</string>
     <string name="error_calendar_message">Ana kaluputan nalika loading tanggalan</string>
     <string name="error_grades_message">Kesalahan naliko gelar loading</string>
+    <string name="login_log_1">Njupuk url mlebu lan cookie ...</string>
+    <string name="login_log_2">Ngirim informasi login ...</string>
+    <string name="login_log_3">Nampa koin dienkode ...</string>
+    <string name="login_log_4">Logging in ...</string>
+    <string name="login_log_5">Njupuk jadwal ...</string>
 </resources>

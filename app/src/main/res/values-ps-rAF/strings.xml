@@ -39,4 +39,9 @@
     <string name="pondere">نسبی</string>
     <string name="total">ټول</string>
     <string name="search">لټون</string>
+    <string name="login_log_1">تر لاسه کول د ننوتو په حافظی او کوکيز ...</string>
+    <string name="login_log_2">د ننوت معلومات لېږل ...</string>
+    <string name="login_log_3">راګرځول کوډييزونو نښه ...</string>
+    <string name="login_log_4">ننوځي...</string>
+    <string name="login_log_5">مهال ویش تر لاسه کول ...</string>
 </resources>
