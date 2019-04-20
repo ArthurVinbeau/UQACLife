@@ -40,9 +40,9 @@
     <string name="total">Total</string>
     <string name="search">Chercher</string>
     <string name="error_grades_message">Une erreur est survenue pendant le chargement des notes</string>
-    <string name="login_log_1">Obtenir l\'URL de connexion et les cookies ...</string>
+    <string name="login_log_1">Obtention de l\'URL de connexion et des cookies ...</string>
     <string name="login_log_2">Envoi d\'informations de connexion ...</string>
-    <string name="login_log_3">Récupération jeton ... encodée</string>
-    <string name="login_log_4">Se connecter...</string>
-    <string name="login_log_5">Obtenir calendrier ...</string>
+    <string name="login_log_3">Récupération du token encodé ...</string>
+    <string name="login_log_4">Connexion ...</string>
+    <string name="login_log_5">Obtention du calendrier ...</string>
 </resources>
