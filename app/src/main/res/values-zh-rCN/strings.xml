@@ -40,6 +40,11 @@
     <string name="pondere">加权</string>
     <string name="total">总</string>
     <string name="search">搜索</string>
+    <string name="login_log_1">获取登录URL和饼干...</string>
+    <string name="login_log_2">发送的登录信息...</string>
+    <string name="login_log_3">检索编码的令牌...</string>
+    <string name="login_log_4">在登录...</string>
+    <string name="login_log_5">获取日程...</string>
     <string name="Switch_Notification">启用</string>
     <string name="Switch_service">常驻</string>
     <string name="avancedesnotification">预期的通知</string>

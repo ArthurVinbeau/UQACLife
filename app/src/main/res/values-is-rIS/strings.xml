@@ -40,6 +40,11 @@
     <string name="pondere">vegið</string>
     <string name="total">alls</string>
     <string name="search">leit</string>
+    <string name="login_log_1">Getting innskráningu url og smákökur ...</string>
+    <string name="login_log_2">Sending innskráningarupplýsingar ...</string>
+    <string name="login_log_3">Sækir kóðuð tákn ...</string>
+    <string name="login_log_4">Innskráning...</string>
+    <string name="login_log_5">Getting áætlun ...</string>
     <string name="Switch_Notification">virkja</string>
     <string name="Switch_service">Varanleg</string>
     <string name="avancedesnotification">Tilkynning tilhlökkun</string>

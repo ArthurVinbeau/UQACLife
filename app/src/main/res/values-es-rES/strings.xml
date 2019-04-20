@@ -40,6 +40,11 @@
     <string name="pondere">Ponderado</string>
     <string name="total">Total</string>
     <string name="search">Buscar</string>
+    <string name="login_log_1">Obtener URL de inicio de sesión y las galletas ...</string>
+    <string name="login_log_2">El envío de información de acceso ...</string>
+    <string name="login_log_3">Recuperando señal codificada ...</string>
+    <string name="login_log_4">Iniciar sesión...</string>
+    <string name="login_log_5">Conseguir horario ...</string>
     <string name="Switch_Notification">Habilitar</string>
     <string name="Switch_service">Permanente</string>
     <string name="avancedesnotification">la anticipación de notificación</string>

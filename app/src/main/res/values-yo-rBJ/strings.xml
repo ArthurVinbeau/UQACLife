@@ -40,6 +40,11 @@
     <string name="pondere">ti iwọn</string>
     <string name="total">lapapọ</string>
     <string name="search">àwárí</string>
+    <string name="login_log_1">Ngba wiwọle url ati cookies ...</string>
+    <string name="login_log_2">Fifiranṣẹ awọn alaye wiwọle ...</string>
+    <string name="login_log_3">Retrieving ti yipada àmi ...</string>
+    <string name="login_log_4">Wíwọlé ni ...</string>
+    <string name="login_log_5">Ngba iṣeto ...</string>
     <string name="Switch_Notification">jeki</string>
     <string name="Switch_service">yẹ</string>
     <string name="avancedesnotification">iwifunni ifojusona</string>

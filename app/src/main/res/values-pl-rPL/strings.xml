@@ -40,6 +40,11 @@
     <string name="pondere">ważona</string>
     <string name="total">Całkowity</string>
     <string name="search">Szukaj</string>
+    <string name="login_log_1">Uzyskiwanie URL logowania i ciasteczka ...</string>
+    <string name="login_log_2">Przesyłanie danych logowania ...</string>
+    <string name="login_log_3">Odzyskiwanie zakodowany znak ...</string>
+    <string name="login_log_4">Logowanie...</string>
+    <string name="login_log_5">Pierwsze rozkład ...</string>
     <string name="Switch_Notification">Włączyć</string>
     <string name="Switch_service">Stały</string>
     <string name="avancedesnotification">przewidywanie powiadomienie</string>
