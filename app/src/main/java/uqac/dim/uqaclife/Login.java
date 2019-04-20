@@ -33,6 +33,7 @@ public class Login {
     public String ZeHtml;
     private Login login;
     private SharedPreferences sharedPref;
+    private TextView progressText;
 
     public Login(MainActivity context) {
 
@@ -46,7 +47,13 @@ public class Login {
         Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
     }
 
-    public void login(final String id, final String pwd) {
+    public void login(final String id, final String pwd, final boolean progress) {
+        if (progress) {
+            progressText = mainActivity.findViewById(R.id.progressText);
+
+            progressText.setText("[1/5] " + mainActivity.getString(R.string.login_log_1));
+        }
+
         Log.i("request", "Let's try something else!");
         String url = "https://etudiant.uqac.ca/EtudiantApp/SignIn";
         cookieManager.getCookieStore().removeAll();
@@ -64,14 +71,14 @@ public class Login {
                         Log.i("request", "url : " + url);
                         Log.i("request", cookieManager.getCookieStore().getCookies().toString());
 
-                        postRaw(url, id, pwd);
+                        postRaw(url, id, pwd, progress);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
+                //mainActivity.swipe.setRefreshing(false);
             }
         });
 
@@ -79,12 +86,24 @@ public class Login {
         queue.add(stringRequest);
     }
 
-    private void postRaw(final String url, final String id, final String pwd) {
+    public void login(String id, String pwd) {
+        login(id, pwd, false);
+    }
+
+    private void postRaw(final String url, final String id, final String pwd, final boolean progress) {
+        if (progress) {
+            progressText.setText("[2/5] " + mainActivity.getString(R.string.login_log_2));
+        }
+
         // Post to the extracted url with loginActivity & password to get the last encoded Data
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        if (progress) {
+                            progressText.setText("[3/5] " + mainActivity.getString(R.string.login_log_3));
+                        }
+
                         Log.i("request", response);
 
                         // Extract Data
@@ -106,14 +125,14 @@ public class Login {
                         final String url2 = s.substring(0, s.indexOf("\""));
                         Log.i("request", "url2 : " + url2);
 
-                        postParsed(url2, url, code, idToken, state);
+                        postParsed(url2, url, code, idToken, state, progress);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
+                //mainActivity.swipe.setRefreshing(false);
             }
         }) {
             @Override
@@ -137,7 +156,10 @@ public class Login {
         queue.add(postRequest);
     }
 
-    private void postParsed(String url, final String referer, final String code, final String idToken, final String state) {
+    private void postParsed(String url, final String referer, final String code, final String idToken, final String state, boolean progress) {
+        if (progress) {
+            progressText.setText("[4/5] " + mainActivity.getString(R.string.login_log_4));
+        }
         // Post to the loginActivity url to get the cookies and finally be logged in
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -153,7 +175,7 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
+                //mainActivity.swipe.setRefreshing(false);
             }
         }) {
             @Override
@@ -179,7 +201,10 @@ public class Login {
         queue.add(postRequest);
     }
 
-    public void getSchedule() {
+    public void getSchedule(boolean progress) {
+        if (progress) {
+            progressText.setText("[5/5] " + mainActivity.getString(R.string.login_log_5));
+        }
         String url = "https://etudiant.uqac.ca/Dashboard";
 
         Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
@@ -217,7 +242,8 @@ public class Login {
                                 Log.i("request", response);
                                 //((MainActivity)getParent()).html = response;
                                 //LoginActivity.super.html = response;
-                                mainActivity.truc(response);
+                                //mainActivity.truc(response);
+                                mainActivity.loginActivity.transfer(response);
                                 //finish();
                                 //LoginActivity.super.truc(response);
                             }
@@ -226,7 +252,7 @@ public class Login {
                             public void onErrorResponse(VolleyError error) {
                                 Log.i("request", "That didn't work!");
                                 Log.e("request", error.toString());
-                                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
+                                //mainActivity.swipe.setRefreshing(false);
                             }
                         }) {
                             @Override
@@ -248,7 +274,7 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                ((SwipeRefreshLayout)mainActivity.findViewById(R.id.pullToRefresh)).setRefreshing(false);
+                //mainActivity.swipe.setRefreshing(false);
             }
         });
 
@@ -256,6 +282,10 @@ public class Login {
         stringRequest.setRetryPolicy(def);
         queue.add(stringRequest);
 
+    }
+
+    public void getSchedule() {
+        getSchedule(false);
     }
 
 }

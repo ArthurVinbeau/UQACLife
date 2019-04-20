@@ -61,5 +61,10 @@
     <string name="language_16" translatable="false">Spanish</string>
     <string name="language_17" translatable="false">Yoruba</string>
     <string name="language_18" translatable="false">Zulu</string>
+    <string name="login_log_1">Getting login url and cookies...</string>
+    <string name="login_log_2">Sending login information...</string>
+    <string name="login_log_3">Retrieving encoded token...</string>
+    <string name="login_log_4">Logging in...</string>
+    <string name="login_log_5">Getting schedule...</string>
 
 </resources>
