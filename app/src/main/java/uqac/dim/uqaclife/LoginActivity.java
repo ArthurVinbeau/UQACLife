@@ -1,11 +1,17 @@
 package uqac.dim.uqaclife;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -35,21 +41,31 @@ public class LoginActivity extends MainActivity {
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
 
         ((EditText)findViewById(R.id.login)).setText(sharedPref.getString("login", ""));
-        ((EditText)findViewById(R.id.password)).setText(sharedPref.getString("password", ""));
 
         super.loginActivity = this;
         login = super.login;
     }
 
     public void send(View v) {
+        Button b = (Button) v;
+        b.setEnabled(false);
+        b.setVisibility(View.GONE);
+
         String id = ((EditText)findViewById(R.id.login)).getText().toString();
         String pwd = ((EditText)findViewById(R.id.password)).getText().toString();
 
         sharedPref.edit().putString("login", id).commit();
-        sharedPref.edit().putString("password", pwd).commit();
+        if (((CheckBox)findViewById(R.id.save_password)).isChecked())
+            sharedPref.edit().putString("password", pwd).commit();
 
-        login.login(id, pwd);
+        login.login(id, pwd, true);
+    }
 
+    public void transfer(String html) {
+        sharedPref.edit().putString("json", null).commit();
+        Intent i = new Intent(Intent.EXTRA_HTML_TEXT);
+        i.putExtra("html", html);
+        setResult(Activity.RESULT_OK, i);
         finish();
     }
 

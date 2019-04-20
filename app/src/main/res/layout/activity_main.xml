@@ -124,16 +124,19 @@
             android:layout_gravity="end"
             android:layout_margin="15dip"
             android:background="@drawable/cours"
-            android:backgroundTint="#999"
+            android:backgroundTint="#6EA759"
+            android:elevation="0dp"
             android:onClick="send"
             android:text="@string/Valider"
             android:textColor="#fff"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/debug"
+            android:id="@+id/progressText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
 
     </LinearLayout>
 </ScrollView>
