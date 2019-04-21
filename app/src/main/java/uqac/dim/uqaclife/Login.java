@@ -64,21 +64,31 @@ public class Login {
                     @Override
                     public void onResponse(String response) {
 
-                        // Extract URL
-                        String s = response.substring(response.indexOf("<form method="));
-                        final String url = "https://fs.uqac.ca" + s.substring(s.indexOf("/adfs"), s.indexOf("\" >"));
+                        if (response.contains("/adfs")) {
+                            // Extract URL
+                            String s = response.substring(response.indexOf("<form method="));
+                            final String url = "https://fs.uqac.ca" + s.substring(s.indexOf("/adfs"), s.indexOf("\" >"));
 
-                        Log.i("request", "url : " + url);
-                        Log.i("request", cookieManager.getCookieStore().getCookies().toString());
+                            Log.i("request", "url : " + url);
+                            Log.i("request", cookieManager.getCookieStore().getCookies().toString());
 
-                        postRaw(url, id, pwd, progress);
+                            postRaw(url, id, pwd, progress);
+                        } else {
+                            if (progress)
+                                mainActivity.loginActivity.failLogin(0);
+                            else
+                                mainActivity.failHtml(0);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                //mainActivity.swipe.setRefreshing(false);
+                if (progress)
+                    mainActivity.loginActivity.failLogin(1);
+                else
+                    mainActivity.failHtml(1);
             }
         });
 
@@ -104,36 +114,45 @@ public class Login {
                             progressText.setText("[3/5] " + mainActivity.getString(R.string.login_log_3));
                         }
 
-                        Log.i("request", response);
+                        if (response.contains("code")) {
+                            Log.i("request", response);
 
-                        // Extract Data
-                        String s = response.substring(response.indexOf("value=\"") + 7);
-                        final String code = s.substring(0, s.indexOf("\" />"));
-                        s = s.substring(s.indexOf("value=\"") + 7);
-                        final String idToken = s.substring(0, s.indexOf("\" />"));
-                        s = s.substring(s.indexOf("value=\"") + 7);
-                        final String state = s.substring(0, s.indexOf("\" />"));
-
-
-                        Log.i("request", "code : " + code);
-                        Log.i("request", "idToken : " + idToken);
-                        Log.i("request", "state : " + state);
-                        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
+                            // Extract Data
+                            String s = response.substring(response.indexOf("value=\"") + 7);
+                            final String code = s.substring(0, s.indexOf("\" />"));
+                            s = s.substring(s.indexOf("value=\"") + 7);
+                            final String idToken = s.substring(0, s.indexOf("\" />"));
+                            s = s.substring(s.indexOf("value=\"") + 7);
+                            final String state = s.substring(0, s.indexOf("\" />"));
 
 
-                        s = response.substring(response.indexOf("http"));
-                        final String url2 = s.substring(0, s.indexOf("\""));
-                        Log.i("request", "url2 : " + url2);
+                            Log.i("request", "code : " + code);
+                            Log.i("request", "idToken : " + idToken);
+                            Log.i("request", "state : " + state);
+                            Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
 
-                        postParsed(url2, url, code, idToken, state, progress);
+
+                            s = response.substring(response.indexOf("http"));
+                            final String url2 = s.substring(0, s.indexOf("\""));
+                            Log.i("request", "url2 : " + url2);
+
+                            postParsed(url2, url, code, idToken, state, progress);
+                        } else {
+                            if (progress)
+                                mainActivity.loginActivity.failLogin(2);
+                            else
+                                mainActivity.failHtml(2);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                //mainActivity.swipe.setRefreshing(false);
-            }
+                if (progress)
+                    mainActivity.loginActivity.failLogin(1);
+                else
+                    mainActivity.failHtml(1);            }
         }) {
             @Override
             public byte[] getBody() {
@@ -156,7 +175,7 @@ public class Login {
         queue.add(postRequest);
     }
 
-    private void postParsed(String url, final String referer, final String code, final String idToken, final String state, boolean progress) {
+    private void postParsed(String url, final String referer, final String code, final String idToken, final String state, final boolean progress) {
         if (progress) {
             progressText.setText("[4/5] " + mainActivity.getString(R.string.login_log_4));
         }
@@ -168,15 +187,17 @@ public class Login {
                         Log.i("request", "Post successful");
                         Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
 
-                        getSchedule();
+                        fetchSchedule(progress);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                //mainActivity.swipe.setRefreshing(false);
-            }
+                if (progress)
+                    mainActivity.loginActivity.failLogin(1);
+                else
+                    mainActivity.failHtml(1);            }
         }) {
             @Override
             public byte[] getBody() {
@@ -201,7 +222,18 @@ public class Login {
         queue.add(postRequest);
     }
 
-    public void getSchedule(boolean progress) {
+    public void getSchedule() {
+        if(sharedPref.getString("password", null) == null)
+            mainActivity.startLoginActivity();
+        else if (cookieManager.getCookieStore().getCookies().isEmpty())
+            login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
+        else
+            fetchSchedule(false);
+
+    }
+
+    public void fetchSchedule(final boolean progress) {
+
         if (progress) {
             progressText.setText("[5/5] " + mainActivity.getString(R.string.login_log_5));
         }
@@ -219,9 +251,16 @@ public class Login {
                             Log.i("request", "not logged in! retrying... retry count : " + retrys);
                             if (retrys < maxRetrys) {
                                 retrys++;
-                                login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
+                                if (sharedPref.getString("password", null) == null)
+                                    return;
+                                else
+                                    login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
                             } else
-                                return;
+                            if (progress)
+                                mainActivity.loginActivity.failLogin(2);
+                            else
+                                mainActivity.failHtml(2);
+                            return;
                         }
 
                         Log.i("request", "dashboard");
@@ -240,19 +279,20 @@ public class Login {
 
                                 Log.i("request", "transmitting schedule...");
                                 Log.i("request", response);
-                                //((MainActivity)getParent()).html = response;
-                                //LoginActivity.super.html = response;
-                                //mainActivity.truc(response);
-                                mainActivity.loginActivity.transfer(response);
-                                //finish();
-                                //LoginActivity.super.truc(response);
+                                if (progress)
+                                    mainActivity.loginActivity.transfer(response);
+                                else
+                                    mainActivity.refreshHtml(response);
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Log.i("request", "That didn't work!");
                                 Log.e("request", error.toString());
-                                //mainActivity.swipe.setRefreshing(false);
+                                if (progress)
+                                    mainActivity.loginActivity.failLogin(1);
+                                else
+                                    mainActivity.failHtml(1);
                             }
                         }) {
                             @Override
@@ -274,7 +314,10 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                //mainActivity.swipe.setRefreshing(false);
+                if (progress)
+                    mainActivity.loginActivity.failLogin(1);
+                else
+                    mainActivity.failHtml(1);
             }
         });
 
@@ -282,10 +325,6 @@ public class Login {
         stringRequest.setRetryPolicy(def);
         queue.add(stringRequest);
 
-    }
-
-    public void getSchedule() {
-        getSchedule(false);
     }
 
 }
