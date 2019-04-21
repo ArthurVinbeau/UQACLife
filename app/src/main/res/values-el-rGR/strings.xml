@@ -40,4 +40,9 @@
     <string name="pondere">Σταθμισμένη</string>
     <string name="total">Σύνολο</string>
     <string name="search">Ψάξιμο</string>
+    <string name="login_log_1">Να πάρει την είσοδο url και μπισκότα ...</string>
+    <string name="login_log_2">Αποστολή πληροφοριών σύνδεσης ...</string>
+    <string name="login_log_3">Ανάκτηση κωδικοποιημένη συμβολική ...</string>
+    <string name="login_log_4">Σύνδεση στο ...</string>
+    <string name="login_log_5">Να πάρει το πρόγραμμα ...</string>
 </resources>

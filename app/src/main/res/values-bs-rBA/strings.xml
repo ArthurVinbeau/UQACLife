@@ -40,4 +40,9 @@
     <string name="pondere">ponderirana</string>
     <string name="total">ukupan</string>
     <string name="search">pretraživanje</string>
+    <string name="login_log_1">Dobijanje prijava url i kolače ...</string>
+    <string name="login_log_2">Slanje informacija za prijavu ...</string>
+    <string name="login_log_3">Preuzimam kodirane token ...</string>
+    <string name="login_log_4">Logovanje ...</string>
+    <string name="login_log_5">Getting raspored ...</string>
 </resources>

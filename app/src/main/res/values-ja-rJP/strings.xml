@@ -40,4 +40,9 @@
     <string name="pondere">加重</string>
     <string name="total">トータル</string>
     <string name="search">サーチ</string>
+    <string name="login_log_1">ログインURLとクッキーを取得中...</string>
+    <string name="login_log_2">ログイン情報を送信...</string>
+    <string name="login_log_3">エンコードされたトークンを取得中...</string>
+    <string name="login_log_4">ログイン...</string>
+    <string name="login_log_5">スケジュールを取得中...</string>
 </resources>

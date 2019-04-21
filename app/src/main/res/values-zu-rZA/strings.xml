@@ -40,4 +40,9 @@
     <string name="pondere">ezinesisindo</string>
     <string name="total">Ubude</string>
     <string name="search">Ukucinga</string>
+    <string name="login_log_1">Ukuthola ngemvume-url namakhukhi ...</string>
+    <string name="login_log_2">Ukuthumela ulwazi lokungena ...</string>
+    <string name="login_log_3">Kubuyiswa ithokheni anekhodi ...</string>
+    <string name="login_log_4">Ingena ngemvume ...</string>
+    <string name="login_log_5">Ukuthola uhlelo ...</string>
 </resources>

@@ -40,4 +40,9 @@
     <string name="pondere">ponderati</string>
     <string name="total">summa</string>
     <string name="search">Quaerere</string>
+    <string name="login_log_1">Questus login url et crustula ...</string>
+    <string name="login_log_2">Mittens login notitia ...</string>
+    <string name="login_log_3">Retrieving firmitatis indicium encoded ...</string>
+    <string name="login_log_4">Logging in ...</string>
+    <string name="login_log_5">Questus schedule ...</string>
 </resources>
