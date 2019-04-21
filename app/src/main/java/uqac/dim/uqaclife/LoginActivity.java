@@ -69,4 +69,12 @@ public class LoginActivity extends MainActivity {
         finish();
     }
 
+    public void failLogin(int code) {
+        Button b = findViewById(R.id.button);
+        b.setEnabled(true);
+        b.setVisibility(View.VISIBLE);
+
+        ((TextView)findViewById(R.id.progressText)).setText(code == 0 ? R.string.error_login_credentials : code == 1 ? R.string.error_login_network : R.string.error_login_unknown);
+    }
+
 }

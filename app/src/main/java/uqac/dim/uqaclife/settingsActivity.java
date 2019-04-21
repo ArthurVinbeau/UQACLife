@@ -28,12 +28,12 @@ public class settingsActivity extends MainActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setttings);
-        textView = (TextView)findViewById(R.id.Debug);
+        textView = findViewById(R.id.Debug);
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         findViewById(R.id.Logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPref.edit().putString("loginActivity",null).putString("password",null).putString("json",null).apply();;
+                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).apply();;
             }
         });
         ((TextView)findViewById(R.id.selected_language)).setText(sharedPref.getString("Langue"," Français"));

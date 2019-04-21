@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 //onButtonShowPopupWindowClick(swipe);
-                etPasLAuDela(null);
+                login.getSchedule();
                 //swipe.setRefreshing(false);
             }
         });
@@ -179,8 +179,7 @@ public class MainActivity extends AppCompatActivity {
         //show_week(v);
     }
 
-    public void etPasLAuDela(View v) {
-
+    public void startLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.putExtra("requestCode", 155);
         startActivityForResult(intent, 155);
@@ -385,13 +384,15 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.i("request", e.toString(), e);
             Log.i("Error", e.toString(), e);
-            TextView t = new TextView(this);
+            TextView t = findViewById(R.id.weeklist_error);
+            t = t == null ? new TextView(this) : t;
             t.setText(getString(R.string.error_calendar_message));
             t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             t.setTextColor(0xffffffff);
             t.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[1]));
             t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             t.setTypeface(Typeface.DEFAULT_BOLD);
+            t.setId(R.id.weeklist_error);
             weeklist_layout.addView(t);
         }
 
@@ -409,18 +410,29 @@ public class MainActivity extends AppCompatActivity {
         show_week(v, false);
     }
 
-    public void truc(String html) {
-        //setContentView(R.layout.activity_test);
-        //this.html = html.replace("\r", "");
+    public void refreshHtml(String html) {
+        this.html = html.replace("\r", "");
         sharedPref.edit().putString("json", null).commit();
-        Log.i("request", "truc : " + html.length());
+        Log.i("request", "refreshHtml : " + html.length());
 
         weeklist_layout = findViewById(R.id.weekList);
         swipe = findViewById(R.id.pullToRefresh);
         Log.i("request", "truc : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
         //show_week(null, true);
-        //loginActivity.finish();
-        numeroBis();
+    }
+
+    public void failHtml(int code) {
+        TextView t = findViewById(R.id.weeklist_error);
+        t = t == null ? new TextView(this) : t;
+        t.setText(code == 0 ? R.string.error_login_credentials : code == 1 ? R.string.error_login_network : R.string.error_login_unknown);
+        t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        t.setTextColor(0xffffffff);
+        t.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[1]));
+        t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        t.setTypeface(Typeface.DEFAULT_BOLD);
+        t.setId(R.id.weeklist_error);
+        weeklist_layout.addView(t);
+        swipe.setRefreshing(false);
     }
 
     public void numeroBis() {

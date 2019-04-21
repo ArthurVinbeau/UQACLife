@@ -18,7 +18,10 @@
     <string name="style_1">Default</string>
     <string name="style_2">Default</string>
     <string name="style_3">Default</string>
-    <string name="error_calendar_message">An error occured while loading calendar</string>
+    <string name="error_calendar_message">An error occurred while loading calendar</string>
+    <string name="error_login_credentials">An error occurred while logging in\nInvalid login andor password</string>
+    <string name="error_login_network">An error occurred while logging in\nWebsite unreachable\nCheck your internet connection or try again later</string>
+    <string name="error_login_unknown">An error occurred while logging in\nWebsite unreachable\nCheck your internet connection or try again later</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
