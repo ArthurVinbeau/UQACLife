@@ -130,14 +130,14 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="fleur"
-                android:text="@string/Valider"
-                android:textSize="18sp"
                 android:layout_gravity="end"
                 android:layout_margin="15dip"
                 android:background="@drawable/cours"
-                android:backgroundTint="#999"
-                android:textColor="#fff"/>
+                android:backgroundTint="#6EA759"
+                android:onClick="fleur"
+                android:text="@string/Valider"
+                android:textColor="#fff"
+                android:textSize="18sp" />
 
           <!--  <TextView
                 android:id="@+id/validation"

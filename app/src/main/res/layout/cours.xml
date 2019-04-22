@@ -58,7 +58,6 @@
             android:id="@+id/coursdescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/dimanche2"
             android:orientation="vertical">
 
             <LinearLayout

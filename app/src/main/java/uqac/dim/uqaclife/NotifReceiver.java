@@ -32,6 +32,8 @@ public class NotifReceiver extends BroadcastReceiver {
             Intent serviceintent = new Intent(context, NotifService.class);
             serviceintent.putExtra("nom", intent.getStringExtra("nom"));
             serviceintent.putExtra("room", intent.getStringExtra("room"));
+            serviceintent.putExtra("start",intent.getStringExtra("start"));
+            serviceintent.putExtra("end",intent.getStringExtra("end"));
             ContextCompat.startForegroundService(context, serviceintent);
         }
         else
