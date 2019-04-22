@@ -157,8 +157,8 @@ public class settingsActivity extends MainActivity {
                         });
                     }
                 };
-        t1.setOnClickListener(o2);
-        t2.setOnClickListener(o2);
+        LinearLayout l1 = findViewById(R.id.delay_layout);
+        l1.setOnClickListener(o2);
         t2.setText(Integer.toString(sharedPref.getInt("minutetoadd",0)));
 
     }

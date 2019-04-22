@@ -125,7 +125,7 @@
                     android:orientation="vertical"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toTopOf="@id/view2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Notifications">
@@ -151,6 +151,7 @@
                         android:textSize="20sp" />
 
                     <LinearLayout
+                        android:id="@+id/delay_layout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/listview_option"
