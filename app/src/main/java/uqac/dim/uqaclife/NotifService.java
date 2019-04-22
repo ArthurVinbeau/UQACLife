@@ -1,9 +1,18 @@
 package uqac.dim.uqaclife;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -34,17 +43,43 @@ public class NotifService extends Service {
                 4,
                 deleteIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
+        Notification.Builder builder = new Notification.Builder(getApplicationContext());
+        String s = intent.getStringExtra("room");
+        String s2 = intent.getStringExtra("start");
+        String s3 = intent.getStringExtra("end");
+        if(s == null)
+            s = "       ";
+        if(s2 == null)
+            s2 = "";
+        if(s3 == null)
+            s3 = "";
 
-        android.app.Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+        Notification notification = builder
                 .setContentTitle(intent.getStringExtra("nom"))
                 .setContentText(intent.getStringExtra("room"))
-                .setSmallIcon(R.drawable.mini_ul)
+//                    .setSmallIcon(R.drawable.mini_ul)
+                .setSmallIcon(Icon.createWithBitmap(createBitmap(s.substring(3, 5), s.substring(5, 7), false)))
+//                    .setLargeIcon(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_ulrond2)))
+                .setLargeIcon(Icon.createWithBitmap(createBitmap(s2, s3, true)))
                 .setContentIntent(pendingIntent)
-                .setDeleteIntent(deletePendingIntent)
-                .setOngoing(true)
+                .setAutoCancel(true)
                 .build();
         //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         //notificationManager.notify(4, notification);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setChannelId(CHANNEL_ID);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "channel",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            notificationManager.createNotificationChannel(channel);
+        }
 
         startForeground(1,notification);
         //do heavy work on a background thread
@@ -73,6 +108,24 @@ public class NotifService extends Service {
         }
         return"";
 
+    }
+    private Bitmap createBitmap(String text1, String text2 , Boolean square){
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setTextSize(50);
+        paint.setColor(Color.parseColor("#000000"));
+        paint.setTextAlign(Paint.Align.LEFT);
+        float baseline = -paint.ascent(); // ascent() is negative
+        int width = (int) (paint.measureText(text1)); // round
+        int height = (int) (baseline + paint.descent() );
+        Bitmap image ;
+        if(square)
+            image = Bitmap.createBitmap(Math.max(width,2*height-20), Math.max(width,2*height), Bitmap.Config.ARGB_8888);
+        else
+            image = Bitmap.createBitmap(width, 2*height - 20, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(image);
+        canvas.drawText(text1, 0, baseline -10, paint);
+        canvas.drawText(text2, 0,height + baseline -10, paint);
+        return image;
     }
 
 

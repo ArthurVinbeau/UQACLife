@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -500,7 +501,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        setTheme(R.style.Theme_Design_Light);
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         changeLanguage(sharedPref.getString("Language","fr"));
         setTheme(R.style.AppTheme);
@@ -734,12 +735,13 @@ public class MainActivity extends AppCompatActivity {
                                         //}
                                     }
                                 });
+
                                 final String deb = lesson.getString("start");
                                 final int lessonDay = ((i + 1) % 7) + 1;
                                 final boolean notify = sharedPref.getBoolean("switchnotif",true);
                                 final boolean service = sharedPref.getBoolean("switchservice",false);
                                 if(notify) {
-                                    int toadd  = Integer.parseInt(sharedPref.getString("minutetoadd","0")) * 60000;
+                                    int toadd  = sharedPref.getInt("minutetoadd",0) * 60000;
 
                                     Calendar cal = Calendar.getInstance();
                                     Calendar toret = Calendar.getInstance();
@@ -807,6 +809,8 @@ public class MainActivity extends AppCompatActivity {
             t.setTypeface(Typeface.DEFAULT_BOLD);
             weeklist_layout.addView(t);
         }
+
+
 
     }
 

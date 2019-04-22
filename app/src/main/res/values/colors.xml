@@ -17,6 +17,7 @@
     <color name="colorBlue">#3B54D1</color>
     <color name="colorGreenday">#4EAC52</color>
     <color name="colorlightBlue">#0BBED5</color>
+    <color name="colorGris">#666666</color>
 
     <color name="lessonbqckground">#DDDDDD</color>
     <color name="td_text">#FFFF9B00</color>
@@ -42,4 +43,5 @@
 
     <color name="samedi1">#47E1F5</color>
     <color name="samedi2">#0A8EA3</color>
+
 </resources>

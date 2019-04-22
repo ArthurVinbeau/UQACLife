@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.NumberPicker;
@@ -22,7 +26,7 @@ import java.util.Locale;
 
 public class settingsActivity extends MainActivity {
 
-    int toCollapseNumber = 3;
+    int toCollapseNumber = 2;
     View buttonsToCollapse[] = new View[toCollapseNumber];
     TextView textView;
     List<TextView> languages = new ArrayList<>();
@@ -43,11 +47,10 @@ public class settingsActivity extends MainActivity {
         });
         ((TextView)findViewById(R.id.selected_language)).setText(sharedPref.getString("Langue"," Français"));
 
-        buttonsToCollapse[0] = findViewById(R.id.styles_list);
-        buttonsToCollapse[1] = findViewById(R.id.language_list);
-        buttonsToCollapse[2] =  findViewById(R.id.notifications_list);
+        buttonsToCollapse[0] = findViewById(R.id.language_list);
+        buttonsToCollapse[1] =  findViewById(R.id.notifications_list);
 
-        for(int index=1; index<((ViewGroup)buttonsToCollapse[1]).getChildCount(); index++) {
+        for(int index=1; index<((ViewGroup)buttonsToCollapse[1]).getChildCount()-1; index++) {
             languages.add((TextView)(((ViewGroup)buttonsToCollapse[1]).getChildAt(index)));
         }
 
@@ -65,7 +68,7 @@ public class settingsActivity extends MainActivity {
             }
         }
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
+        final View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 collapse(v);
@@ -76,13 +79,7 @@ public class settingsActivity extends MainActivity {
         Switch s = findViewById(R.id.switch1);
         Switch s2 = findViewById(R.id.switch2);
         //EditText e1 = findViewById(R.id.minute_delay);
-        Button b1 = findViewById(R.id.validate);
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SaveMinute(v);
-            }
-        });
+
         s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,8 +93,6 @@ public class settingsActivity extends MainActivity {
             }
         });
 
-
-        findViewById(R.id.Styles).setOnClickListener(onClickListener);
         findViewById(R.id.Language).setOnClickListener(onClickListener);
 
         ((EditText)findViewById(R.id.searchEditText)).addTextChangedListener(new TextWatcher() {
@@ -120,15 +115,51 @@ public class settingsActivity extends MainActivity {
 
         boolean statenotifswitch = sharedPref.getBoolean("switchnotif",true);
         boolean stateservswitch = sharedPref.getBoolean("switchservice",false);
+
         Switch swich_notif = (Switch)findViewById(R.id.switch1);
-        Switch swich_sevice = (Switch)findViewById(R.id.switch1);
-        EditText button = findViewById(R.id.minute_delay);
+        Switch swich_sevice = (Switch)findViewById(R.id.switch2);
         swich_notif.setChecked(statenotifswitch);
         swich_sevice.setChecked(stateservswitch);
-        button.setText(sharedPref.getString("minutetoadd",""));
+        TextView t1 = findViewById(R.id.textView5);
+        TextView t2 = findViewById(R.id.textView6);
+        View.OnClickListener o2 =
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LayoutInflater inflater = (LayoutInflater)
+                                getSystemService(LAYOUT_INFLATER_SERVICE);
+                        View popupView = inflater.inflate(R.layout.popup_timeactivity, null);
 
+                        // create the popup window
+                        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                        boolean focusable = true; // lets taps outside the popup also dismiss it
+                        final NumberPicker np = popupView.findViewById(R.id.NumberPicker1);
+                        Button b = popupView.findViewById(R.id.button2);
 
+                        np.setMinValue(0);
+                        np.setMaxValue(59);
+                        np.setValue(sharedPref.getInt("minutetoadd", 0));
+                        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
+                        // show the popup window
+                        // which view you pass in doesn't matter, it is only used for the window tolken
+                        popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+                        b.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                TextView T1 = findViewById(R.id.textView6);
+                                sharedPref.edit().putInt("minutetoadd", np.getValue()).apply();
+                                popupWindow.dismiss();
+                                T1.setText(Integer.toString(np.getValue()));
+                                show_week(v);
+                            }
+                        });
+                    }
+                };
+        t1.setOnClickListener(o2);
+        t2.setOnClickListener(o2);
+        t2.setText(Integer.toString(sharedPref.getInt("minutetoadd",0)));
 
     }
 
@@ -136,9 +167,6 @@ public class settingsActivity extends MainActivity {
         View selected = null;
         boolean rotateV = false;
               switch (v.getId()) {
-            case R.id.Styles:
-                selected = findViewById(R.id.styles_list);
-                break;
             case R.id.Language:
                 selected = findViewById(R.id.language_list);
                 break;
@@ -167,9 +195,6 @@ public class settingsActivity extends MainActivity {
         TextView changeText = null;
         String newText = (String)((TextView) v).getText();
         switch (parent.getId()) {
-            case R.id.styles_list:
-                changeText = (TextView) findViewById(R.id.selected_style);
-                break;
             case R.id.language_list:
                 changeText = (TextView) findViewById(R.id.selected_language);
                 changeLanguage(newText);
@@ -246,22 +271,7 @@ public class settingsActivity extends MainActivity {
 
     }
 
-    public void SaveMinute(View v)
-    {
-        EditText e1 = findViewById(R.id.minute_delay);
-        String s = e1.getText().toString();
-        Boolean isminute = true;
-        for(int i = 0; i< s.length() && isminute;i++){
-            if(s.charAt(i)<'0' ||s.charAt(i)>'9')
-                isminute = false;
-        }
-        if(isminute && s.length()< 3)
-            sharedPref.edit().putString("minutetoadd",s).apply();
-        else{
-            sharedPref.edit().putString("minutetoadd","").apply();
-            e1.setText("");
-        }
-        show_week(v);
 
-    }
+
+
 }
