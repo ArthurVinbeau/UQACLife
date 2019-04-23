@@ -45,4 +45,14 @@
     <string name="login_log_3">检索编码的令牌...</string>
     <string name="login_log_4">在登录...</string>
     <string name="login_log_5">获取日程...</string>
+    <string name="error_login_credentials_1">在登录时出现错误：</string>
+    <string name="error_login_credentials_2">无效的登录名和/或密码</string>
+    <string name="error_login_network_1">在登录时出现错误：</string>
+    <string name="error_login_network_2">网站无法访问</string>
+    <string name="error_login_network_3">请检查您的Internet连接或稍后再试</string>
+    <string name="error_login_unknown_1">在登录时出现未知错误</string>
+    <string name="error_login_unknown_2">请检查您的Internet连接或稍后再试</string>
+    <string name="login_log_6">获取周期ID ...</string>
+    <string name="login_log_7">当然检索列表...</string>
+    <string name="login_log_8">检索成绩...</string>
 </resources>

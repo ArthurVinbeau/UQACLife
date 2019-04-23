@@ -45,4 +45,14 @@
     <string name="login_log_3">Preuzimam kodirane token ...</string>
     <string name="login_log_4">Logovanje ...</string>
     <string name="login_log_5">Getting raspored ...</string>
+    <string name="error_login_credentials_1">Došlo je do greške dok se ulogujete:</string>
+    <string name="error_login_credentials_2">Nevažećih prijava i / ili lozinka</string>
+    <string name="error_login_network_1">Došlo je do greške dok se ulogujete:</string>
+    <string name="error_login_network_2">website nedostupan</string>
+    <string name="error_login_network_3">Provjerite svoje internet vezu ili pokušajte ponovo kasnije</string>
+    <string name="error_login_unknown_1">Došlo je do nepoznate Greška prilikom prijavljivanja</string>
+    <string name="error_login_unknown_2">Provjerite svoje internet vezu ili pokušajte ponovo kasnije</string>
+    <string name="login_log_6">Dobijanje period id ...</string>
+    <string name="login_log_7">Preuzimam popis naravno ...</string>
+    <string name="login_log_8">Preuzimam razreda ...</string>
 </resources>

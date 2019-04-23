@@ -45,4 +45,14 @@
     <string name="login_log_3">Kubuyiswa ithokheni anekhodi ...</string>
     <string name="login_log_4">Ingena ngemvume ...</string>
     <string name="login_log_5">Ukuthola uhlelo ...</string>
+    <string name="error_login_credentials_1">Kuvele iphutha ngenkathi ngemvume ku:</string>
+    <string name="error_login_credentials_2">ngemvume okungavumelekile kanye / noma iphasiwedi</string>
+    <string name="error_login_network_1">Kuvele iphutha ngenkathi ngemvume ku:</string>
+    <string name="error_login_network_2">Iwebhusayithi ingatholakali</string>
+    <string name="error_login_network_3">Hlola uxhumano lwakho lwe noma uzame futhi emuva kwesikhathi</string>
+    <string name="error_login_unknown_1">Kwenzeke iphutha elingaziwa ngesikhathi ngemvume ku</string>
+    <string name="error_login_unknown_2">Hlola uxhumano lwakho lwe noma uzame futhi emuva kwesikhathi</string>
+    <string name="login_log_6">Ukuthola isikhathi-id ...</string>
+    <string name="login_log_7">Kubuyiswa uhlu lwe-course ...</string>
+    <string name="login_log_8">Kubuyiswa amamaki ...</string>
 </resources>

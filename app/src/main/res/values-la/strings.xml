@@ -45,4 +45,14 @@
     <string name="login_log_3">Retrieving firmitatis indicium encoded ...</string>
     <string name="login_log_4">Logging in ...</string>
     <string name="login_log_5">Questus schedule ...</string>
+    <string name="error_login_credentials_1">Error occurrit colligationem in:</string>
+    <string name="error_login_credentials_2">Aliquam login et / vel tessera fuit</string>
+    <string name="error_login_network_1">Error occurrit colligationem in:</string>
+    <string name="error_login_network_2">impossibile website</string>
+    <string name="error_login_network_3">Reprehendo vestri conexio seu Mox iterum conare</string>
+    <string name="error_login_unknown_1">Error incognitus occurrit in colligationem</string>
+    <string name="error_login_unknown_2">Reprehendo vestri conexio seu Mox iterum conare</string>
+    <string name="login_log_6">Questus id tempus ...</string>
+    <string name="login_log_7">Retrieving utique album ...</string>
+    <string name="login_log_8">Retrieving grades ...</string>
 </resources>
