@@ -1,9 +1,9 @@
 package uqac.dim.uqaclife;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -27,13 +27,21 @@ import static android.content.Context.MODE_PRIVATE;
 public class Login {
 
     private MainActivity mainActivity;
+    private GradesActivity gradesActivity;
     private RequestQueue queue;
-    private CookieManager cookieManager;
+    private static CookieManager cookieManager;
     private int retrys;
     private int maxRetrys = 2;
     private DefaultRetryPolicy def;
     private SharedPreferences sharedPref;
     private TextView progressText;
+
+    public static boolean flushCookies() {
+        if (cookieManager == null)
+            return false;
+        cookieManager.getCookieStore().removeAll();
+        return true;
+    }
 
     public Login(MainActivity context) {
 
@@ -41,17 +49,19 @@ public class Login {
         mainActivity = context;
         retrys = 0;
         def = new DefaultRetryPolicy(5000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        cookieManager = new CookieManager();
+        if (cookieManager == null)
+            cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
         sharedPref = mainActivity.getSharedPreferences(mainActivity.getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
     }
 
-    public void login(final String id, final String pwd, final boolean progress) {
-        if (progress) {
+    public void login(final String id, final String pwd, final int code) {
+        if (code > 0) {
             progressText = mainActivity.findViewById(R.id.progressText);
+            progressText.setVisibility(View.VISIBLE);
 
-            progressText.setText("[1/5] " + mainActivity.getString(R.string.login_log_1));
+            progressText.setText("[1/" + (code == 1 ? 5 : 7 ) + "] " + mainActivity.getString(R.string.login_log_1));
         }
 
         Log.i("request", "Let's try something else!");
@@ -72,12 +82,14 @@ public class Login {
                             Log.i("request", "url : " + url);
                             Log.i("request", cookieManager.getCookieStore().getCookies().toString());
 
-                            postRaw(url, id, pwd, progress);
+                            postRaw(url, id, pwd, code);
                         } else {
-                            if (progress)
-                                mainActivity.loginActivity.failLogin(0);
+                            if (code == 0)
+                                mainActivity.failHtml(1);
+                            else if (code == 2)
+                                gradesActivity.failHtml(1);
                             else
-                                mainActivity.failHtml(0);
+                                mainActivity.loginActivity.failLogin(1);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -85,10 +97,12 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                if (progress)
-                    mainActivity.loginActivity.failLogin(1);
-                else
+                if (code == 0)
                     mainActivity.failHtml(1);
+                else if (code == 2)
+                    gradesActivity.failHtml(1);
+                else
+                    mainActivity.loginActivity.failLogin(1);
             }
         });
 
@@ -97,12 +111,12 @@ public class Login {
     }
 
     public void login(String id, String pwd) {
-        login(id, pwd, false);
+        login(id, pwd, 0);
     }
 
-    private void postRaw(final String url, final String id, final String pwd, final boolean progress) {
-        if (progress) {
-            progressText.setText("[2/5] " + mainActivity.getString(R.string.login_log_2));
+    private void postRaw(final String url, final String id, final String pwd, final int codeBis) {
+        if (codeBis > 0) {
+            progressText.setText("[2/" + (codeBis == 1 ? 5 : 7) + "] " + mainActivity.getString(R.string.login_log_2));
         }
 
         // Post to the extracted url with loginActivity & password to get the last encoded Data
@@ -110,11 +124,11 @@ public class Login {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (progress) {
-                            progressText.setText("[3/5] " + mainActivity.getString(R.string.login_log_3));
+                        if (codeBis > 0) {
+                            progressText.setText("[3/" + (codeBis == 1 ? 5 : 7) + "] " + mainActivity.getString(R.string.login_log_3));
                         }
 
-                        if (response.contains("code")) {
+                        if (!response.contains("<div id=\"passwordArea\">")) {
                             Log.i("request", response);
 
                             // Extract Data
@@ -136,12 +150,15 @@ public class Login {
                             final String url2 = s.substring(0, s.indexOf("\""));
                             Log.i("request", "url2 : " + url2);
 
-                            postParsed(url2, url, code, idToken, state, progress);
+                            postParsed(url2, url, code, idToken, state, codeBis);
                         } else {
-                            if (progress)
-                                mainActivity.loginActivity.failLogin(2);
+                            if (codeBis == 0)
+                                mainActivity.failHtml(0);
+                            else if (codeBis == 2)
+                                gradesActivity.failHtml(0);
                             else
-                                mainActivity.failHtml(2);
+                                mainActivity.loginActivity.failLogin(0);
+
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -149,10 +166,13 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                if (progress)
-                    mainActivity.loginActivity.failLogin(1);
+                if (codeBis == 0)
+                    mainActivity.failHtml(1);
+                else if (codeBis == 2)
+                    gradesActivity.failHtml(1);
                 else
-                    mainActivity.failHtml(1);            }
+                    mainActivity.loginActivity.failLogin(1);
+            }
         }) {
             @Override
             public byte[] getBody() {
@@ -175,9 +195,9 @@ public class Login {
         queue.add(postRequest);
     }
 
-    private void postParsed(String url, final String referer, final String code, final String idToken, final String state, final boolean progress) {
-        if (progress) {
-            progressText.setText("[4/5] " + mainActivity.getString(R.string.login_log_4));
+    private void postParsed(String url, final String referer, final String code, final String idToken, final String state, final int codeBis) {
+        if (codeBis > 0) {
+            progressText.setText("[4/" + (codeBis == 1 ? 5 : 7) + "] " + mainActivity.getString(R.string.login_log_4));
         }
         // Post to the loginActivity url to get the cookies and finally be logged in
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -187,17 +207,29 @@ public class Login {
                         Log.i("request", "Post successful");
                         Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
 
-                        fetchSchedule(progress);
+                        if (codeBis == 2)
+                            fetchGrades();
+                        else if (codeBis == 3) {
+                            mainActivity.loginActivity.finish();
+                            Intent intent = new Intent(mainActivity.getApplicationContext(), GradesActivity.class);
+                            intent.putExtra("requestCode", 42);
+                            mainActivity.startActivityForResult(intent, 42);
+                        }
+                        else
+                            fetchSchedule(codeBis == 1);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                if (progress)
-                    mainActivity.loginActivity.failLogin(1);
+                if (codeBis == 0)
+                    mainActivity.failHtml(1);
+                else if (codeBis == 2)
+                    gradesActivity.failHtml(1);
                 else
-                    mainActivity.failHtml(1);            }
+                    mainActivity.loginActivity.failLogin(1);
+            }
         }) {
             @Override
             public byte[] getBody() {
@@ -239,17 +271,14 @@ public class Login {
 
                         if (!response.contains("aria-labelledby=\"Trimestre-dropdown\"")) {
                             Log.i("request", "not logged in! retrying... retry count : " + retrys);
-                            if (retrys < maxRetrys) {
-                                retrys++;
-                                if (sharedPref.getString("password", null) == null)
-                                    return;
+                            if (retrys++ < maxRetrys) {
+                                getSchedule();
+                            } else {
+                                if (progress)
+                                    mainActivity.loginActivity.failLogin(2);
                                 else
-                                    login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
-                            } else
-                            if (progress)
-                                mainActivity.loginActivity.failLogin(2);
-                            else
-                                mainActivity.failHtml(2);
+                                    mainActivity.failHtml(2);
+                            }
                             return;
                         }
 
@@ -268,7 +297,7 @@ public class Login {
                             public void onResponse(String response) {
 
                                 Log.i("request", "transmitting schedule...");
-                                Log.i("request", response);
+                                //Log.i("request", response);
                                 if (progress)
                                     mainActivity.loginActivity.transfer(response);
                                 else
@@ -318,20 +347,43 @@ public class Login {
     }
 
     public void getSchedule() {
-        if(sharedPref.getString("password", null) == null)
-            mainActivity.startLoginActivity();
-        else if (cookieManager.getCookieStore().getCookies().isEmpty())
-            login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
-        else
+        Log.i("request", "getSchedule cookies : " + cookieManager.getCookieStore().getCookies());
+        if (cookieManager.getCookieStore().getCookies().isEmpty()) {
+            if (sharedPref.getString("password", null) == null)
+                mainActivity.startLoginActivity();
+            else
+                login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
+        } else {
             fetchSchedule(false);
+        }
 
     }
 
-    public void getGrades(final gradesActivity gradesAct) {
+    public void getGrades(GradesActivity gradesAct) {
         Log.i("request", "Let's get some grades!");
         Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies());
+        gradesActivity = gradesAct;
+
+        if (cookieManager.getCookieStore().getCookies().isEmpty()) {
+            if(sharedPref.getString("password", null) == null) {
+                gradesActivity.finish();
+                Intent intent = new Intent(mainActivity.getApplicationContext(), LoginActivity.class);
+                intent.putExtra("requestCode", 156);
+                intent.putExtra("grades", true);
+                mainActivity.startActivityForResult(intent, 156);
+            } else {
+                login(sharedPref.getString("login", ""), sharedPref.getString("password", ""), 2);
+            }
+        } else {
+            progressText = mainActivity.findViewById(R.id.progressText);
+            fetchGrades();
+        }
+    }
+
+    private void fetchGrades() {
 
         String url = "https://etudiant.uqac.ca/Dashboard";
+        progressText.setText("[5/7] " + mainActivity.getString(R.string.login_log_6));
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -339,15 +391,13 @@ public class Login {
                     public void onResponse(String response) {
 
                         if (!response.contains("aria-labelledby=\"Trimestre-dropdown\"")) {
-                            Log.i("request", "not logged in! retrying... retry count : " + retrys);
-                            if (retrys < maxRetrys) {
-                                retrys++;
-                                if (sharedPref.getString("password", null) == null)
-                                    return;
-                                else
-                                    login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
-                            } else
-                            gradesAct.failHtml(2);
+                            if (retrys++ < maxRetrys) {
+                                Log.i("request", "not logged in! retrying... retry count : " + retrys);
+                                cookieManager.getCookieStore().removeAll();
+                                getGrades(gradesActivity);
+                            } else {
+                                gradesActivity.failHtml(2);
+                            }
                             return;
                         }
 
@@ -361,28 +411,33 @@ public class Login {
                         url = "https://etudiant.uqac.ca/Cours/" + id;
                         Log.i("request", "url : " + url);
 
+                        Log.i("request", "Retrieving course list...");
+                        progressText.setText("[6/7] " + mainActivity.getString(R.string.login_log_7));
+
+
                         StringRequest getCourses = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
 
-                                Log.i("request", "Retrieving course list...");
+                                Log.i("request", "Retrieving grades...");
+                                progressText.setText("[7/7] " + mainActivity.getString(R.string.login_log_8));
                                 List<String> urls = new ArrayList<String>();
                                 String s = response.substring(response.indexOf("<li class=\"nav-item\">"));
                                 while (s.contains("href=\"#")) {
                                     s = s.substring(s.indexOf("href=\"#") + 7);
                                     String e = s.substring(0, s.indexOf("\""));
                                     if (e.length() != 7)
-                                        gradesAct.failHtml(2);
+                                        gradesActivity.failHtml(2);
                                     urls.add("https://etudiant.uqac.ca/EtudiantApp/CoursDetailPartial/" + id + "/" + e);
                                 }
-                                fetchGrades((String[]) urls.toArray(), gradesAct);
+                                gradesRequests(urls);
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Log.i("request", "That didn't work!");
                                 Log.e("request", error.toString());
-                                gradesAct.failHtml(1);
+                                gradesActivity.failHtml(1);
                             }
                         });
 
@@ -395,7 +450,7 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                gradesAct.failHtml(1);
+                gradesActivity.failHtml(1);
             }
         });
 
@@ -404,12 +459,15 @@ public class Login {
         queue.add(stringRequest);
     }
 
-    private void fetchGrades(String[] urls, final gradesActivity gradesAct) {
+    private void gradesRequests(List<String> urls) {
+
+        gradesActivity.count = urls.size();
 
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                gradesAct.showGrades(response);
+                progressText.setVisibility(View.GONE);
+                gradesActivity.showGrades(response);
             }
         };
 
@@ -418,7 +476,7 @@ public class Login {
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
                 Log.e("request", error.toString());
-                gradesAct.failHtml(1);
+                gradesActivity.failHtml(1);
             }
         };
 
