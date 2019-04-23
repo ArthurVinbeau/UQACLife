@@ -1,5 +1,6 @@
 package uqac.dim.uqaclife;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -38,11 +39,13 @@ public class settingsActivity extends MainActivity {
         setContentView(R.layout.activity_setttings);
         textView = (TextView)findViewById(R.id.Debug);
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
+        final Activity curentActivity = this;
         findViewById(R.id.Logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sharedPref.edit().putString("login",null).apply();
                 sharedPref.edit().putString("password",null).apply();
+                curentActivity.finish();
             }
         });
         ((TextView)findViewById(R.id.selected_language)).setText(sharedPref.getString("Langue"," Français"));
@@ -94,6 +97,8 @@ public class settingsActivity extends MainActivity {
         });
 
         findViewById(R.id.Language).setOnClickListener(onClickListener);
+        findViewById(R.id.selected_language).setOnClickListener(onClickListener);
+        findViewById(R.id.notification_arrow).setOnClickListener(onClickListener);
 
         ((EditText)findViewById(R.id.searchEditText)).addTextChangedListener(new TextWatcher() {
             @Override
@@ -168,9 +173,11 @@ public class settingsActivity extends MainActivity {
         boolean rotateV = false;
               switch (v.getId()) {
             case R.id.Language:
+            case R.id.selected_language:
                 selected = findViewById(R.id.language_list);
                 break;
             case R.id.Notifications:
+            case R.id.notification_arrow:
                 rotateV = true;
                 selected = findViewById(R.id.notifications_list);
                 break;
