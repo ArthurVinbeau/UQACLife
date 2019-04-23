@@ -45,6 +45,16 @@
     <string name="login_log_3">エンコードされたトークンを取得中...</string>
     <string name="login_log_4">ログイン...</string>
     <string name="login_log_5">スケジュールを取得中...</string>
+    <string name="error_login_credentials_1">ログイン中にエラーが発生しました：</string>
+    <string name="error_login_credentials_2">無効なログインおよび/またはパスワード</string>
+    <string name="error_login_network_1">ログイン中にエラーが発生しました：</string>
+    <string name="error_login_network_2">ウェブサイトの到達不能</string>
+    <string name="error_login_network_3">インターネット接続を確認するか、後でもう一度試してください</string>
+    <string name="error_login_unknown_1">ログイン中に不明なエラーが発生しました</string>
+    <string name="error_login_unknown_2">インターネット接続を確認するか、後でもう一度試してください</string>
+    <string name="login_log_6">期間のIDを取得中...</string>
+    <string name="login_log_7">コースのリストを取得中...</string>
+    <string name="login_log_8">等級を取得中...</string>
     <string name="Switch_Notification">有効</string>
     <string name="Switch_service">恒久</string>
     <string name="avancedesnotification">通知見越し</string>

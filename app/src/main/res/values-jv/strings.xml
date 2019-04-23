@@ -45,6 +45,16 @@
     <string name="login_log_3">Nampa koin dienkode ...</string>
     <string name="login_log_4">Logging in ...</string>
     <string name="login_log_5">Njupuk jadwal ...</string>
+    <string name="error_login_credentials_1">Ana kaluputan nalika ngangkut barang ing:</string>
+    <string name="error_login_credentials_2">mlebu lan / utawa sandhi ora sah</string>
+    <string name="error_login_network_1">Ana kaluputan nalika ngangkut barang ing:</string>
+    <string name="error_login_network_2">situs web dipunjangkau</string>
+    <string name="error_login_network_3">Priksa sambungan internet utawa nyoba maneh mengko</string>
+    <string name="error_login_unknown_1">Ana sawijining kaluputan sing ora diweruhi nalika ngangkut barang ing</string>
+    <string name="error_login_unknown_2">Priksa sambungan internet utawa nyoba maneh mengko</string>
+    <string name="login_log_6">Njupuk wektu id ...</string>
+    <string name="login_log_7">Nampa dhaftar mesthi ...</string>
+    <string name="login_log_8">Nampa gelar ...</string>
     <string name="Switch_Notification">Aktifake</string>
     <string name="Switch_service">permanen</string>
     <string name="avancedesnotification">Notifikasi nunggu</string>

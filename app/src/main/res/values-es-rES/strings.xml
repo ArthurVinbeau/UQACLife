@@ -48,4 +48,14 @@
     <string name="Switch_Notification">Habilitar</string>
     <string name="Switch_service">Permanente</string>
     <string name="avancedesnotification">la anticipación de notificación</string>
+    <string name="error_login_credentials_1">Se produjo un error al iniciar la sesión en:</string>
+    <string name="error_login_credentials_2">acceso no válido y / o contraseña</string>
+    <string name="error_login_network_1">Se produjo un error al iniciar la sesión en:</string>
+    <string name="error_login_network_2">Sitio web inalcanzable</string>
+    <string name="error_login_network_3">Compruebe su conexión a Internet o a intentarlo más tarde</string>
+    <string name="error_login_unknown_1">Se produjo un error desconocido al conectarse</string>
+    <string name="error_login_unknown_2">Compruebe su conexión a Internet o a intentarlo más tarde</string>
+    <string name="login_log_6">Conseguir periodo Identificación del ...</string>
+    <string name="login_log_7">Recuperando lista de cursos ...</string>
+    <string name="login_log_8">Recuperando grados ...</string>
 </resources>

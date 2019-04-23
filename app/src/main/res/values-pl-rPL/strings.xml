@@ -45,6 +45,16 @@
     <string name="login_log_3">Odzyskiwanie zakodowany znak ...</string>
     <string name="login_log_4">Logowanie...</string>
     <string name="login_log_5">Pierwsze rozkład ...</string>
+    <string name="error_login_credentials_1">Wystąpił błąd podczas logowania:</string>
+    <string name="error_login_credentials_2">Nieprawidłowy login i / lub hasło</string>
+    <string name="error_login_network_1">Wystąpił błąd podczas logowania:</string>
+    <string name="error_login_network_2">Strona internetowa nieosiągalny</string>
+    <string name="error_login_network_3">Sprawdź swoje połączenie internetowe lub spróbuj ponownie później</string>
+    <string name="error_login_unknown_1">Wystąpił nieznany błąd podczas logowania</string>
+    <string name="error_login_unknown_2">Sprawdź swoje połączenie internetowe lub spróbuj ponownie później</string>
+    <string name="login_log_6">Pierwsze okres id ...</string>
+    <string name="login_log_7">Pobieranie listy oczywiście ...</string>
+    <string name="login_log_8">Odzyskiwanie stopnie ...</string>
     <string name="Switch_Notification">Włączyć</string>
     <string name="Switch_service">Stały</string>
     <string name="avancedesnotification">przewidywanie powiadomienie</string>

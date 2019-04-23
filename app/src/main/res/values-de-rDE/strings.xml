@@ -45,6 +45,16 @@
     <string name="login_log_3">Abrufen von codierten Token ...</string>
     <string name="login_log_4">Einloggen...</string>
     <string name="login_log_5">Erster Zeitplan ...</string>
+    <string name="error_login_credentials_1">Ein Fehler ist aufgetreten, während der Anmeldung:</string>
+    <string name="error_login_credentials_2">Ungültige Login und / oder Passwort</string>
+    <string name="error_login_network_1">Ein Fehler ist aufgetreten, während der Anmeldung:</string>
+    <string name="error_login_network_2">Website nicht erreichbar</string>
+    <string name="error_login_network_3">Überprüfen Sie Ihre Internetverbindung oder versuchen Sie es später noch einmal</string>
+    <string name="error_login_unknown_1">Ein unbekannter Fehler ist aufgetreten, während der Anmeldung</string>
+    <string name="error_login_unknown_2">Überprüfen Sie Ihre Internetverbindung oder versuchen Sie es später noch einmal</string>
+    <string name="login_log_6">Erste Periode id ...</string>
+    <string name="login_log_7">Suchen Kursliste ...</string>
+    <string name="login_log_8">Abrufen von Noten ...</string>
     <string name="Switch_Notification">Aktivieren</string>
     <string name="Switch_service">dauerhaft</string>
     <string name="avancedesnotification">Mitteilung Erwartung</string>

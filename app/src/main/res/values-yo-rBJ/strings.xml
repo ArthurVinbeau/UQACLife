@@ -45,6 +45,16 @@
     <string name="login_log_3">Retrieving ti yipada àmi ...</string>
     <string name="login_log_4">Wíwọlé ni ...</string>
     <string name="login_log_5">Ngba iṣeto ...</string>
+    <string name="error_login_credentials_1">An sele nigbati wíwọlé ni:</string>
+    <string name="error_login_credentials_2">Invalid wiwọle ati / tabi awọn ọrọigbaniwọle</string>
+    <string name="error_login_network_1">An sele nigbati wíwọlé ni:</string>
+    <string name="error_login_network_2">aaye ayelujara ọdọ rẹ</string>
+    <string name="error_login_network_3">Ṣayẹwo rẹ ayelujara asopọ tabi gbiyanju lẹẹkansi nigbamii</string>
+    <string name="error_login_unknown_1">Ohun aimọ sele nigbati wíwọlé ni</string>
+    <string name="error_login_unknown_2">Ṣayẹwo rẹ ayelujara asopọ tabi gbiyanju lẹẹkansi nigbamii</string>
+    <string name="login_log_6">Ngba akoko id ...</string>
+    <string name="login_log_7">Retrieving dajudaju akojọ ...</string>
+    <string name="login_log_8">Retrieving onipò ...</string>
     <string name="Switch_Notification">jeki</string>
     <string name="Switch_service">yẹ</string>
     <string name="avancedesnotification">iwifunni ifojusona</string>

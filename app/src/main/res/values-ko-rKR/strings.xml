@@ -45,6 +45,16 @@
     <string name="login_log_3">인코딩 된 토큰을 가져 오는 중 ...</string>
     <string name="login_log_4">에 로그인 ...</string>
     <string name="login_log_5">일정을 받기 ...</string>
+    <string name="error_login_credentials_1">로그인 동안 오류가 발생</string>
+    <string name="error_login_credentials_2">잘못된 로그인 및 / 또는 암호</string>
+    <string name="error_login_network_1">로그인 동안 오류가 발생</string>
+    <string name="error_login_network_2">도달 할 수없는 웹 사이트</string>
+    <string name="error_login_network_3">인터넷 연결을 확인하거나 나중에 다시 시도</string>
+    <string name="error_login_unknown_1">로그인하는 동안 알 수없는 오류가 발생했습니다</string>
+    <string name="error_login_unknown_2">인터넷 연결을 확인하거나 나중에 다시 시도</string>
+    <string name="login_log_6">기간 ID를 얻기 ...</string>
+    <string name="login_log_7">코스 목록을 가져 오는 중 ...</string>
+    <string name="login_log_8">성적을 가져 오는 중 ...</string>
     <string name="Switch_Notification">사용</string>
     <string name="Switch_service">퍼머넌트</string>
     <string name="avancedesnotification">알림 기대</string>

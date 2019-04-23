@@ -45,6 +45,16 @@
     <string name="login_log_3">Haetaan koodattu merkki ...</string>
     <string name="login_log_4">Kirjautua sisään...</string>
     <string name="login_log_5">Getting aikataulu ...</string>
+    <string name="error_login_credentials_1">Tapahtui virhe kirjautumisen:</string>
+    <string name="error_login_credentials_2">Väärän kirjautumisen ja / tai salasana</string>
+    <string name="error_login_network_1">Tapahtui virhe kirjautumisen:</string>
+    <string name="error_login_network_2">verkkosivusto saavuttamaton</string>
+    <string name="error_login_network_3">Tarkista Internet-yhteyden tai yritä myöhemmin uudelleen</string>
+    <string name="error_login_unknown_1">Tuntematon virhe kirjautumisen</string>
+    <string name="error_login_unknown_2">Tarkista Internet-yhteyden tai yritä myöhemmin uudelleen</string>
+    <string name="login_log_6">Getting kauden id ...</string>
+    <string name="login_log_7">Haetaan kurssi lista ...</string>
+    <string name="login_log_8">Haetaan laadut ...</string>
     <string name="Switch_Notification">ota käyttöön</string>
     <string name="Switch_service">Pysyvä</string>
     <string name="avancedesnotification">Ilmoittaminen ennakointi</string>
