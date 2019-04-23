@@ -393,14 +393,13 @@ public class MainActivity extends AppCompatActivity {
             t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             t.setTypeface(Typeface.DEFAULT_BOLD);
             t.setId(R.id.weeklist_error);
-            weeklist_layout.addView(t);
+            weeklist_layout.addView(t, 0);
         }
 
         if (endPull) {
             Log.i("request", "pull off");
             //((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
-            //swipe.setRefreshing(false);
-            trucBis("Dynamique sa mère tu me crash pas à la gueule stp!");
+            swipe.setRefreshing(false);
         }
 
         Log.i("request", "done");
@@ -418,10 +417,11 @@ public class MainActivity extends AppCompatActivity {
         weeklist_layout = findViewById(R.id.weekList);
         swipe = findViewById(R.id.pullToRefresh);
         Log.i("request", "truc : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
-        //show_week(null, true);
+        show_week(null, true);
     }
 
     public void failHtml(int code) {
+        Log.i("request", "fail html : " + code);
         TextView t = findViewById(R.id.weeklist_error);
         t = t == null ? new TextView(this) : t;
         t.setText(code == 0 ? R.string.error_login_credentials : code == 1 ? R.string.error_login_network : R.string.error_login_unknown);
@@ -431,24 +431,8 @@ public class MainActivity extends AppCompatActivity {
         t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         t.setTypeface(Typeface.DEFAULT_BOLD);
         t.setId(R.id.weeklist_error);
-        weeklist_layout.addView(t);
+        weeklist_layout.addView(t, 0);
         swipe.setRefreshing(false);
-    }
-
-    public void numeroBis() {
-        weeklist_layout = findViewById(R.id.weekList);
-        swipe = findViewById(R.id.pullToRefresh);
-        Log.i("request", "numeroBis : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
-    }
-
-    public void trucBis(String ahaCDuDynamique) {
-        Log.i("request", ahaCDuDynamique);
-        ((SwipeRefreshLayout)findViewById(R.id.pullToRefresh)).setRefreshing(false);
-        Log.i("request", "pull : " + (findViewById(R.id.pullToRefresh) != null) + " | weeklist : " + (findViewById(R.id.weekList) != null));
-        //((TextView)findViewById(R.id.debug)).setText("trucbis " + jaja++);
-        Log.i("request", "trucBis " + jaja);
-        //((TextView)findViewById(R.id.debug)).setText(jaja++ + "\n" + html);
-
     }
 
 

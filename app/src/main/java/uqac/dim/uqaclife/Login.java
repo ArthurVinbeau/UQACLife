@@ -16,8 +16,10 @@ import com.android.volley.toolbox.Volley;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -30,8 +32,6 @@ public class Login {
     private int retrys;
     private int maxRetrys = 2;
     private DefaultRetryPolicy def;
-    public String ZeHtml;
-    private Login login;
     private SharedPreferences sharedPref;
     private TextView progressText;
 
@@ -222,17 +222,7 @@ public class Login {
         queue.add(postRequest);
     }
 
-    public void getSchedule() {
-        if(sharedPref.getString("password", null) == null)
-            mainActivity.startLoginActivity();
-        else if (cookieManager.getCookieStore().getCookies().isEmpty())
-            login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
-        else
-            fetchSchedule(false);
-
-    }
-
-    public void fetchSchedule(final boolean progress) {
+    private void fetchSchedule(final boolean progress) {
 
         if (progress) {
             progressText.setText("[5/5] " + mainActivity.getString(R.string.login_log_5));
@@ -325,6 +315,118 @@ public class Login {
         stringRequest.setRetryPolicy(def);
         queue.add(stringRequest);
 
+    }
+
+    public void getSchedule() {
+        if(sharedPref.getString("password", null) == null)
+            mainActivity.startLoginActivity();
+        else if (cookieManager.getCookieStore().getCookies().isEmpty())
+            login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
+        else
+            fetchSchedule(false);
+
+    }
+
+    public void getGrades(final gradesActivity gradesAct) {
+        Log.i("request", "Let's get some grades!");
+        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies());
+
+        String url = "https://etudiant.uqac.ca/Dashboard";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        if (!response.contains("aria-labelledby=\"Trimestre-dropdown\"")) {
+                            Log.i("request", "not logged in! retrying... retry count : " + retrys);
+                            if (retrys < maxRetrys) {
+                                retrys++;
+                                if (sharedPref.getString("password", null) == null)
+                                    return;
+                                else
+                                    login(sharedPref.getString("login", ""), sharedPref.getString("password", ""));
+                            } else
+                            gradesAct.failHtml(2);
+                            return;
+                        }
+
+                        Log.i("request", "dashboard");
+
+                        String s = response.substring(response.indexOf("aria-labelledby=\"Trimestre-dropdown\""));
+                        s = s.substring(s.indexOf("href=\""));
+                        s = s.substring(s.indexOf("href=\"") + 6);
+                        String url = s.substring(0, s.indexOf("\">"));
+                        final String id =  url.split("/")[url.split("/").length - 1];
+                        url = "https://etudiant.uqac.ca/Cours/" + id;
+                        Log.i("request", "url : " + url);
+
+                        StringRequest getCourses = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                Log.i("request", "Retrieving course list...");
+                                List<String> urls = new ArrayList<String>();
+                                String s = response.substring(response.indexOf("<li class=\"nav-item\">"));
+                                while (s.contains("href=\"#")) {
+                                    s = s.substring(s.indexOf("href=\"#") + 7);
+                                    String e = s.substring(0, s.indexOf("\""));
+                                    if (e.length() != 7)
+                                        gradesAct.failHtml(2);
+                                    urls.add("https://etudiant.uqac.ca/EtudiantApp/CoursDetailPartial/" + id + "/" + e);
+                                }
+                                fetchGrades((String[]) urls.toArray(), gradesAct);
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.i("request", "That didn't work!");
+                                Log.e("request", error.toString());
+                                gradesAct.failHtml(1);
+                            }
+                        });
+
+                        getCourses.setRetryPolicy(def);
+                        queue.add(getCourses);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("request", "That didn't work!");
+                Log.e("request", error.toString());
+                gradesAct.failHtml(1);
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        stringRequest.setRetryPolicy(def);
+        queue.add(stringRequest);
+    }
+
+    private void fetchGrades(String[] urls, final gradesActivity gradesAct) {
+
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                gradesAct.showGrades(response);
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("request", "That didn't work!");
+                Log.e("request", error.toString());
+                gradesAct.failHtml(1);
+            }
+        };
+
+        for (String url : urls) {
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url + "?_=" + new Date().getTime(), listener, errorListener);
+            stringRequest.setRetryPolicy(def);
+            queue.add(stringRequest);
+        }
     }
 
 }

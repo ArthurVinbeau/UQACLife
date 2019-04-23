@@ -32,6 +32,7 @@ public class gradesActivity extends MainActivity {
     List<String> lessonshtml = new ArrayList<>();
     LinearLayout grades_scroll;
     int displayed;
+    private Login login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,11 +158,13 @@ public class gradesActivity extends MainActivity {
                 //endregion
         displayed = 0;
         for (String lesson:lessonshtml) {
-            showGrades(lesson);
+            //showGrades(lesson);
         }
+        login = super.login;
+        login.getGrades(this);
     }
 
-    private Boolean showGrades(String html) {
+    public Boolean showGrades(String html) {
         try {
             TextView lessonName = new TextView(this);
             lessonName.setText(html.split("<h1 class=\"h2\">")[1].split("</h1>")[0].split("\n")[1]);
@@ -245,5 +248,19 @@ public class gradesActivity extends MainActivity {
             grades_scroll.addView(t);
             return false;
         }
+    }
+
+    public void failHtml(int code) {
+        Log.i("request", "fail html : " + code);
+        TextView t = findViewById(R.id.grades_error);
+        t = t == null ? new TextView(this) : t;
+        t.setText(code == 0 ? R.string.error_login_credentials : code == 1 ? R.string.error_login_network : R.string.error_login_unknown);
+        t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        t.setTextColor(0xffffffff);
+        t.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[1]));
+        t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        t.setTypeface(Typeface.DEFAULT_BOLD);
+        t.setId(R.id.grades_error);
+        ((LinearLayout)findViewById(R.id.grades_scroll)).addView(t, 0);
     }
 }

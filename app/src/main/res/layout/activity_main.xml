@@ -124,7 +124,7 @@
             android:layout_gravity="end"
             android:layout_margin="15dip"
             android:background="@drawable/cours"
-            android:backgroundTint="@"
+            android:backgroundTint="@color/buttonDone"
             android:elevation="0dp"
             android:onClick="send"
             android:text="@string/Valider"
