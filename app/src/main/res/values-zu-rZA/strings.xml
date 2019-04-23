@@ -40,4 +40,7 @@
     <string name="pondere">ezinesisindo</string>
     <string name="total">Ubude</string>
     <string name="search">Ukucinga</string>
+    <string name="Switch_Notification">Vumela</string>
+    <string name="Switch_service">Permanent</string>
+    <string name="avancedesnotification">Isaziso ilindele</string>
 </resources>

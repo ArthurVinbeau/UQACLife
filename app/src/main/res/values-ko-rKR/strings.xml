@@ -40,4 +40,7 @@
     <string name="pondere">가중</string>
     <string name="total">합계</string>
     <string name="search">수색</string>
+    <string name="Switch_Notification">사용</string>
+    <string name="Switch_service">퍼머넌트</string>
+    <string name="avancedesnotification">알림 기대</string>
 </resources>

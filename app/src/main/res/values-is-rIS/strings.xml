@@ -40,4 +40,7 @@
     <string name="pondere">vegið</string>
     <string name="total">alls</string>
     <string name="search">leit</string>
+    <string name="Switch_Notification">virkja</string>
+    <string name="Switch_service">Varanleg</string>
+    <string name="avancedesnotification">Tilkynning tilhlökkun</string>
 </resources>

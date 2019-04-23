@@ -40,4 +40,7 @@
     <string name="pondere">ważona</string>
     <string name="total">Całkowity</string>
     <string name="search">Szukaj</string>
+    <string name="Switch_Notification">Włączyć</string>
+    <string name="Switch_service">Stały</string>
+    <string name="avancedesnotification">przewidywanie powiadomienie</string>
 </resources>
