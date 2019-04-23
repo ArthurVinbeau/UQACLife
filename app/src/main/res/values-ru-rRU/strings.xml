@@ -40,4 +40,7 @@
     <string name="pondere">	утяжеленный	</string>
     <string name="total">	Всего	</string>
     <string name="search">Поиск</string>
+    <string name="Switch_Notification">включить</string>
+    <string name="Switch_service">перманентный</string>
+    <string name="avancedesnotification">Уведомление предвосхищение</string>
 </resources>		

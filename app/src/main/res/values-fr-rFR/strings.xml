@@ -40,4 +40,7 @@
     <string name="total">Total</string>
     <string name="search">Chercher</string>
     <string name="error_grades_message">Une erreur est survenue pendant le chargement des notes</string>
+    <string name="Switch_Notification">Activer</string>
+    <string name="Switch_service">Permanent</string>
+    <string name="avancedesnotification">Anticipation de la notification</string>
 </resources>

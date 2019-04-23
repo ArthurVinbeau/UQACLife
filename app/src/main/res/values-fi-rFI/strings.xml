@@ -40,4 +40,7 @@
     <string name="pondere">painotettu</string>
     <string name="total">Kaikki yhteensä</string>
     <string name="search">Hae</string>
+    <string name="Switch_Notification">ota käyttöön</string>
+    <string name="Switch_service">Pysyvä</string>
+    <string name="avancedesnotification">Ilmoittaminen ennakointi</string>
 </resources>

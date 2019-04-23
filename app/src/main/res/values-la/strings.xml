@@ -40,4 +40,7 @@
     <string name="pondere">ponderati</string>
     <string name="total">summa</string>
     <string name="search">Quaerere</string>
+    <string name="Switch_Notification">Admitte</string>
+    <string name="Switch_service">permanent</string>
+    <string name="avancedesnotification">Notification expectatione</string>
 </resources>

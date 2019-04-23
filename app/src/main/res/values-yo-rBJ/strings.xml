@@ -40,4 +40,7 @@
     <string name="pondere">ti iwọn</string>
     <string name="total">lapapọ</string>
     <string name="search">àwárí</string>
+    <string name="Switch_Notification">jeki</string>
+    <string name="Switch_service">yẹ</string>
+    <string name="avancedesnotification">iwifunni ifojusona</string>
 </resources>

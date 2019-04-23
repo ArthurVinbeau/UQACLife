@@ -40,4 +40,7 @@
     <string name="pondere">Ponderado</string>
     <string name="total">Total</string>
     <string name="search">Buscar</string>
+    <string name="Switch_Notification">Habilitar</string>
+    <string name="Switch_service">Permanente</string>
+    <string name="avancedesnotification">la anticipación de notificación</string>
 </resources>

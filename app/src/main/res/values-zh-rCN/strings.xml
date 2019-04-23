@@ -40,4 +40,7 @@
     <string name="pondere">加权</string>
     <string name="total">总</string>
     <string name="search">搜索</string>
+    <string name="Switch_Notification">启用</string>
+    <string name="Switch_service">常驻</string>
+    <string name="avancedesnotification">预期的通知</string>
 </resources>

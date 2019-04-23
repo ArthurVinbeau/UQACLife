@@ -40,4 +40,7 @@
     <string name="pondere">ponderirana</string>
     <string name="total">ukupan</string>
     <string name="search">pretraživanje</string>
+    <string name="Switch_Notification">omogućiti</string>
+    <string name="Switch_service">trajan</string>
+    <string name="avancedesnotification">očekivanju obavijest</string>
 </resources>

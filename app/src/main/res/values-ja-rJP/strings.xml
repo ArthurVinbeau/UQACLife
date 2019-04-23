@@ -40,4 +40,7 @@
     <string name="pondere">加重</string>
     <string name="total">トータル</string>
     <string name="search">サーチ</string>
+    <string name="Switch_Notification">有効</string>
+    <string name="Switch_service">恒久</string>
+    <string name="avancedesnotification">通知見越し</string>
 </resources>

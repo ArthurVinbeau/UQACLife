@@ -40,4 +40,7 @@
     <string name="pondere">Σταθμισμένη</string>
     <string name="total">Σύνολο</string>
     <string name="search">Ψάξιμο</string>
+    <string name="Switch_Notification">επιτρέπω</string>
+    <string name="Switch_service">Μόνιμος</string>
+    <string name="avancedesnotification">αναμονή ειδοποίησης</string>
 </resources>

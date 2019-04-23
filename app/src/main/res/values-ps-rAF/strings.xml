@@ -39,4 +39,7 @@
     <string name="pondere">نسبی</string>
     <string name="total">ټول</string>
     <string name="search">لټون</string>
+    <string name="Switch_Notification">په توانول</string>
+    <string name="Switch_service">د دایمي</string>
+    <string name="avancedesnotification">خبرتیا په تمه</string>
 </resources>
