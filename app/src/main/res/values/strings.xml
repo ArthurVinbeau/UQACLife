@@ -19,9 +19,13 @@
     <string name="style_2">Default</string>
     <string name="style_3">Default</string>
     <string name="error_calendar_message">An error occurred while loading calendar</string>
-    <string name="error_login_credentials">An error occurred while logging in:\nInvalid login andor password</string>
-    <string name="error_login_network">An error occurred while logging in:\nWebsite unreachable\nCheck your internet connection or try again later</string>
-    <string name="error_login_unknown">An unknown error occurred while logging in\nCheck your internet connection or try again later</string>
+    <string name="error_login_credentials_1">An error occurred while logging in:</string>
+    <string name="error_login_credentials_2">Invalid login and/or password</string>
+    <string name="error_login_network_1">An error occurred while logging in:</string>
+    <string name="error_login_network_2">Website unreachable</string>
+    <string name="error_login_network_3">Check your internet connection or try again later</string>
+    <string name="error_login_unknown_1">An unknown error occurred while logging in</string>
+    <string name="error_login_unknown_2">Check your internet connection or try again later</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
@@ -44,6 +48,14 @@
     <string name="pondere">Weighted</string>
     <string name="total">Total</string>
     <string name="search">Search</string>
+    <string name="login_log_1">Getting login url and cookies...</string>
+    <string name="login_log_2">Sending login information...</string>
+    <string name="login_log_3">Retrieving encoded token...</string>
+    <string name="login_log_4">Logging in...</string>
+    <string name="login_log_5">Getting schedule...</string>
+    <string name="login_log_6">Getting period id...</string>
+    <string name="login_log_7">Retrieving course list...</string>
+    <string name="login_log_8">Retrieving grades...</string>
 
 
     <string name="language_1" translatable="false">English</string>
@@ -64,11 +76,6 @@
     <string name="language_16" translatable="false">Spanish</string>
     <string name="language_17" translatable="false">Yoruba</string>
     <string name="language_18" translatable="false">Zulu</string>
-    <string name="login_log_1">Getting login url and cookies...</string>
-    <string name="login_log_2">Sending login information...</string>
-    <string name="login_log_3">Retrieving encoded token...</string>
-    <string name="login_log_4">Logging in...</string>
-    <string name="login_log_5">Getting schedule...</string>
     <string name="Switch_Notification">Enable</string>
     <string name="Switch_service">Permanent</string>
     <string name="avancedesnotification">Avance des notifications</string>

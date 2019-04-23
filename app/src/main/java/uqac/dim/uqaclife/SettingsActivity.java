@@ -25,7 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class settingsActivity extends MainActivity {
+import static android.os.SystemClock.sleep;
+
+public class SettingsActivity extends MainActivity {
 
     int toCollapseNumber = 2;
     View buttonsToCollapse[] = new View[toCollapseNumber];
@@ -43,7 +45,9 @@ public class settingsActivity extends MainActivity {
         findViewById(R.id.Logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).apply();;
+                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).commit();
+                Login.flushCookies();
+                finish();
             }
         });
         ((TextView)findViewById(R.id.selected_language)).setText(sharedPref.getString("Langue"," Français"));
@@ -226,7 +230,7 @@ public class settingsActivity extends MainActivity {
                 }
                 sharedPref.edit().putString("Language",newLanguage).putString("Langue",newText).apply();
                 invalidateOptionsMenu();
-                Intent refresh = new Intent(this, settingsActivity.class);
+                Intent refresh = new Intent(this, SettingsActivity.class);
                 refresh.putExtra("requestCode", 42);
                 startActivity(refresh);
                 finish();

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +32,7 @@ public class LoginActivity extends MainActivity {
 
     SharedPreferences sharedPref;
     private Login login;
-
+    private boolean grades;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,8 +43,10 @@ public class LoginActivity extends MainActivity {
 
         ((EditText)findViewById(R.id.login)).setText(sharedPref.getString("login", ""));
 
-        super.loginActivity = this;
+        MainActivity.singleton.loginActivity = this;
         login = super.login;
+        grades = getIntent().getBooleanExtra("grades", false);
+        Log.i("request", "grades create : " + grades);
     }
 
     public void send(View v) {
@@ -54,11 +57,18 @@ public class LoginActivity extends MainActivity {
         String id = ((EditText)findViewById(R.id.login)).getText().toString();
         String pwd = ((EditText)findViewById(R.id.password)).getText().toString();
 
+        findViewById(R.id.login).setEnabled(false);
+        findViewById(R.id.login).setFocusable(false);
+        findViewById(R.id.password).setEnabled(false);
+        findViewById(R.id.password).setFocusable(false);
+
+
         sharedPref.edit().putString("login", id).commit();
         if (((CheckBox)findViewById(R.id.save_password)).isChecked())
             sharedPref.edit().putString("password", pwd).commit();
 
-        login.login(id, pwd, true);
+        Log.i("request", "grades : " + grades);
+        login.login(id, pwd, grades ? 3 : 1);
     }
 
     public void transfer(String html) {
@@ -74,7 +84,20 @@ public class LoginActivity extends MainActivity {
         b.setEnabled(true);
         b.setVisibility(View.VISIBLE);
 
-        ((TextView)findViewById(R.id.progressText)).setText(code == 0 ? R.string.error_login_credentials : code == 1 ? R.string.error_login_network : R.string.error_login_unknown);
+        findViewById(R.id.login).setEnabled(true);
+        findViewById(R.id.login).setFocusable(true);
+        findViewById(R.id.password).setEnabled(true);
+        findViewById(R.id.password).setFocusable(true);
+        Log.i("request", "enabled : " + findViewById(R.id.login).isEnabled() + findViewById(R.id.password).isFocusable());
+        String[] message;
+        if (code == 0)
+            message = new String[]{getString(R.string.error_login_credentials_1), getString(R.string.error_login_credentials_2)};
+        else if (code == 1)
+            message = new String[]{getString(R.string.error_login_network_1), getString(R.string.error_login_network_2), getString(R.string.error_login_network_3)};
+        else
+            message = new String[]{getString(R.string.error_login_unknown_2), getString(R.string.error_login_unknown_2)};
+        ((TextView)findViewById(R.id.progressText)).setText(TextUtils.join("\n", message));
+        b.requestFocus();
     }
 
 }

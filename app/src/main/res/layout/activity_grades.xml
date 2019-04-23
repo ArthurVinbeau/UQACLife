@@ -5,16 +5,24 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
-            android:id="@+id/grades_scroll"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-        </LinearLayout>
-    </ScrollView>
+            <LinearLayout
+                android:id="@+id/grades_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        </ScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -23,6 +23,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -30,7 +31,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
     LoginActivity loginActivity;
     Login login;
     RequestQueue queue;
+    public static MainActivity singleton;
+    public int test = 0;
 
     SwipeRefreshLayout swipe;
 
@@ -117,17 +119,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.preferences:
-                intent = new Intent(getApplicationContext(), settingsActivity.class);
+                intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
             case R.id.blacklisted:
-                intent = new Intent(getApplicationContext(), blacklisted_activity.class);
+                intent = new Intent(getApplicationContext(), BlacklistedActivity.class);
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
             case R.id.grades_button:
-                intent = new Intent(getApplicationContext(), gradesActivity.class);
+                intent = new Intent(getApplicationContext(), GradesActivity.class);
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         html = "coucou";
+        singleton = this;
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         changeLanguage(sharedPref.getString("Language", "fr"));
         setTheme(R.style.AppTheme);
@@ -153,9 +156,10 @@ public class MainActivity extends AppCompatActivity {
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //onButtonShowPopupWindowClick(swipe);
+                TextView t = findViewById(R.id.weeklist_error);
+                if (t != null)
+                    weeklist_layout.removeView(t);
                 login.getSchedule();
-                //swipe.setRefreshing(false);
             }
         });
 
@@ -217,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 155);
     }
 
+
     public void onButtonShowPopupWindowClick(View view) {
 
         // inflate the layout of the popup window
@@ -243,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void show_week(View v, boolean endPull) {
         Log.i("request", "show week");
+        Log.i("request", "json exists : " + (sharedPref.getString("json", null) != null));
         try {
 
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-u");
@@ -478,7 +484,9 @@ public class MainActivity extends AppCompatActivity {
             Log.i("request", e.toString(), e);
             Log.i("Error", e.toString(), e);
             TextView t = findViewById(R.id.weeklist_error);
-            t = t == null ? new TextView(this) : t;
+            if (t != null)
+                weeklist_layout.removeView(t);
+            t = new TextView(this);
             t.setText(getString(R.string.error_calendar_message));
             t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             t.setTextColor(0xffffffff);
@@ -516,8 +524,17 @@ public class MainActivity extends AppCompatActivity {
     public void failHtml(int code) {
         Log.i("request", "fail html : " + code);
         TextView t = findViewById(R.id.weeklist_error);
-        t = t == null ? new TextView(this) : t;
-        t.setText(code == 0 ? R.string.error_login_credentials : code == 1 ? R.string.error_login_network : R.string.error_login_unknown);
+        if (t != null)
+            weeklist_layout.removeView(t);
+        t = new TextView(this);
+        String[] message;
+        if (code == 0)
+            message = new String[]{getString(R.string.error_login_credentials_1), getString(R.string.error_login_credentials_2)};
+        else if (code == 1)
+            message = new String[]{getString(R.string.error_login_network_1), getString(R.string.error_login_network_2), getString(R.string.error_login_network_3)};
+        else
+            message = new String[]{getString(R.string.error_login_unknown_2), getString(R.string.error_login_unknown_2)};
+        t.setText(TextUtils.join("\n", message));
         t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         t.setTextColor(0xffffffff);
         t.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[1]));
