@@ -55,8 +55,8 @@ public class SettingsActivity extends MainActivity {
         buttonsToCollapse[0] = findViewById(R.id.language_list);
         buttonsToCollapse[1] =  findViewById(R.id.notifications_list);
 
-        for(int index=1; index<((ViewGroup)buttonsToCollapse[1]).getChildCount()-1; index++) {
-            languages.add((TextView)(((ViewGroup)buttonsToCollapse[1]).getChildAt(index)));
+        for(int index=1; index<((ViewGroup)buttonsToCollapse[0]).getChildCount(); index++) {
+            languages.add((TextView)(((ViewGroup)buttonsToCollapse[0]).getChildAt(index)));
         }
 
         View.OnClickListener o = new View.OnClickListener() {
