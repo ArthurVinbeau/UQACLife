@@ -146,7 +146,7 @@ public class SettingsActivity extends MainActivity {
 
                         np.setMinValue(0);
                         np.setMaxValue(59);
-                        np.setValue(sharedPref.getInt("minutetoadd", 0));
+                        np.setValue(sharedPref.getInt("minutetoadd", 15));
                         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
                         // show the popup window
@@ -166,7 +166,7 @@ public class SettingsActivity extends MainActivity {
                 };
         LinearLayout l1 = findViewById(R.id.delay_layout);
         l1.setOnClickListener(o2);
-        t2.setText(Integer.toString(sharedPref.getInt("minutetoadd",0)));
+        t2.setText(Integer.toString(sharedPref.getInt("minutetoadd",15)));
 
     }
 

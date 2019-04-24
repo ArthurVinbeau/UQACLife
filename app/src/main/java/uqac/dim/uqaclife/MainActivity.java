@@ -205,11 +205,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        weeklist_layout = findViewById(R.id.weekList);
-        swipe = findViewById(R.id.pullToRefresh);
-        Log.i("request", "onResume : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
-        if(swipe != null && weeklist_layout != null)
+        if(findViewById(R.id.pullToRefresh) != null && findViewById(R.id.weekList) != null) {
+            weeklist_layout = findViewById(R.id.weekList);
+            swipe = findViewById(R.id.pullToRefresh);
+            Log.i("request", "onResume : weeklist_layout : true | pull : true");
             show_week(null, true);
+        }
+        else
+            Log.i("request", "onResume : weeklist_layout : false | pull : false");
+
     }
 
     public void versLInfini(View v) {
@@ -423,7 +427,7 @@ public class MainActivity extends AppCompatActivity {
                                 final boolean notify = sharedPref.getBoolean("switchnotif",true);
                                 final boolean service = sharedPref.getBoolean("switchservice",false);
                                 if(notify) {
-                                    int toadd  = sharedPref.getInt("minutetoadd",0) * 60000;
+                                    int toadd  = sharedPref.getInt("minutetoadd",15) * 60000;
 
                                     Calendar cal = Calendar.getInstance();
                                     Calendar toret = Calendar.getInstance();
