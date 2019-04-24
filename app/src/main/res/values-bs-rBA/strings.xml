@@ -58,4 +58,5 @@
     <string name="login_log_6">Dobijanje period id ...</string>
     <string name="login_log_7">Preuzimam popis naravno ...</string>
     <string name="login_log_8">Preuzimam razreda ...</string>
+    <string name="about">oko</string>
 </resources>

@@ -121,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
+            case R.id.about:
+                intent = new Intent(getApplicationContext(), AboutActivity.class);
+                intent.putExtra("requestCode", 42);
+                startActivityForResult(intent, 42);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -379,13 +384,7 @@ public class MainActivity extends AppCompatActivity {
                                 (cours.findViewById(R.id.blacklistButton)).setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                     /*if(name.contains("Informatique mobile"))
-                                     {
-                                         Snackbar snackbar =  Snackbar.make(findViewById(R.id.weekList), "This course can't be blacklisted", Snackbar.LENGTH_SHORT);
-                                         snackbar.show();
 
-
-                                     } else {*/
                                         for (int k = 0; k <= 100; k++) {
                                             Intent rem = new Intent(getBaseContext(), NotifReceiver.class);
                                             PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), k, rem, 0);

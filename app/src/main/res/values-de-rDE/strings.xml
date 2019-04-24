@@ -58,4 +58,5 @@
     <string name="login_log_6">Erste Periode id ...</string>
     <string name="login_log_7">Suchen Kursliste ...</string>
     <string name="login_log_8">Abrufen von Noten ...</string>
+    <string name="about">Über</string>
 </resources>

@@ -56,8 +56,6 @@
     <string name="login_log_6">Getting period id...</string>
     <string name="login_log_7">Retrieving course list...</string>
     <string name="login_log_8">Retrieving grades...</string>
-
-
     <string name="language_1" translatable="false">English</string>
     <string name="language_2" translatable="false">Français</string>
     <string name="language_3" translatable="false">Bosnian</string>
@@ -79,5 +77,18 @@
     <string name="Switch_Notification">Enable</string>
     <string name="Switch_service">Permanent</string>
     <string name="avancedesnotification">Avance des notifications</string>
+    <string name="about">About</string>
+    <string name="about_description" translatable="false">/*\n
+ * ----------------------------------------------------------------------------\n
+ * "THE BEER-WARE LICENSE" (Revision 42):\n
+ * &lt;mahe.charpy@epita.fr&gt; &lt;theo.golgevit@epita.fr&gt;\n
+ * &lt;sebastien.januszczak@epita.fr&gt;  &amp; &lt;jeremy.salfati@epita.fr&gt;\n
+ * wrote this android app. As long as you retain this notice you\n
+ * can do whatever you want with this stuff. If we meet some day, and you think\n
+ * this stuff is worth it, you can buy me a beer in return.   \n
+ * Mahé Charpy, Théo Golgevit, Sébastien Januszczak, Jérémy Salfati\n
+ * ----------------------------------------------------------------------------\n
+ */</string>
+    <string name="application_informations" translatable="false">Application informations</string>
 
 </resources>
