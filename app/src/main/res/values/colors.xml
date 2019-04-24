@@ -44,4 +44,7 @@
     <color name="samedi1">#47E1F5</color>
     <color name="samedi2">#0A8EA3</color>
 
+    <color name="colorlightBlue1">#47E1F5</color>
+    <color name="colorlightBlue2">#0A8EA3</color>
+    <color name="buttonDone">#6EA759</color>
 </resources>

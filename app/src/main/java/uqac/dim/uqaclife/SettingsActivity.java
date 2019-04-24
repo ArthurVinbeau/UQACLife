@@ -25,7 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class settingsActivity extends MainActivity {
+import static android.os.SystemClock.sleep;
+
+public class SettingsActivity extends MainActivity {
 
     int toCollapseNumber = 2;
     View buttonsToCollapse[] = new View[toCollapseNumber];
@@ -37,14 +39,14 @@ public class settingsActivity extends MainActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setttings);
-        textView = (TextView)findViewById(R.id.Debug);
+        textView = findViewById(R.id.Debug);
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         final Activity curentActivity = this;
         findViewById(R.id.Logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPref.edit().putString("login",null).apply();
-                sharedPref.edit().putString("password",null).apply();
+                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).apply();
+                Login.flushCookies();
                 curentActivity.finish();
             }
         });
@@ -66,7 +68,7 @@ public class settingsActivity extends MainActivity {
         for(int j = 0 ; j < toCollapseNumber -1 ; j++)
         {
             ViewGroup viewGroup = (ViewGroup) buttonsToCollapse[j];
-            for (int i = 0 ; i < viewGroup.getChildCount() ; i++) {
+            for (int i = 1 ; i < viewGroup.getChildCount() ; i++) {
                 viewGroup.getChildAt(i).setOnClickListener(o);
             }
         }
@@ -228,7 +230,7 @@ public class settingsActivity extends MainActivity {
                 }
                 sharedPref.edit().putString("Language",newLanguage).putString("Langue",newText).apply();
                 invalidateOptionsMenu();
-                Intent refresh = new Intent(this, settingsActivity.class);
+                Intent refresh = new Intent(this, SettingsActivity.class);
                 refresh.putExtra("requestCode", 42);
                 startActivity(refresh);
                 finish();

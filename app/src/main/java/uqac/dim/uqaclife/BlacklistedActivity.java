@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-public class blacklisted_activity extends MainActivity {
+public class BlacklistedActivity extends MainActivity {
 
     SharedPreferences sharedPref;
 
