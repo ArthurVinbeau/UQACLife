@@ -40,6 +40,9 @@
     <string name="pondere">Die gewichteten</string>
     <string name="total">Gesamt</string>
     <string name="search">Suche</string>
+    <string name="Switch_Notification">Aktivieren</string>
+    <string name="Switch_service">dauerhaft</string>
+    <string name="avancedesnotification">Mitteilung Erwartung</string>
     <string name="login_log_1">Erste Login-URL und Cookies ...</string>
     <string name="login_log_2">Senden Login-Daten ...</string>
     <string name="login_log_3">Abrufen von codierten Token ...</string>

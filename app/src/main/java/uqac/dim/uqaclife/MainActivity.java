@@ -1,14 +1,20 @@
 package uqac.dim.uqaclife;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -23,6 +29,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -33,6 +40,7 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
@@ -43,7 +51,8 @@ import android.content.res.Resources;
 public class MainActivity extends AppCompatActivity {
 
     Boolean hideEmptyDay = true;
-    Notification notification;
+    int id_notif = 1;
+
 
     int[][] colors = new int[][]{
             new int[]{0xFFFFC107, 0xFFFF9B00},           //mondayColors
@@ -118,13 +127,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_Design_Light);
         html = "coucou";
         singleton = this;
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         changeLanguage(sharedPref.getString("Language", "fr"));
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-        notification = new Notification(this);
         setContentView(R.layout.activity_test);
         weeklist_layout = findViewById(R.id.weekList);
         swipe = findViewById(R.id.pullToRefresh);
@@ -148,6 +157,18 @@ public class MainActivity extends AppCompatActivity {
         //tv.setText(stringFromJNI());
     }
 
+
+    public void startService(View v)
+    {
+        Intent serviceIntent = new Intent(this,NotifService.class);
+        //serviceIntent.putExtra("bool",b);
+        ContextCompat.startForegroundService(this, serviceIntent);
+    }
+    public void stopService(View v)
+    {
+        Intent serviceIntent = new Intent(this,NotifService.class);
+        stopService(serviceIntent);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -287,7 +308,16 @@ public class MainActivity extends AppCompatActivity {
             weeklist_layout.removeAllViews();
             int px = (int) (2 * getApplicationContext().getResources().getDisplayMetrics().density + 0.5f);
             int px2 = (int) (15 * getApplicationContext().getResources().getDisplayMetrics().density + 0.5f);
+            // reset notif
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent remintent = new Intent(getBaseContext(), NotifReceiver.class);
+            for (int k = 1; k <= id_notif; k++) {
+                PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), k, remintent, 0);
+                alarmManager.cancel(broadcast);
+            }
+            id_notif = 1;
 
+            //
             for (i = 0; i < 7; i++) {
 
                 GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
@@ -303,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
                         t.setLayoutParams(l);
                         t.setText(getString(days[i]));
                         t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                        t.setTextColor(0xffffffff);
+                        t.setTextColor(getColor(R.color.colorWhite));
                         t.setBackground(gd);
                         t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                         t.setTypeface(Typeface.DEFAULT_BOLD);
@@ -328,13 +358,15 @@ public class MainActivity extends AppCompatActivity {
                                     room = room.replace("LAB", "");
                                 }
                                 final String room2 = room;
+                                final String start = lesson.getString("start");
+                                final String end = lesson.getString("end");
                                 String id = lesson.getString("id");
                                 ((TextView) cours.findViewById(R.id.lessonid)).setText(id);
                                 ((TextView) cours.findViewById(R.id.lessonname)).setText(name);
                                 ((TextView) cours.findViewById(R.id.lessonroom)).setText(room);
-                                ((TextView) cours.findViewById(R.id.timestart)).setText(lesson.getString("start"));
-                                ((TextView) cours.findViewById(R.id.timeend)).setText(lesson.getString("end"));
-                                ((TextView) cours.findViewById(R.id.group)).setText(getString(R.string.groupe) + " : " + lesson.getString("grp"));        //groupe
+                                ((TextView) cours.findViewById(R.id.timestart)).setText(start);
+                                ((TextView) cours.findViewById(R.id.timeend)).setText(end);
+                                ((TextView) cours.findViewById(R.id.group)).setText(getString(R.string.groupe)+ " : " + lesson.getString("grp"));        //groupe
                                 final View more_infos = cours.findViewById(R.id.more_infos);
                                 (cours.findViewById(R.id.matiere)).setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -342,13 +374,7 @@ public class MainActivity extends AppCompatActivity {
                                         more_infos.setVisibility(more_infos.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
                                     }
                                 });
-                                (cours.findViewById(R.id.notif)).setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        NotificationCompat.Builder b = notification.getnotif(name, room2);
-                                        notification.getManager().notify(new Random().nextInt(), b.build());
-                                    }
-                                });
+
 
                                 (cours.findViewById(R.id.blacklistButton)).setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -360,7 +386,12 @@ public class MainActivity extends AppCompatActivity {
 
 
                                      } else {*/
-
+                                        for (int k = 0; k <= 100; k++) {
+                                            Intent rem = new Intent(getBaseContext(), NotifReceiver.class);
+                                            PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), k, rem, 0);
+                                            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                                            alarmManager.cancel(broadcast);
+                                        }
                                         blacklist(name);
                                         show_week(null);
                                         Snackbar snackbar = Snackbar.make(findViewById(R.id.weekList), getString(R.string.course_blacklisted), Snackbar.LENGTH_SHORT);
@@ -376,8 +407,59 @@ public class MainActivity extends AppCompatActivity {
                                         //}
                                     }
                                 });
+
+                                final String deb = lesson.getString("start");
+                                final int lessonDay = ((i + 1) % 7) + 1;
+                                final boolean notify = sharedPref.getBoolean("switchnotif",true);
+                                final boolean service = sharedPref.getBoolean("switchservice",false);
+                                if(notify) {
+                                    int toadd  = sharedPref.getInt("minutetoadd",0) * 60000;
+
+                                    Calendar cal = Calendar.getInstance();
+                                    Calendar toret = Calendar.getInstance();
+                                    int hour = cal.get(Calendar.HOUR_OF_DAY);
+                                    int min = cal.get(Calendar.MINUTE);
+                                    int CurrentDay = cal.get(Calendar.DAY_OF_WEEK);
+                                    String debh = deb.substring(0, 2);
+                                    String debm = deb.substring(3, 5);
+                                    int h = 3600000 * (Integer.parseInt(debh) - hour);
+                                    int m = 60000 * (Integer.parseInt(debm) - min);
+                                    int d = 86400000 * (lessonDay - CurrentDay);
+                                    int totwait = h + d + m- toadd < 0 ? h + d + m-toadd + 604800000 : h + d + m-toadd;
+                                    toret.add(Calendar.MILLISECOND, totwait);
+                                    Intent notificationIntent = new Intent(getBaseContext(), NotifReceiver.class);
+                                    notificationIntent.putExtra("nom", name);
+                                    notificationIntent.putExtra("room", room2);
+                                    notificationIntent.putExtra("service",service);
+                                    notificationIntent.putExtra("start",start);
+                                    notificationIntent.putExtra("end",end);
+                                    PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, toret.getTimeInMillis(), broadcast);
+                                    id_notif++;
+                                }
+
+
                                 weeklist_layout.addView(cours);
+                                (cours.findViewById(R.id.notif)).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        //SEB
+                                        if(notify) {
+                                            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                            Calendar cal = Calendar.getInstance();
+                                            cal.add(Calendar.SECOND,2);
+                                            Intent notificationIntent = new Intent(getBaseContext(), NotifReceiver.class);
+                                            notificationIntent.putExtra("nom", name);
+                                            notificationIntent.putExtra("room", room2);
+                                            notificationIntent.putExtra("start",start);
+                                            notificationIntent.putExtra("end",end);
+                                            PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                            alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
+                                        }
+                                    }
+                                });
                             }
+
 
                         } catch (JSONException e) {
                             Log.i("JSON error", e.toString(), e);
@@ -403,7 +485,6 @@ public class MainActivity extends AppCompatActivity {
             t.setId(R.id.weeklist_error);
             weeklist_layout.addView(t, 0);
         }
-
         if (endPull) {
             Log.i("request", "pull off");
             //((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);

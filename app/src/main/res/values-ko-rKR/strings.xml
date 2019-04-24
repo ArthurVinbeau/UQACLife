@@ -40,6 +40,9 @@
     <string name="pondere">가중</string>
     <string name="total">합계</string>
     <string name="search">수색</string>
+    <string name="Switch_Notification">사용</string>
+    <string name="Switch_service">퍼머넌트</string>
+    <string name="avancedesnotification">알림 기대</string>
     <string name="login_log_1">로그인 URL 및 쿠키를 얻기 ...</string>
     <string name="login_log_2">로그인 정보를 보내는 중 ...</string>
     <string name="login_log_3">인코딩 된 토큰을 가져 오는 중 ...</string>

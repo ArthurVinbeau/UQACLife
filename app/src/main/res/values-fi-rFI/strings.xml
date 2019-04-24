@@ -40,6 +40,9 @@
     <string name="pondere">painotettu</string>
     <string name="total">Kaikki yhteensä</string>
     <string name="search">Hae</string>
+    <string name="Switch_Notification">ota käyttöön</string>
+    <string name="Switch_service">Pysyvä</string>
+    <string name="avancedesnotification">Ilmoittaminen ennakointi</string>
     <string name="login_log_1">Getting kirjautuminen url ja evästeet ...</string>
     <string name="login_log_2">Lähetetään kirjautumistiedot ...</string>
     <string name="login_log_3">Haetaan koodattu merkki ...</string>

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/cours"
-    android:backgroundTint="#DDDDDD"
+    android:backgroundTint="@color/lessonbqckground"
     android:layout_marginBottom="7dp"
     android:layout_marginTop="7dp">
 
@@ -58,7 +58,6 @@
             android:id="@+id/coursdescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/colorlightBlue1"
             android:orientation="vertical">
 
             <TextView
@@ -104,7 +103,7 @@
                     android:layout_weight="1"
                     android:text="TD    "
                     android:textAlignment="textEnd"
-                    android:textColor="#FFFF9B00"
+                    android:textColor="@color/td_text"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:visibility="invisible" />

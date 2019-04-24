@@ -40,6 +40,9 @@
     <string name="pondere">加重</string>
     <string name="total">トータル</string>
     <string name="search">サーチ</string>
+    <string name="Switch_Notification">有効</string>
+    <string name="Switch_service">恒久</string>
+    <string name="avancedesnotification">通知見越し</string>
     <string name="login_log_1">ログインURLとクッキーを取得中...</string>
     <string name="login_log_2">ログイン情報を送信...</string>
     <string name="login_log_3">エンコードされたトークンを取得中...</string>

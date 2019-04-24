@@ -40,6 +40,9 @@
     <string name="pondere">ponderati</string>
     <string name="total">summa</string>
     <string name="search">Quaerere</string>
+    <string name="Switch_Notification">Admitte</string>
+    <string name="Switch_service">permanent</string>
+    <string name="avancedesnotification">Notification expectatione</string>
     <string name="login_log_1">Questus login url et crustula ...</string>
     <string name="login_log_2">Mittens login notitia ...</string>
     <string name="login_log_3">Retrieving firmitatis indicium encoded ...</string>

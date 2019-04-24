@@ -76,5 +76,8 @@
     <string name="language_16" translatable="false">Spanish</string>
     <string name="language_17" translatable="false">Yoruba</string>
     <string name="language_18" translatable="false">Zulu</string>
+    <string name="Switch_Notification">Enable</string>
+    <string name="Switch_service">Permanent</string>
+    <string name="avancedesnotification">Avance des notifications</string>
 
 </resources>

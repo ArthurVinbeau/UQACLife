@@ -40,6 +40,9 @@
     <string name="pondere">	утяжеленный	</string>
     <string name="total">	Всего	</string>
     <string name="search">Поиск</string>
+    <string name="Switch_Notification">включить</string>
+    <string name="Switch_service">перманентный</string>
+    <string name="avancedesnotification">Уведомление предвосхищение</string>
     <string name="login_log_1">Получение URL для входа и печенье ...</string>
     <string name="login_log_2">Отправка регистрационной информации ...</string>
     <string name="login_log_3">Получение кодированного маркера ...</string>
@@ -55,4 +58,4 @@
     <string name="login_log_6">Получение периода идентификатор ...</string>
     <string name="login_log_7">Получение списка курсов ...</string>
     <string name="login_log_8">Получение оценки ...</string>
-</resources>		
+</resources>
