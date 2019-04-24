@@ -58,9 +58,9 @@ public class LoginActivity extends MainActivity {
         String pwd = ((EditText)findViewById(R.id.password)).getText().toString();
 
         findViewById(R.id.login).setEnabled(false);
-        findViewById(R.id.login).setFocusable(false);
+        //findViewById(R.id.login).setFocusable(false);
         findViewById(R.id.password).setEnabled(false);
-        findViewById(R.id.password).setFocusable(false);
+        //findViewById(R.id.password).setFocusable(false);
 
 
         sharedPref.edit().putString("login", id).commit();
@@ -85,9 +85,9 @@ public class LoginActivity extends MainActivity {
         b.setVisibility(View.VISIBLE);
 
         findViewById(R.id.login).setEnabled(true);
-        findViewById(R.id.login).setFocusable(true);
+        //findViewById(R.id.login).setFocusable(true);
         findViewById(R.id.password).setEnabled(true);
-        findViewById(R.id.password).setFocusable(true);
+        //findViewById(R.id.password).setFocusable(true);
         Log.i("request", "enabled : " + findViewById(R.id.login).isEnabled() + findViewById(R.id.password).isFocusable());
         String[] message;
         if (code == 0)
