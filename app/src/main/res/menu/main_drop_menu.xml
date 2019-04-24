@@ -2,13 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/preferences"
-        android:title="@string/preferences"/>
+        android:id="@+id/grades_button"
+        android:title="@string/grades"/>
     <item
         android:id="@+id/blacklisted"
         android:title="@string/blacklisted" />
     <item
-        android:id="@+id/grades_button"
-        android:title="@string/grades"/>
+        android:id="@+id/preferences"
+        android:title="@string/preferences"/>
+    <item
+        android:id="@+id/about"
+        android:title="@string/about"/>
     <!--android:visible="false"-->
 </menu>

@@ -54,6 +54,7 @@
     <string name="login_log_6">تر لاسه کول موده ID ...</string>
     <string name="login_log_7">راګرځول کورس لست ...</string>
     <string name="login_log_8">راګرځول ټولګي ...</string>
+    <string name="about">په اړه</string>
     <string name="Switch_Notification">په توانول</string>
     <string name="Switch_service">د دایمي</string>
     <string name="avancedesnotification">خبرتیا په تمه</string>

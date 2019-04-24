@@ -55,6 +55,7 @@
     <string name="login_log_6">Getting Auðkenni ...</string>
     <string name="login_log_7">Sækir listann rétta ...</string>
     <string name="login_log_8">Sækir einkunnum ...</string>
+    <string name="about">um</string>
     <string name="Switch_Notification">virkja</string>
     <string name="Switch_service">Varanleg</string>
     <string name="avancedesnotification">Tilkynning tilhlökkun</string>

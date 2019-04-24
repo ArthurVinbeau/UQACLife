@@ -55,6 +55,7 @@
     <string name="login_log_6">Pierwsze okres id ...</string>
     <string name="login_log_7">Pobieranie listy oczywiście ...</string>
     <string name="login_log_8">Odzyskiwanie stopnie ...</string>
+    <string name="about">o</string>
     <string name="Switch_Notification">Włączyć</string>
     <string name="Switch_service">Stały</string>
     <string name="avancedesnotification">przewidywanie powiadomienie</string>

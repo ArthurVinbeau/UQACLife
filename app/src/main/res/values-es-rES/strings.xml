@@ -58,4 +58,5 @@
     <string name="login_log_6">Conseguir periodo Identificación del ...</string>
     <string name="login_log_7">Recuperando lista de cursos ...</string>
     <string name="login_log_8">Recuperando grados ...</string>
+    <string name="about">acerca de</string>
 </resources>

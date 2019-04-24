@@ -55,6 +55,8 @@
     <string name="login_log_6">Получение периода идентификатор ...</string>
     <string name="login_log_7">Получение списка курсов ...</string>
     <string name="login_log_8">Получение оценки ...</string>
+    <string name="about">около</string>
+</resources>
     <string name="Switch_Notification">включить</string>
     <string name="Switch_service">перманентный</string>
     <string name="avancedesnotification">Уведомление предвосхищение</string>

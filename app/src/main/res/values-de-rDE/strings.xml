@@ -58,4 +58,5 @@
     <string name="Switch_Notification">Aktivieren</string>
     <string name="Switch_service">dauerhaft</string>
     <string name="avancedesnotification">Mitteilung Erwartung</string>
+    <string name="about">Über</string>
 </resources>

@@ -55,6 +55,7 @@
     <string name="login_log_6">Να πάρει περίοδο id ...</string>
     <string name="login_log_7">Ανάκτηση κατάλογος φυσικά ...</string>
     <string name="login_log_8">Ανάκτηση βαθμούς ...</string>
+    <string name="about">σχετικά με</string>
     <string name="Switch_Notification">επιτρέπω</string>
     <string name="Switch_service">Μόνιμος</string>
     <string name="avancedesnotification">αναμονή ειδοποίησης</string>

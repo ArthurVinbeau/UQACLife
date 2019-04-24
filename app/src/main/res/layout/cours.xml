@@ -134,15 +134,20 @@
 
                     <Button
                         android:id="@+id/blacklistButton"
+                        style="@style/Widget.AppCompat.Button"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
+                        android:layout_weight="1"
                         android:text="@string/blacklist" />
 
                     <Button
                         android:id="@+id/notif"
                         android:layout_width="wrap_content"
+
                         android:layout_height="48dp"
-                        android:text="@string/notification_button" />
+                        android:layout_weight="1"
+                        android:text="@string/notification_button"
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </LinearLayout>

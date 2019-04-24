@@ -55,6 +55,7 @@
     <string name="login_log_6">Obtention de l\'id du trimestre</string>
     <string name="login_log_7">Récupération de la liste des cours</string>
     <string name="login_log_8">Récupération des notes</string>
+    <string name="about">A propos</string>
     <string name="login_log_3">Récupération jeton ... encodée</string>
     <string name="login_log_4">Se connecter...</string>
     <string name="login_log_5">Obtenir calendrier ...</string>

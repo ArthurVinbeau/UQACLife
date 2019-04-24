@@ -55,6 +55,7 @@
     <string name="login_log_6">Getting kauden id ...</string>
     <string name="login_log_7">Haetaan kurssi lista ...</string>
     <string name="login_log_8">Haetaan laadut ...</string>
+    <string name="about">noin</string>
     <string name="Switch_Notification">ota käyttöön</string>
     <string name="Switch_service">Pysyvä</string>
     <string name="avancedesnotification">Ilmoittaminen ennakointi</string>

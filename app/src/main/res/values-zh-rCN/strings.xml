@@ -55,6 +55,7 @@
     <string name="login_log_6">获取周期ID ...</string>
     <string name="login_log_7">当然检索列表...</string>
     <string name="login_log_8">检索成绩...</string>
+    <string name="about">关于</string>
     <string name="Switch_Notification">启用</string>
     <string name="Switch_service">常驻</string>
     <string name="avancedesnotification">预期的通知</string>

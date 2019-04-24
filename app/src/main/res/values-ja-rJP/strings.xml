@@ -55,6 +55,7 @@
     <string name="login_log_6">期間のIDを取得中...</string>
     <string name="login_log_7">コースのリストを取得中...</string>
     <string name="login_log_8">等級を取得中...</string>
+    <string name="about">約</string>
     <string name="Switch_Notification">有効</string>
     <string name="Switch_service">恒久</string>
     <string name="avancedesnotification">通知見越し</string>
