@@ -3,10 +3,12 @@
     package="uqac.dim.uqaclife">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".Appservice"
         android:allowBackup="true"
-        android:icon="@mipmap/application_image"
+        android:icon="@mipmap/icon_ul"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/application_image"
+
+        android:roundIcon="@mipmap/icon_ulrond2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
         <activity android:name=".MainActivity" android:screenOrientation="portrait">
@@ -17,6 +19,32 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".NotificationActivity" />
+        <service android:name=".NotifService" />
+        <receiver android:name=".NotifReceiver">
+
+        </receiver>
+        <activity android:name=".BlacklistedActivity" android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".SettingsActivity" android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".GradesActivity" android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data

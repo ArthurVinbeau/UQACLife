@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/cours"
+    android:backgroundTint="@color/lessonbqckground"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <NumberPicker
+        android:id="@+id/NumberPicker1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp">
+
+    </NumberPicker>
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Valider" />
+
+</LinearLayout>

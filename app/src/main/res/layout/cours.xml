@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/cours"
-    android:backgroundTint="#DDDDDD"
+    android:backgroundTint="@color/lessonbqckground"
     android:layout_marginBottom="7dp"
     android:layout_marginTop="7dp">
 
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dip"
-                android:text="H debut"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dip"
-                android:text="H fin"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
@@ -58,8 +58,27 @@
             android:id="@+id/coursdescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/colorlightBlue1"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lessonname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dip"
+                android:layout_marginTop="5dip"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lessonid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dip"
+                android:layout_marginTop="5dip"
+                android:text=""
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,13 +86,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/lessonname"
+                    android:id="@+id/lessonroom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dip"
                     android:layout_marginTop="5dip"
-                    android:text="Nom du cours"
-                    android:textColor="@color/colorBlack"
+                    android:text=""
+                    android:textColor="@color/colorlightBlue"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -84,31 +103,11 @@
                     android:layout_weight="1"
                     android:text="TD    "
                     android:textAlignment="textEnd"
-                    android:textColor="#FFFF9B00"
+                    android:textColor="@color/td_text"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:visibility="invisible" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/lessonid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dip"
-                android:layout_marginTop="5dip"
-                android:text="ID du cours"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/lessonroom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dip"
-                android:layout_marginTop="5dip"
-                android:text="Salle du cours"
-                android:textColor="@color/colorlightBlue"
-                android:textSize="18sp"
-                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/more_infos"
@@ -137,13 +136,13 @@
                         android:id="@+id/blacklistButton"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
-                        android:text="Blacklist" />
+                        android:text="@string/blacklist" />
 
                     <Button
                         android:id="@+id/notif"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
-                        android:text="Notif me sempai" />
+                        android:text="@string/notification_button" />
                 </LinearLayout>
 
             </LinearLayout>
