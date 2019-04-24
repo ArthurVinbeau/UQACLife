@@ -43,4 +43,19 @@
     <string name="Switch_Notification">επιτρέπω</string>
     <string name="Switch_service">Μόνιμος</string>
     <string name="avancedesnotification">αναμονή ειδοποίησης</string>
+    <string name="login_log_1">Να πάρει την είσοδο url και μπισκότα ...</string>
+    <string name="login_log_2">Αποστολή πληροφοριών σύνδεσης ...</string>
+    <string name="login_log_3">Ανάκτηση κωδικοποιημένη συμβολική ...</string>
+    <string name="login_log_4">Σύνδεση στο ...</string>
+    <string name="login_log_5">Να πάρει το πρόγραμμα ...</string>
+    <string name="error_login_credentials_1">Παρουσιάστηκε σφάλμα κατά τη σύνδεσή:</string>
+    <string name="error_login_credentials_2">Μη έγκυρη σύνδεσης ή / και τον κωδικό πρόσβασης</string>
+    <string name="error_login_network_1">Παρουσιάστηκε σφάλμα κατά τη σύνδεσή:</string>
+    <string name="error_login_network_2">Ιστοσελίδα άπιαστος</string>
+    <string name="error_login_network_3">Ελέγξτε τη σύνδεσή σας στο διαδίκτυο ή δοκιμάστε ξανά αργότερα</string>
+    <string name="error_login_unknown_1">Ένα άγνωστο σφάλμα κατά την είσοδο στο</string>
+    <string name="error_login_unknown_2">Ελέγξτε τη σύνδεσή σας στο διαδίκτυο ή δοκιμάστε ξανά αργότερα</string>
+    <string name="login_log_6">Να πάρει περίοδο id ...</string>
+    <string name="login_log_7">Ανάκτηση κατάλογος φυσικά ...</string>
+    <string name="login_log_8">Ανάκτηση βαθμούς ...</string>
 </resources>

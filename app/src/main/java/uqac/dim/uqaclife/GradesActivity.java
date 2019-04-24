@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -15,11 +17,12 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class gradesActivity extends MainActivity {
+public class GradesActivity extends MainActivity {
     int[][] colors = new int[][]{
             new int[]{0xFFFFC107, 0xFFFF9B00},
             new int[]{0xFFF75A4E, 0xFFF81D0D},
@@ -32,6 +35,9 @@ public class gradesActivity extends MainActivity {
     List<String> lessonshtml = new ArrayList<>();
     LinearLayout grades_scroll;
     int displayed;
+    private Login login;
+    public int count;
+    private int course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,7 @@ public class gradesActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades);
         grades_scroll = (LinearLayout)findViewById(R.id.grades_scroll);
-        grades_scroll.removeAllViews();
+        init();
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
         //region sethtml
         lessonshtml.add("\n" +
@@ -155,16 +161,42 @@ public class gradesActivity extends MainActivity {
                 "\n");
 
                 //endregion
-        displayed = 0;
-        for (String lesson:lessonshtml) {
+        /*for (String lesson:lessonshtml) {
             showGrades(lesson);
-        }
+        }*/
+        login = super.login;
+        final GradesActivity context = this;
+        ((SwipeRefreshLayout)findViewById(R.id.pullToRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                init();
+                login.getGrades(context);
+            }
+        });
+        ((SwipeRefreshLayout)findViewById(R.id.pullToRefresh)).setRefreshing(true);
+        login.getGrades(this);
     }
 
-    private Boolean showGrades(String html) {
+    private View init() {
+        grades_scroll.removeAllViews();
+        TextView debug = new TextView(this);
+        debug.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        debug.setId(R.id.progressText);
+        debug.setPadding(0, 200, 0, 0);
+        grades_scroll.addView(debug);
+        course = 0;
+        displayed = 0;
+        return debug;
+    }
+
+    public Boolean showGrades(String html) {
         try {
             TextView lessonName = new TextView(this);
-            lessonName.setText(html.split("<h1 class=\"h2\">")[1].split("</h1>")[0].split("\n")[1]);
+            String name = html.split("<h1 class=\"h2\">")[1].split("</h1>")[0].split("\n")[1];
+            Log.i("request", "before : " + name);
+            name = Jsoup.parse(name).text();
+            Log.i("request", "after : " + name);
+            lessonName.setText(name);
             lessonName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             lessonName.setTextColor(0xffffffff);
             lessonName.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[displayed++ % 7]));
@@ -199,17 +231,17 @@ public class gradesActivity extends MainActivity {
                 String vals[] = evaluation[i].split("<td>");
                 TableRow note = new TableRow(this);
                 TextView evalName = new TextView(this);
-                evalName.setText(vals[1].split("</td>")[0]);
+                evalName.setText(Jsoup.parse(vals[1].split("</td>")[0]).text());
                 evalName.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.5f));
                 evalName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
                 TextView evalNonPonder = new TextView(this);
-                evalNonPonder.setText(vals[2].split("</td>")[0]);
+                evalNonPonder.setText(Jsoup.parse(vals[2].split("</td>")[0]).text());
                 evalNonPonder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.25f));
                 evalNonPonder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
                 TextView evalPonder= new TextView(this);
-                evalPonder.setText(vals[3].split("</td>")[0]);
+                evalPonder.setText(Jsoup.parse(vals[3].split("</td>")[0]).text());
                 evalPonder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.25f));
                 evalPonder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
@@ -225,17 +257,23 @@ public class gradesActivity extends MainActivity {
             evalName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
             TextView total = new TextView(this);
-            total.setText(html.split("<div class=\"card-body p-1 \">")[1].split("</div>")[0]);
+            total.setText(Jsoup.parse(html.split("<div class=\"card-body p-1 \">")[1].split("</div>")[0]).text());
             total.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.5f));
             total.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
             note.addView(evalName);
             note.addView(total);
             table.addView(note);
+            if (++course == count)
+                ((SwipeRefreshLayout)findViewById(R.id.pullToRefresh)).setRefreshing(false);
+            Log.i("request", "course " + course + "/" + count);
             return true;
         } catch (Exception e) {
             Log.i("showGrades Error", e.toString(), e);
-            TextView t = new TextView(this);
+            TextView t = findViewById(R.id.grades_error);
+            if (t != null)
+                grades_scroll.removeView(t);
+            t = new TextView(this);
             t.setText(getString(R.string.error_grades_message));
             t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             t.setTextColor(0xffffffff);
@@ -243,7 +281,32 @@ public class gradesActivity extends MainActivity {
             t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             t.setTypeface(Typeface.DEFAULT_BOLD);
             grades_scroll.addView(t);
+            ((SwipeRefreshLayout)findViewById(R.id.pullToRefresh)).setRefreshing(false);
             return false;
         }
+    }
+
+    public void failHtml(int code) {
+        Log.i("request", "fail html : " + code);
+        TextView t = findViewById(R.id.grades_error);
+        if (t != null)
+            grades_scroll.removeView(t);
+        t = new TextView(this);
+        String[] message;
+        if (code == 0)
+            message = new String[]{getString(R.string.error_login_credentials_1), getString(R.string.error_login_credentials_2)};
+        else if (code == 1)
+            message = new String[]{getString(R.string.error_login_network_1), getString(R.string.error_login_network_2), getString(R.string.error_login_network_3)};
+        else
+            message = new String[]{getString(R.string.error_login_unknown_2), getString(R.string.error_login_unknown_2)};
+        t.setText(TextUtils.join("\n", message));
+        t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        t.setTextColor(0xffffffff);
+        t.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[1]));
+        t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        t.setTypeface(Typeface.DEFAULT_BOLD);
+        t.setId(R.id.grades_error);
+        ((LinearLayout)findViewById(R.id.grades_scroll)).addView(t, 0);
+        ((SwipeRefreshLayout)findViewById(R.id.pullToRefresh)).setRefreshing(false);
     }
 }

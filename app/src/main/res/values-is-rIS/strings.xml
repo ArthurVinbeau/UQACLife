@@ -43,4 +43,19 @@
     <string name="Switch_Notification">virkja</string>
     <string name="Switch_service">Varanleg</string>
     <string name="avancedesnotification">Tilkynning tilhlökkun</string>
+    <string name="login_log_1">Getting innskráningu url og smákökur ...</string>
+    <string name="login_log_2">Sending innskráningarupplýsingar ...</string>
+    <string name="login_log_3">Sækir kóðuð tákn ...</string>
+    <string name="login_log_4">Innskráning...</string>
+    <string name="login_log_5">Getting áætlun ...</string>
+    <string name="error_login_credentials_1">Villa kom upp þegar skógarhögg í:</string>
+    <string name="error_login_credentials_2">Ógild innskráning og / eða lykilorð</string>
+    <string name="error_login_network_1">Villa kom upp þegar skógarhögg í:</string>
+    <string name="error_login_network_2">Vefsíða unreachable</string>
+    <string name="error_login_network_3">Athugaðu nettenginguna eða reyndu aftur síðar</string>
+    <string name="error_login_unknown_1">Óþekkt villa kom upp þegar skógarhögg í</string>
+    <string name="error_login_unknown_2">Athugaðu nettenginguna eða reyndu aftur síðar</string>
+    <string name="login_log_6">Getting Auðkenni ...</string>
+    <string name="login_log_7">Sækir listann rétta ...</string>
+    <string name="login_log_8">Sækir einkunnum ...</string>
 </resources>

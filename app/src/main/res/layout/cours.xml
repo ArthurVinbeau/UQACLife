@@ -60,19 +60,39 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/lessonname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dip"
+                android:layout_marginTop="5dip"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lessonid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dip"
+                android:layout_marginTop="5dip"
+                android:text=""
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/lessonname"
+                    android:id="@+id/lessonroom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dip"
                     android:layout_marginTop="5dip"
                     android:text=""
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorlightBlue"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -88,26 +108,6 @@
                     android:textStyle="bold"
                     android:visibility="invisible" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/lessonid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dip"
-                android:layout_marginTop="5dip"
-                android:text=""
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/lessonroom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dip"
-                android:layout_marginTop="5dip"
-                android:text=""
-                android:textColor="@color/colorlightBlue"
-                android:textSize="18sp"
-                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/more_infos"

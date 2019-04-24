@@ -43,4 +43,19 @@
     <string name="Switch_Notification">Activer</string>
     <string name="Switch_service">Permanent</string>
     <string name="avancedesnotification">Anticipation de la notification</string>
+    <string name="login_log_1">Obtention de l\'URL de connexion et des cookies ...</string>
+    <string name="login_log_2">Envoi d\'informations de connexion ...</string>
+    <string name="login_log_3">Récupération du token encodé ...</string>
+    <string name="login_log_4">Connexion ...</string>
+    <string name="login_log_5">Obtention du calendrier ...</string>
+    <string name="error_login_credentials_1">Une erreur est survenue lors de la connexion:</string>
+    <string name="error_login_credentials_2">Login ou mot de passe invalide</string>
+    <string name="error_login_network_1">Une erreur est survenue lors de la connexion:</string>
+    <string name="error_login_network_2">Site web inaccessible</string>
+    <string name="error_login_network_3">Vérifiez votre connexion Internet ou réessayez plus tard</string>
+    <string name="error_login_unknown_1">Une erreur inconnue est survenue lors de la connexion</string>
+    <string name="error_login_unknown_2">Vérifiez votre connexion Internet ou réessayez plus tard</string>
+    <string name="login_log_6">Obtention de l\'id du trimestre</string>
+    <string name="login_log_7">Récupération de la liste des cours</string>
+    <string name="login_log_8">Récupération des notes</string>
 </resources>

@@ -17,15 +17,17 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -63,403 +65,27 @@ public class MainActivity extends AppCompatActivity {
     String[] strdays = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     int[] days = new int[]{
             R.string.monday,
-        R.string.tuesday,
-        R.string.wednesday,
-        R.string.thursday,
-        R.string.friday,
-        R.string.saturday,
-        R.string.sunday};
+            R.string.tuesday,
+            R.string.wednesday,
+            R.string.thursday,
+            R.string.friday,
+            R.string.saturday,
+            R.string.sunday};
 
     SharedPreferences sharedPref;
     LinearLayout weeklist_layout;
 
-    String html;
+    String html = "";
 
-    //region sethtml
-    {
-        html = "\n" +
-                "\n" +
-                "<h4>Hiver 2019</h4>\n" +
-                "\n" +
-                "<div class=\"card-columns\">\n" +
-                "        <div class=\"card\">\n" +
-                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-1 text-white\">\n" +
-                "                <span>4ETH236-01 </span>\n" +
-                "                <span> - </span>\n" +
-                "                <span> Éthique et informatique </span>\n" +
-                "            </div>\n" +
-                "            <div class=\"card-body p-1 text-small\">\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>lundi 07/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>lundi 22/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>08:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>10:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>H2-1090</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"card\">\n" +
-                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-2 text-white\">\n" +
-                "                <span>6GEN720-02 </span>\n" +
-                "                <span> - </span>\n" +
-                "                <span> Réseaux d'ordinateurs</span>\n" +
-                "            </div>\n" +
-                "            <div class=\"card-body p-1 text-small\">\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>lundi 07/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>lundi 22/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>16:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>18:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P2-1030</span>\n" +
-                "                                        <span class=\"badge badge-info\" title=\"\">LAB</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>vendredi 11/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>vendredi 26/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>13:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>15:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P2-4020</span>\n" +
-                "                                        <span class=\"badge badge-info\" title=\"\">LAB</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>mardi 08/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>mardi 12/02/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>08:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>10:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P2-1020</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>mardi 19/02/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>mardi 19/02/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>08:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>10:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P1-6140</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>mardi 26/02/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>mardi 23/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>08:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>10:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P2-1020</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"card\">\n" +
-                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-3 text-white\">\n" +
-                "                <span>8INF257-12 </span>\n" +
-                "                <span> - </span>\n" +
-                "                <span> Informatique mobile</span>\n" +
-                "            </div>\n" +
-                "            <div class=\"card-body p-1 text-small\">\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>mercredi 09/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>mercredi 24/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>19:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>21:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P1-4280</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"card\">\n" +
-                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-4 text-white\">\n" +
-                "                <span>8INF433-01 </span>\n" +
-                "                <span> - </span>\n" +
-                "                <span> Algorithmique</span>\n" +
-                "            </div>\n" +
-                "            <div class=\"card-body p-1 text-small\">\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>mardi 08/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>mardi 23/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>11:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>12:15</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P1-4270</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>jeudi 10/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>jeudi 25/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>13:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>14:15</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P1-4270</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>jeudi 10/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>jeudi 25/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>14:30</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>15:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P1-4270</span>\n" +
-                "                                        <span class=\"badge badge-info\" title=\"\">T.D</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"card\">\n" +
-                "            <div class=\"card-header p-1 rounded-0  font-weight-bold bg-horaire-5 text-white\">\n" +
-                "                <span>8MAT122-01 </span>\n" +
-                "                <span> - </span>\n" +
-                "                <span> Structures discrètes</span>\n" +
-                "            </div>\n" +
-                "            <div class=\"card-body p-1 text-small\">\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>lundi 07/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>lundi 22/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>13:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>14:15</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P1-4250</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>lundi 07/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>lundi 22/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>14:30</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>15:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P1-4250</span>\n" +
-                "                                        <span class=\"badge badge-info\" title=\"\">T.D</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>mercredi 09/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>mercredi 24/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>13:00</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>14:15</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P1-4250</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "                        <ul class=\"list-unstyled\">\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Durée:</span>\n" +
-                "                                    <span> Du </span>\n" +
-                "                                    <span>mercredi 09/01/2019</span>\n" +
-                "                                    <span> au </span>\n" +
-                "                                    <span>mercredi 24/04/2019</span>\n" +
-                "\n" +
-                "                                \n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Heure:</span>\n" +
-                "                                    <span> de </span>\n" +
-                "                                    <span>14:30</span>\n" +
-                "                                    <span> à </span>\n" +
-                "                                    <span>15:45</span>\n" +
-                "                            <li>\n" +
-                "                                    <span class=\"font-weight-bold\">Local: </span>\n" +
-                "                                    <span>P1-4250</span>\n" +
-                "                                        <span class=\"badge badge-info\" title=\"\">T.D</span>\n" +
-                "                            </li>\n" +
-                "                            <li>\n" +
-                "                            </li>\n" +
-                "                        </ul>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "</div>";
-    }
-    //endregion
-
-    LoginActivity login;
+    LoginActivity loginActivity;
+    Login login;
     RequestQueue queue;
+    public static MainActivity singleton;
+    public int test = 0;
+
+    SwipeRefreshLayout swipe;
+
+    private int jaja = 0;
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -481,17 +107,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.preferences:
-                intent = new Intent(getApplicationContext(), settingsActivity.class);
+                intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
             case R.id.blacklisted:
-                intent = new Intent(getApplicationContext(), blacklisted_activity.class);
+                intent = new Intent(getApplicationContext(), BlacklistedActivity.class);
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
             case R.id.grades_button:
-                intent = new Intent(getApplicationContext(), gradesActivity.class);
+                intent = new Intent(getApplicationContext(), GradesActivity.class);
                 intent.putExtra("requestCode", 42);
                 startActivityForResult(intent, 42);
                 return true;
@@ -502,20 +128,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Design_Light);
+        html = "coucou";
+        singleton = this;
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
-        changeLanguage(sharedPref.getString("Language","fr"));
+        changeLanguage(sharedPref.getString("Language", "fr"));
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         weeklist_layout = findViewById(R.id.weekList);
-        show_week(null);
+        swipe = findViewById(R.id.pullToRefresh);
+        //show_week(null);
         queue = Volley.newRequestQueue(this);
+        login = new Login(this);
 
 
-        ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                etPasLAuDela(null);
+                TextView t = findViewById(R.id.weeklist_error);
+                if (t != null)
+                    weeklist_layout.removeView(t);
+                login.getSchedule();
             }
         });
 
@@ -538,25 +171,61 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //setContentView(R.layout.activity_test);
+        weeklist_layout = findViewById(R.id.weekList);
+        swipe = findViewById(R.id.pullToRefresh);
+        Log.i("request", "onActivityResult : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
         if (requestCode == 42) {
             invalidateOptionsMenu();
             show_week(null);
+        } else if (requestCode == 155 && data != null) {
+            html = data.getExtras().getString("html").replace("\r", "");
+            Log.i("request", "result : " + html);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        weeklist_layout = findViewById(R.id.weekList);
+        swipe = findViewById(R.id.pullToRefresh);
+        Log.i("request", "onResume : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
+        if(swipe != null && weeklist_layout != null)
+            show_week(null, true);
     }
 
     public void versLInfini(View v) {
         //setContentView(R.layout.activity_test);
-        login.finish();
-        sharedPref.edit().putString("login", ((TextView) findViewById(R.id.login)).getText().toString()).commit();
+        loginActivity.finish();
+        sharedPref.edit().putString("loginActivity", ((TextView) findViewById(R.id.login)).getText().toString()).commit();
         sharedPref.edit().putString("password", ((CheckBox) findViewById(R.id.save_password)).isChecked() ? ((TextView) findViewById(R.id.login)).getText().toString() : "").commit();
         //show_week(v);
     }
 
-    public void etPasLAuDela(View v) {
-        sharedPref.edit().putString("json", null).commit();
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.putExtra("requestCode", 42);
-        startActivityForResult(intent, 42);
+    public void startLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("requestCode", 155);
+        startActivityForResult(intent, 155);
+    }
+
+
+    public void onButtonShowPopupWindowClick(View view) {
+
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.activity_main, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.MATCH_PARENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
 
 
@@ -565,8 +234,10 @@ public class MainActivity extends AppCompatActivity {
         show_week(v);
     }
 
-    public void show_week(View v) {
 
+    public void show_week(View v, boolean endPull) {
+        Log.i("request", "show week");
+        Log.i("request", "json exists : " + (sharedPref.getString("json", null) != null));
         try {
 
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-u");
@@ -592,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
                     else
                         movingDate[0] = 31;
                 }
+
             }
             String currentweek = String.format("%02d", movingDate[0]) + "/" + String.format("%02d", movingDate[1]) + "/" + String.format("%02d", movingDate[2]);
             for (i = 1; i < 7; i++) {
@@ -613,10 +285,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 currentweek += " " + String.format("%02d", movingDate[0]) + "/" + String.format("%02d", movingDate[1]) + "/" + String.format("%02d", movingDate[2]);
+
             }
 
 
             Parser2 parser = new Parser2();
+
 
             JSONObject json = null;
             try {
@@ -630,8 +304,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 Log.i("JSON error", e.toString(), e);
             }
-
-
 
             weeklist_layout.removeAllViews();
             int px = (int) (2 * getApplicationContext().getResources().getDisplayMetrics().density + 0.5f);
@@ -797,78 +469,111 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("JSON error", e.toString(), e);
                 }
             }
-            ((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
-        } catch (Exception e){
-            Log.i("Error",e.toString(),e);
-            TextView t = new TextView(this);
+        } catch (Exception e) {
+            Log.i("request", e.toString(), e);
+            Log.i("Error", e.toString(), e);
+            TextView t = findViewById(R.id.weeklist_error);
+            if (t != null)
+                weeklist_layout.removeView(t);
+            t = new TextView(this);
             t.setText(getString(R.string.error_calendar_message));
             t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             t.setTextColor(0xffffffff);
             t.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[1]));
             t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             t.setTypeface(Typeface.DEFAULT_BOLD);
-            weeklist_layout.addView(t);
+            t.setId(R.id.weeklist_error);
+            weeklist_layout.addView(t, 0);
+        }
+        if (endPull) {
+            Log.i("request", "pull off");
+            //((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
+            swipe.setRefreshing(false);
         }
 
-
-
+        Log.i("request", "done");
     }
 
-    public void fleur(View v) {
-        sharedPref.edit().putString("login", ((TextView)findViewById(R.id.login)).getText().toString()).commit();
-        sharedPref.edit().putString("password", ((CheckBox)findViewById(R.id.save_password)).isChecked()? ((TextView)findViewById(R.id.login)).getText().toString() :"").commit();
-        //login.Login(((EditText) findViewById(R.id.login)).getText().toString(), ((EditText) findViewById(R.id.password)).getText().toString(), ((EditText) findViewById(R.id.captcha)).getText().toString());
-        login.letsTrySomethingElse((TextView) findViewById(R.id.searchEditText));
+    public void show_week(View v) {
+        show_week(v, false);
     }
 
-    public void truc(String html) {
-        this.html = html;
-        login.finish();
+    public void refreshHtml(String html) {
+        this.html = html.replace("\r", "");
+        sharedPref.edit().putString("json", null).commit();
+        Log.i("request", "refreshHtml : " + html.length());
+
+        weeklist_layout = findViewById(R.id.weekList);
+        swipe = findViewById(R.id.pullToRefresh);
+        Log.i("request", "truc : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
+        show_week(null, true);
+    }
+
+    public void failHtml(int code) {
+        Log.i("request", "fail html : " + code);
+        TextView t = findViewById(R.id.weeklist_error);
+        if (t != null)
+            weeklist_layout.removeView(t);
+        t = new TextView(this);
+        String[] message;
+        if (code == 0)
+            message = new String[]{getString(R.string.error_login_credentials_1), getString(R.string.error_login_credentials_2)};
+        else if (code == 1)
+            message = new String[]{getString(R.string.error_login_network_1), getString(R.string.error_login_network_2), getString(R.string.error_login_network_3)};
+        else
+            message = new String[]{getString(R.string.error_login_unknown_2), getString(R.string.error_login_unknown_2)};
+        t.setText(TextUtils.join("\n", message));
+        t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        t.setTextColor(0xffffffff);
+        t.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[1]));
+        t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        t.setTypeface(Typeface.DEFAULT_BOLD);
+        t.setId(R.id.weeklist_error);
+        weeklist_layout.addView(t, 0);
+        swipe.setRefreshing(false);
     }
 
 
-
-
-    private Boolean dateCompare(String actualWeek, String startenddates){
+    private Boolean dateCompare(String actualWeek, String startenddates) {
         String[] startandend = startenddates.split(" ");
-        String start = startandend[0].split("\n")[0] , end = startandend[1].split("\n")[0];
+        String start = startandend[0].split("\n")[0], end = startandend[1].split("\n")[0];
 
-        if(start.contains(end))
+        if (start.contains(end))
             return actualWeek.contains(start);
-        if(actualWeek.contains(start )|| actualWeek.contains(end))
+        if (actualWeek.contains(start) || actualWeek.contains(end))
             return true;
 
-        String startToCompare[][] = new String[][]{start.split("/"),actualWeek.split(" ")[0].split("/")};
-        if(Integer.parseInt(startToCompare[0][2]+startToCompare[0][1]+startToCompare[0][0])
-                > Integer.parseInt(startToCompare[1][2]+startToCompare[1][1]+startToCompare[1][0]))
+        String startToCompare[][] = new String[][]{start.split("/"), actualWeek.split(" ")[0].split("/")};
+        if (Integer.parseInt(startToCompare[0][2] + startToCompare[0][1] + startToCompare[0][0])
+                > Integer.parseInt(startToCompare[1][2] + startToCompare[1][1] + startToCompare[1][0]))
             return false;
-        String endToCompare[][] = new String[][]{end.split("/"),actualWeek.split(" ")[6].split("/")};
+        String endToCompare[][] = new String[][]{end.split("/"), actualWeek.split(" ")[6].split("/")};
         return Integer.parseInt(endToCompare[0][2] + endToCompare[0][1] + endToCompare[0][0]) >= Integer.parseInt(endToCompare[1][2] + endToCompare[1][1] + endToCompare[1][0]);
     }
 
     //region blacklist
-    private void blacklist(String lesson){
-        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " #'" + lesson +"'#").commit();
+    private void blacklist(String lesson) {
+        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") + " #'" + lesson + "'#").commit();
     }
 
-    private void unblacklist(String lesson){
-        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "") .replace(" #'"+lesson+"'#","")).commit();
+    private void unblacklist(String lesson) {
+        sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "").replace(" #'" + lesson + "'#", "")).commit();
     }
 
-    private void resetBlacklist(){
+    private void resetBlacklist() {
         sharedPref.edit().putString("blacklisted", "").commit();
     }
 
-    private boolean isBlacklisted(String lesson){
-        return sharedPref.getString("blacklisted", "").contains("#'"+ lesson+ "'#");
+    private boolean isBlacklisted(String lesson) {
+        return sharedPref.getString("blacklisted", "").contains("#'" + lesson + "'#");
     }
     //endregion
 
-    private void changeLanguage(String language){
+    private void changeLanguage(String language) {
         Locale myLocale = new Locale(language);
         Resources res = getResources();
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
-        res.updateConfiguration(conf,res.getDisplayMetrics());
+        res.updateConfiguration(conf, res.getDisplayMetrics());
     }
 }
