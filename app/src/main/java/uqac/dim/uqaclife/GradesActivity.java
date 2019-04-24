@@ -298,7 +298,7 @@ public class GradesActivity extends MainActivity {
         else if (code == 1)
             message = new String[]{getString(R.string.error_login_network_1), getString(R.string.error_login_network_2), getString(R.string.error_login_network_3)};
         else
-            message = new String[]{getString(R.string.error_login_unknown_2), getString(R.string.error_login_unknown_2)};
+            message = new String[]{getString(R.string.error_login_unknown_1), getString(R.string.error_login_unknown_2)};
         t.setText(TextUtils.join("\n", message));
         t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         t.setTextColor(0xffffffff);
