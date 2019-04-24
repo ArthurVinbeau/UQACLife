@@ -157,6 +157,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if (sharedPref.getString("json", null) == null)
+            login.getSchedule();
+
         // Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
         //tv.setText(stringFromJNI());
@@ -194,11 +197,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        weeklist_layout = findViewById(R.id.weekList);
-        swipe = findViewById(R.id.pullToRefresh);
-        Log.i("request", "onResume : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
-        if(swipe != null && weeklist_layout != null)
+        if(findViewById(R.id.pullToRefresh) != null && findViewById(R.id.weekList) != null) {
+            weeklist_layout = findViewById(R.id.weekList);
+            swipe = findViewById(R.id.pullToRefresh);
+            Log.i("request", "onResume : weeklist_layout : true | pull : true");
             show_week(null, true);
+        }
+        else
+            Log.i("request", "onResume : weeklist_layout : false | pull : false");
+
     }
 
     public void versLInfini(View v) {
@@ -323,6 +330,9 @@ public class MainActivity extends AppCompatActivity {
             id_notif = 1;
 
             //
+
+            long nextTime = Long.MAX_VALUE;
+            PendingIntent nextIntent = null;
             for (i = 0; i < 7; i++) {
 
                 GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
@@ -345,6 +355,7 @@ public class MainActivity extends AppCompatActivity {
                         weeklist_layout.addView(t);
                     }
                     gd2.setCornerRadii(new float[]{px2, px2, 0, 0, 0, 0, px2, px2});
+
                     for (int j = 0; j < day.length(); j++) {
                         try {
 
@@ -412,10 +423,10 @@ public class MainActivity extends AppCompatActivity {
                                 final boolean notify = sharedPref.getBoolean("switchnotif",true);
                                 final boolean service = sharedPref.getBoolean("switchservice",false);
                                 if(notify) {
-                                    int toadd  = sharedPref.getInt("minutetoadd",0) * 60000;
+                                    int toadd  = sharedPref.getInt("minutetoadd",15) * 60000;
 
-                                    Calendar cal = Calendar.getInstance();
-                                    Calendar toret = Calendar.getInstance();
+                                    Calendar cal = (Calendar) Calendar.getInstance().clone();
+                                    Calendar toret = (Calendar) Calendar.getInstance().clone();
                                     int hour = cal.get(Calendar.HOUR_OF_DAY);
                                     int min = cal.get(Calendar.MINUTE);
                                     int CurrentDay = cal.get(Calendar.DAY_OF_WEEK);
@@ -435,6 +446,11 @@ public class MainActivity extends AppCompatActivity {
                                     PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, toret.getTimeInMillis(), broadcast);
                                     id_notif++;
+
+                                    if (nextTime > toret.getTimeInMillis()) {
+                                        nextIntent = broadcast;
+                                        nextTime = toret.getTimeInMillis();
+                                    }
                                 }
 
 
@@ -463,10 +479,16 @@ public class MainActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             Log.i("JSON error", e.toString(), e);
                         }
+
                     }
                 } catch (JSONException e) {
                     Log.i("JSON error", e.toString(), e);
                 }
+            }
+            if (sharedPref.getBoolean("switchnotif",true) && sharedPref.getBoolean("switchservice",false)) {
+                Calendar c = Calendar.getInstance();
+                c.add(Calendar.SECOND, 2);
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), nextIntent);
             }
         } catch (Exception e) {
             Log.i("request", e.toString(), e);
@@ -520,7 +542,7 @@ public class MainActivity extends AppCompatActivity {
         else if (code == 1)
             message = new String[]{getString(R.string.error_login_network_1), getString(R.string.error_login_network_2), getString(R.string.error_login_network_3)};
         else
-            message = new String[]{getString(R.string.error_login_unknown_2), getString(R.string.error_login_unknown_2)};
+            message = new String[]{getString(R.string.error_login_unknown_1), getString(R.string.error_login_unknown_2)};
         t.setText(TextUtils.join("\n", message));
         t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         t.setTextColor(0xffffffff);

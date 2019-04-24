@@ -159,16 +159,19 @@
 
                         <TextView
                             android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="5"
                             android:text="@string/avancedesnotification"
+                            android:textAlignment="textStart"
                             android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/textView6"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:paddingEnd="7dp"
                             android:textAlignment="textEnd"
                             android:textSize="20sp" />
                     </LinearLayout>

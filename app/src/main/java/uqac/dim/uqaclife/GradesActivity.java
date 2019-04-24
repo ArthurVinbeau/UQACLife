@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -205,21 +206,23 @@ public class GradesActivity extends MainActivity {
             grades_scroll.addView(lessonName);
             String evaluation[] = html.split("<tbody>")[1].split("</tbody>")[0].replace("<tr class=\"\">", "").split("</tr>");
             TableLayout table = new TableLayout(this);
+            table.setPadding(5, 0, 5, 0);
             TableRow description = new TableRow(this);
+            description.setGravity(Gravity.END);
 
             TextView element = new TextView(this);
             element.setText(getString(R.string.element));
-            element.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.5f));
+            element.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
             element.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
             TextView nonPonder = new TextView(this);
             nonPonder.setText(getString(R.string.non_pondere));
-            nonPonder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.25f));
+            nonPonder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0));
             nonPonder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
             TextView ponder= new TextView(this);
             ponder.setText(getString(R.string.pondere));
-            ponder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.25f));
+            ponder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0));
             ponder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
             description.addView(element);
@@ -230,19 +233,20 @@ public class GradesActivity extends MainActivity {
             for (int i = 0; i < evaluation.length - 1; i++) {
                 String vals[] = evaluation[i].split("<td>");
                 TableRow note = new TableRow(this);
+                note.setGravity(Gravity.END);
                 TextView evalName = new TextView(this);
                 evalName.setText(Jsoup.parse(vals[1].split("</td>")[0]).text());
-                evalName.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.5f));
+                evalName.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
                 evalName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
                 TextView evalNonPonder = new TextView(this);
                 evalNonPonder.setText(Jsoup.parse(vals[2].split("</td>")[0]).text());
-                evalNonPonder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.25f));
+                evalNonPonder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0));
                 evalNonPonder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
                 TextView evalPonder= new TextView(this);
                 evalPonder.setText(Jsoup.parse(vals[3].split("</td>")[0]).text());
-                evalPonder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.25f));
+                evalPonder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0));
                 evalPonder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
                 note.addView(evalName);
@@ -251,14 +255,15 @@ public class GradesActivity extends MainActivity {
                 table.addView(note);
             }
             TableRow note = new TableRow(this);
+            note.setGravity(Gravity.END);
             TextView evalName = new TextView(this);
             evalName.setText(getString(R.string.total));
-            evalName.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.5f));
+            evalName.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
             evalName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
             TextView total = new TextView(this);
             total.setText(Jsoup.parse(html.split("<div class=\"card-body p-1 \">")[1].split("</div>")[0]).text());
-            total.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,.5f));
+            total.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0));
             total.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
             note.addView(evalName);
@@ -298,7 +303,7 @@ public class GradesActivity extends MainActivity {
         else if (code == 1)
             message = new String[]{getString(R.string.error_login_network_1), getString(R.string.error_login_network_2), getString(R.string.error_login_network_3)};
         else
-            message = new String[]{getString(R.string.error_login_unknown_2), getString(R.string.error_login_unknown_2)};
+            message = new String[]{getString(R.string.error_login_unknown_1), getString(R.string.error_login_unknown_2)};
         t.setText(TextUtils.join("\n", message));
         t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         t.setTextColor(0xffffffff);
