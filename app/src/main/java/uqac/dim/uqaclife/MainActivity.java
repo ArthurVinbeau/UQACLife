@@ -322,6 +322,9 @@ public class MainActivity extends AppCompatActivity {
             id_notif = 1;
 
             //
+
+            long nextTime = Long.MAX_VALUE;
+            PendingIntent nextIntent = null;
             for (i = 0; i < 7; i++) {
 
                 GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[i]);
@@ -344,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
                         weeklist_layout.addView(t);
                     }
                     gd2.setCornerRadii(new float[]{px2, px2, 0, 0, 0, 0, px2, px2});
+
                     for (int j = 0; j < day.length(); j++) {
                         try {
 
@@ -419,8 +423,8 @@ public class MainActivity extends AppCompatActivity {
                                 if(notify) {
                                     int toadd  = sharedPref.getInt("minutetoadd",15) * 60000;
 
-                                    Calendar cal = Calendar.getInstance();
-                                    Calendar toret = Calendar.getInstance();
+                                    Calendar cal = (Calendar) Calendar.getInstance().clone();
+                                    Calendar toret = (Calendar) Calendar.getInstance().clone();
                                     int hour = cal.get(Calendar.HOUR_OF_DAY);
                                     int min = cal.get(Calendar.MINUTE);
                                     int CurrentDay = cal.get(Calendar.DAY_OF_WEEK);
@@ -440,6 +444,11 @@ public class MainActivity extends AppCompatActivity {
                                     PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, toret.getTimeInMillis(), broadcast);
                                     id_notif++;
+
+                                    if (nextTime > toret.getTimeInMillis()) {
+                                        nextIntent = broadcast;
+                                        nextTime = toret.getTimeInMillis();
+                                    }
                                 }
 
 
@@ -468,10 +477,16 @@ public class MainActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             Log.i("JSON error", e.toString(), e);
                         }
+
                     }
                 } catch (JSONException e) {
                     Log.i("JSON error", e.toString(), e);
                 }
+            }
+            if (sharedPref.getBoolean("switchnotif",true) && sharedPref.getBoolean("switchservice",false)) {
+                Calendar c = Calendar.getInstance();
+                c.add(Calendar.SECOND, 2);
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), nextIntent);
             }
         } catch (Exception e) {
             Log.i("request", e.toString(), e);
