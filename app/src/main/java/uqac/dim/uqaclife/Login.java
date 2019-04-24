@@ -274,6 +274,7 @@ public class Login {
                             if (retrys++ < maxRetrys) {
                                 getSchedule();
                             } else {
+                                retrys = 0;
                                 if (progress)
                                     mainActivity.loginActivity.failLogin(2);
                                 else
@@ -298,6 +299,7 @@ public class Login {
 
                                 Log.i("request", "transmitting schedule...");
                                 //Log.i("request", response);
+                                retrys = 0;
                                 if (progress)
                                     mainActivity.loginActivity.transfer(response);
                                 else
@@ -396,6 +398,7 @@ public class Login {
                                 cookieManager.getCookieStore().removeAll();
                                 getGrades(gradesActivity);
                             } else {
+                                retrys = 0;
                                 gradesActivity.failHtml(2);
                             }
                             return;
@@ -430,6 +433,7 @@ public class Login {
                                         gradesActivity.failHtml(2);
                                     urls.add("https://etudiant.uqac.ca/EtudiantApp/CoursDetailPartial/" + id + "/" + e);
                                 }
+                                retrys = 0;
                                 gradesRequests(urls);
                             }
                         }, new Response.ErrorListener() {
