@@ -58,4 +58,5 @@
     <string name="login_log_6">Getting Auðkenni ...</string>
     <string name="login_log_7">Sækir listann rétta ...</string>
     <string name="login_log_8">Sækir einkunnum ...</string>
+    <string name="about">um</string>
 </resources>

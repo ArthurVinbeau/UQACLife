@@ -58,4 +58,5 @@
     <string name="login_log_6">기간 ID를 얻기 ...</string>
     <string name="login_log_7">코스 목록을 가져 오는 중 ...</string>
     <string name="login_log_8">성적을 가져 오는 중 ...</string>
+    <string name="about">약</string>
 </resources>
