@@ -1,5 +1,6 @@
 package uqac.dim.uqaclife;
 
+import android.util.Log;
 import android.util.Pair;
 import java.util.ArrayList;
 
@@ -46,7 +47,13 @@ public class Parser2 {
                 int timevalue = Integer.parseInt(start[0])*100 + Integer.parseInt(start[1].split("\n")[0]);
 
                 String duration = tmp[2].split("\n")[0] + " à "+ tmp[4].split("\n")[0];
-                String local = infos [3].split("<span>")[1].split("\n")[0] + (infos[3].contains("T.D")?"T.D":(infos[3].contains("LAB")?"LAB":""));
+                String local = null;
+                try {
+                    local = infos[3].split("<span>")[1].split("\n")[0] + (infos[3].contains("T.D") ? "T.D" : (infos[3].contains("LAB") ? "LAB" : ""));
+                } catch (Exception e){
+                    local = "Non renseignée";
+                    Log.i("HTML error", e.toString(),e);
+                }
 
                 String toAdd = cours + "#" + duration + "#" + local  + "#"+ period;
                 //Ils sont inscrits sous la forme id-grp - Nom du cours#hh:mm à hh:mm#local#period
