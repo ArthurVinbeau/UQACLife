@@ -58,9 +58,9 @@ public class NotifService extends Service {
                 .setContentTitle(intent.getStringExtra("nom"))
                 .setContentText(intent.getStringExtra("room"))
 //                    .setSmallIcon(R.drawable.mini_ul)
-                .setSmallIcon(Icon.createWithBitmap(createBitmap(s.substring(3, 5), s.substring(5, 7), false)))
+                .setSmallIcon(Icon.createWithBitmap(createBitmap(s.substring(3, 5), s.substring(5, 7), false, false)))
 //                    .setLargeIcon(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_ulrond2)))
-                .setLargeIcon(Icon.createWithBitmap(createBitmap(s2, s3, true)))
+                .setLargeIcon(Icon.createWithBitmap(createBitmap(s2, s3, true, true)))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .build();
@@ -109,10 +109,10 @@ public class NotifService extends Service {
         return"";
 
     }
-    private Bitmap createBitmap(String text1, String text2 , Boolean square){
+    private Bitmap createBitmap(String text1, String text2 , Boolean square, Boolean dark){
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setTextSize(50);
-        paint.setColor(Color.parseColor("#000000"));
+        paint.setColor(Color.parseColor(dark ? "#000000" : "#FFFFFF"));
         paint.setTextAlign(Paint.Align.LEFT);
         float baseline = -paint.ascent(); // ascent() is negative
         int width = (int) (paint.measureText(text1)); // round

@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/colorBlack</item>
         <item name="colorPrimary">@color/colorBlack</item>
-        <item name="android:textColor">@color/colorGris</item>
 
 </style>
     <style name="SwichStyle" parent="AppTheme">
