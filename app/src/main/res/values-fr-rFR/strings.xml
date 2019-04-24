@@ -42,7 +42,7 @@
     <string name="error_grades_message">Une erreur est survenue pendant le chargement des notes</string>
     <string name="Switch_Notification">Activer</string>
     <string name="Switch_service">Permanent</string>
-    <string name="avancedesnotification">Anticipation de la notification</string>
+    <string name="avancedesnotification">Anticipation des notification</string>
     <string name="login_log_1">Obtention de l\'URL de connexion et des cookies ...</string>
     <string name="login_log_2">Envoi d\'informations de connexion ...</string>
     <string name="login_log_3">Récupération du token encodé ...</string>

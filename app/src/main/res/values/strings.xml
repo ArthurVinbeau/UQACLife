@@ -78,6 +78,6 @@
     <string name="language_18" translatable="false">Zulu</string>
     <string name="Switch_Notification">Enable</string>
     <string name="Switch_service">Permanent</string>
-    <string name="avancedesnotification">Avance des notifications</string>
+    <string name="avancedesnotification">Notification anticipation</string>
 
 </resources>
