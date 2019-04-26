@@ -1,9 +1,6 @@
 package uqac.dim.uqaclife;
 
 
-import android.app.ActivityManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -12,11 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
@@ -32,14 +26,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Switch;
-import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -144,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_Design_Light);
         html = "coucou";
         singleton = this;
         sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
@@ -517,7 +506,6 @@ public class MainActivity extends AppCompatActivity {
             t.setId(R.id.weeklist_error);
             weeklist_layout.addView(t, 0);
         }
-
         if (endPull) {
             Log.i("request", "pull off");
             //((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);

@@ -45,9 +45,9 @@ public class SettingsActivity extends MainActivity {
         findViewById(R.id.Logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).commit();
+                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).apply();
                 Login.flushCookies();
-                finish();
+                curentActivity.finish();
             }
         });
         ((TextView)findViewById(R.id.selected_language)).setText(sharedPref.getString("Langue"," Français"));

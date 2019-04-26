@@ -86,32 +86,6 @@
             android:checked="false"
             android:text="@string/save_password"
             android:textSize="26sp" />
-<!--
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dip"
-            android:text="@string/Captcha"
-            android:textSize="26sp" />
-
-        <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/container_captcha"
-            android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_marginBottom="10dip"
-            android:contentDescription="@string/J_attends_la_finalisation_du_captcha"
-            android:src="@drawable/blanc" />
-
-        <EditText
-            android:id="@+id/captcha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle_edittext"
-            android:hint="@string/Captcha_suite"
-            android:imeOptions="actionDone"
-            android:singleLine="true"
-            android:padding="15dip" />
-            -->
 
         <TextView
             android:id="@+id/progressText"

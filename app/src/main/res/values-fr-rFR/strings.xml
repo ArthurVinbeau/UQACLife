@@ -41,7 +41,7 @@
     <string name="search">Chercher</string>
     <string name="error_grades_message">Une erreur est survenue pendant le chargement des notes</string>
     <string name="Switch_Notification">Activer</string>
-    <string name="Switch_service">Permanent</string>
+    <string name="Switch_service">Permanente</string>
     <string name="avancedesnotification">Anticipation des notification</string>
     <string name="login_log_1">Obtention de l\'URL de connexion et des cookies ...</string>
     <string name="login_log_2">Envoi d\'informations de connexion ...</string>
@@ -59,10 +59,4 @@
     <string name="login_log_7">Récupération de la liste des cours</string>
     <string name="login_log_8">Récupération des notes</string>
     <string name="about">A propos</string>
-    <string name="login_log_3">Récupération jeton ... encodée</string>
-    <string name="login_log_4">Se connecter...</string>
-    <string name="login_log_5">Obtenir calendrier ...</string>
-    <string name="Switch_Notification">Activer</string>
-    <string name="Switch_service">Permanent</string>
-    <string name="avancedesnotification">Anticipation de la notification</string>
 </resources>
