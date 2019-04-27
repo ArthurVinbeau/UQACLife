@@ -268,12 +268,15 @@ public class SettingsActivity extends MainActivity {
         Switch s2 = (Switch)findViewById(R.id.switch1);
         if(s.isChecked()) {
             s2.setChecked(true);
-            startService(v);
+            //startService(v);
             sharedPref.edit().putBoolean("switchnotif",s.isChecked()).apply();
+            sharedPref.edit().putBoolean("serviceonce",true).apply();
+
         }
         else
         {
             stopService(v);
+            sharedPref.edit().putBoolean("serviceonce",false).apply();
         }
         sharedPref.edit().putBoolean("switchservice",s.isChecked()).apply();
         show_week(v);

@@ -47,11 +47,11 @@ public class NotifService extends Service {
         String s = intent.getStringExtra("room");
         String s2 = intent.getStringExtra("start");
         String s3 = intent.getStringExtra("end");
-        if(s == null)
+        if (s == null)
             s = "       ";
-        if(s2 == null)
+        if (s2 == null)
             s2 = "";
-        if(s3 == null)
+        if (s3 == null)
             s3 = "";
 
         Notification notification = builder
@@ -76,16 +76,17 @@ public class NotifService extends Service {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
                     "channel",
-                    NotificationManager.IMPORTANCE_HIGH
+                    NotificationManager.IMPORTANCE_DEFAULT
             );
             notificationManager.createNotificationChannel(channel);
         }
 
-        startForeground(1,notification);
+        startForeground(1, notification);
+
         //do heavy work on a background thread
         //stopSelf();
-
         return START_NOT_STICKY;
+
     }
 
     public String jour(int day)

@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void startService(View v)
+    public void startService()
     {
         Intent serviceIntent = new Intent(this,NotifService.class);
         //serviceIntent.putExtra("bool",b);
@@ -423,7 +423,7 @@ public class MainActivity extends AppCompatActivity {
                                 final boolean notify = sharedPref.getBoolean("switchnotif",true);
                                 final boolean service = sharedPref.getBoolean("switchservice",false);
                                 if(notify) {
-                                    int toadd  = sharedPref.getInt("minutetoadd",15) * 60000;
+                                    int toadd = sharedPref.getInt("minutetoadd", 15) * 60000;
 
                                     Calendar cal = (Calendar) Calendar.getInstance().clone();
                                     Calendar toret = (Calendar) Calendar.getInstance().clone();
@@ -435,22 +435,24 @@ public class MainActivity extends AppCompatActivity {
                                     int h = 3600000 * (Integer.parseInt(debh) - hour);
                                     int m = 60000 * (Integer.parseInt(debm) - min);
                                     int d = 86400000 * (lessonDay - CurrentDay);
-                                    int totwait = h + d + m- toadd < 0 ? h + d + m-toadd + 604800000 : h + d + m-toadd;
+                                    int totwait = h + d + m - toadd < 0 ? h + d + m - toadd + 604800000 : h + d + m - toadd;
                                     toret.add(Calendar.MILLISECOND, totwait);
-                                    Intent notificationIntent = new Intent(getBaseContext(), NotifReceiver.class);
-                                    notificationIntent.putExtra("nom", name);
-                                    notificationIntent.putExtra("room", room2);
-                                    notificationIntent.putExtra("service",service);
-                                    notificationIntent.putExtra("start",start);
-                                    notificationIntent.putExtra("end",end);
-                                    PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, toret.getTimeInMillis(), broadcast);
-                                    id_notif++;
-
-                                    if (nextTime > toret.getTimeInMillis()) {
-                                        nextIntent = broadcast;
-                                        nextTime = toret.getTimeInMillis();
+                                    if(totwait >6000) {
+                                        Intent notificationIntent = new Intent(getBaseContext(), NotifReceiver.class);
+                                        notificationIntent.putExtra("nom", name);
+                                        notificationIntent.putExtra("room", room2);
+                                        notificationIntent.putExtra("service", service);
+                                        notificationIntent.putExtra("start", start);
+                                        notificationIntent.putExtra("end", end);
+                                        PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                        alarmManager.setExact(AlarmManager.RTC_WAKEUP, toret.getTimeInMillis(), broadcast);
+                                        id_notif++;
+                                        if (nextTime > toret.getTimeInMillis()) {
+                                            nextIntent = broadcast;
+                                            nextTime = toret.getTimeInMillis();
+                                        }
                                     }
+
                                 }
 
 
@@ -485,9 +487,11 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("JSON error", e.toString(), e);
                 }
             }
-            if (sharedPref.getBoolean("switchnotif",true) && sharedPref.getBoolean("switchservice",false)) {
+
+            if (sharedPref.getBoolean("switchservice",false) && sharedPref.getBoolean("serviceonce",true)) {
                 Calendar c = Calendar.getInstance();
-                c.add(Calendar.SECOND, 2);
+                c.add(Calendar.SECOND, 0);
+                sharedPref.edit().putBoolean("serviceonce",false).apply();
                 alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), nextIntent);
             }
         } catch (Exception e) {
@@ -511,7 +515,6 @@ public class MainActivity extends AppCompatActivity {
             //((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
             swipe.setRefreshing(false);
         }
-
         Log.i("request", "done");
     }
 
