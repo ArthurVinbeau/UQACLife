@@ -35,6 +35,7 @@ public class AboutActivity extends MainActivity {
         });
     }
 
+    //Open a popView with license activity
     void License(View v){
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);

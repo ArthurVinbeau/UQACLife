@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GradesActivity extends MainActivity {
-    int[][] colors = new int[][]{
+    int[][] colors = new int[][]{ //Colors for lesson names background gradients
             new int[]{0xFFFFC107, 0xFFFF9B00},
             new int[]{0xFFF75A4E, 0xFFF81D0D},
             new int[]{0xFFD77EF5, 0xFFBF0EDD},
@@ -32,8 +32,7 @@ public class GradesActivity extends MainActivity {
             new int[]{0xFF4CE751, 0xFF11A214},
             new int[]{0xFF47E1F5, 0xFF0A8EA3},
             new int[]{0xFFFFEB3B, 0xFFEBD827}};
-    SharedPreferences sharedPreferences;
-    List<String> lessonshtml = new ArrayList<>();
+
     LinearLayout grades_scroll;
     int displayed;
     private Login login;
@@ -47,124 +46,7 @@ public class GradesActivity extends MainActivity {
         setContentView(R.layout.activity_grades);
         grades_scroll = (LinearLayout)findViewById(R.id.grades_scroll);
         init();
-        sharedPref = getSharedPreferences(getResources().getString(R.string.preferences_file), MODE_PRIVATE);
-        //region sethtml
-        lessonshtml.add("\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "    <div class=\"mt-2\">\n" +
-                "    </div>\n" +
-                "\n" +
-                "<div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3\">\n" +
-                "    <h1 class=\"h2\">\n" +
-                "        Patate \n" +
-                "\n" +
-                "                    <span class=\"badge badge-secondary bg-warning\">&#xC0; venir</span>\n" +
-                "    </h1>    \n" +
-                "        <tbody>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail 1</td>\n" +
-                "                    <td>5.00/5.00</td>\n" +
-                "                    <td>5.00/5.00</td>\n" +
-                "                </tr>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail 2</td>\n" +
-                "                    <td>5.00/5.00</td>\n" +
-                "                    <td>5.00/5.00</td>\n" +
-                "                </tr>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail Maison 1</td>\n" +
-                "                    <td>10.00/10.00</td>\n" +
-                "                    <td>10.00/10.00</td>\n" +
-                "                </tr>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail Maison 2</td>\n" +
-                "                    <td>20.00/20.00</td>\n" +
-                "                    <td>20.00/20.00</td>\n" +
-                "                </tr>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail 3</td>\n" +
-                "                    <td>5.00/5.00</td>\n" +
-                "                    <td>5.00/5.00</td>\n" +
-                "                </tr>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail 4 </td>\n" +
-                "                    <td>10.00/10.00</td>\n" +
-                "                    <td>10.00/10.00</td>\n" +
-                "                </tr>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail 5</td>\n" +
-                "                    <td>5.00/5.00</td>\n" +
-                "                    <td>5.00/5.00</td>\n" +
-                "                </tr>\n" +
-                "        </tbody>\n" +
-                "    </table>\n" +
-                "</div>\n" +
-                "<div class=\"card float-right\">\n" +
-                "    <div class=\"card-header p-1 font-weight-bold\">Total</div>\n" +
-                "\n" +
-                "        <div class=\"card-body p-1 \">52.00/60.00</div>\n" +
-                "\n" +
-                "</div>\n" +
-                "<div class=\"clearfix\"></div>\n" +
-                "\n" +
-                "</div>\n" +
-                "\n");
-        lessonshtml.add("\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "    <div class=\"mt-2\">\n" +
-                "    </div>\n" +
-                "\n" +
-                "<div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3\">\n" +
-                "    <h1 class=\"h2\">\n" +
-                "        Elephant\n" +
-                "\n" +
-                "                    <span class=\"badge badge-secondary bg-warning\">&#xC0; venir</span>\n" +
-                "    </h1>    \n" +
-                "        <tbody>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Examen partiel</td>\n" +
-                "                    <td>100.00/100.00</td>\n" +
-                "                    <td>25.00/25.00</td>\n" +
-                "                </tr>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail 1</td>\n" +
-                "                    <td>20.00/20.00</td>\n" +
-                "                    <td>5.00/5.00</td>\n" +
-                "                </tr>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail 2</td>\n" +
-                "                    <td>10.00/10.00</td>\n" +
-                "                    <td>2.00/2.00</td>\n" +
-                "                </tr>\n" +
-                "                <tr class=\"\">\n" +
-                "                    <td>Travail 3</td>\n" +
-                "                    <td>20.00/20.00</td>\n" +
-                "                    <td>6.00/6.00</td>\n" +
-                "                </tr>\n" +
-                "        </tbody>\n" +
-                "    </table>\n" +
-                "</div>\n" +
-                "<div class=\"card float-right\">\n" +
-                "    <div class=\"card-header p-1 font-weight-bold\">Total</div>\n" +
-                "\n" +
-                "        <div class=\"card-body p-1 \">42.00/38.00</div>\n" +
-                "\n" +
-                "</div>\n" +
-                "<div class=\"clearfix\"></div>\n" +
-                "\n" +
-                "</div>\n" +
-                "\n");
 
-                //endregion
-        /*for (String lesson:lessonshtml) {
-            showGrades(lesson);
-        }*/
         login = super.login;
         final GradesActivity context = this;
         ((SwipeRefreshLayout)findViewById(R.id.pullToRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -190,12 +72,14 @@ public class GradesActivity extends MainActivity {
         return debug;
     }
 
+    //Show the grades from the string HTML
     public Boolean showGrades(String html) {
         try {
+            //Creates lessonName TextView to separate
             TextView lessonName = new TextView(this);
-            String name = html.split("<h1 class=\"h2\">")[1].split("</h1>")[0].split("\n")[1];
+            String name = html.split("<h1 class=\"h2\">")[1].split("</h1>")[0].split("\n")[1]; //get lesson name in  html
             Log.i("request", "before : " + name);
-            name = Jsoup.parse(name).text();
+            name = Jsoup.parse(name).text(); //clean lesson name
             Log.i("request", "after : " + name);
             lessonName.setText(name);
             lessonName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -203,23 +87,30 @@ public class GradesActivity extends MainActivity {
             lessonName.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colors[displayed++ % 7]));
             lessonName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             lessonName.setTypeface(Typeface.DEFAULT_BOLD);
-            grades_scroll.addView(lessonName);
-            String evaluation[] = html.split("<tbody>")[1].split("</tbody>")[0].replace("<tr class=\"\">", "").split("</tr>");
-            TableLayout table = new TableLayout(this);
+
+
+            grades_scroll.addView(lessonName);//add lessonname separator
+
+
+            String evaluation[] = html.split("<tbody>")[1].split("</tbody>")[0].replace("<tr class=\"\">", "").split("</tr>"); //get evalutations part and split foreach evalutation
+            TableLayout table = new TableLayout(this); //creates table layout
             table.setPadding(5, 0, 5, 0);
             TableRow description = new TableRow(this);
             description.setGravity(Gravity.END);
 
+            //Add element column name
             TextView element = new TextView(this);
             element.setText(getString(R.string.element));
             element.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
             element.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
+            //Add Not weighted column name
             TextView nonPonder = new TextView(this);
             nonPonder.setText(getString(R.string.non_pondere));
             nonPonder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0));
             nonPonder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 
+            //Add Weighted column name
             TextView ponder= new TextView(this);
             ponder.setText(getString(R.string.pondere));
             ponder.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0));
@@ -230,7 +121,7 @@ public class GradesActivity extends MainActivity {
             description.addView(ponder);
             table.addView(description);
             grades_scroll.addView(table);
-            for (int i = 0; i < evaluation.length - 1; i++) {
+            for (int i = 0; i < evaluation.length - 1; i++) { //Foreach grade, create table row with name, non ponder and ponder and adds it
                 String vals[] = evaluation[i].split("<td>");
                 TableRow note = new TableRow(this);
                 note.setGravity(Gravity.END);
@@ -254,6 +145,8 @@ public class GradesActivity extends MainActivity {
                 note.addView(evalPonder);
                 table.addView(note);
             }
+
+            //Add total row
             TableRow note = new TableRow(this);
             note.setGravity(Gravity.END);
             TextView evalName = new TextView(this);
@@ -274,6 +167,7 @@ public class GradesActivity extends MainActivity {
             Log.i("request", "course " + course + "/" + count);
             return true;
         } catch (Exception e) {
+            //Display error if so
             Log.i("showGrades Error", e.toString(), e);
             TextView t = findViewById(R.id.grades_error);
             if (t != null)
