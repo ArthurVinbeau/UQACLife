@@ -1,7 +1,7 @@
 # UQACLife
 Epilife for UQAC
 
-You can download and install the compiled apk [here]()
+You can download and install the compiled apk [here](https://github.com/ArthurVinbeau/UQACLife/raw/master/UQACLife.apk)
 
 ## License
 "THE BEER-WARE LICENSE" (Revision 42):
