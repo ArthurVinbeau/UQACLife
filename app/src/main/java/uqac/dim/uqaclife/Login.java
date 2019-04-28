@@ -2,6 +2,7 @@ package uqac.dim.uqaclife;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ public class Login {
     private RequestQueue queue;
     private static CookieManager cookieManager;
     private int retrys;
-    private int maxRetrys = 2;
+    private int maxRetrys = 1;
     private DefaultRetryPolicy def;
     private SharedPreferences sharedPref;
     private TextView progressText;
@@ -53,9 +54,11 @@ public class Login {
             cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
         sharedPref = mainActivity.getSharedPreferences(mainActivity.getResources().getString(R.string.preferences_file), MODE_PRIVATE);
-        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
     }
 
+//region Login requests
+
+    // Full login
     public void login(final String id, final String pwd, final int code) {
         if (code > 0) {
             progressText = mainActivity.findViewById(R.id.progressText);
@@ -64,7 +67,7 @@ public class Login {
             progressText.setText("[1/" + (code == 1 ? 5 : 7 ) + "] " + mainActivity.getString(R.string.login_log_1));
         }
 
-        Log.i("request", "Let's try something else!");
+        Log.i("request", "Login start");
         String url = "https://etudiant.uqac.ca/EtudiantApp/SignIn";
         cookieManager.getCookieStore().removeAll();
 
@@ -78,9 +81,6 @@ public class Login {
                             // Extract URL
                             String s = response.substring(response.indexOf("<form method="));
                             final String url = "https://fs.uqac.ca" + s.substring(s.indexOf("/adfs"), s.indexOf("\" >"));
-
-                            Log.i("request", "url : " + url);
-                            Log.i("request", cookieManager.getCookieStore().getCookies().toString());
 
                             postRaw(url, id, pwd, code);
                         } else {
@@ -96,7 +96,7 @@ public class Login {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
-                Log.e("request", error.toString());
+                Log.i("request", error.toString(), error);
                 if (code == 0)
                     mainActivity.failHtml(1);
                 else if (code == 2)
@@ -129,8 +129,6 @@ public class Login {
                         }
 
                         if (!response.contains("<div id=\"passwordArea\">")) {
-                            Log.i("request", response);
-
                             // Extract Data
                             String s = response.substring(response.indexOf("value=\"") + 7);
                             final String code = s.substring(0, s.indexOf("\" />"));
@@ -139,16 +137,8 @@ public class Login {
                             s = s.substring(s.indexOf("value=\"") + 7);
                             final String state = s.substring(0, s.indexOf("\" />"));
 
-
-                            Log.i("request", "code : " + code);
-                            Log.i("request", "idToken : " + idToken);
-                            Log.i("request", "state : " + state);
-                            Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
-
-
                             s = response.substring(response.indexOf("http"));
                             final String url2 = s.substring(0, s.indexOf("\""));
-                            Log.i("request", "url2 : " + url2);
 
                             postParsed(url2, url, code, idToken, state, codeBis);
                         } else {
@@ -165,7 +155,7 @@ public class Login {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
-                Log.e("request", error.toString());
+                Log.i("request", error.toString(), error);
                 if (codeBis == 0)
                     mainActivity.failHtml(1);
                 else if (codeBis == 2)
@@ -176,7 +166,7 @@ public class Login {
         }) {
             @Override
             public byte[] getBody() {
-                String httpPostBody = String.format("UserName=%s&Password=%s&AuthMethod=%s", id, pwd, "FormsAuthentication");
+                String httpPostBody = String.format("UserName=%s&Password=%s&AuthMethod=%s", id, Html.escapeHtml(pwd), "FormsAuthentication");
 
                 return httpPostBody.getBytes();
             }
@@ -204,8 +194,7 @@ public class Login {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.i("request", "Post successful");
-                        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
+                        Log.i("request", "Login successful");
 
                         if (codeBis == 2)
                             fetchGrades();
@@ -222,7 +211,7 @@ public class Login {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
-                Log.e("request", error.toString());
+                Log.i("request", error.toString(), error);
                 if (codeBis == 0)
                     mainActivity.failHtml(1);
                 else if (codeBis == 2)
@@ -234,7 +223,6 @@ public class Login {
             @Override
             public byte[] getBody() {
                 String httpPostBody = String.format("code=%s&id_token=%s&state=%s", code, idToken, state);
-                Log.i("request", "body : " + httpPostBody);
 
                 return httpPostBody.getBytes();
             }
@@ -254,6 +242,10 @@ public class Login {
         queue.add(postRequest);
     }
 
+//endregion
+
+//region Schedule
+
     private void fetchSchedule(final boolean progress) {
 
         if (progress) {
@@ -261,9 +253,9 @@ public class Login {
         }
         String url = "https://etudiant.uqac.ca/Dashboard";
 
-        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies().toString());
-        Log.i("request", "URIs    : " + cookieManager.getCookieStore().getURIs().toString());
+        Log.i("request", "Fetching Schedule");
 
+        // Getting period ID
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -272,6 +264,7 @@ public class Login {
                         if (!response.contains("aria-labelledby=\"Trimestre-dropdown\"")) {
                             Log.i("request", "not logged in! retrying... retry count : " + retrys);
                             if (retrys++ < maxRetrys) {
+                                cookieManager.getCookieStore().removeAll();
                                 getSchedule();
                             } else {
                                 retrys = 0;
@@ -283,22 +276,19 @@ public class Login {
                             return;
                         }
 
-                        Log.i("request", "dashboard");
-
                         String s = response.substring(response.indexOf("aria-labelledby=\"Trimestre-dropdown\""));
                         s = s.substring(s.indexOf("href=\""));
                         s = s.substring(s.indexOf("href=\"") + 6);
                         String url = s.substring(0, s.indexOf("\">"));
                         final String id =  url.split("/")[url.split("/").length - 1];
                         url = "https://etudiant.uqac.ca/EtudiantApp/HoraireListePartial/" + id + "?_=" + new Date().getTime();
-                        Log.i("request", "url : " + url);
 
+                        // Getting schedule
                         StringRequest getSchedule = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
 
                                 Log.i("request", "transmitting schedule...");
-                                //Log.i("request", response);
                                 retrys = 0;
                                 if (progress)
                                     mainActivity.loginActivity.transfer(response);
@@ -309,7 +299,7 @@ public class Login {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Log.i("request", "That didn't work!");
-                                Log.e("request", error.toString());
+                                Log.i("request", error.toString(), error);
                                 if (progress)
                                     mainActivity.loginActivity.failLogin(1);
                                 else
@@ -320,7 +310,6 @@ public class Login {
                             public Map<String, String> getHeaders() {
                                 HashMap headers = new HashMap();
                                 headers.put("Accept-Language", "fr-FR");
-
 
                                 return headers;
                             }
@@ -334,7 +323,7 @@ public class Login {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
-                Log.e("request", error.toString());
+                Log.i("request", error.toString(), error);
                 if (progress)
                     mainActivity.loginActivity.failLogin(1);
                 else
@@ -349,7 +338,6 @@ public class Login {
     }
 
     public void getSchedule() {
-        Log.i("request", "getSchedule cookies : " + cookieManager.getCookieStore().getCookies());
         if (cookieManager.getCookieStore().getCookies().isEmpty()) {
             if (sharedPref.getString("password", null) == null)
                 mainActivity.startLoginActivity();
@@ -361,9 +349,11 @@ public class Login {
 
     }
 
+//endregion
+
+//region Grades
+
     public void getGrades(GradesActivity gradesAct) {
-        Log.i("request", "Let's get some grades!");
-        Log.i("request", "cookies : " + cookieManager.getCookieStore().getCookies());
         gradesActivity = gradesAct;
 
         if (cookieManager.getCookieStore().getCookies().isEmpty()) {
@@ -383,10 +373,12 @@ public class Login {
     }
 
     private void fetchGrades() {
+        Log.i("request", "Fetching grades");
 
         String url = "https://etudiant.uqac.ca/Dashboard";
         progressText.setText("[5/7] " + mainActivity.getString(R.string.login_log_6));
 
+        // Getting period ID
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -404,25 +396,20 @@ public class Login {
                             return;
                         }
 
-                        Log.i("request", "dashboard");
-
                         String s = response.substring(response.indexOf("aria-labelledby=\"Trimestre-dropdown\""));
                         s = s.substring(s.indexOf("href=\""));
                         s = s.substring(s.indexOf("href=\"") + 6);
                         String url = s.substring(0, s.indexOf("\">"));
                         final String id =  url.split("/")[url.split("/").length - 1];
                         url = "https://etudiant.uqac.ca/Cours/" + id;
-                        Log.i("request", "url : " + url);
 
-                        Log.i("request", "Retrieving course list...");
                         progressText.setText("[6/7] " + mainActivity.getString(R.string.login_log_7));
 
-
+                        // Getting courses list
                         StringRequest getCourses = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
 
-                                Log.i("request", "Retrieving grades...");
                                 progressText.setText("[7/7] " + mainActivity.getString(R.string.login_log_8));
                                 List<String> urls = new ArrayList<String>();
                                 String s = response.substring(response.indexOf("<li class=\"nav-item\">"));
@@ -440,7 +427,7 @@ public class Login {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Log.i("request", "That didn't work!");
-                                Log.e("request", error.toString());
+                                Log.i("request", error.toString(), error);
                                 gradesActivity.failHtml(1);
                             }
                         });
@@ -453,7 +440,7 @@ public class Login {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
-                Log.e("request", error.toString());
+                Log.i("request", error.toString(), error);
                 gradesActivity.failHtml(1);
             }
         });
@@ -479,7 +466,7 @@ public class Login {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("request", "That didn't work!");
-                Log.e("request", error.toString());
+                Log.i("request", error.toString(), error);
                 gradesActivity.failHtml(1);
             }
         };
@@ -490,5 +477,7 @@ public class Login {
             queue.add(stringRequest);
         }
     }
+
+//endregion
 
 }

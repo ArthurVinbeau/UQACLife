@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,21 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginActivity extends MainActivity {
 
@@ -46,9 +31,9 @@ public class LoginActivity extends MainActivity {
         MainActivity.singleton.loginActivity = this;
         login = super.login;
         grades = getIntent().getBooleanExtra("grades", false);
-        Log.i("request", "grades create : " + grades);
     }
 
+    // Send login informations to Login.login()
     public void send(View v) {
         Button b = (Button) v;
         b.setEnabled(false);
@@ -58,19 +43,17 @@ public class LoginActivity extends MainActivity {
         String pwd = ((EditText)findViewById(R.id.password)).getText().toString();
 
         findViewById(R.id.login).setEnabled(false);
-        //findViewById(R.id.login).setFocusable(false);
         findViewById(R.id.password).setEnabled(false);
-        //findViewById(R.id.password).setFocusable(false);
 
-
-        sharedPref.edit().putString("login", id).commit();
+        sharedPref.edit().putString("login", id).apply();
         if (((CheckBox)findViewById(R.id.save_password)).isChecked())
-            sharedPref.edit().putString("password", pwd).commit();
+            sharedPref.edit().putString("password", pwd).apply();
 
         Log.i("request", "grades : " + grades);
         login.login(id, pwd, grades ? 3 : 1);
     }
 
+    // Return the HTML to the MainActivity instance
     public void transfer(String html) {
         sharedPref.edit().putString("json", null).commit();
         Intent i = new Intent(Intent.EXTRA_HTML_TEXT);
@@ -79,16 +62,14 @@ public class LoginActivity extends MainActivity {
         finish();
     }
 
+    // Display an error message and re-enable the button & inputs
     public void failLogin(int code) {
         Button b = findViewById(R.id.button);
         b.setEnabled(true);
         b.setVisibility(View.VISIBLE);
 
         findViewById(R.id.login).setEnabled(true);
-        //findViewById(R.id.login).setFocusable(true);
         findViewById(R.id.password).setEnabled(true);
-        //findViewById(R.id.password).setFocusable(true);
-        Log.i("request", "enabled : " + findViewById(R.id.login).isEnabled() + findViewById(R.id.password).isFocusable());
         String[] message;
         if (code == 0)
             message = new String[]{getString(R.string.error_login_credentials_1), getString(R.string.error_login_credentials_2)};

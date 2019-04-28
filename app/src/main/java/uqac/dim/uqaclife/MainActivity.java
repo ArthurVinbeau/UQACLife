@@ -3,33 +3,25 @@ package uqac.dim.uqaclife;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -43,10 +35,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Random;
-
-
-import android.content.res.Resources;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -95,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
     SwipeRefreshLayout swipe;
 
-    private int jaja = 0;
-
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -108,14 +94,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-        if (b != null && b.getInt("requestCode") == 42) //RequestCode is set to 42 to each activity called except MainActivity
+        if (b != null && b.getInt("requestCode") == 42) // RequestCode is set to 42 to each activity called except MainActivity
             return false;
         getMenuInflater().inflate(R.menu.main_drop_menu, menu);
         return true;
     }
 
 
-    //Open a new activity concording to the selected option
+    // Open a new activity concording to the selected option
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
@@ -154,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         weeklist_layout = findViewById(R.id.weekList); //Set weeklist as the LinearLayout in the scrollView
         swipe = findViewById(R.id.pullToRefresh);
-        //show_week(null);
         queue = Volley.newRequestQueue(this);
         login = new Login(this);
 
@@ -171,19 +156,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (sharedPref.getString("json", null) == null)
             login.getSchedule();
-
-        // Example of a call to a native method
-        //TextView tv = (TextView) findViewById(R.id.sample_text);
-        //tv.setText(stringFromJNI());
     }
 
-
-    public void startService()
-    {
-        Intent serviceIntent = new Intent(this,NotifService.class);
-        //serviceIntent.putExtra("bool",b);
-        ContextCompat.startForegroundService(this, serviceIntent);
-    }
     public void stopService(View v)
     {
         Intent serviceIntent = new Intent(this,NotifService.class);
@@ -192,16 +166,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //setContentView(R.layout.activity_test);
         weeklist_layout = findViewById(R.id.weekList);
         swipe = findViewById(R.id.pullToRefresh);
-        Log.i("request", "onActivityResult : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
         if (requestCode == 42) {
             invalidateOptionsMenu(); //Reload optionMenu to translate its strings
             show_week(null);
         } else if (requestCode == 155 && data != null) {
             html = data.getExtras().getString("html").replace("\r", "");
-            Log.i("request", "result : " + html);
         }
     }
 
@@ -212,20 +183,9 @@ public class MainActivity extends AppCompatActivity {
         if(findViewById(R.id.pullToRefresh) != null && findViewById(R.id.weekList) != null) {
             weeklist_layout = findViewById(R.id.weekList);
             swipe = findViewById(R.id.pullToRefresh);
-            Log.i("request", "onResume : weeklist_layout : true | pull : true");
             show_week(null, true);
         }
-        else
-            Log.i("request", "onResume : weeklist_layout : false | pull : false");
 
-    }
-
-    public void versLInfini(View v) {
-        //setContentView(R.layout.activity_test);
-        loginActivity.finish();
-        sharedPref.edit().putString("loginActivity", ((TextView) findViewById(R.id.login)).getText().toString()).commit();
-        sharedPref.edit().putString("password", ((CheckBox) findViewById(R.id.save_password)).isChecked() ? ((TextView) findViewById(R.id.login)).getText().toString() : "").commit();
-        //show_week(v);
     }
 
     public void startLoginActivity() {
@@ -234,35 +194,8 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 155);
     }
 
-
-    public void onButtonShowPopupWindowClick(View view) {
-
-        // inflate the layout of the popup window
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.activity_main, null);
-
-        // create the popup window
-        int width = LinearLayout.LayoutParams.MATCH_PARENT;
-        int height = LinearLayout.LayoutParams.MATCH_PARENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-    }
-
-
-    public void refresh_week(View v) {
-        //html = htmlRequest();
-        show_week(v);
-    }
-
-
     //If schedule json is already saved, displays it else gets html and displays it
     public void show_week(View v, boolean endPull) {
-        Log.i("request", "show week");
-        Log.i("request", "json exists : " + (sharedPref.getString("json", null) != null));
         try {
 
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-u"); //defined for dates comparaison
@@ -521,7 +454,6 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             //displays error if an error occured
-            Log.i("request", e.toString(), e);
             Log.i("Error", e.toString(), e);
             TextView t = findViewById(R.id.weeklist_error);
             if (t != null)
@@ -537,11 +469,8 @@ public class MainActivity extends AppCompatActivity {
             weeklist_layout.addView(t, 0);
         }
         if (endPull) {
-            Log.i("request", "pull off");
-            //((SwipeRefreshLayout) findViewById(R.id.pullToRefresh)).setRefreshing(false);
             swipe.setRefreshing(false);
         }
-        Log.i("request", "done");
     }
 
     public void show_week(View v) {
@@ -551,16 +480,12 @@ public class MainActivity extends AppCompatActivity {
     public void refreshHtml(String html) {
         this.html = html.replace("\r", "");
         sharedPref.edit().putString("json", null).commit();  //Reset saved json so it is not used and new HTML is parsed
-        Log.i("request", "refreshHtml : " + html.length());
-
         weeklist_layout = findViewById(R.id.weekList);
         swipe = findViewById(R.id.pullToRefresh);
-        Log.i("request", "truc : weeklist_layout : " + (weeklist_layout != null) + " | pull : " + (swipe != null));
         show_week(null, true);
     }
 
     public void failHtml(int code) {
-        Log.i("request", "fail html : " + code);
         TextView t = findViewById(R.id.weeklist_error);
         if (t != null)
             weeklist_layout.removeView(t);
@@ -612,11 +537,6 @@ public class MainActivity extends AppCompatActivity {
     //Unblacklist the lesson with name lesson by adding it to SharedPref
     private void unblacklist(String lesson) {
         sharedPref.edit().putString("blacklisted", sharedPref.getString("blacklisted", "").replace(" #'" + lesson + "'#", "")).commit();
-    }
-
-    //reset the blacklist SharedPref
-    private void resetBlacklist() {
-        sharedPref.edit().putString("blacklisted", "").commit();
     }
 
     //Return if lesson is in blacklist SharedPref
