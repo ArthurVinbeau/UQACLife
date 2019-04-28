@@ -1,6 +1,5 @@
 package uqac.dim.uqaclife;
 
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -16,12 +15,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GradesActivity extends MainActivity {
     int[][] colors = new int[][]{ //Colors for lesson names background gradients
@@ -44,7 +38,7 @@ public class GradesActivity extends MainActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades);
-        grades_scroll = (LinearLayout)findViewById(R.id.grades_scroll);
+        grades_scroll = findViewById(R.id.grades_scroll);
         init();
 
         login = super.login;
@@ -60,6 +54,7 @@ public class GradesActivity extends MainActivity {
         login.getGrades(this);
     }
 
+    // Reset the view & counters
     private View init() {
         grades_scroll.removeAllViews();
         TextView debug = new TextView(this);
@@ -78,9 +73,7 @@ public class GradesActivity extends MainActivity {
             //Creates lessonName TextView to separate
             TextView lessonName = new TextView(this);
             String name = html.split("<h1 class=\"h2\">")[1].split("</h1>")[0].split("\n")[1]; //get lesson name in  html
-            Log.i("request", "before : " + name);
             name = Jsoup.parse(name).text(); //clean lesson name
-            Log.i("request", "after : " + name);
             lessonName.setText(name);
             lessonName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             lessonName.setTextColor(0xffffffff);
@@ -89,7 +82,7 @@ public class GradesActivity extends MainActivity {
             lessonName.setTypeface(Typeface.DEFAULT_BOLD);
 
 
-            grades_scroll.addView(lessonName);//add lessonname separator
+            grades_scroll.addView(lessonName); //add lessonname separator
 
 
             String evaluation[] = html.split("<tbody>")[1].split("</tbody>")[0].replace("<tr class=\"\">", "").split("</tr>"); //get evalutations part and split foreach evalutation
@@ -164,7 +157,6 @@ public class GradesActivity extends MainActivity {
             table.addView(note);
             if (++course == count)
                 ((SwipeRefreshLayout)findViewById(R.id.pullToRefresh)).setRefreshing(false);
-            Log.i("request", "course " + course + "/" + count);
             return true;
         } catch (Exception e) {
             //Display error if so
@@ -185,8 +177,8 @@ public class GradesActivity extends MainActivity {
         }
     }
 
+    // Display error message
     public void failHtml(int code) {
-        Log.i("request", "fail html : " + code);
         TextView t = findViewById(R.id.grades_error);
         if (t != null)
             grades_scroll.removeView(t);
