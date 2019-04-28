@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +14,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.NumberPicker;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import static android.os.SystemClock.sleep;
 
 public class SettingsActivity extends MainActivity {
 
@@ -50,7 +46,7 @@ public class SettingsActivity extends MainActivity {
         findViewById(R.id.Logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { //Reset saved login, password, json and cookies
-                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).commit();
+                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).putString("blacklisted", "").commit();
                 Login.flushCookies();
                 curentActivity.finish();
             }
@@ -242,6 +238,7 @@ public class SettingsActivity extends MainActivity {
                     case "Russian": newLanguage = "ru"; break;
                     case "Yoruba": newLanguage = "yo"; break;
                     case "Zulu": newLanguage = "zu"; break;
+                    case "Franglais" : newLanguage = "ie"; break;
                 }
                 sharedPref.edit().putString("Language",newLanguage).putString("Langue",newText).apply();
                 invalidateOptionsMenu();

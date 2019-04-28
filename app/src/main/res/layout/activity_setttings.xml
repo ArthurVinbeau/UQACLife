@@ -196,10 +196,10 @@
                         android:id="@+id/searchEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:drawableLeft="@drawable/ic_search_black_24dp"
                         android:drawableStart="@drawable/ic_search_black_24dp"
-                        android:hint="@string/search"/>
+                        android:drawableLeft="@drawable/ic_search_black_24dp"
+                        android:hint="@string/search"
+                        android:inputType="textPersonName" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -217,7 +217,6 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/listview_option"
@@ -225,7 +224,6 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/listview_option"
@@ -233,7 +231,6 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/listview_option"
@@ -296,35 +293,47 @@
                         android:background="@drawable/listview_option"
                         android:text="@string/language_13"
                         android:textSize="20sp" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/listview_option"
                         android:text="@string/language_14"
                         android:textSize="20sp" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/listview_option"
                         android:text="@string/language_15"
                         android:textSize="20sp" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/listview_option"
                         android:text="@string/language_16"
                         android:textSize="20sp" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/listview_option"
                         android:text="@string/language_17"
                         android:textSize="20sp" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/listview_option"
                         android:text="@string/language_18"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/listview_option"
+                        android:text="@string/language_19"
                         android:textSize="20sp" />
 
                 </LinearLayout>
