@@ -1,6 +1,9 @@
 # UQACLife
 Epilife for UQAC
 
+You can download and install the compiled apk [here]()
+
+## License
 "THE BEER-WARE LICENSE" (Revision 42):
 <mahe.charpy@epita.fr>, <theo.golgevit@epita.fr>, 
 <sebastien.januszczak@epita.fr> & <jeremy.salfati@epita.fr> wrote this android 
