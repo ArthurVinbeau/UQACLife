@@ -29,9 +29,14 @@ import static android.os.SystemClock.sleep;
 
 public class SettingsActivity extends MainActivity {
 
+    //Number of collapsable menus
     int toCollapseNumber = 2;
+
+    //List of collapsable menus
     View buttonsToCollapse[] = new View[toCollapseNumber];
     TextView textView;
+
+    //List of available languages
     List<TextView> languages = new ArrayList<>();
 
     @Override
@@ -44,8 +49,8 @@ public class SettingsActivity extends MainActivity {
         final Activity curentActivity = this;
         findViewById(R.id.Logout).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).apply();
+            public void onClick(View v) { //Reset saved login, password, json and cookies
+                sharedPref.edit().putString("login",null).putString("password",null).putString("json",null).commit();
                 Login.flushCookies();
                 curentActivity.finish();
             }
@@ -55,6 +60,7 @@ public class SettingsActivity extends MainActivity {
         buttonsToCollapse[0] = findViewById(R.id.language_list);
         buttonsToCollapse[1] =  findViewById(R.id.notifications_list);
 
+        //Fill languages with every available languages textviews
         for(int index=1; index<((ViewGroup)buttonsToCollapse[0]).getChildCount(); index++) {
             languages.add((TextView)(((ViewGroup)buttonsToCollapse[0]).getChildAt(index)));
         }
@@ -65,6 +71,7 @@ public class SettingsActivity extends MainActivity {
                 selectOption(v);
             }
         };
+        //Set selectOption onClickListener on every menu option
         for(int j = 0 ; j < toCollapseNumber -1 ; j++)
         {
             ViewGroup viewGroup = (ViewGroup) buttonsToCollapse[j];
@@ -80,7 +87,7 @@ public class SettingsActivity extends MainActivity {
             }
         };
         //SEB
-        findViewById(R.id.Notifications).setOnClickListener(onClickListener);
+        findViewById(R.id.Notifications).setOnClickListener(onClickListener); //set collapse onClickLister on Notifications collapsable Menu
         Switch s = findViewById(R.id.switch1);
         Switch s2 = findViewById(R.id.switch2);
         //EditText e1 = findViewById(R.id.minute_delay);
@@ -98,6 +105,8 @@ public class SettingsActivity extends MainActivity {
             }
         });
 
+
+        //set collapse onClickLister on every collapsable Menu
         findViewById(R.id.Language).setOnClickListener(onClickListener);
         findViewById(R.id.selected_language).setOnClickListener(onClickListener);
         findViewById(R.id.notification_arrow).setOnClickListener(onClickListener);
@@ -106,6 +115,7 @@ public class SettingsActivity extends MainActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+            //On edit, hides every language not matching search value
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 for (TextView t: languages) {
@@ -120,6 +130,7 @@ public class SettingsActivity extends MainActivity {
             public void afterTextChanged(Editable s) {}
         });
 
+        //apply saved or default values
         boolean statenotifswitch = sharedPref.getBoolean("switchnotif",true);
         boolean stateservswitch = sharedPref.getBoolean("switchservice",false);
 
@@ -127,8 +138,9 @@ public class SettingsActivity extends MainActivity {
         Switch swich_sevice = (Switch)findViewById(R.id.switch2);
         swich_notif.setChecked(statenotifswitch);
         swich_sevice.setChecked(stateservswitch);
-        TextView t1 = findViewById(R.id.textView5);
         TextView t2 = findViewById(R.id.textView6);
+
+        //Popup window for delay selection
         View.OnClickListener o2 =
                 new View.OnClickListener() {
                     @Override
@@ -170,19 +182,21 @@ public class SettingsActivity extends MainActivity {
 
     }
 
+    //If clicked menu isn't open, opens it and close every other menu
+    //if clicked menu is open, closes it
     void collapse(View v) {
         View selected = null;
         boolean rotateV = false;
               switch (v.getId()) {
-            case R.id.Language:
-            case R.id.selected_language:
-                selected = findViewById(R.id.language_list);
-                break;
-            case R.id.Notifications:
-            case R.id.notification_arrow:
-                rotateV = true;
-                selected = findViewById(R.id.notifications_list);
-                break;
+                    case R.id.Language:
+                    case R.id.selected_language:
+                        selected = findViewById(R.id.language_list);
+                        break;
+                    case R.id.Notifications:
+                    case R.id.notification_arrow:
+                        rotateV = true;
+                        selected = findViewById(R.id.notifications_list);
+                        break;
         }
         if(selected != null) {
             if (selected.isShown())
@@ -199,6 +213,7 @@ public class SettingsActivity extends MainActivity {
         }
     }
 
+    //Saves selected option and displays it
     void selectOption(View v) {
         View parent = (View) v.getParent();
         TextView changeText = null;
@@ -241,8 +256,10 @@ public class SettingsActivity extends MainActivity {
         parent.setVisibility(View.GONE);
     }
 
-    private void changeLanguage(String language){
-        Locale myLocale = new Locale(language);
+
+    //Set the language to languageAbreviation file
+    private void changeLanguage(String languageAbreviation){
+        Locale myLocale = new Locale(languageAbreviation);
         Resources res = getResources();
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
@@ -268,12 +285,15 @@ public class SettingsActivity extends MainActivity {
         Switch s2 = (Switch)findViewById(R.id.switch1);
         if(s.isChecked()) {
             s2.setChecked(true);
-            startService(v);
+            //startService(v);
             sharedPref.edit().putBoolean("switchnotif",s.isChecked()).apply();
+            sharedPref.edit().putBoolean("serviceonce",true).apply();
+
         }
         else
         {
             stopService(v);
+            sharedPref.edit().putBoolean("serviceonce",false).apply();
         }
         sharedPref.edit().putBoolean("switchservice",s.isChecked()).apply();
         show_week(v);

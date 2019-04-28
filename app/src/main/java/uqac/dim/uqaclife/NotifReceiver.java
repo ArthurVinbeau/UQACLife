@@ -29,6 +29,8 @@ public class NotifReceiver extends BroadcastReceiver {
 
         if(intent.getBooleanExtra("service",false))
         {
+            if(intent.getStringExtra("nom") == null)
+                return;
             Intent serviceintent = new Intent(context, NotifService.class);
             serviceintent.putExtra("nom", intent.getStringExtra("nom"));
             serviceintent.putExtra("room", intent.getStringExtra("room"));

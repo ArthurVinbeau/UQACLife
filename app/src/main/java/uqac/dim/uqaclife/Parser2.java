@@ -6,26 +6,41 @@ import java.util.ArrayList;
 
 
 public class Parser2 {
+
+    //Return the json corresponding to the html for lesson list
     public String toJson(String html) {
+        //Array of <start int value,lesson> ordered by start int value in array of day of the week
         ArrayList<ArrayList<Pair<Integer, String>>> week = new ArrayList<ArrayList<Pair<Integer, String>>>();
         for (int i = 0; i < 7; i++) {
             week.add(i, new ArrayList<Pair<Integer, String>>());
             week.get(i).add(0, new Pair<>(-1, "day" + i));
         }
 
+        //Remove unuseful tags end
         html = html.replaceAll("</span>","")
                 .replaceAll("</li>","")
                 .replaceAll("</div>","")
                 .replaceAll("</ul>","");
+
+        //Split for each lesson names
+        //lessons[0] is garbage
         String[] lessons = html.split("<div class=\"card-header");
         for (int i = 1; i< lessons.length ; i++){
-            String[] tmp =lessons[i].split("<div")[0].split("<span>");
-            String cours = tmp[1] + " -" + tmp[3].split("\n")[0];
-            String[] heures = lessons[i].split("<div class=\"card-body p-1 text-small\">")[1].split("<ul class=\"list-unstyled\">");
+            String[] tmp =lessons[i].split("<div")[0].split("<span>");   //get  lesson name and id in tmp[1] and tmp[3]
+            String cours = tmp[1] + " -" + tmp[3].split("\n")[0]; //cours = id -name
+            String[] heures = lessons[i].split("<div class=\"card-body p-1 text-small\">")[1].split("<ul class=\"list-unstyled\">"); //split informations foreach lesson heures[0] is garbage
             for (int j = 1 ; j < heures.length; j++){
+
                 String[] infos = heures[j].split("<li>");
-                int index = 0;
-                if (infos[1].contains("lundi"))
+                //Infos[0] contains garbage
+                //Infos[1] contains period
+                //Infos[2] contains hour
+                //Infos[3] contains room
+                //Infos[4] contains garbage
+
+
+                int index = 0;//index to save in the array
+                if (infos[1].contains("lundi")) //set array according to day in period
                     index = 0;
                 else if (infos[1].contains("mardi"))
                     index = 1;
@@ -41,29 +56,30 @@ public class Parser2 {
                     index = 6;
 
                 tmp = infos[1].split("<span>");
-                String period = tmp[2].split(" ")[1] + " " + tmp[4].split(" ")[1];
+                String period = tmp[2].split(" ")[1] + " " + tmp[4].split(" ")[1]; //Get start day and end day in period
                 tmp = infos [2].split("<span>");
-                String[] start = tmp[2].split(":");
-                int timevalue = Integer.parseInt(start[0])*100 + Integer.parseInt(start[1].split("\n")[0]);
+                String[] start = tmp[2].split(":"); //get start hour of lesson
+                int timevalue = Integer.parseInt(start[0])*100 + Integer.parseInt(start[1].split("\n")[0]); //get starthour value as int to compare and order
 
-                String duration = tmp[2].split("\n")[0] + " à "+ tmp[4].split("\n")[0];
+                String duration = tmp[2].split("\n")[0] + " à "+ tmp[4].split("\n")[0]; //get start and end hour
                 String local = null;
-                try {
-                    local = infos[3].split("<span>")[1].split("\n")[0] + (infos[3].contains("T.D") ? "T.D" : (infos[3].contains("LAB") ? "LAB" : ""));
+                try {               //Sometimes, local isn't in html
+                    local = infos[3].split("<span>")[1].split("\n")[0] + (infos[3].contains("T.D") ? "T.D" : (infos[3].contains("LAB") ? "LAB" : "")); //Saves local and T.D or LAB
                 } catch (Exception e){
                     local = "Non renseignée";
                     Log.i("HTML error", e.toString(),e);
                 }
 
                 String toAdd = cours + "#" + duration + "#" + local  + "#"+ period;
-                //Ils sont inscrits sous la forme id-grp - Nom du cours#hh:mm à hh:mm#local#period
+                //Save lesson in array as  id-grp - Nom du cours#hh:mm à hh:mm#local#period
                 insertSorted(week.get(index), new Pair<>(timevalue, toAdd));
             }
 
         }
 
-        //Normalement, ici on a week avec chaque jour rempli par les cours dans l'ordre de la journee
-        //Ils sont inscrits sous la forme id-grp - Nom du cours#hh:mm à hh:mm#local#period#TD
+        //Week is filled for each day in hour ascending order
+        //each lesson is saved as as  id-grp - Nom du cours#hh:mm à hh:mm#local#period
+        //Creates JSON from the Week Array
         String json = "{\n";
         for (int i = 0; i < 7; i++) {
             json += "\"";
@@ -122,12 +138,12 @@ public class Parser2 {
         return json + "}";
     }
 
+    //Insert in list value in pair Integer ascending order
     private void insertSorted(ArrayList<Pair<Integer, String>> list, Pair<Integer, String> value) {
         int i = 0;
         int toAdd = value.first;
-        while (i < list.size() && list.get(i).first < toAdd) {
+        while (i < list.size() && list.get(i).first < toAdd)
             i++;
-        }
         list.add(i, value);
     }
 }
