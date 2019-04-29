@@ -1,6 +1,10 @@
 # UQACLife
 Epilife for UQAC
 
+This application lets you quickly check your schedule and your grades.  
+By default you will recieve a notification 15 minutes before your course detailing the room and more.  
+You can also check your grades using the upper-right menu.
+
 You can download and install the compiled apk [here](https://github.com/ArthurVinbeau/UQACLife/raw/master/UQACLife.apk)
 
 ## License
