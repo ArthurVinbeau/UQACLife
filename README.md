@@ -1,6 +1,5 @@
-# UQACLife
-
-Epilife pour l'UQAC
+# UQACLife `V. 4.2.1`
+##### Epilife pour l'UQAC
 
 Cette application vous permet de regarder rapidement votre emploi du temps et vos notes.  
 Vous recevrez par défaut une notification 15 minutes avant votre cours détaillant la salle et plus.  
@@ -11,7 +10,7 @@ Veuillez noter qu'il vous faut un compte étudiant à l'UQAC pour utiliser cette
 Vous pouvez télécharger et installer l'apk compilé [ici](https://github.com/ArthurVinbeau/UQACLife/raw/master/UQACLife.apk)
 
 ---
-Epilife for UQAC
+##### Epilife for UQAC
 
 This application lets you quickly check your schedule and your grades.  
 By default you will recieve a notification 15 minutes before your course detailing the room and more.  
