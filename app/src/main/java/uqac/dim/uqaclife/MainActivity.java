@@ -94,8 +94,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-        if (b != null && b.getInt("requestCode") == 42) // RequestCode is set to 42 to each activity called except MainActivity
-            return false;
+        if (b != null ) // RequestCode is set to 42 to each activity called except MainActivity
+        {
+            int requestCode = b.getInt("requestCode");
+            if (requestCode == 42 || requestCode == 155 || requestCode == 156)
+                return false;
+        }
         getMenuInflater().inflate(R.menu.main_drop_menu, menu);
         return true;
     }
